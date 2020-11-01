@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"target": "ES2019",
+		"module": "ES2015",
+		"lib": [
+			"ES2019",
+			"dom",
+			"WebWorker"
+		],
+		"types": [
+			"svelte",
+			"node"
+		],
+		"checkJs": true,
+		"allowJs": true,
+		"strictNullChecks": false,
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"keyofStringsOnly": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"baseUrl": "."
+	},
+	"include": [
+		"src"
+	],
+	"exclude": [
+		"__sapper__",
+		"/node_modules/",
+		"src/**/*.scss.d.ts"
+	]
+}
