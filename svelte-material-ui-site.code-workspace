@@ -30,5 +30,28 @@
 			"esbenp.prettier-vscode",
 			"svelte.svelte-vscode"
 		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Docker Build",
+				"type": "docker-build",
+				"platform": "node",
+				"dockerBuild": {
+					"tag": "monkeythedev/svelte-material-ui-site:latest",
+					"buildArgs": {
+						"NPM_TOKEN": "${input:NPM_TOKEN}"
+					}
+				}
+			}
+		],
+		"inputs": [
+			{
+				"id": "NPM_TOKEN",
+				"type": "promptString",
+				"description": "GitHub NPM TOKEN"
+			}
+		]
 	}
 }
