@@ -20,7 +20,15 @@
 		"keyofStringsOnly": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
-		"baseUrl": "."
+		"baseUrl": ".",
+		"paths": {
+			"@smui/core/*": [
+				"./node_modules/@svelte-material-ui-test/core/*"
+			],
+			"svelte-prism/*": [
+				"./node_modules/@raythurnevoid/svelte-prism/*"
+			]
+		}
 	},
 	"include": [
 		"src"
