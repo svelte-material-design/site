@@ -45,83 +45,75 @@
 	}
 </script>
 
-<style lang="scss">
-	.drawer-container {
-		flex-grow: 1;
-		height: 0;
-		display: flex;
-	}
-</style>
-
 <svelte:window on:resize={setMiniWindow} />
 
-<TopAppBar variant="static" class={appClasses.demoTopAppBar}>
-	<Row>
-		<Section>
-			{#if miniWindow}
-				<IconButton
-					class="material-icons"
-					on:click={() => (drawerOpen = !drawerOpen)}>
-					menu
-				</IconButton>
-			{/if}
-			<Title
-				component={A}
-				href="/"
-				on:click={() => (activeSection = null)}
-				class="mdc-theme--primary"
-				style={miniWindow ? 'padding-left: 0;' : ''}>
-				Svelte Material UI
-			</Title>
-		</Section>
-		<Section align="end" toolbar>
-			{#each repos as repo}
-				<IconButton
-					href={repo}
-					title={`View Component: ${repo.split('/').slice(-1)[0]}`}>
+<div class={appClasses['app-container']}>
+	<TopAppBar variant="static" class={appClasses['demo-app-bar']}>
+		<Row>
+			<Section>
+				{#if miniWindow}
+					<IconButton
+						class="material-icons"
+						on:click={() => (drawerOpen = !drawerOpen)}>
+						menu
+					</IconButton>
+				{/if}
+				<Title
+					component={A}
+					href="/"
+					on:click={() => (activeSection = null)}
+					class="mdc-theme--primary"
+					style={miniWindow ? 'padding-left: 0;' : ''}>
+					Svelte Material UI
+				</Title>
+			</Section>
+			<Section align="end" toolbar>
+				{#each repos as repo}
+					<IconButton
+						href={repo}
+						title={`View Component: ${repo.split('/').slice(-1)[0]}`}>
+						<Icon>
+							<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+								<path fill="#000000" d={mdiFileDocument} />
+							</svg>
+						</Icon>
+					</IconButton>
+				{/each}
+				{#if activeSection}
+					<IconButton
+						href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`}
+						title={`View Demo Code: ${activeSection.route
+								.split('/')
+								.slice(-1)[0]}`}>
+						<Icon>
+							<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+								<path fill="#000000" d={mdiCodeTags} />
+							</svg>
+						</Icon>
+					</IconButton>
+				{/if}
+				<IconButton href="https://twitter.com/SciActive">
 					<Icon>
 						<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-							<path fill="#000000" d={mdiFileDocument} />
+							<path fill="#000000" d={mdiTwitter} />
 						</svg>
 					</Icon>
 				</IconButton>
-			{/each}
-			{#if activeSection}
-				<IconButton
-					href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`}
-					title={`View Demo Code: ${activeSection.route
-							.split('/')
-							.slice(-1)[0]}`}>
+				<IconButton href="https://github.com/hperrin/svelte-material-ui">
 					<Icon>
 						<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-							<path fill="#000000" d={mdiCodeTags} />
+							<path fill="#000000" d={mdiGithub} />
 						</svg>
 					</Icon>
 				</IconButton>
-			{/if}
-			<IconButton href="https://twitter.com/SciActive">
-				<Icon>
-					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-						<path fill="#000000" d={mdiTwitter} />
-					</svg>
-				</Icon>
-			</IconButton>
-			<IconButton href="https://github.com/hperrin/svelte-material-ui">
-				<Icon>
-					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-						<path fill="#000000" d={mdiGithub} />
-					</svg>
-				</Icon>
-			</IconButton>
-		</Section>
-	</Row>
-</TopAppBar>
+			</Section>
+		</Row>
+	</TopAppBar>
 
-<div class="drawer-container">
 	<Drawer
 		variant={miniWindow ? 'modal' : null}
 		bind:open={drawerOpen}
-		class="{appClasses.demoDrawer} mdc-theme--secondary-bg {miniWindow ? appClasses.demoDrawerAdjust : ''}">
+		class="mdc-theme--secondary-bg {miniWindow ? appClasses['demo-drawer-adjust'] : ''}">
 		<Content>
 			<List>
 				{#each sections as section (section.name)}
@@ -142,9 +134,9 @@
 	{#if miniWindow}
 		<Scrim />
 	{/if}
-	<AppContent class={appClasses.demoAppContent}>
-		<main class={appClasses.demoMainContent} bind:this={mainContent}>
+	<AppContent class={appClasses['demo-app-content']}>
+		<div bind:this={mainContent} class={appClasses['demo-main-content']}>
 			<slot />
-		</main>
+		</div>
 	</AppContent>
 </div>

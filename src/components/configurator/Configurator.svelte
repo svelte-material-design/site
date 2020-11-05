@@ -1,8 +1,46 @@
 <script lang="ts">
+	import { Use } from "@smui/core/common/hooks";
+	import { afterUpdate, onMount } from "svelte";
 	import CodeSelector from "./CodeSelector.svelte";
 
 	export let svelteCode: string;
 	export let scssCode: string;
+
+	let extraCodeHeight = 0; //em;
+	let codeElement: HTMLDivElement;
+	let emInPx: number;
+	const minCodeEm = 14;
+
+	onMount(() => {
+		emInPx = parseFloat(getComputedStyle(codeElement?.parentElement).fontSize);
+	});
+
+	function handleWindowResize() {
+		checkAndFixCodeHeight();
+	}
+
+	let checkAndFixCodeHeightTimeout: number;
+	function checkAndFixCodeHeight() {
+		clearTimeout(checkAndFixCodeHeightTimeout);
+		checkAndFixCodeHeightTimeout = setTimeout(() => {
+			const minCodeHeight = emInPx * minCodeEm;
+
+			const realCodeHeight =
+				extraCodeHeight !== 0
+					? codeElement.clientHeight - extraCodeHeight * emInPx
+					: codeElement.clientHeight;
+
+			if (realCodeHeight < minCodeHeight) {
+				extraCodeHeight = (minCodeHeight - realCodeHeight) / emInPx;
+			} else {
+				extraCodeHeight = 0;
+			}
+		}, 20);
+	}
+
+	afterUpdate(() => {
+		checkAndFixCodeHeight();
+	});
 </script>
 
 <style lang="scss">
@@ -14,11 +52,12 @@
 		max-width: 80em;
 		display: grid;
 		grid-template:
-			"preview options-sidebar"
-			"code options-sidebar"
+			"preview options-sidebar" 1fr
+			"code options-sidebar" 1fr
 			/ 1fr minmax(200px, min-content);
 		white-space: normal;
 		border: $border;
+		max-height: calc(80vh + var(--extra-code-height) - 64px);
 	}
 
 	.preview {
@@ -74,7 +113,9 @@
 	}
 </style>
 
-<div class="configurator">
+<svelte:window on:resize={() => handleWindowResize()} />
+
+<div class="configurator" style="--extra-code-height: {extraCodeHeight}em;">
 	<div class="preview">
 		<div class="preview-slot">
 			<slot name="preview" />
@@ -88,7 +129,7 @@
 	<div class="options-sidebar">
 		<slot name="optionsSidebar" />
 	</div>
-	<div class="code">
+	<div class="code" bind:this={codeElement}>
 		<CodeSelector svelte={svelteCode} scss={scssCode} />
 	</div>
 </div>

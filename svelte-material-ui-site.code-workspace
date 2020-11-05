@@ -39,7 +39,7 @@
 				"type": "docker-build",
 				"platform": "node",
 				"dockerBuild": {
-					"tag": "monkeythedev/svelte-material-ui-site:latest",
+					"tag": "monkeythedev/svelte-material-ui-website:latest",
 					"buildArgs": {
 						"NPM_TOKEN": "${input:NPM_TOKEN}"
 					}

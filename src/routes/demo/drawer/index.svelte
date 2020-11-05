@@ -1,7 +1,5 @@
 <script lang="ts">
-	import BaseDrawer from "./BaseDrawer.svelte";
-	import DismissibleDrawer from "./DismissibleDrawer.svelte";
-	import ModalDrawer from "./ModalDrawer.svelte";
+	import DrawerConfigurator from "./_DrawerConfigurator.svelte";
 </script>
 
 <svelte:head>
@@ -11,7 +9,5 @@
 <section>
 	<h2>Drawers</h2>
 
-	<BaseDrawer />
-	<DismissibleDrawer />
-	<ModalDrawer />
+	<DrawerConfigurator />
 </section>

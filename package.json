@@ -36,7 +36,7 @@
 		"@material/typography": "^7.0.0",
 		"@mdi/js": "^5.6.55",
 		"@raythurnevoid/svelte-prism": "1.0.0-ts.0",
-		"@svelte-material-ui-test/core": "^2.0.0-alpha.5",
+		"@svelte-material-ui-test/core": "file:../svelte-material-ui-core",
 		"@types/prismjs": "^1.16.1",
 		"common-tags": "^1.8.0",
 		"compression": "^1.7.4",

@@ -4,54 +4,49 @@
 @use "@material/theme";
 
 // Main Top App Bar styling.
-//@use "@smui/top-app-bar" as smui-top-app-bar; 
+//@use "@smui/top-app-bar" as smui-top-app-bar;
 
-.demoTopAppBar {
-  // Color the top bar with "surface" colors.
-  @include top-app-bar.fill-color-accessible(surface);
-  @include top-app-bar.icon-ink-color(on-surface);
-  // Give it a shadow.
-  @include elevation.elevation(4);
-  // Position it above the drawer.
-  z-index: 7;
-}
+.app-container {
+	display: flex;
+	height: 100%;
 
-.demoDrawer,
-.demoMainContent {
-  overflow: auto;
-  height: 100%;
-}
+	.demo-app-bar {
+		// Color the top bar with "surface" colors.
+		@include top-app-bar.fill-color-accessible(surface);
+		@include top-app-bar.icon-ink-color(on-surface);
+		// Give it a shadow.
+		@include elevation.elevation(4);
+		// Position it above the drawer.
+		position: absolute;
+		z-index: 7;
+	}
 
-.demoDrawer.demoDrawerAdjust {
-  padding-bottom: top-app-bar.$row-height;
-}
+	.demo-drawer-adjust {
+		padding-bottom: top-app-bar.$row-height;
+	}
 
-.demoAppContent {
-  flex: auto;
-  position: relative;
-  width: 0;
-  flex-grow: 1;
-}
+	.demo-app-content {
+		flex: auto;
+	}
 
-.demoMainContent {
-  overflow: auto;
+	.demo-main-content {
+		section {
+			padding: 16px;
+			width: 100%;
+			box-sizing: border-box;
+		}
 
-  section {
-    padding: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
+		section:after {
+			height: 32px;
+			display: block;
+			content: " ";
+		}
+	}
 
-  section:after {
-    height: 32px;
-    display: block;
-    content: " ";
-  }
-}
-
-.status {
-  max-width: 100%;
-  font-size: 0.9em;
-  word-break: break-word;
-  white-space: normal;
+	.status {
+		max-width: 100%;
+		font-size: 0.9em;
+		word-break: break-word;
+		white-space: normal;
+	}
 }

@@ -9,11 +9,15 @@ export function generateSvelteCode({
 	props = [],
 	content = "",
 	indentSize,
+	after,
+	before,
 }: {
 	tag: string;
 	props: StringListToFilter;
 	content: string;
 	indentSize?: number;
+	after?: string;
+	before?: string;
 }) {
 	const filteredProps = filterStringList(props) || [];
 
@@ -23,9 +27,11 @@ export function generateSvelteCode({
 	if (parsedProps.length > 0) parsedProps = " " + parsedProps;
 
 	const code = stripIndent`
+${before ? indentCode({ code: stripIndent(before), indentSize: 2 }) : ""}
 		<${tag}${parsedProps}>
 ${indentCode({ code: stripIndent(content), indentSize: 3 })}
 		</${tag}>
+${after ? indentCode({ code: stripIndent(after), indentSize: 2 }) : ""}
 	`;
 
 	const result = indentCode({ code, indentSize });
