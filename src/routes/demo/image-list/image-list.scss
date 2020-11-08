@@ -37,3 +37,7 @@
 		@include image-list.standard-columns(3);
 	}
 }
+
+.custom-shape-radius {
+	@include image-list.shape-radius(25px);
+}

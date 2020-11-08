@@ -36,7 +36,7 @@
 
 	$: svelteCode = generateSvelteCode({
 		tag: "Drawer",
-		props: [`bind:open`, [variant !== "permanent", `variant=${variant}`]],
+		props: [`bind:open`, [variant !== "permanent", `variant="${variant}"`]],
 		content: `
 			${getContentCode(title, subtitle)}
 		`,

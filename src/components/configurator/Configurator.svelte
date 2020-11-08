@@ -22,20 +22,24 @@
 	let checkAndFixCodeHeightTimeout: number;
 	function checkAndFixCodeHeight() {
 		clearTimeout(checkAndFixCodeHeightTimeout);
-		checkAndFixCodeHeightTimeout = setTimeout(() => {
-			const minCodeHeight = emInPx * minCodeEm;
 
-			const realCodeHeight =
-				extraCodeHeight !== 0
-					? codeElement.clientHeight - extraCodeHeight * emInPx
-					: codeElement.clientHeight;
+		const allowedErrorMargin = 1;
+		const minCodeHeight = emInPx * minCodeEm;
 
-			if (realCodeHeight < minCodeHeight) {
-				extraCodeHeight = (minCodeHeight - realCodeHeight) / emInPx;
-			} else {
-				extraCodeHeight = 0;
-			}
-		}, 20);
+		if (codeElement.clientHeight < minCodeHeight + allowedErrorMargin) {
+			checkAndFixCodeHeightTimeout = setTimeout(() => {
+				const realCodeHeight =
+					extraCodeHeight !== 0
+						? codeElement.clientHeight - extraCodeHeight * emInPx
+						: codeElement.clientHeight;
+
+				if (realCodeHeight < minCodeHeight + allowedErrorMargin) {
+					extraCodeHeight = (minCodeHeight - realCodeHeight) / emInPx;
+				} else {
+					extraCodeHeight = 0;
+				}
+			}, 20);
+		}
 	}
 
 	afterUpdate(() => {
@@ -52,7 +56,7 @@
 		max-width: 80em;
 		display: grid;
 		grid-template:
-			"preview options-sidebar" 1fr
+			"preview options-sidebar" minmax(200px, 60vh)
 			"code options-sidebar" 1fr
 			/ 1fr minmax(200px, min-content);
 		white-space: normal;
@@ -69,11 +73,13 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		overflow: auto;
 
 		.preview-slot {
 			flex-grow: 1;
 			align-items: center;
 			display: flex;
+			height: 100%;
 		}
 
 		.values {
@@ -87,10 +93,7 @@
 		min-width: 0;
 		min-height: 0;
 		overflow: auto;
-
-		:global(pre) {
-			white-space: break-spaces;
-		}
+		background: #1e1e1e;
 	}
 
 	.options-sidebar {

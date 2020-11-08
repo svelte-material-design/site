@@ -7,203 +7,254 @@
 		Supporting,
 		Label,
 	} from "@smui/core/image-list";
-	import { List, ListItem, Text } from "@smui/core/list";
 	import { Slider } from "@smui/core/slider";
 	import { FormField, Label as FormFieldLabel } from "@smui/core/form-field";
 	import {
 		Configurator,
+		generateSCSSCode,
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
 	import { Checkbox } from "@svelte-material-ui-test/core/packages/checkbox";
+	import { getUnevenImageSize } from "./getUnevenImageSize";
+	import { ImageListVariant } from "@svelte-material-ui-test/core/packages/image-list/src/types";
 
-	let open: boolean;
-	let title: boolean;
-	let subtitle: boolean;
-	let variant: string = "permanent";
-	let layout: "below-top-app-bar" | "full-height";
+	let variant: ImageListVariant;
+	let label: boolean = true;
+	let textProtection: boolean;
+	let aspectContainer: boolean = true;
+	let aspect: "1:1" | "16:9" | "4:3";
 	let gapValue: number;
 	let gapUnit: "em" | "px";
 	let columns: number;
+	let customShapeRadius: boolean;
 
+	$: if (!label) textProtection = false;
 	$: gap = gapValue > 0 ? `${gapValue}${gapUnit}` : undefined;
-
-	$: if (!title) subtitle = false;
+	$: aspect = !aspectContainer ? (aspect = undefined) : aspect ?? "1:1";
 
 	let svelteCode: string;
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "Drawer",
-		props: [`bind:open`, [variant !== "permanent", `variant=${variant}`]],
+		tag: "ImageList",
+		props: [
+			[variant !== "standard", `variant="${variant}"`],
+			[textProtection, "textProtection"],
+			[aspect && aspect !== "1:1", `aspect="${aspect}"`],
+			[gap, `gap="${gap}"`],
+			[columns > 1, `columns={${columns}}`],
+			[customShapeRadius, `class="custom-shape-radius"`],
+		],
 		content: `
-			${getContentCode(title, subtitle)}
+			${getContentCode(variant, columns, aspectContainer, label)}
 		`,
-		after: `
-
-			<AppContent>
-${layout === "full-height" ? getTopAppBarCode() : ""}
-				App Content
-			</AppContent>
-		`,
-		before: layout === "below-top-app-bar" ? getTopAppBarCode() : "",
 	});
 
-	$: if (variant === "permanent") open = true;
+	$: scssCode = generateSCSSCode({ content: getSCSSCode(customShapeRadius) });
 
-	//#region content code
+	$: if (variant === "masonry") aspectContainer = false;
+
+	//#region code
 	function getContentCode(
-		titleValue: typeof title,
-		subtitleValue: typeof subtitle
+		variantValue: typeof variant,
+		columnsValue: typeof columns,
+		aspectContainerValue: typeof aspectContainer,
+		labelValue: typeof label
 	) {
-		function getHeaderCode() {
-			if (titleValue) {
-				return `
-				<Header>
-					<Title>Title</Title>
-					${subtitleValue ? `<Subtitle>Subtitle</Subtitle>` : ""}
-				</Header>
-				`;
-			} else {
-				return "";
-			}
-		}
-
 		return `
-			<Content>
-${getHeaderCode()}
-				<List>
-					<Item href="javascript:void(0)">
-						<Text>Gray Kittens</Text>
-					</Item>
-					<Item href="javascript:void(0)">
-						<Text>A Space Rocket</Text>
-					</Item>
-					<Item href="javascript:void(0)">
-						<Text>100 Pounds of Gravel</Text>
-					</Item>
-					<Item href="javascript:void(0)">
-						<Text>All of the Shrimp</Text>
-					</Item>
-					<Item href="javascript:void(0)">
-						<Text>A Planet with a Mall</Text>
-					</Item>
-				</List>
-			</Content>
+			${getImagesCode(variantValue, columnsValue, aspectContainerValue, labelValue)}
 		`;
 	}
-	//#endregion
 
-	function getTopAppBarCode() {
-		if (layout) {
+	function getImagesCode(
+		variantValue: typeof variant,
+		columnsValue: typeof columns,
+		aspectContainerValue: typeof aspectContainer,
+		labelValue: typeof label
+	) {
+		const res = Array(4)
+			.fill("")
+			.map((_, index) => {
+				return `
+				<Item>
+				${getImageCode(index, variantValue, columnsValue, aspectContainerValue)}
+				${getLabelCode(index, labelValue)}
+				</Item>
+				`;
+			});
+
+		return res.join("\n");
+	}
+
+	function getImageCode(
+		counter: number,
+		variantValue: typeof variant,
+		columnsValue: typeof columns,
+		aspectContainerValue: typeof aspectContainer
+	) {
+		if (aspectContainerValue) {
 			return `
-				<TopAppBar${layout === "below-top-app-bar" ? ' style="z-index: 7;"' : ""}>
-					<Row>
-						<Section>
-							<TopAppBarTitle>Top App Bar</TopAppBarTitle>
-						</Section>
-					</Row>
-				</TopAppBar>
+					<ImageAspectContainer>
+						<Image
+							src="https://via.placeholder.com/${getImageRes(
+								variantValue,
+								counter,
+								columnsValue
+							)}.png?text=${getImageRes(variantValue, counter, columnsValue)}"
+							alt="Image ${counter + 1}" />
+					</ImageAspectContainer>
+			`;
+		} else {
+			return `
+					<Image
+						src="https://via.placeholder.com/${getImageRes(
+							variantValue,
+							counter,
+							columnsValue
+						)}.png?text=${getImageRes(variantValue, counter, columnsValue)}"
+						alt="Image ${counter + 1}" />
+			`;
+		}
+	}
+
+	function getLabelCode(counter: number, labelValue: typeof label) {
+		if (labelValue) {
+			return `
+					<Supporting>
+						<Label>Image ${counter}</Label>
+					</Supporting>
 			`;
 		} else {
 			return "";
 		}
 	}
 
-	function getGalleryWidth(columnsValue: typeof columns) {
-		switch (columns) {
-			case 2:
-				return "10em";
-			case 3:
-				return "14em";
-			default:
-				return "20em";
+	function getSCSSCode(customShapeRadiusValue: typeof customShapeRadius) {
+		if (customShapeRadiusValue) {
+			return `
+			@use "@material/image-list";
+
+			.custom-shape-radius {
+				@include image-list.shape-radius(25px);
+			}
+
+			`;
 		}
+	}
+	//#endregion
+
+	function getGalleryWidth(
+		variantValue: typeof variant,
+		columnsValue: typeof columns
+	) {
+		switch (columnsValue) {
+			case 2:
+				return variantValue === "masonry" ? "22em" : "18em";
+			case 3:
+				return "26em";
+			default:
+				return "40em";
+		}
+	}
+
+	function getImageRes(
+		variantValue: typeof variant,
+		counter: number,
+		columnsValue: typeof columns
+	) {
+		const height =
+			variantValue === "standard"
+				? getUnevenImageSize(counter, 190, 10)
+				: getUnevenImageSize(
+						counter,
+						107,
+						200,
+						Math.abs,
+						columnsValue == 3 ? 2 : 3
+				  );
+		return `190x${height}`;
 	}
 </script>
-
-<style lang="scss">
-	.drawer-container {
-		position: relative;
-		display: flex;
-		height: 20em;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		overflow: hidden;
-		z-index: 0;
-		width: 25em;
-
-		:global(.mdc-drawer-scrim) {
-			position: absolute;
-		}
-
-		:global(.smui-app-content__main-content) {
-			padding: 16px;
-		}
-
-		:global(.top-app-bar) {
-			position: absolute;
-		}
-	}
-</style>
 
 <svelte:options immutable={true} />
 
 <Configurator {svelteCode} {scssCode}>
-	<div slot="preview">
+	<div
+		slot="preview"
+		style={columns == 2 && (variant === 'masonry' || aspect === '1:1') ? 'height: 100%;' : ''}>
 		<ImageList
+			{variant}
+			{aspect}
 			{gap}
 			columns={columns < 2 ? undefined : columns}
-			style="width: {getGalleryWidth(columns)};">
+			style="width: {getGalleryWidth(variant, columns)};"
+			{textProtection}
+			class={customShapeRadius ? 'custom-shape-radius' : undefined}>
 			{#each Array(4) as _, i}
 				<Item>
-					<ImageAspectContainer>
+					{#if variant === 'masonry' || !aspectContainer}
 						<Image
-							src="https://via.placeholder.com/190x190.png?text=square"
+							src="https://via.placeholder.com/{getImageRes(variant, i, columns)}.png?text={getImageRes(variant, i, columns)}"
 							alt="Image {i + 1}" />
-					</ImageAspectContainer>
-					<Supporting>
-						<Label>Image {i + 1}</Label>
-					</Supporting>
+						{#if label}
+							<Supporting>
+								<Label>Image {i + 1}</Label>
+							</Supporting>
+						{/if}
+					{:else}
+						<ImageAspectContainer>
+							<Image
+								src="https://via.placeholder.com/{getImageRes(variant, i, columns)}.png?text={getImageRes(variant, i, columns)}"
+								alt="Image {i + 1}" />
+						</ImageAspectContainer>
+						{#if label}
+							<Supporting>
+								<Label>Image {i + 1}</Label>
+							</Supporting>
+						{/if}
+					{/if}
 				</Item>
 			{/each}
 		</ImageList>
 	</div>
 	<div slot="optionsSidebar" class="options-sidebar">
-		<div>
+		<div style="grid-column: span 2;">
 			<FormField>
 				<Select bind:value={variant} nullable={false}>
 					<span slot="label">Variant</span>
-					<Option value="permanent">Permanent</Option>
-					<Option value="dismissible">Dismissible</Option>
-					<Option value="modal">Modal</Option>
+					<Option value="standard">Standard</Option>
+					<Option value="masonry">Masonry</Option>
 				</Select>
 			</FormField>
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={open} disabled={variant === 'permanent'} />
-				<span slot="label">Open modal</span>
+				<Checkbox bind:checked={label} />
+				<span slot="label">Show Label</span>
 			</FormField>
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={title} />
-				<span slot="label">Show Title</span>
+				<Checkbox bind:checked={textProtection} disabled={!label} />
+				<span slot="label">Text protection</span>
 			</FormField>
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={subtitle} disabled={!title} />
-				<span slot="label">Show Subtitle</span>
+				<Checkbox
+					bind:checked={aspectContainer}
+					disabled={variant === 'masonry'} />
+				<span slot="label">Aspect container</span>
 			</FormField>
 		</div>
 		<div>
 			<FormField>
-				<Select bind:value={layout} nullable={false}>
-					<span slot="label">Layout</span>
-					<Option />
-					<Option value="full-height">Full Height + Top App Bar</Option>
-					<Option value="below-top-app-bar">Below Top App Bar</Option>
+				<Select bind:value={aspect} disabled={!aspectContainer}>
+					<span slot="label">Aspect</span>
+					<Option value="1:1">1:1</Option>
+					<Option value="16:9">16:9</Option>
+					<Option value="4:3">4:3</Option>
 				</Select>
 			</FormField>
 		</div>
@@ -236,6 +287,12 @@ ${getHeaderCode()}
 					<Option value="em">em</Option>
 					<Option value="px">px</Option>
 				</Select>
+			</FormField>
+		</div>
+		<div>
+			<FormField>
+				<Checkbox bind:checked={customShapeRadius} />
+				<span slot="label">Custom shape radius</span>
 			</FormField>
 		</div>
 	</div>
