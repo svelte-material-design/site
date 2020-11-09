@@ -11,8 +11,12 @@
 	let emInPx: number;
 	const minCodeEm = 14;
 
+	const allowedErrorMargin = 1;
+	let minCodeHeight: number;
+
 	onMount(() => {
 		emInPx = parseFloat(getComputedStyle(codeElement?.parentElement).fontSize);
+		minCodeHeight = emInPx * minCodeEm;
 	});
 
 	function handleWindowResize() {
@@ -22,9 +26,6 @@
 	let checkAndFixCodeHeightTimeout: number;
 	function checkAndFixCodeHeight() {
 		clearTimeout(checkAndFixCodeHeightTimeout);
-
-		const allowedErrorMargin = 1;
-		const minCodeHeight = emInPx * minCodeEm;
 
 		if (codeElement.clientHeight < minCodeHeight + allowedErrorMargin) {
 			checkAndFixCodeHeightTimeout = setTimeout(() => {
@@ -43,7 +44,9 @@
 	}
 
 	afterUpdate(() => {
-		checkAndFixCodeHeight();
+		if (codeElement.clientHeight < minCodeHeight && !extraCodeHeight) {
+			checkAndFixCodeHeight();
+		}
 	});
 </script>
 
@@ -99,6 +102,7 @@
 	.options-sidebar {
 		grid-area: options-sidebar;
 		padding: $padding;
+		overflow: auto;
 
 		> :global(.options-sidebar) {
 			display: grid;

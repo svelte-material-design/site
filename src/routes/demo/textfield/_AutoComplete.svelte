@@ -2,7 +2,6 @@
 	import {
 		InputField,
 		Icon,
-		HelperText,
 		TextFieldVariant,
 		CharacterCounter,
 	} from "@smui/core/textfield";

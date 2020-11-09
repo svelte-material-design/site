@@ -2,14 +2,14 @@
 	import {
 		InputField,
 		Icon,
-		HelperText,
-		TextFieldVariant,
+		InputFieldVariant,
 		CharacterCounter,
 	} from "@smui/core/textfield";
+	import { HelperText } from "@smui/core/textfield/helper-text";
 	import classes from "./index.module.scss";
 	import "./index.scss";
 
-	export let variant: TextFieldVariant;
+	export let variant: InputFieldVariant;
 	export let textFieldClass: string = "";
 	export let title: string;
 

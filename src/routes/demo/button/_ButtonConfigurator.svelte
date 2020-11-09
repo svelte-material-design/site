@@ -146,7 +146,7 @@
 			return `
 				<Icon${iconOnlyValue ? ` style="margin: 0"` : ""}
 						type="img"
-						props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }}/>
+						props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }}/>
 			`;
 		} else {
 			return "";
@@ -164,7 +164,7 @@
 			return "<Icon>play_circle_filled</Icon>";
 		} else if (selectedTrailingIcon === "svg") {
 			return `
-				<Icon svg props={{viewBox: "0 0 24 24"}}>
+				<Icon type="svg" props={{viewBox: "0 0 24 24"}}>
 					<polygon points="0,24 12,0 24,24" />
 				</Icon>
 			`;
@@ -172,7 +172,7 @@
 			return `
 				<Icon
 						type="img"
-						props={{ src: '/icons/emojis/upside-down-face.png', alt: 'on' }}
+						props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }}
 						on />
 			`;
 		} else {
@@ -220,7 +220,7 @@
 			{:else if trailingIcon === 'img'}
 				<Icon
 					type="img"
-					props={{ src: '/icons/emojis/grinning-face.png', alt: 'grinning-face' }} />
+					props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
 			{/if}
 		</Button>
 	</div>
