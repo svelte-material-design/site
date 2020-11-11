@@ -7,3 +7,7 @@
 .shaped-outline {
 	@include textfield.outline-shape-radius(50%);
 }
+
+.mdc-text-field.shaped-text-area {
+	@include textfield.textarea-shape-radius(16px);
+}

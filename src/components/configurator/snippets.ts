@@ -69,3 +69,37 @@ function getDefaultIconContent(type: GraphicType, position: Position) {
 			return position === "leading" ? `favorite` : `delete`;
 	}
 }
+
+export function getHelperTextCode({
+	text,
+	characterCounter,
+	validationMsg,
+	persistent,
+	tabs = 0,
+}: {
+	text?: string;
+	characterCounter?: boolean;
+	validationMsg?: boolean;
+	persistent?: boolean;
+	tabs?: number;
+}) {
+	if (text || characterCounter) {
+		return generateSvelteCode({
+			tag: "HelperText",
+			props: [
+				[persistent, `persistent`],
+				[validationMsg, `validationMsg`],
+			],
+			content: getHelperTextContentCode(text, characterCounter),
+		}).replace(/\n/g, "\n" + "\t".repeat(tabs));
+	} else {
+		return "";
+	}
+}
+
+function getHelperTextContentCode(text: string, characterCounter: boolean) {
+	return `
+		${text ? `<span slot="label">${text}</span>` : ""}
+		${characterCounter ? `<CharacterCounter />` : ""}
+	`;
+}

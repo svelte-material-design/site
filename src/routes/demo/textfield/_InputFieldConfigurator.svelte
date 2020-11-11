@@ -15,10 +15,13 @@
 	import { Slider } from "@smui/core/slider";
 	import { getIconCode } from "src/components/configurator/snippets";
 
+	let ripple: boolean = true;
+	let lineRipple: boolean = true;
 	let variant: InputFieldVariant;
 	let customStyle: boolean;
 	let label: boolean = true;
 	let helperText: boolean;
+	let helperTextAsValidationMsg: boolean;
 	let persistentHelperText: boolean;
 	let characterCounter: boolean;
 	let type: InputFieldType;
@@ -101,6 +104,8 @@
 			`name="input-field"`,
 			[className, `class="${className}"`],
 			[variant !== "filled", `variant="${variant}"`],
+			[!ripple, `ripple={false}`],
+			[!lineRipple, `lineRipple={false}`],
 			[density, `density={${density}}`],
 			[type, `type="${type}"`],
 			[title, `title="${title}"`],
@@ -110,8 +115,8 @@
 			[pattern, `pattern="${pattern}"`],
 			[prefix, `prefix="${prefix}"`],
 			[suffix, `suffix="${suffix}"`],
-			[maxlength, `maxlength={${maxlength}}`],
 			[minlength, `minlength={${minlength}}`],
+			[maxlength, `maxlength={${maxlength}}`],
 			[step, `step={${step}}`],
 			[min, `min={${min}}`],
 			[max, `max={${max}}`],
@@ -126,6 +131,7 @@
 			trailingIcon,
 			clearOnTrailingIconClick,
 			helperText,
+			helperTextAsValidationMsg,
 			characterCounter,
 			persistentHelperText,
 			useDatalist
@@ -142,6 +148,7 @@
 		trailingIconValue: typeof trailingIcon,
 		clearOnTrailingIconClickValue: typeof clearOnTrailingIconClick,
 		helperTextValue: typeof helperText,
+		helperTextAsValidationMsgValue: typeof helperTextAsValidationMsg,
 		characterCounterValue: typeof characterCounter,
 		persistentHelperTextValue: typeof persistentHelperText,
 		useDatalistValue: typeof useDatalist
@@ -152,6 +159,7 @@
 			${getTrailingIconCode(trailingIconValue, clearOnTrailingIconClickValue)}
 			${getHelperTextCode(
 				helperTextValue,
+				helperTextAsValidationMsgValue,
 				characterCounterValue,
 				persistentHelperTextValue
 			)}
@@ -175,12 +183,15 @@
 
 	function getHelperTextCode(
 		helperTextValue: typeof helperText,
+		helperTextAsValidationMsgValue: typeof helperTextAsValidationMsg,
 		characterCounterValue: typeof characterCounter,
 		persistentHelperTextValue: typeof persistentHelperText
 	) {
 		if (helperTextValue || characterCounterValue) {
 			return `
-				<HelperText${persistentHelperTextValue ? ` persistent` : ""}>
+				<HelperText${persistentHelperTextValue ? ` persistent` : ""}${
+				helperTextAsValidationMsgValue ? ` validationMsg` : ""
+			}>
 					${helperTextValue ? `<span slot="label">Helper Text</span>` : ""}
 					${characterCounterValue ? `<CharacterCounter />` : ""}
 				</HelperText>
@@ -256,10 +267,13 @@
 			bind:value
 			bind:dirty
 			bind:invalid
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{label}
 			{helperText}
+			{helperTextAsValidationMsg}
 			{persistentHelperText}
 			{characterCounter}
 			{prefix}
@@ -324,8 +338,12 @@
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={customStyle} />
-				<span slot="label">Custom style</span>
+				<Checkbox bind:checked={ripple} />
+				<span slot="label">Ripple</span>
+			</FormField>
+			<FormField>
+				<Checkbox bind:checked={lineRipple} />
+				<span slot="label">Line Ripple</span>
 			</FormField>
 		</div>
 		<div>
@@ -339,20 +357,34 @@
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={readonly} />
-				<span slot="label">Read only</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
 				<Checkbox bind:checked={label} />
 				<span slot="label">Show Label</span>
 			</FormField>
 		</div>
 		<div>
 			<FormField>
+				<Checkbox bind:checked={customStyle} />
+				<span slot="label">Custom style</span>
+			</FormField>
+		</div>
+		<div>
+			<FormField>
 				<Checkbox bind:checked={helperText} />
 				<span slot="label">Helper text</span>
+			</FormField>
+		</div>
+		<div>
+			<FormField>
+				<Checkbox bind:checked={readonly} />
+				<span slot="label">Read only</span>
+			</FormField>
+		</div>
+		<div>
+			<FormField>
+				<Checkbox bind:checked={helperTextAsValidationMsg} />
+				<span slot="label" style="white-space: initial;">
+					Helper text as validation message
+				</span>
 			</FormField>
 		</div>
 		<div>

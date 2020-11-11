@@ -74,15 +74,22 @@
 		border-right: $border;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		overflow: auto;
 
 		.preview-slot {
-			flex-grow: 1;
-			align-items: center;
 			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
 			height: 100%;
+
+			> :global([slot="preview"]) {
+				flex-grow: 1;
+				align-items: center;
+				justify-content: center;
+				display: flex;
+			}
 		}
 
 		.values {
@@ -106,7 +113,10 @@
 
 		> :global(.options-sidebar) {
 			display: grid;
-			grid-template: auto / minmax(150px, auto) minmax(150px, auto);
+			grid-template: auto / minmax(150px, min-content) minmax(
+					150px,
+					min-content
+				);
 			gap: 0.6em;
 			white-space: nowrap;
 			width: max-content;

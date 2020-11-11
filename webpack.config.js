@@ -5,7 +5,8 @@ const svelteConfig = require("./svelte.config");
 const DefinePlugin = require("webpack/lib/DefinePlugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin")
+	.TsconfigPathsPlugin;
 
 const mode = process.env.NODE_ENV || "production";
 const dev = mode === "development";

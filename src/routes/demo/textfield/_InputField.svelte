@@ -6,15 +6,17 @@
 	} from "@smui/core/textfield";
 	import HelperText from "./_HelperText.svelte";
 	import { Icon } from "@smui/core/textfield/icon";
-	import { CharacterCounter } from "@smui/core/textfield/character-counter";
 	import { IconType } from "src/components/configurator/common-options/IconTypeOption.svelte";
 
 	let className: string;
 	export { className as class };
 
+	export let ripple: boolean;
+	export let lineRipple: boolean;
 	export let variant: InputFieldVariant;
 	export let label: boolean;
 	export let helperText: boolean;
+	export let helperTextAsValidationMsg: boolean;
 	export let persistentHelperText: boolean;
 	export let characterCounter: boolean;
 	export let type: InputFieldType;
@@ -64,6 +66,8 @@
 				bind:dirty
 				bind:invalid
 				name="input-field"
+				{ripple}
+				{lineRipple}
 				{variant}
 				{type}
 				{readonly}
@@ -122,6 +126,7 @@
 				{#if helperText || characterCounter}
 					<HelperText
 						{helperText}
+						validationMsg={helperTextAsValidationMsg}
 						persistent={persistentHelperText}
 						{characterCounter} />
 				{/if}
@@ -138,6 +143,8 @@
 				bind:dirty
 				bind:invalid
 				name="input-field"
+				{ripple}
+				{lineRipple}
 				{variant}
 				{type}
 				{readonly}
@@ -183,6 +190,7 @@
 				{#if helperText || characterCounter}
 					<HelperText
 						{helperText}
+						validationMsg={helperTextAsValidationMsg}
 						persistent={persistentHelperText}
 						{characterCounter} />
 				{/if}
@@ -199,6 +207,8 @@
 				bind:dirty
 				bind:invalid
 				name="input-field"
+				{ripple}
+				{lineRipple}
 				{variant}
 				{type}
 				{readonly}
@@ -234,6 +244,7 @@
 				{#if helperText || characterCounter}
 					<HelperText
 						{helperText}
+						validationMsg={helperTextAsValidationMsg}
 						persistent={persistentHelperText}
 						{characterCounter} />
 				{/if}
@@ -250,6 +261,8 @@
 				bind:dirty
 				bind:invalid
 				name="input-field"
+				{ripple}
+				{lineRipple}
 				{variant}
 				{type}
 				{readonly}
@@ -272,6 +285,7 @@
 				{#if helperText || characterCounter}
 					<HelperText
 						{helperText}
+						validationMsg={helperTextAsValidationMsg}
 						persistent={persistentHelperText}
 						{characterCounter} />
 				{/if}
@@ -289,6 +303,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -347,6 +363,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -358,6 +375,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -403,6 +422,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -414,6 +434,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -449,6 +471,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -460,6 +483,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -482,6 +507,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -495,6 +521,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -553,6 +581,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -569,6 +598,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -614,6 +645,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -630,6 +662,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -665,6 +699,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -681,6 +716,8 @@
 			bind:dirty
 			bind:invalid
 			name="input-field"
+			{ripple}
+			{lineRipple}
 			{variant}
 			{type}
 			{readonly}
@@ -703,6 +740,7 @@
 			{#if helperText || characterCounter}
 				<HelperText
 					{helperText}
+					validationMsg={helperTextAsValidationMsg}
 					persistent={persistentHelperText}
 					{characterCounter} />
 			{/if}
@@ -720,6 +758,8 @@
 		bind:dirty
 		bind:invalid
 		name="input-field"
+		{ripple}
+		{lineRipple}
 		{variant}
 		{type}
 		{readonly}
@@ -777,6 +817,7 @@
 		{#if helperText || characterCounter}
 			<HelperText
 				{helperText}
+				validationMsg={helperTextAsValidationMsg}
 				persistent={persistentHelperText}
 				{characterCounter} />
 		{/if}
@@ -788,6 +829,8 @@
 		bind:dirty
 		bind:invalid
 		name="input-field"
+		{ripple}
+		{lineRipple}
 		{variant}
 		{type}
 		{readonly}
@@ -832,6 +875,7 @@
 		{#if helperText || characterCounter}
 			<HelperText
 				{helperText}
+				validationMsg={helperTextAsValidationMsg}
 				persistent={persistentHelperText}
 				{characterCounter} />
 		{/if}
@@ -843,6 +887,8 @@
 		bind:dirty
 		bind:invalid
 		name="input-field"
+		{ripple}
+		{lineRipple}
 		{variant}
 		{type}
 		{readonly}
@@ -877,6 +923,7 @@
 		{#if helperText || characterCounter}
 			<HelperText
 				{helperText}
+				validationMsg={helperTextAsValidationMsg}
 				persistent={persistentHelperText}
 				{characterCounter} />
 		{/if}
@@ -888,6 +935,8 @@
 		bind:dirty
 		bind:invalid
 		name="input-field"
+		{ripple}
+		{lineRipple}
 		{variant}
 		{type}
 		{readonly}
@@ -909,6 +958,7 @@
 		{#if helperText || characterCounter}
 			<HelperText
 				{helperText}
+				validationMsg={helperTextAsValidationMsg}
 				persistent={persistentHelperText}
 				{characterCounter} />
 		{/if}
