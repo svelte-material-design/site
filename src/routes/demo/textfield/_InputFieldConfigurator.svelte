@@ -70,6 +70,7 @@
 
 	$: if (!helperText) persistentHelperText = false;
 	$: if (!useMaxlength) characterCounter = false;
+	$: if (!trailingIcon) clearOnTrailingIconClick = false;
 
 	$: className = customStyle
 		? variant === "filled"
@@ -81,7 +82,6 @@
 	$: placeholder = usePlaceholder ? "Placeholder" : undefined;
 	$: size = useSize ? 10 : undefined;
 	$: autocomplete = useAutocomplete ? "on" : undefined;
-	$: placeholder = usePlaceholder ? "Placeholder" : undefined;
 	$: pattern = usePattern ? "[0-9]{10}" : undefined;
 	$: prefix = usePrefix ? "$" : undefined;
 	$: suffix = useSuffix ? ".00" : undefined;
@@ -170,11 +170,11 @@
 	function getOptionsCode(useDatalistValue: typeof useDatalist) {
 		if (useDatalistValue) {
 			return `
-			<div slot="options">
-				<option value="Red Dead Redemption" />
-				<option value="Grand Theft Auto" />
-				<option value="Max Payne" />
-			</div>
+		<div slot="options">
+			<option value="Red Dead Redemption" />
+			<option value="Grand Theft Auto" />
+			<option value="Max Payne" />
+		</div>
 			`;
 		} else {
 			return "";
@@ -202,32 +202,49 @@
 	}
 
 	function getLeadingIconCode(leadingIconValue: typeof leadingIcon) {
-		return getIconCode({
-			type: leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
-			position: "leading",
-			content: leadingIconValue === "material-icon" ? "event" : undefined,
-			tabs: 3,
-		});
+		if (leadingIconValue) {
+			return `
+		<span slot="leadingIcon" style="display: contents;">
+			${getIconCode({
+				type: leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
+				position: "leading",
+				content: leadingIconValue === "material-icon" ? "event" : undefined,
+				tabs: 3,
+			})}
+		</span>
+			`;
+		} else {
+			return "";
+		}
 	}
 
 	function getTrailingIconCode(
 		trailingIconValue: typeof trailingIcon,
 		clearOnTrailingIconClickValue: typeof clearOnTrailingIconClick
 	) {
-		return getIconCode({
-			type: trailingIconValue === "material-icon" ? "icon" : trailingIconValue,
-			position: "trailing",
-			content:
-				trailingIconValue === "material-icon"
-					? clearOnTrailingIconClick
-						? "clear"
-						: "alarm"
-					: undefined,
-			tabs: 3,
-			additionalProps: clearOnTrailingIconClickValue
-				? [`role="button"`, `on:click={clear}`]
-				: [],
-		});
+		if (trailingIconValue) {
+			return `
+		<span slot="trailingIcon" style="display: contents;">
+			${getIconCode({
+				type:
+					trailingIconValue === "material-icon" ? "icon" : trailingIconValue,
+				position: "trailing",
+				content:
+					trailingIconValue === "material-icon"
+						? clearOnTrailingIconClick
+							? "clear"
+							: "alarm"
+						: undefined,
+				tabs: 3,
+				additionalProps: clearOnTrailingIconClickValue
+					? [`role="button"`, `on:click={clear}`]
+					: [],
+			})}
+		</span>
+			`;
+		} else {
+			return "";
+		}
 	}
 
 	function getSCSSCode(
@@ -381,10 +398,8 @@
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={helperTextAsValidationMsg} />
-				<span slot="label" style="white-space: initial;">
-					Helper text as validation message
-				</span>
+				<Checkbox bind:checked={persistentHelperText} disabled={!helperText} />
+				<span slot="label">Persistent helper text</span>
 			</FormField>
 		</div>
 		<div>
@@ -395,8 +410,10 @@
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={persistentHelperText} disabled={!helperText} />
-				<span slot="label">Persistent helper text</span>
+				<Checkbox bind:checked={helperTextAsValidationMsg} />
+				<span slot="label" style="white-space: initial;">
+					Helper text as validation message
+				</span>
 			</FormField>
 		</div>
 		<div>
@@ -437,7 +454,9 @@
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={clearOnTrailingIconClick} />
+				<Checkbox
+					bind:checked={clearOnTrailingIconClick}
+					disabled={!trailingIcon} />
 				<span slot="label">Clear on trailing icon click</span>
 			</FormField>
 		</div>

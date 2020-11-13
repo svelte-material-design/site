@@ -1,26 +1,13 @@
 <script lang="ts">
-	import {
-		InputFieldVariant,
-		InputFieldType,
-		InputField,
-		TextArea,
-	} from "@smui/core/textfield";
+	import { TextArea } from "@smui/core/textfield";
 	import { FormField, Label } from "@smui/core/form-field";
 	import {
 		Configurator,
 		generateSCSSCode,
 		generateSvelteCode,
 	} from "src/components/configurator";
-	import { Select, Option } from "@smui/core/select";
 	import { Checkbox } from "@smui/core/packages/checkbox";
-	import IconTypeOption, {
-		IconType,
-	} from "src/components/configurator/common-options/IconTypeOption.svelte";
-	import { Slider } from "@smui/core/slider";
-	import {
-		getHelperTextCode,
-		getIconCode,
-	} from "src/components/configurator/snippets";
+	import { getHelperTextCode } from "src/components/configurator/snippets";
 	import HelperText from "./_HelperText.svelte";
 
 	let fullWidth: boolean;
@@ -51,8 +38,6 @@
 	let title: string;
 	let placeholder: string;
 	let size: number;
-	let autocomplete: string;
-	let pattern: string;
 	let maxlength: number;
 	let minlength: number;
 
@@ -144,10 +129,18 @@
 	}
 </script>
 
+<style>
+	.preview-container {
+		width: 80%;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		padding: 1em;
+	}
+</style>
+
 <svelte:options immutable={true} />
 
 <Configurator {svelteCode} {scssCode}>
-	<div slot="preview" style="width: 80%">
+	<div slot="preview" class="preview-container">
 		{#if label}
 			<TextArea
 				bind:value

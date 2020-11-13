@@ -5,8 +5,9 @@
 		InputFieldType,
 	} from "@smui/core/textfield";
 	import HelperText from "./_HelperText.svelte";
-	import { Icon } from "@smui/core/textfield/icon";
 	import { IconType } from "src/components/configurator/common-options/IconTypeOption.svelte";
+	import LeadingIcon from "./_LeadingIcon.svelte";
+	import TrailingIcon from "./_TrailingIcon.svelte";
 
 	let className: string;
 	export { className as class };
@@ -48,7 +49,7 @@
 	export let dirty: boolean;
 	export let invalid: boolean;
 
-	function handleTrailingIconClick() {
+	function clear() {
 		if (clearOnTrailingIconClick) {
 			value = "";
 		}
@@ -88,40 +89,13 @@
 				{density}>
 				<span slot="label">Label</span>
 				<span slot="leadingIcon" style="display: contents;">
-					{#if leadingIcon === 'material-icon'}
-						<Icon>event</Icon>
-					{:else if leadingIcon === 'svg'}
-						<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-							<circle cx="12" cy="12" r="12" />
-						</Icon>
-					{:else if leadingIcon === 'img'}
-						<Icon
-							type="img"
-							props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-					{/if}
+					<LeadingIcon type={leadingIcon} />
 				</span>
 				<span slot="trailingIcon" style="display: contents;">
-					{#if trailingIcon === 'material-icon'}
-						<Icon
-							role={clearOnTrailingIconClick ? 'button' : undefined}
-							on:click={handleTrailingIconClick}>
-							{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-						</Icon>
-					{:else if trailingIcon === 'svg'}
-						<Icon
-							role={clearOnTrailingIconClick ? 'button' : undefined}
-							on:click={handleTrailingIconClick}
-							type="svg"
-							props={{ viewBox: '0 0 24 24' }}>
-							<polygon points="0,24 12,0 24,24" />
-						</Icon>
-					{:else if trailingIcon === 'img'}
-						<Icon
-							role={clearOnTrailingIconClick ? 'button' : undefined}
-							on:click={handleTrailingIconClick}
-							type="img"
-							props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-					{/if}
+					<TrailingIcon
+						type={trailingIcon}
+						{clearOnTrailingIconClick}
+						on:click={clear} />
 				</span>
 				{#if helperText || characterCounter}
 					<HelperText
@@ -165,27 +139,10 @@
 				{density}>
 				<span slot="label">Label</span>
 				<span slot="trailingIcon" style="display: contents;">
-					{#if trailingIcon === 'material-icon'}
-						<Icon
-							role={clearOnTrailingIconClick ? 'button' : undefined}
-							on:click={handleTrailingIconClick}>
-							{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-						</Icon>
-					{:else if trailingIcon === 'svg'}
-						<Icon
-							role={clearOnTrailingIconClick ? 'button' : undefined}
-							on:click={handleTrailingIconClick}
-							type="svg"
-							props={{ viewBox: '0 0 24 24' }}>
-							<polygon points="0,24 12,0 24,24" />
-						</Icon>
-					{:else if trailingIcon === 'img'}
-						<Icon
-							role={clearOnTrailingIconClick ? 'button' : undefined}
-							on:click={handleTrailingIconClick}
-							type="img"
-							props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-					{/if}
+					<TrailingIcon
+						type={trailingIcon}
+						{clearOnTrailingIconClick}
+						on:click={clear} />
 				</span>
 				{#if helperText || characterCounter}
 					<HelperText
@@ -229,17 +186,7 @@
 				{density}>
 				<span slot="label">Label</span>
 				<span slot="leadingIcon" style="display: contents;">
-					{#if leadingIcon === 'material-icon'}
-						<Icon>event</Icon>
-					{:else if leadingIcon === 'svg'}
-						<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-							<circle cx="12" cy="12" r="12" />
-						</Icon>
-					{:else if leadingIcon === 'img'}
-						<Icon
-							type="img"
-							props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-					{/if}
+					<LeadingIcon type={leadingIcon} />
 				</span>
 				{#if helperText || characterCounter}
 					<HelperText
@@ -325,40 +272,13 @@
 			{density}>
 			<span slot="label">Label</span>
 			<span slot="leadingIcon" style="display: contents;">
-				{#if leadingIcon === 'material-icon'}
-					<Icon>event</Icon>
-				{:else if leadingIcon === 'svg'}
-					<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-						<circle cx="12" cy="12" r="12" />
-					</Icon>
-				{:else if leadingIcon === 'img'}
-					<Icon
-						type="img"
-						props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-				{/if}
+				<LeadingIcon type={leadingIcon} />
 			</span>
 			<span slot="trailingIcon" style="display: contents;">
-				{#if trailingIcon === 'material-icon'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}>
-						{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-					</Icon>
-				{:else if trailingIcon === 'svg'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="svg"
-						props={{ viewBox: '0 0 24 24' }}>
-						<polygon points="0,24 12,0 24,24" />
-					</Icon>
-				{:else if trailingIcon === 'img'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="img"
-						props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-				{/if}
+				<TrailingIcon
+					type={trailingIcon}
+					{clearOnTrailingIconClick}
+					on:click={clear} />
 			</span>
 			{#if helperText || characterCounter}
 				<HelperText
@@ -397,27 +317,10 @@
 			{density}>
 			<span slot="label">Label</span>
 			<span slot="trailingIcon" style="display: contents;">
-				{#if trailingIcon === 'material-icon'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}>
-						{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-					</Icon>
-				{:else if trailingIcon === 'svg'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="svg"
-						props={{ viewBox: '0 0 24 24' }}>
-						<polygon points="0,24 12,0 24,24" />
-					</Icon>
-				{:else if trailingIcon === 'img'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="img"
-						props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-				{/if}
+				<TrailingIcon
+					type={trailingIcon}
+					{clearOnTrailingIconClick}
+					on:click={clear} />
 			</span>
 			{#if helperText || characterCounter}
 				<HelperText
@@ -456,17 +359,7 @@
 			{density}>
 			<span slot="label">Label</span>
 			<span slot="leadingIcon" style="display: contents;">
-				{#if leadingIcon === 'material-icon'}
-					<Icon>event</Icon>
-				{:else if leadingIcon === 'svg'}
-					<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-						<circle cx="12" cy="12" r="12" />
-					</Icon>
-				{:else if leadingIcon === 'img'}
-					<Icon
-						type="img"
-						props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-				{/if}
+				<LeadingIcon type={leadingIcon} />
 			</span>
 			{#if helperText || characterCounter}
 				<HelperText
@@ -543,40 +436,13 @@
 			{density}>
 			<span slot="label">Label</span>
 			<span slot="leadingIcon" style="display: contents;">
-				{#if leadingIcon === 'material-icon'}
-					<Icon>event</Icon>
-				{:else if leadingIcon === 'svg'}
-					<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-						<circle cx="12" cy="12" r="12" />
-					</Icon>
-				{:else if leadingIcon === 'img'}
-					<Icon
-						type="img"
-						props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-				{/if}
+				<LeadingIcon type={leadingIcon} />
 			</span>
 			<span slot="trailingIcon" style="display: contents;">
-				{#if trailingIcon === 'material-icon'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}>
-						{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-					</Icon>
-				{:else if trailingIcon === 'svg'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="svg"
-						props={{ viewBox: '0 0 24 24' }}>
-						<polygon points="0,24 12,0 24,24" />
-					</Icon>
-				{:else if trailingIcon === 'img'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="img"
-						props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-				{/if}
+				<TrailingIcon
+					type={trailingIcon}
+					{clearOnTrailingIconClick}
+					on:click={clear} />
 			</span>
 			{#if helperText || characterCounter}
 				<HelperText
@@ -620,27 +486,10 @@
 			{density}>
 			<span slot="label">Label</span>
 			<span slot="trailingIcon" style="display: contents;">
-				{#if trailingIcon === 'material-icon'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}>
-						{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-					</Icon>
-				{:else if trailingIcon === 'svg'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="svg"
-						props={{ viewBox: '0 0 24 24' }}>
-						<polygon points="0,24 12,0 24,24" />
-					</Icon>
-				{:else if trailingIcon === 'img'}
-					<Icon
-						role={clearOnTrailingIconClick ? 'button' : undefined}
-						on:click={handleTrailingIconClick}
-						type="img"
-						props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-				{/if}
+				<TrailingIcon
+					type={trailingIcon}
+					{clearOnTrailingIconClick}
+					on:click={clear} />
 			</span>
 			{#if helperText || characterCounter}
 				<HelperText
@@ -684,17 +533,7 @@
 			{density}>
 			<span slot="label">Label</span>
 			<span slot="leadingIcon" style="display: contents;">
-				{#if leadingIcon === 'material-icon'}
-					<Icon>event</Icon>
-				{:else if leadingIcon === 'svg'}
-					<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-						<circle cx="12" cy="12" r="12" />
-					</Icon>
-				{:else if leadingIcon === 'img'}
-					<Icon
-						type="img"
-						props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-				{/if}
+				<LeadingIcon type={leadingIcon} />
 			</span>
 			{#if helperText || characterCounter}
 				<HelperText
@@ -779,40 +618,13 @@
 		{max}
 		{density}>
 		<span slot="leadingIcon" style="display: contents;">
-			{#if leadingIcon === 'material-icon'}
-				<Icon>event</Icon>
-			{:else if leadingIcon === 'svg'}
-				<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-					<circle cx="12" cy="12" r="12" />
-				</Icon>
-			{:else if leadingIcon === 'img'}
-				<Icon
-					type="img"
-					props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-			{/if}
+			<LeadingIcon type={leadingIcon} />
 		</span>
 		<span slot="trailingIcon" style="display: contents;">
-			{#if trailingIcon === 'material-icon'}
-				<Icon
-					role={clearOnTrailingIconClick ? 'button' : undefined}
-					on:click={handleTrailingIconClick}>
-					{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-				</Icon>
-			{:else if trailingIcon === 'svg'}
-				<Icon
-					role={clearOnTrailingIconClick ? 'button' : undefined}
-					on:click={handleTrailingIconClick}
-					type="svg"
-					props={{ viewBox: '0 0 24 24' }}>
-					<polygon points="0,24 12,0 24,24" />
-				</Icon>
-			{:else if trailingIcon === 'img'}
-				<Icon
-					role={clearOnTrailingIconClick ? 'button' : undefined}
-					on:click={handleTrailingIconClick}
-					type="img"
-					props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-			{/if}
+			<TrailingIcon
+				type={trailingIcon}
+				{clearOnTrailingIconClick}
+				on:click={clear} />
 		</span>
 		{#if helperText || characterCounter}
 			<HelperText
@@ -850,27 +662,10 @@
 		{max}
 		{density}>
 		<span slot="trailingIcon" style="display: contents;">
-			{#if trailingIcon === 'material-icon'}
-				<Icon
-					role={clearOnTrailingIconClick ? 'button' : undefined}
-					on:click={handleTrailingIconClick}>
-					{clearOnTrailingIconClick ? 'clear' : 'alarm'}
-				</Icon>
-			{:else if trailingIcon === 'svg'}
-				<Icon
-					role={clearOnTrailingIconClick ? 'button' : undefined}
-					on:click={handleTrailingIconClick}
-					type="svg"
-					props={{ viewBox: '0 0 24 24' }}>
-					<polygon points="0,24 12,0 24,24" />
-				</Icon>
-			{:else if trailingIcon === 'img'}
-				<Icon
-					role={clearOnTrailingIconClick ? 'button' : undefined}
-					on:click={handleTrailingIconClick}
-					type="img"
-					props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-			{/if}
+			<TrailingIcon
+				type={trailingIcon}
+				{clearOnTrailingIconClick}
+				on:click={clear} />
 		</span>
 		{#if helperText || characterCounter}
 			<HelperText
@@ -908,17 +703,7 @@
 		{max}
 		{density}>
 		<span slot="leadingIcon" style="display: contents;">
-			{#if leadingIcon === 'material-icon'}
-				<Icon>event</Icon>
-			{:else if leadingIcon === 'svg'}
-				<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-					<circle cx="12" cy="12" r="12" />
-				</Icon>
-			{:else if leadingIcon === 'img'}
-				<Icon
-					type="img"
-					props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
-			{/if}
+			<LeadingIcon type={leadingIcon} />
 		</span>
 		{#if helperText || characterCounter}
 			<HelperText

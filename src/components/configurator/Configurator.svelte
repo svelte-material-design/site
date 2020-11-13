@@ -93,6 +93,7 @@
 		}
 
 		.values {
+			margin-top: 1em;
 			display: flex;
 			align-self: flex-end;
 		}

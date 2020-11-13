@@ -4,13 +4,15 @@
 	import { Tab, Label } from "@smui/core/tab";
 	import InputFieldConfigurator from "./_InputFieldConfigurator.svelte";
 	import TextAreaConfigurator from "./_TextAreaConfigurator.svelte";
+	import FullWIdthTextFieldConfigurator from "./_FullWIdthTextFieldConfigurator.svelte";
 	// import TextArea from "./_TextArea.svelte";
 	// import DifferentTypesTextField from "./_DifferentTypesTextField.svelte";
 	// import AutoComplete from "./_AutoComplete.svelte";
 	// import ExampleTextField from "./_ExampleTextField.svelte";
 	// import BaseTextField from "./_BaseTextField.svelte";
 
-	let currentTab: "input-field" | "text-area" = "text-area";
+	let currentTab: "input-field" | "text-area" | "full-width-text-field" =
+		"full-width-text-field";
 </script>
 
 <svelte:head>
@@ -27,12 +29,17 @@
 		<Tab key="text-area">
 			<Label>Text Area</Label>
 		</Tab>
+		<Tab key="full-width-text-field">
+			<Label>Full Width Text Field</Label>
+		</Tab>
 	</TabBar>
 
 	{#if currentTab === 'input-field'}
 		<InputFieldConfigurator />
 	{:else if currentTab === 'text-area'}
 		<TextAreaConfigurator />
+	{:else if currentTab === 'full-width-text-field'}
+		<FullWIdthTextFieldConfigurator />
 	{/if}
 	<!-- <ExampleTextField /> -->
 	<!-- <BaseTextField variant="filled" title="Filled" /> -->
