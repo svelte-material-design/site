@@ -12,7 +12,7 @@
 	// import BaseTextField from "./_BaseTextField.svelte";
 
 	let currentTab: "input-field" | "text-area" | "full-width-text-field" =
-		"full-width-text-field";
+		"input-field";
 </script>
 
 <svelte:head>

@@ -121,7 +121,8 @@
 				validationMsg: helperTextAsValidationMsgValue,
 				characterCounter: characterCounterValue,
 				persistent: persistentHelperTextValue,
-				tabs: 3,
+				indentSize: 3,
+				indentFirstLine: false,
 			})}
 			${getOptionsCode(useDatalistValue)}
 		`;
@@ -144,13 +145,14 @@
 	function getLeadingIconCode(leadingIconValue: typeof leadingIcon) {
 		if (leadingIconValue) {
 			return `
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				${getIconCode({
 					type:
 						leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
 					position: "leading",
 					content: leadingIconValue === "material-icon" ? "event" : undefined,
-					tabs: 4,
+					indentSize: 4,
+					indentFirstLine: false,
 				})}
 			</span>
 		`;
@@ -165,7 +167,7 @@
 	) {
 		if (trailingIconValue) {
 			return `
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				${getIconCode({
 					type:
 						trailingIconValue === "material-icon" ? "icon" : trailingIconValue,
@@ -176,7 +178,8 @@
 								? "clear"
 								: "alarm"
 							: undefined,
-					tabs: 4,
+					indentSize: 4,
+					indentFirstLine: false,
 					additionalProps: clearOnTrailingIconClickValue
 						? [`role="button"`, `on:click={clear}`]
 						: [],

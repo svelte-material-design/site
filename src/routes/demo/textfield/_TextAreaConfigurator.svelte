@@ -109,7 +109,8 @@
 				validationMsg: helperTextAsValidationMsgValue,
 				characterCounter: characterCounterValue,
 				persistent: persistentHelperTextValue,
-				tabs: 3,
+				indentSize: 3,
+				indentFirstLine: false,
 			})}
 		`;
 	}

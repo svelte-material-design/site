@@ -1,5 +1,5 @@
 import { StringListToFilter } from "@svelte-material-ui-test/core/common/functions";
-import { generateSvelteCode } from "./code";
+import { generateSvelteTagCode } from "./code";
 import { GraphicType } from "@smui/core/common/components";
 
 export type Position = "leading" | "trailing";
@@ -10,17 +10,19 @@ export function getIconCode({
 	props,
 	additionalProps = [],
 	content = "",
-	tabs = 0,
+	indentSize,
+	indentFirstLine,
 }: {
 	type: GraphicType;
 	position: Position;
 	props?: StringListToFilter;
 	additionalProps?: StringListToFilter;
 	content?: string;
-	tabs?: number;
+	indentSize?: number;
+	indentFirstLine?: boolean;
 }) {
 	if (type) {
-		return generateSvelteCode({
+		return generateSvelteTagCode({
 			tag: "Icon",
 			props: [
 				[type !== "icon", `type="${type}"`],
@@ -28,7 +30,9 @@ export function getIconCode({
 				...additionalProps,
 			],
 			content: content ? content : getDefaultIconContent(type, position),
-		}).replace(/\n/g, "\n" + "\t".repeat(tabs));
+			indentSize,
+			indentFirstLine,
+		});
 	} else {
 		return "";
 	}
@@ -75,23 +79,27 @@ export function getHelperTextCode({
 	characterCounter,
 	validationMsg,
 	persistent,
-	tabs = 0,
+	indentSize,
+	indentFirstLine,
 }: {
 	text?: string;
 	characterCounter?: boolean;
 	validationMsg?: boolean;
 	persistent?: boolean;
-	tabs?: number;
+	indentSize?: number;
+	indentFirstLine?: boolean;
 }) {
 	if (text || characterCounter) {
-		return generateSvelteCode({
+		return generateSvelteTagCode({
 			tag: "HelperText",
 			props: [
 				[persistent, `persistent`],
 				[validationMsg, `validationMsg`],
 			],
 			content: getHelperTextContentCode(text, characterCounter),
-		}).replace(/\n/g, "\n" + "\t".repeat(tabs));
+			indentSize,
+			indentFirstLine,
+		});
 	} else {
 		return "";
 	}

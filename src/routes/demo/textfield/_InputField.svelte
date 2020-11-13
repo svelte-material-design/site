@@ -88,10 +88,10 @@
 				{max}
 				{density}>
 				<span slot="label">Label</span>
-				<span slot="leadingIcon" style="display: contents;">
+				<span slot="leadingIcon">
 					<LeadingIcon type={leadingIcon} />
 				</span>
-				<span slot="trailingIcon" style="display: contents;">
+				<span slot="trailingIcon">
 					<TrailingIcon
 						type={trailingIcon}
 						{clearOnTrailingIconClick}
@@ -138,7 +138,7 @@
 				{max}
 				{density}>
 				<span slot="label">Label</span>
-				<span slot="trailingIcon" style="display: contents;">
+				<span slot="trailingIcon">
 					<TrailingIcon
 						type={trailingIcon}
 						{clearOnTrailingIconClick}
@@ -185,7 +185,7 @@
 				{max}
 				{density}>
 				<span slot="label">Label</span>
-				<span slot="leadingIcon" style="display: contents;">
+				<span slot="leadingIcon">
 					<LeadingIcon type={leadingIcon} />
 				</span>
 				{#if helperText || characterCounter}
@@ -271,10 +271,10 @@
 			{max}
 			{density}>
 			<span slot="label">Label</span>
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				<LeadingIcon type={leadingIcon} />
 			</span>
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				<TrailingIcon
 					type={trailingIcon}
 					{clearOnTrailingIconClick}
@@ -316,7 +316,7 @@
 			{max}
 			{density}>
 			<span slot="label">Label</span>
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				<TrailingIcon
 					type={trailingIcon}
 					{clearOnTrailingIconClick}
@@ -358,7 +358,7 @@
 			{max}
 			{density}>
 			<span slot="label">Label</span>
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				<LeadingIcon type={leadingIcon} />
 			</span>
 			{#if helperText || characterCounter}
@@ -435,10 +435,10 @@
 			{max}
 			{density}>
 			<span slot="label">Label</span>
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				<LeadingIcon type={leadingIcon} />
 			</span>
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				<TrailingIcon
 					type={trailingIcon}
 					{clearOnTrailingIconClick}
@@ -485,7 +485,7 @@
 			{max}
 			{density}>
 			<span slot="label">Label</span>
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				<TrailingIcon
 					type={trailingIcon}
 					{clearOnTrailingIconClick}
@@ -532,7 +532,7 @@
 			{max}
 			{density}>
 			<span slot="label">Label</span>
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				<LeadingIcon type={leadingIcon} />
 			</span>
 			{#if helperText || characterCounter}
@@ -617,10 +617,10 @@
 		{min}
 		{max}
 		{density}>
-		<span slot="leadingIcon" style="display: contents;">
+		<span slot="leadingIcon">
 			<LeadingIcon type={leadingIcon} />
 		</span>
-		<span slot="trailingIcon" style="display: contents;">
+		<span slot="trailingIcon">
 			<TrailingIcon
 				type={trailingIcon}
 				{clearOnTrailingIconClick}
@@ -661,7 +661,7 @@
 		{min}
 		{max}
 		{density}>
-		<span slot="trailingIcon" style="display: contents;">
+		<span slot="trailingIcon">
 			<TrailingIcon
 				type={trailingIcon}
 				{clearOnTrailingIconClick}
@@ -702,7 +702,7 @@
 		{min}
 		{max}
 		{density}>
-		<span slot="leadingIcon" style="display: contents;">
+		<span slot="leadingIcon">
 			<LeadingIcon type={leadingIcon} />
 		</span>
 		{#if helperText || characterCounter}

@@ -76,10 +76,10 @@
 			{formnovalidate}
 			{autocomplete}
 			{pattern}>
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				<LeadingIcon type={leadingIcon} />
 			</span>
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				<TrailingIcon
 					type={trailingIcon}
 					{clearOnTrailingIconClick}
@@ -117,7 +117,7 @@
 			{formnovalidate}
 			{autocomplete}
 			{pattern}>
-			<span slot="leadingIcon" style="display: contents;">
+			<span slot="leadingIcon">
 				<LeadingIcon type={leadingIcon} />
 			</span>
 			<div slot="options">
@@ -152,7 +152,7 @@
 			{formnovalidate}
 			{autocomplete}
 			{pattern}>
-			<span slot="trailingIcon" style="display: contents;">
+			<span slot="trailingIcon">
 				<TrailingIcon
 					type={trailingIcon}
 					{clearOnTrailingIconClick}
@@ -223,10 +223,10 @@
 		{formnovalidate}
 		{autocomplete}
 		{pattern}>
-		<span slot="leadingIcon" style="display: contents;">
+		<span slot="leadingIcon">
 			<LeadingIcon type={leadingIcon} />
 		</span>
-		<span slot="trailingIcon" style="display: contents;">
+		<span slot="trailingIcon">
 			<TrailingIcon
 				type={trailingIcon}
 				{clearOnTrailingIconClick}
@@ -259,7 +259,7 @@
 		{formnovalidate}
 		{autocomplete}
 		{pattern}>
-		<span slot="leadingIcon" style="display: contents;">
+		<span slot="leadingIcon">
 			<LeadingIcon type={leadingIcon} />
 		</span>
 		{#if helperText || characterCounter}
@@ -289,7 +289,7 @@
 		{formnovalidate}
 		{autocomplete}
 		{pattern}>
-		<span slot="trailingIcon" style="display: contents;">
+		<span slot="trailingIcon">
 			<TrailingIcon
 				type={trailingIcon}
 				{clearOnTrailingIconClick}

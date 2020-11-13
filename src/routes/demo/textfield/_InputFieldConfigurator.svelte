@@ -13,7 +13,10 @@
 		IconType,
 	} from "src/components/configurator/common-options/IconTypeOption.svelte";
 	import { Slider } from "@smui/core/slider";
-	import { getIconCode } from "src/components/configurator/snippets";
+	import {
+		getIconCode,
+		getHelperTextCode,
+	} from "src/components/configurator/snippets";
 
 	let ripple: boolean = true;
 	let lineRipple: boolean = true;
@@ -157,12 +160,14 @@
 			${labelValue ? `<span slot="label">Label</span>` : ""}
 			${getLeadingIconCode(leadingIconValue)}
 			${getTrailingIconCode(trailingIconValue, clearOnTrailingIconClickValue)}
-			${getHelperTextCode(
-				helperTextValue,
-				helperTextAsValidationMsgValue,
-				characterCounterValue,
-				persistentHelperTextValue
-			)}
+			${getHelperTextCode({
+				text: helperTextValue ? "Helper Text" : undefined,
+				validationMsg: helperTextAsValidationMsgValue,
+				characterCounter: characterCounterValue,
+				persistent: persistentHelperTextValue,
+				indentSize: 3,
+				indentFirstLine: false,
+			})}
 			${getOptionsCode(useDatalistValue)}
 		`;
 	}
@@ -170,31 +175,11 @@
 	function getOptionsCode(useDatalistValue: typeof useDatalist) {
 		if (useDatalistValue) {
 			return `
-		<div slot="options">
-			<option value="Red Dead Redemption" />
-			<option value="Grand Theft Auto" />
-			<option value="Max Payne" />
-		</div>
-			`;
-		} else {
-			return "";
-		}
-	}
-
-	function getHelperTextCode(
-		helperTextValue: typeof helperText,
-		helperTextAsValidationMsgValue: typeof helperTextAsValidationMsg,
-		characterCounterValue: typeof characterCounter,
-		persistentHelperTextValue: typeof persistentHelperText
-	) {
-		if (helperTextValue || characterCounterValue) {
-			return `
-				<HelperText${persistentHelperTextValue ? ` persistent` : ""}${
-				helperTextAsValidationMsgValue ? ` validationMsg` : ""
-			}>
-					${helperTextValue ? `<span slot="label">Helper Text</span>` : ""}
-					${characterCounterValue ? `<CharacterCounter />` : ""}
-				</HelperText>
+			<div slot="options">
+				<option value="Red Dead Redemption" />
+				<option value="Grand Theft Auto" />
+				<option value="Max Payne" />
+			</div>
 			`;
 		} else {
 			return "";
@@ -204,14 +189,16 @@
 	function getLeadingIconCode(leadingIconValue: typeof leadingIcon) {
 		if (leadingIconValue) {
 			return `
-		<span slot="leadingIcon" style="display: contents;">
-			${getIconCode({
-				type: leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
-				position: "leading",
-				content: leadingIconValue === "material-icon" ? "event" : undefined,
-				tabs: 3,
-			})}
-		</span>
+			<span slot="leadingIcon">
+				${getIconCode({
+					type:
+						leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
+					position: "leading",
+					content: leadingIconValue === "material-icon" ? "event" : undefined,
+					indentSize: 4,
+					indentFirstLine: false,
+				})}
+			</span>
 			`;
 		} else {
 			return "";
@@ -224,23 +211,24 @@
 	) {
 		if (trailingIconValue) {
 			return `
-		<span slot="trailingIcon" style="display: contents;">
-			${getIconCode({
-				type:
-					trailingIconValue === "material-icon" ? "icon" : trailingIconValue,
-				position: "trailing",
-				content:
-					trailingIconValue === "material-icon"
-						? clearOnTrailingIconClick
-							? "clear"
-							: "alarm"
-						: undefined,
-				tabs: 3,
-				additionalProps: clearOnTrailingIconClickValue
-					? [`role="button"`, `on:click={clear}`]
-					: [],
-			})}
-		</span>
+			<span slot="trailingIcon">
+				${getIconCode({
+					type:
+						trailingIconValue === "material-icon" ? "icon" : trailingIconValue,
+					position: "trailing",
+					content:
+						trailingIconValue === "material-icon"
+							? clearOnTrailingIconClick
+								? "clear"
+								: "alarm"
+							: undefined,
+					additionalProps: clearOnTrailingIconClickValue
+						? [`role="button"`, `on:click={clear}`]
+						: [],
+					indentSize: 4,
+					indentFirstLine: false,
+				})}
+			</span>
 			`;
 		} else {
 			return "";
