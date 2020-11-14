@@ -59,7 +59,7 @@
 		max-width: 80em;
 		display: grid;
 		grid-template:
-			"preview options-sidebar" minmax(200px, 60vh)
+			"preview options-sidebar" max-content
 			"code options-sidebar" 1fr
 			/ 1fr minmax(200px, min-content);
 		white-space: normal;
@@ -75,6 +75,7 @@
 		display: flex;
 		flex-direction: column;
 		overflow: auto;
+		max-height: 60vh;
 
 		.preview-slot {
 			display: flex;

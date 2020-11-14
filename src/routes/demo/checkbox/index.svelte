@@ -1,7 +1,11 @@
-<script>
-	import AdvancedGroupCheckbox from "./_AdvancedGroupCheckbox.svelte";
-	import BaseCheckbox from "./_BaseCheckbox.svelte";
-	import CheckboxGroup from "./_CheckboxGroup.svelte";
+<script lang="ts">
+	import CheckboxConfigurator from "./_CheckboxConfigurator.svelte";
+
+	import { TabBar } from "@smui/core/tab-bar";
+	import { Tab, Label } from "@smui/core/tab";
+	import CheckboxGroupConfigurator from "./_CheckboxGroupConfigurator.svelte";
+
+	let currentTab: "checkbox" | "checkbox-group" = "checkbox-group";
 </script>
 
 <svelte:head>
@@ -11,7 +15,20 @@
 <section>
 	<h2>Checkbox</h2>
 
-	<BaseCheckbox />
+	<TabBar bind:active={currentTab}>
+		<Tab key="checkbox">
+			<Label>Checkbox</Label>
+		</Tab>
+		<Tab key="checkbox-group">
+			<Label>Checkbox Group</Label>
+		</Tab>
+	</TabBar>
+	{#if currentTab === 'checkbox'}
+		<CheckboxConfigurator />
+	{:else if currentTab === 'checkbox-group'}
+		<CheckboxGroupConfigurator />
+	{/if}
+	<!-- <BaseCheckbox />
 	<CheckboxGroup />
-	<AdvancedGroupCheckbox />
+	<AdvancedGroupCheckbox /> -->
 </section>

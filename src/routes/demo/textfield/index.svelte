@@ -5,11 +5,6 @@
 	import InputFieldConfigurator from "./_InputFieldConfigurator.svelte";
 	import TextAreaConfigurator from "./_TextAreaConfigurator.svelte";
 	import FullWIdthTextFieldConfigurator from "./_FullWIdthTextFieldConfigurator.svelte";
-	// import TextArea from "./_TextArea.svelte";
-	// import DifferentTypesTextField from "./_DifferentTypesTextField.svelte";
-	// import AutoComplete from "./_AutoComplete.svelte";
-	// import ExampleTextField from "./_ExampleTextField.svelte";
-	// import BaseTextField from "./_BaseTextField.svelte";
 
 	let currentTab: "input-field" | "text-area" | "full-width-text-field" =
 		"input-field";
@@ -41,15 +36,4 @@
 	{:else if currentTab === 'full-width-text-field'}
 		<FullWIdthTextFieldConfigurator />
 	{/if}
-	<!-- <ExampleTextField /> -->
-	<!-- <BaseTextField variant="filled" title="Filled" /> -->
-	<!-- <BaseTextField variant="outlined" title="Outlined" />
-	<BaseTextField variant="filled" textFieldClass="shaped" title="Shaped" />
-	<BaseTextField
-		variant="outlined"
-		textFieldClass="shaped-outline"
-		title="Shaped Outlined" />
-	<TextArea />
-	<DifferentTypesTextField />
-	<AutoComplete /> -->
 </section>

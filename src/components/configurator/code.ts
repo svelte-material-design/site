@@ -49,8 +49,8 @@ export function generateSvelteTagCode({
 	before,
 }: {
 	tag: string;
-	props: StringListToFilter;
-	content: string;
+	props?: StringListToFilter;
+	content?: string;
 	indentSize?: number;
 	indentFirstLine?: boolean;
 	after?: string;
