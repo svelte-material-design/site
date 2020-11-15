@@ -6,17 +6,16 @@
 	} from "src/components/configurator";
 	import { Checkbox, CheckboxGroup } from "@smui/core/packages/checkbox";
 	import { Select, Option } from "@smui/core/select";
-	import { Button } from "@svelte-material-ui-test/core/packages/button";
-	import { tick } from "svelte";
-	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
 	import CheckboxOptions from "./_CheckboxOptions.svelte";
+	import MultipleItemControls from "src/components/configurator/common-options/MultipleItemControls.svelte";
+
+	let multipleItemsControls: MultipleItemControls;
 
 	let value: string[] = [];
 
-	let checkboxes: CheckboxProps[];
+	let checkboxes: CheckboxProps[] = [];
 	let selectedCheckboxValue: CheckboxProps["value"];
-	let selectedCheckbox: CheckboxProps;
-	reset();
+	let selectedCheckbox: CheckboxProps = {} as any;
 
 	let svelteCode: string;
 	let scssCode: string;
@@ -25,8 +24,10 @@
 		tag: "CheckboxGroup",
 		props: ["bind:value"],
 		content: checkboxes
-			.map((item) =>
+			?.map((item) =>
 				getFormFieldCode(
+					item.name,
+					item.value,
 					item.checked,
 					item.ripple,
 					item.density,
@@ -34,13 +35,16 @@
 					item.allowIndeterminated,
 					item.disabled,
 					item.readonly,
-					item.required
+					item.required,
+					item.label
 				)
 			)
 			.join("\n"),
 	});
 
 	function getFormFieldCode(
+		name: CheckboxProps["name"],
+		value: CheckboxProps["value"],
 		checkedValue: CheckboxProps["checked"],
 		rippleValue: CheckboxProps["ripple"],
 		densityValue: CheckboxProps["density"],
@@ -48,12 +52,15 @@
 		allowIndeterminatedValue: CheckboxProps["allowIndeterminated"],
 		disabledValue: CheckboxProps["disabled"],
 		readonlyValue: CheckboxProps["readonly"],
-		requiredValue: CheckboxProps["required"]
+		requiredValue: CheckboxProps["required"],
+		labelValue: CheckboxProps["label"]
 	) {
 		return generateSvelteTagCode({
 			tag: "FormField",
 			content: `
 				${getCheckboxCode(
+					name,
+					value,
 					checkedValue,
 					rippleValue,
 					densityValue,
@@ -63,13 +70,15 @@
 					readonlyValue,
 					requiredValue
 				)}
-				<Label>Label</Label>
+				<Label>${labelValue}</Label>
 			`,
 			indentSize: 1,
 		});
 	}
 
 	function getCheckboxCode(
+		name: CheckboxProps["name"],
+		value: CheckboxProps["value"],
 		checkedValue: CheckboxProps["checked"],
 		rippleValue: CheckboxProps["ripple"],
 		densityValue: CheckboxProps["density"],
@@ -82,8 +91,8 @@
 		return generateSvelteTagCode({
 			tag: "Checkbox",
 			props: [
-				`name="checkbox"`,
-				`value="checkbox-value"`,
+				`name="${name}"`,
+				`value="${value}"`,
 				[!rippleValue, "ripple={false}"],
 				[!expandedTouchTargetValue, "expandedTouchTarget={false}"],
 				[densityValue, `density={${densityValue}}`],
@@ -98,30 +107,17 @@
 		});
 	}
 
-	function updateSelectedCheckbox() {
-		const index = checkboxes.findIndex(
-			(item) => item.value === selectedCheckboxValue
-		);
-
-		if (!~index) return;
-
-		selectedCheckbox = checkboxes[index] = { ...checkboxes[index] };
-	}
-
-	function updateCheckboxesInstance() {
-		checkboxes = [...checkboxes];
-		updateSelectedCheckbox();
-	}
-
 	function handleCheckboxChange(checked: boolean, index: number) {
 		checkboxes[index].checked = checked;
-		updateCheckboxesInstance();
+		multipleItemsControls.updateItemsInstance();
 	}
 
 	function createCheckboxItem(index) {
+		const value = `checkbox:${index}`;
 		return {
+			id: value,
 			name: `checkbox[]`,
-			value: `checkbox:${index}`,
+			value,
 			ripple: true,
 			density: 0,
 			expandedTouchTarget: true,
@@ -134,38 +130,8 @@
 		} as CheckboxProps;
 	}
 
-	function addCheckbox() {
-		const index = Number(
-			checkboxes[checkboxes.length - 1]?.value.split(":").slice(-1)[0] ?? -1
-		);
-		checkboxes.push(createCheckboxItem(index + 1));
-
-		updateCheckboxesInstance();
-	}
-
-	function removeCurrentCheckbox() {
-		const index = checkboxes.indexOf(selectedCheckbox);
-		checkboxes = checkboxes
-			.slice(0, index)
-			.concat(checkboxes.slice(index + 1, checkboxes.length));
-
-		updateCheckboxesInstance();
-	}
-
-	function reset() {
-		checkboxes = [] = Array(3)
-			.fill("")
-			.map((_, index) => {
-				return createCheckboxItem(index);
-			});
-
-		selectedCheckbox = checkboxes[0];
-		tick().then(() => {
-			selectedCheckboxValue = checkboxes[0].value;
-		});
-	}
-
 	interface CheckboxProps {
+		id: string;
 		name: string;
 		value: string;
 		ripple: boolean;
@@ -218,7 +184,7 @@
 				<Select
 					nullable={false}
 					bind:value={selectedCheckboxValue}
-					on:change={updateSelectedCheckbox}>
+					on:change={multipleItemsControls.updateSelectedInstance}>
 					<span slot="label">Checked value</span>
 					{#each checkboxes as item (item.value)}
 						<Option value={item.value}>{item.label}</Option>
@@ -235,16 +201,13 @@
 			bind:density={selectedCheckbox.density}
 			bind:expandedTouchTarget={selectedCheckbox.expandedTouchTarget}
 			bind:required={selectedCheckbox.required}
-			on:change={updateCheckboxesInstance} />
-		<div
-			style="grid-column: span 2; flex-direction: row; justify-content: space-between;">
-			<div>
-				<Button on:click={reset}>Reset</Button>
-			</div>
-			<div>
-				<Button on:click={removeCurrentCheckbox}>Remove</Button>
-				<Button on:click={addCheckbox}>Add</Button>
-			</div>
-		</div>
+			on:change={multipleItemsControls.updateItemsInstance} />
+
+		<MultipleItemControls
+			bind:this={multipleItemsControls}
+			bind:items={checkboxes}
+			bind:selectedItem={selectedCheckbox}
+			bind:selectedItemId={selectedCheckboxValue}
+			itemFactory={createCheckboxItem} />
 	</div>
 </Configurator>

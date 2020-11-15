@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { FormField, Label } from "@svelte-material-ui-test/core/form-field";
-	import { Slider } from "@svelte-material-ui-test/core/slider";
-	import { typography } from "@svelte-material-ui-test/core/typography";
+	import { FormField, Label } from "@smui/core/form-field";
+	import { Slider } from "@smui/core/slider";
+	import { typography } from "@smui/core/typography";
 
 	export let density: number;
 	export let max: number = 4;
