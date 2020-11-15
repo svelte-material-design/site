@@ -5,7 +5,7 @@
 	import { Tab, Label } from "@smui/core/tab";
 	import CheckboxGroupConfigurator from "./_CheckboxGroupConfigurator.svelte";
 
-	let currentTab: "checkbox" | "checkbox-group" = "checkbox-group";
+	let currentTab: "checkbox" | "checkbox-group" = "checkbox";
 </script>
 
 <svelte:head>
@@ -28,7 +28,4 @@
 	{:else if currentTab === 'checkbox-group'}
 		<CheckboxGroupConfigurator />
 	{/if}
-	<!-- <BaseCheckbox />
-	<CheckboxGroup />
-	<AdvancedGroupCheckbox /> -->
 </section>

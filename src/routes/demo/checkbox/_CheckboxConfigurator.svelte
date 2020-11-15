@@ -6,9 +6,12 @@
 		generateSvelteTagCode,
 	} from "src/components/configurator";
 	import { Checkbox } from "@smui/core/packages/checkbox";
-	import { Select, Option } from "@smui/core/select";
+	import CheckboxOptions from "./_CheckboxOptions.svelte";
 
 	let checked: boolean;
+	let ripple: boolean = true;
+	let density: number;
+	let expandedTouchTarget: boolean = true;
 	let allowIndeterminated: boolean;
 	let required: boolean;
 	let disabled: boolean;
@@ -21,12 +24,25 @@
 		tag: "FormField",
 		props: [],
 		content: `
-			${getCheckboxCode(allowIndeterminated, disabled, readonly, required)}
+			${getCheckboxCode(
+				checked,
+				ripple,
+				density,
+				expandedTouchTarget,
+				allowIndeterminated,
+				disabled,
+				readonly,
+				required
+			)}
 			<Label>Label</Label>
 		`,
 	});
 
 	function getCheckboxCode(
+		checkedValue: typeof checked,
+		rippleValue: typeof ripple,
+		densityValue: typeof density,
+		expandedTouchTargetValue: typeof expandedTouchTarget,
 		allowIndeterminatedValue: typeof allowIndeterminated,
 		disabledValue: typeof disabled,
 		readonlyValue: typeof readonly,
@@ -38,6 +54,11 @@
 				"bind:checked",
 				`name="checkbox"`,
 				`value="checkbox-value"`,
+				[!rippleValue, "ripple={false}"],
+				[!expandedTouchTargetValue, "expandedTouchTarget={false}"],
+				[densityValue, `density={${densityValue}}`],
+				[checkedValue, "checked"],
+				[checkedValue == null, "checked={null}"],
 				[allowIndeterminatedValue, "allowIndeterminated"],
 				[disabledValue, "disabled"],
 				[readonlyValue, "readonly"],
@@ -68,6 +89,9 @@
 				bind:checked
 				value="checkbox-value"
 				name="checkbox"
+				{ripple}
+				{density}
+				{expandedTouchTarget}
 				{allowIndeterminated}
 				{disabled}
 				{required}
@@ -77,48 +101,14 @@
 	</div>
 	<div slot="values">checked: {checked}</div>
 	<div slot="optionsSidebar" class="options-sidebar">
-		<div>
-			<FormField>
-				<Select
-					nullable={false}
-					on:change={(event) => handleCheckedSelectChange(event.detail.value)}>
-					<span slot="label">Checked value</span>
-					<Option value="unchecked" selected={checked === false}>
-						Unchecked
-					</Option>
-					<Option value="checked" selected={checked === true}>Checked</Option>
-					<Option
-						value="indeterminate"
-						selected={checked == undefined}
-						disabled={!allowIndeterminated}>
-						Indeterminate
-					</Option>
-				</Select>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={allowIndeterminated} />
-				<Label>Allow indeterminate {allowIndeterminated}</Label>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={disabled} />
-				<Label>Disabled</Label>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={readonly} />
-				<Label>Readonly</Label>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={required} />
-				<Label>Required</Label>
-			</FormField>
-		</div>
+		<CheckboxOptions
+			bind:checked
+			bind:ripple
+			bind:allowIndeterminated
+			bind:disabled
+			bind:readonly
+			bind:density
+			bind:expandedTouchTarget
+			bind:required />
 	</div>
 </Configurator>

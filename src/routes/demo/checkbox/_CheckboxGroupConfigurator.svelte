@@ -2,21 +2,16 @@
 	import { FormField, Label } from "@smui/core/form-field";
 	import {
 		Configurator,
-		generateSvelteCode,
 		generateSvelteTagCode,
 	} from "src/components/configurator";
 	import { Checkbox, CheckboxGroup } from "@smui/core/packages/checkbox";
 	import { Select, Option } from "@smui/core/select";
 	import { Button } from "@svelte-material-ui-test/core/packages/button";
 	import { tick } from "svelte";
+	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
+	import CheckboxOptions from "./_CheckboxOptions.svelte";
 
-	let checked: boolean;
-	let allowIndeterminated: boolean;
-	let required: boolean;
-	let disabled: boolean;
-	let readonly: boolean;
-
-	let value: any[] = [];
+	let value: string[] = [];
 
 	let checkboxes: CheckboxProps[];
 	let selectedCheckboxValue: CheckboxProps["value"];
@@ -33,6 +28,9 @@
 			.map((item) =>
 				getFormFieldCode(
 					item.checked,
+					item.ripple,
+					item.density,
+					item.expandedTouchTarget,
 					item.allowIndeterminated,
 					item.disabled,
 					item.readonly,
@@ -43,17 +41,23 @@
 	});
 
 	function getFormFieldCode(
-		checkedValue: typeof checked,
-		allowIndeterminatedValue: typeof allowIndeterminated,
-		disabledValue: typeof disabled,
-		readonlyValue: typeof readonly,
-		requiredValue: typeof required
+		checkedValue: CheckboxProps["checked"],
+		rippleValue: CheckboxProps["ripple"],
+		densityValue: CheckboxProps["density"],
+		expandedTouchTargetValue: CheckboxProps["expandedTouchTarget"],
+		allowIndeterminatedValue: CheckboxProps["allowIndeterminated"],
+		disabledValue: CheckboxProps["disabled"],
+		readonlyValue: CheckboxProps["readonly"],
+		requiredValue: CheckboxProps["required"]
 	) {
 		return generateSvelteTagCode({
 			tag: "FormField",
 			content: `
 				${getCheckboxCode(
 					checkedValue,
+					rippleValue,
+					densityValue,
+					expandedTouchTargetValue,
 					allowIndeterminatedValue,
 					disabledValue,
 					readonlyValue,
@@ -66,17 +70,23 @@
 	}
 
 	function getCheckboxCode(
-		checkedValue: typeof checked,
-		allowIndeterminatedValue: typeof allowIndeterminated,
-		disabledValue: typeof disabled,
-		readonlyValue: typeof readonly,
-		requiredValue: typeof required
+		checkedValue: CheckboxProps["checked"],
+		rippleValue: CheckboxProps["ripple"],
+		densityValue: CheckboxProps["density"],
+		expandedTouchTargetValue: CheckboxProps["expandedTouchTarget"],
+		allowIndeterminatedValue: CheckboxProps["allowIndeterminated"],
+		disabledValue: CheckboxProps["disabled"],
+		readonlyValue: CheckboxProps["readonly"],
+		requiredValue: CheckboxProps["required"]
 	) {
 		return generateSvelteTagCode({
 			tag: "Checkbox",
 			props: [
 				`name="checkbox"`,
 				`value="checkbox-value"`,
+				[!rippleValue, "ripple={false}"],
+				[!expandedTouchTargetValue, "expandedTouchTarget={false}"],
+				[densityValue, `density={${densityValue}}`],
 				[checkedValue, "checked"],
 				[checkedValue == null, "checked={null}"],
 				[allowIndeterminatedValue, "allowIndeterminated"],
@@ -108,30 +118,20 @@
 		updateCheckboxesInstance();
 	}
 
-	function handleCheckedSelectChange(_value: string) {
-		const value = _value as "checked" | "unchecked" | "indeterminate";
-		if (value === "checked" && selectedCheckbox.checked !== true) {
-			selectedCheckbox.checked = true;
-		} else if (value === "unchecked" && selectedCheckbox.checked !== false) {
-			selectedCheckbox.checked = false;
-		} else if (value === "indeterminate" && selectedCheckbox.checked != null) {
-			selectedCheckbox.checked = null;
-		}
-
-		updateCheckboxesInstance();
-	}
-
 	function createCheckboxItem(index) {
 		return {
 			name: `checkbox[]`,
 			value: `checkbox:${index}`,
+			ripple: true,
+			density: 0,
+			expandedTouchTarget: true,
 			allowIndeterminated: false,
 			disabled: false,
 			readonly: false,
 			required: false,
 			checked: false,
 			label: `Checkbox ${index}`,
-		};
+		} as CheckboxProps;
 	}
 
 	function addCheckbox() {
@@ -168,6 +168,9 @@
 	interface CheckboxProps {
 		name: string;
 		value: string;
+		ripple: boolean;
+		density: number;
+		expandedTouchTarget: boolean;
 		allowIndeterminated: boolean;
 		disabled: boolean;
 		readonly: boolean;
@@ -195,6 +198,9 @@
 						checked={item.checked}
 						value={item.value}
 						name={item.name}
+						ripple={item.ripple}
+						density={item.density}
+						expandedTouchTarget={item.expandedTouchTarget}
 						allowIndeterminated={item.allowIndeterminated}
 						disabled={item.disabled}
 						required={item.required}
@@ -207,7 +213,7 @@
 	</div>
 	<div slot="values">value: {value.join(', ')}</div>
 	<div slot="optionsSidebar" class="options-sidebar">
-		<div>
+		<div style="grid-column: span 2;">
 			<FormField>
 				<Select
 					nullable={false}
@@ -220,61 +226,16 @@
 				</Select>
 			</FormField>
 		</div>
-		<div>
-			<FormField>
-				<Select
-					nullable={false}
-					on:change={(event) => handleCheckedSelectChange(event.detail.value)}>
-					<span slot="label">Checked value</span>
-					<Option
-						value="unchecked"
-						selected={selectedCheckbox.checked === false}>
-						Unchecked
-					</Option>
-					<Option value="checked" selected={selectedCheckbox.checked === true}>
-						Checked
-					</Option>
-					<Option
-						value="indeterminate"
-						selected={selectedCheckbox.checked == undefined}
-						disabled={!selectedCheckbox.allowIndeterminated}>
-						Indeterminate
-					</Option>
-				</Select>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					bind:checked={selectedCheckbox.allowIndeterminated}
-					on:change={updateCheckboxesInstance} />
-				<Label>Allow indeterminate</Label>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					bind:checked={selectedCheckbox.disabled}
-					on:change={updateCheckboxesInstance} />
-				<Label>Disabled</Label>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					bind:checked={selectedCheckbox.readonly}
-					on:change={updateCheckboxesInstance} />
-				<Label>Readonly</Label>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					bind:checked={selectedCheckbox.required}
-					on:change={updateCheckboxesInstance} />
-				<Label>Required</Label>
-			</FormField>
-		</div>
+		<CheckboxOptions
+			bind:checked={selectedCheckbox.checked}
+			bind:ripple={selectedCheckbox.ripple}
+			bind:allowIndeterminated={selectedCheckbox.allowIndeterminated}
+			bind:disabled={selectedCheckbox.disabled}
+			bind:readonly={selectedCheckbox.readonly}
+			bind:density={selectedCheckbox.density}
+			bind:expandedTouchTarget={selectedCheckbox.expandedTouchTarget}
+			bind:required={selectedCheckbox.required}
+			on:change={updateCheckboxesInstance} />
 		<div
 			style="grid-column: span 2; flex-direction: row; justify-content: space-between;">
 			<div>
