@@ -317,8 +317,10 @@
 			<FormField>
 				<Select bind:value={variant} nullable={false}>
 					<span slot="label">Variant</span>
-					<Option value="filled">Filled</Option>
-					<Option value="outlined">Otlined</Option>
+					<div slot="options">
+						<Option value="filled">Filled</Option>
+						<Option value="outlined">Outlined</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -326,18 +328,20 @@
 			<FormField>
 				<Select bind:value={type} nullable={false}>
 					<span slot="label">Type</span>
-					<Option value="text">Text</Option>
-					<Option value="number">Number</Option>
-					<Option value="email">Email</Option>
-					<Option value="search">Search</Option>
-					<Option value="tel">Tel</Option>
-					<Option value="url">Url</Option>
-					<Option value="password">Password</Option>
-					<Option value="month">Month</Option>
-					<Option value="week">Week</Option>
-					<Option value="date">Date</Option>
-					<Option value="datetime-local">Datetime Local</Option>
-					<Option value="time">Time</Option>
+					<div slot="options">
+						<Option value="text">Text</Option>
+						<Option value="number">Number</Option>
+						<Option value="email">Email</Option>
+						<Option value="search">Search</Option>
+						<Option value="tel">Tel</Option>
+						<Option value="url">Url</Option>
+						<Option value="password">Password</Option>
+						<Option value="month">Month</Option>
+						<Option value="week">Week</Option>
+						<Option value="date">Date</Option>
+						<Option value="datetime-local">Datetime Local</Option>
+						<Option value="time">Time</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -357,7 +361,7 @@
 					Density:
 					{densitySlider ? `-${densitySlider}` : 'default'}
 				</Label>
-				<Slider bind:value={densitySlider} max={4} step={1} />
+				<Slider bind:value={densitySlider} discrete max={4} step={1} />
 			</FormField>
 		</div>
 		<div>

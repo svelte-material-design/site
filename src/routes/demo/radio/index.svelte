@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Typography } from "@smui/core/typography";
+
 	import RadioConfigurator from "./_RadioConfigurator.svelte";
 </script>
 
@@ -7,7 +9,7 @@
 </svelte:head>
 
 <section>
-	<h2>Radio</h2>
+	<Typography variant="headline2">Radio</Typography>
 
 	<RadioConfigurator />
 </section>

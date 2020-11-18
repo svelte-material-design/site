@@ -176,9 +176,11 @@
 					bind:value={selectedRadioId}
 					on:change={multipleItemsControls.updateSelectedInstance}>
 					<span slot="label">Selected radio</span>
-					{#each radios as item (item.value)}
-						<Option value={item.value}>{item.label}</Option>
-					{/each}
+					<div slot="options">
+						{#each radios as item (item.value)}
+							<Option value={item.value}>{item.label}</Option>
+						{/each}
+					</div>
 				</Select>
 			</FormField>
 		</div>

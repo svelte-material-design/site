@@ -4,17 +4,17 @@
 @use "@material/theme";
 
 .myPrimary {
-  @include theme.prop(color, primary);
+	@include theme.property(color, primary);
 
-  &.elevated {
-    @include elevation.elevation(4, primary);
-  }
+	&.elevated {
+		@include elevation.elevation(4, primary);
+	}
 }
 
 .mySecondary {
-  @include theme.prop(color, secondary);
+	@include theme.property(color, secondary);
 
-  &.elevated {
-    @include elevation.elevation(4, secondary);
-  }
+	&.elevated {
+		@include elevation.elevation(4, secondary);
+	}
 }

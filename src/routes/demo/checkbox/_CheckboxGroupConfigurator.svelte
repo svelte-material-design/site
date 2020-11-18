@@ -186,9 +186,11 @@
 					bind:value={selectedCheckboxValue}
 					on:change={multipleItemsControls.updateSelectedInstance}>
 					<span slot="label">Checked value</span>
-					{#each checkboxes as item (item.value)}
-						<Option value={item.value}>{item.label}</Option>
-					{/each}
+					<div slot="options">
+						{#each checkboxes as item (item.value)}
+							<Option value={item.value}>{item.label}</Option>
+						{/each}
+					</div>
 				</Select>
 			</FormField>
 		</div>

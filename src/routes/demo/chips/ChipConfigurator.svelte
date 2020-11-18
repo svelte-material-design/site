@@ -152,9 +152,11 @@
 			<FormField>
 				<Select bind:value={variant}>
 					<span slot="label">Variant</span>
-					<Option />
-					<Option value="choice">Choice</Option>
-					<Option value="filter">Filter</Option>
+					<div slot="options">
+						<Option />
+						<Option value="choice">Choice</Option>
+						<Option value="filter">Filter</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -168,9 +170,11 @@
 			<FormField>
 				<Select bind:value={selectedChipValue} nullable={false}>
 					<span slot="label">Configure Chip</span>
-					{#each chips as chip, index (chip.value)}
-						<Option value={chip.value}>{chip.value}</Option>
-					{/each}
+					<div slot="options">
+						{#each chips as chip, index (chip.value)}
+							<Option value={chip.value}>{chip.value}</Option>
+						{/each}
+					</div>
 				</Select>
 			</FormField>
 		</div>

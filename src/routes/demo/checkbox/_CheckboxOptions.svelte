@@ -40,14 +40,18 @@
 			nullable={false}
 			on:change={(event) => handleCheckedSelectChange(event.detail.value)}>
 			<span slot="label">Checked value</span>
-			<Option value="unchecked" selected={checked === false}>Unchecked</Option>
-			<Option value="checked" selected={checked === true}>Checked</Option>
-			<Option
-				value="indeterminate"
-				selected={checked == undefined}
-				disabled={!allowIndeterminated}>
-				Indeterminate
-			</Option>
+			<div slot="options">
+				<Option value="unchecked" selected={checked === false}>
+					Unchecked
+				</Option>
+				<Option value="checked" selected={checked === true}>Checked</Option>
+				<Option
+					value="indeterminate"
+					selected={checked == undefined}
+					disabled={!allowIndeterminated}>
+					Indeterminate
+				</Option>
+			</div>
 		</Select>
 	</FormField>
 </div>

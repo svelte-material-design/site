@@ -22,10 +22,12 @@
 	<div class="{classes.columns} {classes.margins}">
 		<div>
 			<Select class={className} bind:value {variant}>
-				<Option value="" />
-				{#each options as fruit}
-					<Option value={fruit} selected={value === fruit}>{fruit}</Option>
-				{/each}
+				<div slot="options">
+					<Option value="" />
+					{#each options as fruit}
+						<Option value={fruit} selected={value === fruit}>{fruit}</Option>
+					{/each}
+				</div>
 				<span slot="label">Pick a fruit</span>
 			</Select>
 
@@ -34,10 +36,12 @@
 
 		<div>
 			<Select class={className} bind:value={valuePrefilled} {variant}>
-				<Option value="" />
-				{#each options as fruit}
-					<Option value={fruit}>{fruit}</Option>
-				{/each}
+				<div slot="options">
+					<Option value="" />
+					{#each options as fruit}
+						<Option value={fruit}>{fruit}</Option>
+					{/each}
+				</div>
 				<span slot="label">Prefilled</span>
 			</Select>
 
@@ -46,12 +50,14 @@
 
 		<div>
 			<Select class={className} bind:value={valueHelperText} {variant}>
-				<Option value="" />
-				{#each options as fruit}
-					<Option value={fruit} selected={valueHelperText === fruit}>
-						{fruit}
-					</Option>
-				{/each}
+				<div slot="options">
+					<Option value="" />
+					{#each options as fruit}
+						<Option value={fruit} selected={valueHelperText === fruit}>
+							{fruit}
+						</Option>
+					{/each}
+				</div>
 				<span slot="label">With Helper Text</span>
 				<span slot="helperText">
 					<HelperText>Helper text</HelperText>
@@ -66,12 +72,14 @@
 				<span slot="leadingIcon">
 					<Icon class="material-icons">event</Icon>
 				</span>
-				<Option value="" />
-				{#each options as fruit}
-					<Option value={fruit} selected={valueLeadingIcon === fruit}>
-						{fruit}
-					</Option>
-				{/each}
+				<div slot="options">
+					<Option value="" />
+					{#each options as fruit}
+						<Option value={fruit} selected={valueLeadingIcon === fruit}>
+							{fruit}
+						</Option>
+					{/each}
+				</div>
 				<span slot="label">Leading Icon</span>
 			</Select>
 
@@ -84,12 +92,14 @@
 				bind:value={valueInvalid}
 				customValidation={(value) => !!value}
 				{variant}>
-				<Option value="" />
-				{#each options as fruit}
-					<Option value={fruit} selected={valueInvalid === fruit}>
-						{fruit}
-					</Option>
-				{/each}
+				<div slot="options">
+					<Option value="" />
+					{#each options as fruit}
+						<Option value={fruit} selected={valueInvalid === fruit}>
+							{fruit}
+						</Option>
+					{/each}
+				</div>
 				<span slot="label"> Invalid </span>
 				<span slot="helperText">
 					<HelperText validationMsg>Select a value</HelperText>

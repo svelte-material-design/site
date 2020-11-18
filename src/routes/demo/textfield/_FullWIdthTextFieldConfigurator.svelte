@@ -245,8 +245,10 @@
 			<FormField>
 				<Select bind:value={type} nullable={false}>
 					<span slot="label">Type</span>
-					<Option value="text">Text</Option>
-					<Option value="search">Search</Option>
+					<div slot="options">
+						<Option value="text">Text</Option>
+						<Option value="search">Search</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>

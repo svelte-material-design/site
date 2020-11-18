@@ -223,8 +223,10 @@
 			<FormField>
 				<Select bind:value={variant} nullable={false}>
 					<span slot="label">Variant</span>
-					<Option value="standard">Standard</Option>
-					<Option value="masonry">Masonry</Option>
+					<div slot="options">
+						<Option value="standard">Standard</Option>
+						<Option value="masonry">Masonry</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -252,9 +254,11 @@
 			<FormField>
 				<Select bind:value={aspect} disabled={!aspectContainer}>
 					<span slot="label">Aspect</span>
-					<Option value="1:1">1:1</Option>
-					<Option value="16:9">16:9</Option>
-					<Option value="4:3">4:3</Option>
+					<div slot="options">
+						<Option value="1:1">1:1</Option>
+						<Option value="16:9">16:9</Option>
+						<Option value="4:3">4:3</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -284,8 +288,10 @@
 					bind:value={gapUnit}
 					style="min-width: calc(150px - 1em); margin-left: 1em;">
 					<span slot="label">Unit</span>
-					<Option value="em">em</Option>
-					<Option value="px">px</Option>
+					<div slot="options">
+						<Option value="em">em</Option>
+						<Option value="px">px</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>

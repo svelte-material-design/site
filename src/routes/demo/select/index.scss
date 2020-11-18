@@ -1,34 +1,17 @@
-.mdc-select {
-  &.shaped {
-    .mdc-select__anchor {
-      border-radius: 16px 16px 0 0;
-    }
-  }
+@use "smui-theme";
+@use "@material/select";
 
-  &.shaped-outlined {
-    .mdc-text-field__input {
-      padding-left: 32px;
-      padding-right: 0;
-    }
+.shaped {
+	.mdc-select {
+		@include select.filled-shape-radius(50%);
+	}
+}
 
-    .mdc-notched-outline {
-      .mdc-notched-outline__leading {
-        border-radius: 28px 0 0 28px;
-        width: 28px;
-      }
-
-      .mdc-notched-outline__trailing {
-        border-radius: 0 28px 28px 0;
-      }
-
-      .mdc-notched-outline__notch {
-        max-width: calc(100% - 28px * 2);
-      }
-    }
-
-    + .mdc-text-field-helper-line {
-      padding-left: 32px;
-      padding-right: 28px;
-    }
-  }
+.shaped-outline {
+	.mdc-select {
+		&:not(.mdc-select--with-leading-icon),
+		&.mdc-select--with-leading-icon {
+			@include select.outline-shape-radius(50%);
+		}
+	}
 }

@@ -204,9 +204,11 @@ ${getHeaderCode()}
 			<FormField>
 				<Select bind:value={variant} nullable={false}>
 					<span slot="label">Variant</span>
-					<Option value="permanent">Permanent</Option>
-					<Option value="dismissible">Dismissible</Option>
-					<Option value="modal">Modal</Option>
+					<div slot="options">
+						<Option value="permanent">Permanent</Option>
+						<Option value="dismissible">Dismissible</Option>
+						<Option value="modal">Modal</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -232,9 +234,11 @@ ${getHeaderCode()}
 			<FormField>
 				<Select bind:value={layout} nullable={false}>
 					<span slot="label">Layout</span>
-					<Option />
-					<Option value="full-height">Full Height + Top App Bar</Option>
-					<Option value="below-top-app-bar">Below Top App Bar</Option>
+					<div slot="options">
+						<Option />
+						<Option value="full-height">Full Height + Top App Bar</Option>
+						<Option value="below-top-app-bar">Below Top App Bar</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>

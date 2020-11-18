@@ -93,9 +93,11 @@
 			<FormField>
 				<Select bind:value={color} style="width: 100%">
 					<span slot="label">Color</span>
-					<Option value="" />
-					<Option value="primary">Primary</Option>
-					<Option value="secondary">Secondary</Option>
+					<div slot="options">
+						<Option value="" />
+						<Option value="primary">Primary</Option>
+						<Option value="secondary">Secondary</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>

@@ -257,9 +257,11 @@
 			<FormField>
 				<Select bind:value={media}>
 					<span slot="label">Media</span>
-					<Option />
-					<Option value="16x9">16x9</Option>
-					<Option value="square">square</Option>
+					<div slot="options">
+						<Option />
+						<Option value="16x9">16x9</Option>
+						<Option value="square">square</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -309,12 +311,14 @@
 				<FormField>
 					<Select bind:value={actionsLayout}>
 						<span slot="label">Actions layout</span>
-						<Option />
-						<Option value="single">Single action</Option>
-						<Option value="multi">Multiple actions</Option>
-						<Option value="icons">Icons actions</Option>
-						<Option value="all">All types actions</Option>
-						<Option value="full-bleed">Full bleed</Option>
+						<div slot="options">
+							<Option />
+							<Option value="single">Single action</Option>
+							<Option value="multi">Multiple actions</Option>
+							<Option value="icons">Icons actions</Option>
+							<Option value="all">All types actions</Option>
+							<Option value="full-bleed">Full bleed</Option>
+						</div>
 					</Select>
 				</FormField>
 			</div>

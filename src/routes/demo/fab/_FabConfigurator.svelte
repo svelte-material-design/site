@@ -93,9 +93,11 @@
 			<FormField>
 				<Select bind:value={variant}>
 					<span slot="label">Variant</span>
-					<Option value="" />
-					<Option value="extended">Extended</Option>
-					<Option value="mini">Mini</Option>
+					<div slot="options">
+						<Option value="" />
+						<Option value="extended">Extended</Option>
+						<Option value="mini">Mini</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>

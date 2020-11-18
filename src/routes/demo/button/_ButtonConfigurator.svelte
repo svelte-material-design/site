@@ -229,10 +229,12 @@
 			<FormField>
 				<Select bind:value={variant} style="width: 100%">
 					<span slot="label">Variant</span>
-					<Option value="" />
-					<Option value="raised">Raised</Option>
-					<Option value="unelevated">Unelevated</Option>
-					<Option value="outlined">Outlined</Option>
+					<div slot="options">
+						<Option value="" />
+						<Option value="raised">Raised</Option>
+						<Option value="unelevated">Unelevated</Option>
+						<Option value="outlined">Outlined</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
@@ -281,9 +283,11 @@
 			<FormField>
 				<Select bind:value={customStyle} style="width: 100%">
 					<span slot="label">Custom style</span>
-					<Option value="" />
-					<Option value="mdc-mixins">MDC Mixins</Option>
-					<Option value="custom-css">Custom CSS</Option>
+					<div slot="options">
+						<Option value="" />
+						<Option value="mdc-mixins">MDC Mixins</Option>
+						<Option value="custom-css">Custom CSS</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>

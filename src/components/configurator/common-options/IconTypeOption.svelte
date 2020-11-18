@@ -15,11 +15,13 @@
 <FormField>
 	<Select bind:value style="width: 100%" {disabled} on:change>
 		<span slot="label">{label}</span>
-		{#if allowEmpty}
-			<Option value={null} />
-		{/if}
-		<Option value="material-icon">Material icon</Option>
-		<Option value="svg">SVG</Option>
-		<Option value="img">Image</Option>
+		<div slot="options">
+			{#if allowEmpty}
+				<Option value={null} />
+			{/if}
+			<Option value="material-icon">Material icon</Option>
+			<Option value="svg">SVG</Option>
+			<Option value="img">Image</Option>
+		</div>
 	</Select>
 </FormField>

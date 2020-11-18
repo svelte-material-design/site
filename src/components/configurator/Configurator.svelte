@@ -113,7 +113,7 @@
 		padding: $padding;
 		overflow: auto;
 
-		> :global(.options-sidebar) {
+		:global([slot="optionsSidebar"]) {
 			display: grid;
 			grid-template: auto / minmax(150px, min-content) minmax(
 					150px,

@@ -134,9 +134,11 @@
 			<FormField>
 				<Select bind:value={layout} nullable={false}>
 					<span slot="label">Dialog layout</span>
-					<Option value="alert">Alert</Option>
-					<Option value="list">List</Option>
-					<Option value="confirmation">Confirmation</Option>
+					<div slot="options">
+						<Option value="alert">Alert</Option>
+						<Option value="list">List</Option>
+						<Option value="confirmation">Confirmation</Option>
+					</div>
 				</Select>
 			</FormField>
 		</div>
