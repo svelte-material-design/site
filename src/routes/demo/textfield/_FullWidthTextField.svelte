@@ -1,20 +1,9 @@
 <script lang="ts">
 	import {
 		FullWidthTextField,
-		TextArea,
 		FullWidthTextFieldType,
 	} from "@smui/core/textfield";
-	import { FormField, Label } from "@smui/core/form-field";
-	import {
-		Configurator,
-		generateSCSSCode,
-		generateSvelteCode,
-	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/packages/checkbox";
-	import IconTypeOption, {
-		IconType,
-	} from "src/components/configurator/common-options/IconTypeOption.svelte";
-	import { getHelperTextCode } from "src/components/configurator/snippets";
+	import { IconType } from "src/components/configurator/common-options/IconTypeOption.svelte";
 	import HelperText from "./_HelperText.svelte";
 	import TrailingIcon from "./_TrailingIcon.svelte";
 	import LeadingIcon from "./_LeadingIcon.svelte";

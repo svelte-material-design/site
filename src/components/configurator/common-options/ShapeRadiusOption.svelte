@@ -50,7 +50,6 @@
 			<Select bind:value={unit} nullable={false} disabled={customStyle}>
 				<span slot="label">Unit</span>
 				<div slot="options">
-					<Option />
 					<Option value="em">em</Option>
 					<Option value="px">px</Option>
 				</div>

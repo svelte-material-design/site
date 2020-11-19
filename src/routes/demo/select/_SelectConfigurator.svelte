@@ -1,22 +1,24 @@
 <script lang="ts">
 	import { Option, Select, SelectVariant } from "@smui/core/select";
 	import PreviewSelect from "./_Select.svelte";
-	import { Icon } from "@smui/core/select/icon";
-	import { HelperText } from "@smui/core/select/helper-text";
-	import { TextArea } from "@smui/core/textfield";
-	import { FormField, Label } from "@smui/core/form-field";
+	import { FormField } from "@smui/core/form-field";
 	import {
 		Configurator,
 		generateSCSSCode,
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Checkbox } from "@smui/core/packages/checkbox";
-	import { getHelperTextCode } from "src/components/configurator/snippets";
+	import {
+		getHelperTextCode,
+		getIconCode,
+	} from "src/components/configurator/snippets";
 	import IconTypeOption, {
 		IconType,
 	} from "src/components/configurator/common-options/IconTypeOption.svelte";
-	import LeadingIcon from "src/components/configurator/common-options/LeadingIcon.svelte";
 	import ShapeRadiusOption from "src/components/configurator/common-options/ShapeRadiusOption.svelte";
+	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
+
+	let name = "select";
 
 	let variant: SelectVariant;
 	let ripple: boolean = true;
@@ -26,6 +28,7 @@
 
 	let customStyle: boolean;
 	let shapeRadius: string;
+	let density: number;
 
 	let label: boolean = true;
 	let helperText: boolean;
@@ -43,7 +46,9 @@
 
 	let className: string;
 
-	$: if (!helperText) persistentValidationMsg = false;
+	$: if (!helperText) helperTextAsValidationMsg = false;
+	$: if (!helperText || !helperTextAsValidationMsg)
+		persistentValidationMsg = false;
 
 	$: className = customStyle ? "shaped-text-area" : undefined;
 
@@ -53,20 +58,29 @@
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "TextArea",
+		tag: "Select",
 		props: [
 			"bind:value",
 			"bind:dirty",
 			"bind:invalid",
-			`name="input-field"`,
+			`name="${name}"`,
 			[className, `class="${className}"`],
 			[title, `title="${title}"`],
+			[variant !== "filled", `variant="${variant}"`],
+			[shapeRadius, `shapeRadius="${shapeRadius}"`],
+			[density, `density={${density}}`],
+			[shapeRadius, `shapeRadius="${shapeRadius}"`],
+			[nullable === false, "nullable={false}"],
+			[!ripple, "ripple={false}"],
+			[!lineRipple, "lineRipple={false}"],
+			[disabled, "disabled"],
 			[readonly, "readonly"],
-			[required, "required"],
 			[invalid, "invalid"],
+			[required, "required"],
 		],
 		content: getContentCode(
 			label,
+			leadingIcon,
 			helperText,
 			helperTextAsValidationMsg,
 			persistentValidationMsg
@@ -79,20 +93,49 @@
 
 	function getContentCode(
 		labelValue: typeof label,
+		leadingIconValue: typeof leadingIcon,
 		helperTextValue: typeof helperText,
 		helperTextAsValidationMsgValue: typeof helperTextAsValidationMsg,
-		persistentHelperTextValue: typeof persistentValidationMsg
+		persistentValidationMsgValue: typeof persistentValidationMsg
 	) {
 		return `
 			${labelValue ? `<span slot="label">Label</span>` : ""}
+			${getLeadingIconCode(leadingIconValue)}
+			<div slot="options">
+				<Option />
+				<Option value="superman">Superman</Option>
+				<Option value="cpt-america">Capitan America</Option>
+				<Option value="homelander">Homelander</Option>
+			</div>
 			${getHelperTextCode({
 				text: helperTextValue ? "Helper Text" : undefined,
-				validationMsg: helperTextAsValidationMsgValue,
-				persistent: persistentHelperTextValue,
+				props: [
+					[helperTextAsValidationMsgValue, "validationMsg"],
+					[persistentValidationMsgValue, "persistentValidationMsg"],
+				],
 				indentSize: 3,
 				indentFirstLine: false,
 			})}
 		`;
+	}
+
+	function getLeadingIconCode(leadingIconValue: typeof leadingIcon) {
+		if (leadingIconValue) {
+			return `
+			<span slot="leadingIcon">
+				${getIconCode({
+					type:
+						leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
+					position: "leading",
+					content: leadingIconValue === "material-icon" ? "event" : undefined,
+					indentSize: 4,
+					indentFirstLine: false,
+				})}
+			</span>
+			`;
+		} else {
+			return "";
+		}
 	}
 
 	function getSCSSCode(customStyleValue: typeof customStyle) {
@@ -112,9 +155,9 @@
 
 <style lang="scss">
 	.preview-container {
-		width: 80%;
-		border: 1px solid rgba(0, 0, 0, 0.1);
+		height: 10em;
 		padding: 1em;
+		align-items: start !important;
 	}
 
 	.options-sidebar {
@@ -133,12 +176,13 @@
 				bind:value
 				bind:dirty
 				bind:invalid
-				name="select"
+				{name}
 				{title}
 				label={label ? 'American hero' : undefined}
 				class={customStyle ? (variant === 'filled' ? 'shaped' : 'shaped-outline') : undefined}
 				{variant}
 				{shapeRadius}
+				{density}
 				{ripple}
 				{lineRipple}
 				{disabled}
@@ -181,6 +225,9 @@
 		</div>
 		<ShapeRadiusOption bind:value={shapeRadius} bind:customStyle />
 		<div>
+			<DensityOption bind:density />
+		</div>
+		<div>
 			<FormField>
 				<Checkbox bind:checked={label} />
 				<span slot="label">Show Label</span>
@@ -212,7 +259,9 @@
 		</div>
 		<div>
 			<FormField>
-				<Checkbox bind:checked={helperTextAsValidationMsg} />
+				<Checkbox
+					bind:checked={helperTextAsValidationMsg}
+					disabled={!helperText} />
 				<span slot="label" style="white-space: initial;">
 					Helper text as validation message
 				</span>

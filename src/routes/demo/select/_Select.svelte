@@ -14,8 +14,8 @@
 	export let nullable: boolean;
 	export let leadingIcon: IconType;
 
-	export let customStyle: boolean;
 	export let shapeRadius: string;
+	export let density: number;
 
 	export let label: string;
 	export let helperText: boolean;
@@ -46,6 +46,7 @@
 			{title}
 			{variant}
 			{shapeRadius}
+			{density}
 			{ripple}
 			{lineRipple}
 			{disabled}
@@ -62,11 +63,13 @@
 				<Option value="cpt-america">Capitan America</Option>
 				<Option value="homelander">Homelander</Option>
 			</div>
-			<HelperText
-				{persistentValidationMsg}
-				validationMsg={helperTextAsValidationMsg}>
-				Helper Text
-			</HelperText>
+			{#if helperText}
+				<HelperText
+					{persistentValidationMsg}
+					validationMsg={helperTextAsValidationMsg}>
+					Helper Text
+				</HelperText>
+			{/if}
 		</Select>
 	{:else}
 		<Select
@@ -78,6 +81,7 @@
 			{title}
 			{variant}
 			{shapeRadius}
+			{density}
 			{ripple}
 			{lineRipple}
 			{disabled}
@@ -91,14 +95,16 @@
 				<Option value="cpt-america">Capitan America</Option>
 				<Option value="homelander">Homelander</Option>
 			</div>
-			<HelperText
-				{persistentValidationMsg}
-				validationMsg={helperTextAsValidationMsg}>
-				Helper Text
-			</HelperText>
+			{#if helperText}
+				<HelperText
+					{persistentValidationMsg}
+					validationMsg={helperTextAsValidationMsg}>
+					Helper Text
+				</HelperText>
+			{/if}
 		</Select>
 	{/if}
-{:else}
+{:else if leadingIcon}
 	<Select
 		bind:value
 		bind:dirty
@@ -108,6 +114,7 @@
 		{title}
 		{variant}
 		{shapeRadius}
+		{density}
 		{ripple}
 		{lineRipple}
 		{disabled}
@@ -123,10 +130,43 @@
 			<Option value="cpt-america">Capitan America</Option>
 			<Option value="homelander">Homelander</Option>
 		</div>
-		<HelperText
-			{persistentValidationMsg}
-			validationMsg={helperTextAsValidationMsg}>
-			Helper Text
-		</HelperText>
+		{#if helperText}
+			<HelperText
+				{persistentValidationMsg}
+				validationMsg={helperTextAsValidationMsg}>
+				Helper Text
+			</HelperText>
+		{/if}
+	</Select>
+{:else}
+	<Select
+		bind:value
+		bind:dirty
+		bind:invalid
+		class={className}
+		{name}
+		{title}
+		{variant}
+		{shapeRadius}
+		{density}
+		{ripple}
+		{lineRipple}
+		{disabled}
+		{required}
+		{readonly}
+		{nullable}>
+		<div slot="options">
+			<Option />
+			<Option value="superman">Superman</Option>
+			<Option value="cpt-america">Capitan America</Option>
+			<Option value="homelander">Homelander</Option>
+		</div>
+		{#if helperText}
+			<HelperText
+				{persistentValidationMsg}
+				validationMsg={helperTextAsValidationMsg}>
+				Helper Text
+			</HelperText>
+		{/if}
 	</Select>
 {/if}

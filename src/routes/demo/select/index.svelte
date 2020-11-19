@@ -1,10 +1,7 @@
 <script>
 	import "./index.scss";
 
-	import BaseSelect from "./_BaseSelect.svelte";
 	import SelectConfigurator from "./_SelectConfigurator.svelte";
-
-	let fruits = ["Apple", "Orange", "Banana", "Mango"];
 </script>
 
 <svelte:head>
@@ -15,8 +12,4 @@
 	<h2>Select</h2>
 
 	<SelectConfigurator />
-	<BaseSelect options={fruits} />
-	<BaseSelect options={fruits} variant="outlined" />
-	<BaseSelect class="shaped" options={fruits} />
-	<BaseSelect class="shaped-outlined" options={fruits} variant="outlined" />
 </section>

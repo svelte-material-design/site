@@ -118,9 +118,11 @@
 			${getTrailingIconCode(trailingIconValue, clearOnTrailingIconClickValue)}
 			${getHelperTextCode({
 				text: helperTextValue ? "Helper Text" : undefined,
-				validationMsg: helperTextAsValidationMsgValue,
+				props: [
+					[persistentHelperTextValue, `persistent`],
+					[helperTextAsValidationMsgValue, `validationMsg`],
+				],
 				characterCounter: characterCounterValue,
-				persistent: persistentHelperTextValue,
 				indentSize: 3,
 				indentFirstLine: false,
 			})}

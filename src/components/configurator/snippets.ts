@@ -77,25 +77,20 @@ function getDefaultIconContent(type: GraphicType, position: Position) {
 export function getHelperTextCode({
 	text,
 	characterCounter,
-	validationMsg,
-	persistent,
+	props,
 	indentSize,
 	indentFirstLine,
 }: {
 	text?: string;
 	characterCounter?: boolean;
-	validationMsg?: boolean;
-	persistent?: boolean;
+	props?: StringListToFilter;
 	indentSize?: number;
 	indentFirstLine?: boolean;
 }) {
 	if (text || characterCounter) {
 		return generateSvelteTagCode({
 			tag: "HelperText",
-			props: [
-				[persistent, `persistent`],
-				[validationMsg, `validationMsg`],
-			],
+			props,
 			content: getHelperTextContentCode(text, characterCounter),
 			indentSize,
 			indentFirstLine,
