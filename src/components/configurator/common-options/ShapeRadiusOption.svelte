@@ -2,7 +2,7 @@
 	import { Option, Select } from "@smui/core/select";
 	import { FormField, Label } from "@smui/core/form-field";
 	import { Checkbox } from "@smui/core/checkbox";
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import { typography } from "@smui/core/typography";
 
 	export let value: string;
@@ -33,7 +33,7 @@
 			<span use:typography={'body1'}>Shape radius</span>
 			<FormField vertical>
 				<Label>Value: {customStyle ? '-' : value ? value : 'default'}</Label>
-				<Slider
+				<DiscreteSlider
 					class="slider"
 					bind:value={sliderValue}
 					discrete

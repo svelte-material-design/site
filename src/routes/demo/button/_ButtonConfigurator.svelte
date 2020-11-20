@@ -4,7 +4,7 @@
 	import { StringListToFilter } from "@smui/core/common/functions";
 	import { FormField } from "@smui/core/form-field";
 	import { Option, Select } from "@smui/core/select";
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import {
 		Configurator,
 		generateSvelteCode,
@@ -262,7 +262,7 @@
 		</div>
 		<div>
 			<FormField align="end" vertical>
-				<Slider bind:value={density} min={0} max={3} step={1} />
+				<DiscreteSlider bind:value={density} min={0} max={3} step={1} />
 				<span slot="label">Density: {density}</span>
 			</FormField>
 		</div>

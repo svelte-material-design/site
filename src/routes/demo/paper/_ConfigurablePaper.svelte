@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Paper, Title, Content } from "@smui/core/paper";
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import { Radio, RadioGroup } from "@smui/core/radio";
 	import { FormField } from "@smui/core/form-field";
 
@@ -25,7 +25,11 @@
 				<Paper elevation={0}>
 					<div>
 						<FormField align="end" style="display: flex;">
-							<Slider bind:value={elevation} min={0} max={24} discrete />
+							<DiscreteSlider
+								bind:value={elevation}
+								min={0}
+								max={24}
+								discrete />
 							<span
 								slot="label"
 								style="padding-right: 12px; width: max-content; display: block;">Elevation</span>

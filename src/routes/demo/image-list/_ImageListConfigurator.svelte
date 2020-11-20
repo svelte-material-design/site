@@ -7,7 +7,7 @@
 		Supporting,
 		Label,
 	} from "@smui/core/image-list";
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import { FormField, Label as FormFieldLabel } from "@smui/core/form-field";
 	import {
 		Configurator,
@@ -266,13 +266,13 @@
 		<div style="grid-column: span 2">
 			<FormField vertical>
 				<FormFieldLabel>{columns < 2 ? 'Default' : columns}</FormFieldLabel>
-				<Slider step={1} min={1} max={4} bind:value={columns} />
+				<DiscreteSlider step={1} min={1} max={4} bind:value={columns} />
 			</FormField>
 		</div>
 		<div style="grid-column: span 2">Gap</div>
 		<div>
 			<FormField>
-				<Slider
+				<DiscreteSlider
 					step={gapUnit === 'em' ? 0.5 : 1}
 					max={gapUnit === 'em' ? 3 : 12}
 					bind:value={gapValue} />

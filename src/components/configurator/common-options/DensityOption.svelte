@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import { typography } from "@smui/core/typography";
 
 	export let density: number;
@@ -19,5 +19,10 @@
 			{densitySlider ? `-${densitySlider}` : 'default'}
 		</span>
 	</Label>
-	<Slider bind:value={densitySlider} discrete {max} step={1} on:change />
+	<DiscreteSlider
+		bind:value={densitySlider}
+		discrete
+		{max}
+		step={1}
+		on:change />
 </FormField>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import { FormField } from "@smui/core/form-field";
 
 	let value = 50;
@@ -7,7 +7,7 @@
 
 <div>
 	<FormField align="end" style="display: flex;">
-		<Slider bind:value />
+		<DiscreteSlider bind:value />
 		<span
 			slot="label"
 			style="padding-right: 12px; width: max-content; display: block;">Amount of

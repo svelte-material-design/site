@@ -12,7 +12,7 @@
 	import IconTypeOption, {
 		IconType,
 	} from "src/components/configurator/common-options/IconTypeOption.svelte";
-	import { Slider } from "@smui/core/slider";
+	import { DiscreteSlider } from "@smui/core/slider";
 	import {
 		getIconCode,
 		getHelperTextCode,
@@ -363,7 +363,7 @@
 					Density:
 					{densitySlider ? `-${densitySlider}` : 'default'}
 				</Label>
-				<Slider bind:value={densitySlider} discrete max={4} step={1} />
+				<DiscreteSlider bind:value={densitySlider} discrete max={4} step={1} />
 			</FormField>
 		</div>
 		<div>
