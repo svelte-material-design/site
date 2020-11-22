@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		DiscreteSlider,
-		SliderValue,
-		SliderValueText,
-	} from "@smui/core/slider";
+	import { ContinuousSlider, SliderValue } from "@smui/core/slider";
 	import { FormField } from "@smui/core/form-field";
 	import {
 		Configurator,
@@ -14,9 +10,6 @@
 	let value: SliderValue;
 	let name = "discrete-slider";
 
-	let tickMarks: boolean;
-	let hideValueIndicator: boolean;
-	let useValueText: boolean;
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
 	let disabled: boolean;
@@ -28,27 +21,19 @@
 	let title: string;
 	$: title = useTitle ? "Title" : undefined;
 
-	let valueText: SliderValueText;
-	$: if (hideValueIndicator) useValueText = undefined;
-	$: valueText = useValueText ? (v: number) => `Value ${v}` : undefined;
-
 	$: value = useRangeValue ? [0, 10] : 0;
 
 	let svelteCode: string;
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "DiscreteSlider",
+		tag: "Continuous",
 		props: [
 			"bind:value",
 			"min={0}",
 			"max={10}",
-			"step={2}",
 			`name="${name}"`,
-			[tickMarks, "tickMarks"],
 			[disabled, "disabled"],
-			[hideValueIndicator, `hideValueIndicator`],
-			[valueText, `{valueText}`],
 			[title, `title="${title}"`],
 			[ariaLabel, `ariaLabel="${ariaLabel}"`],
 		],
@@ -79,17 +64,13 @@
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
 		<div>
-			<DiscreteSlider
+			<ContinuousSlider
 				bind:value
 				min={0}
 				max={10}
-				step={2}
 				{name}
-				{tickMarks}
-				{hideValueIndicator}
 				{disabled}
 				{ariaLabel}
-				{valueText}
 				{title} />
 		</div>
 	</div>
@@ -104,26 +85,8 @@
 	<div slot="optionsSidebar" class="options-sidebar">
 		<div>
 			<FormField>
-				<Checkbox bind:checked={tickMarks} />
-				<span slot="label">Tick marks</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
 				<Checkbox bind:checked={disabled} />
 				<span slot="label">Disabled</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={hideValueIndicator} />
-				<span slot="label">Hide value indicator</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={useValueText} disabled={hideValueIndicator} />
-				<span slot="label">Use custom value text</span>
 			</FormField>
 		</div>
 		<div>
