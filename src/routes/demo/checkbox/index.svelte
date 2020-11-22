@@ -4,7 +4,7 @@
 	import { TabBar } from "@smui/core/tab-bar";
 	import { Tab, Label } from "@smui/core/tab";
 	import CheckboxGroupConfigurator from "./_CheckboxGroupConfigurator.svelte";
-	import { Typography } from "@smui/core/packages/typography";
+	import { Typography } from "@smui/core/typography";
 
 	let currentTab: "checkbox" | "checkbox-group" = "checkbox";
 </script>

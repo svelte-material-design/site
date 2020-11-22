@@ -25,11 +25,7 @@
 				<Paper elevation={0}>
 					<div>
 						<FormField align="end" style="display: flex;">
-							<DiscreteSlider
-								bind:value={elevation}
-								min={0}
-								max={24}
-								discrete />
+							<DiscreteSlider bind:value={elevation} min={0} max={24} />
 							<span
 								slot="label"
 								style="padding-right: 12px; width: max-content; display: block;">Elevation</span>

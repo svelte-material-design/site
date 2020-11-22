@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import { Select, Option } from "@smui/core/select";
 	import { createEventDispatcher, tick } from "svelte";
 	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";

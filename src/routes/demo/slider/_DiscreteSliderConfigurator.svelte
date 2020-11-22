@@ -1,26 +1,27 @@
 <script lang="ts">
-	import {
-		DiscreteSlider,
-		SliderValue,
-		SliderValueText,
-	} from "@smui/core/slider";
-	import { FormField } from "@smui/core/form-field";
+	import { DiscreteSlider, SliderValueText } from "@smui/core/slider";
+	import { FormField, Label } from "@smui/core/form-field";
 	import {
 		Configurator,
 		generateSvelteCode,
 	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
+	import { typography } from "@smui/core/typography";
+	import LabelledSlider from "src/components/LabelledSlider.svelte";
+	import LabelledRangeSlider from "src/components/LabelledRangeSlider.svelte";
+	import CommonSliderOptions from "./_CommonSliderOptions.svelte";
+	import BaseDiscreteSliderOptions from "./_BaseDiscreteSliderOptions.svelte";
 
-	let value: SliderValue;
+	let value: number;
 	let name = "discrete-slider";
-
-	let tickMarks: boolean;
-	let hideValueIndicator: boolean;
-	let useValueText: boolean;
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
 	let disabled: boolean;
-	let useRangeValue: boolean;
+
+	let tickMarks: boolean;
+	let step: number;
+	let hideValueIndicator: boolean;
+	let useValueText: boolean;
 
 	let ariaLabel: string;
 	$: ariaLabel = useAriaLabel ? "Label" : undefined;
@@ -32,7 +33,8 @@
 	$: if (hideValueIndicator) useValueText = undefined;
 	$: valueText = useValueText ? (v: number) => `Value ${v}` : undefined;
 
-	$: value = useRangeValue ? [0, 10] : 0;
+	let min: number = 0;
+	let max: number = 10;
 
 	let svelteCode: string;
 	let scssCode: string;
@@ -41,9 +43,9 @@
 		tag: "DiscreteSlider",
 		props: [
 			"bind:value",
-			"min={0}",
-			"max={10}",
-			"step={2}",
+			`min={${min}}`,
+			`max={${max}}`,
+			`step={${step}}`,
 			`name="${name}"`,
 			[tickMarks, "tickMarks"],
 			[disabled, "disabled"],
@@ -63,8 +65,6 @@
 <style lang="scss">
 	.preview-container {
 		height: 10em;
-		padding: 1em;
-		align-items: start !important;
 	}
 
 	.options-sidebar {
@@ -81,9 +81,9 @@
 		<div>
 			<DiscreteSlider
 				bind:value
-				min={0}
-				max={10}
-				step={2}
+				{min}
+				{max}
+				{step}
 				{name}
 				{tickMarks}
 				{hideValueIndicator}
@@ -103,46 +103,17 @@
 	</div>
 	<div slot="optionsSidebar" class="options-sidebar">
 		<div>
-			<FormField>
-				<Checkbox bind:checked={tickMarks} />
-				<span slot="label">Tick marks</span>
-			</FormField>
+			<LabelledSlider bind:value={step} min={1} max={3} label="Step" />
 		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={disabled} />
-				<span slot="label">Disabled</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={hideValueIndicator} />
-				<span slot="label">Hide value indicator</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={useValueText} disabled={hideValueIndicator} />
-				<span slot="label">Use custom value text</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={useRangeValue} />
-				<span slot="label">Use range value</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={useTitle} />
-				<span slot="label">Title</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={useAriaLabel} />
-				<span slot="label">Use Aria Label</span>
-			</FormField>
-		</div>
+		<CommonSliderOptions
+			bind:min
+			bind:max
+			bind:disabled
+			bind:useTitle
+			bind:useAriaLabel />
+		<BaseDiscreteSliderOptions
+			bind:hideValueIndicator
+			bind:tickMarks
+			bind:useValueText />
 	</div>
 </Configurator>

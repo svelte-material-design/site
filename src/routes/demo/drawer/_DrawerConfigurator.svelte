@@ -21,7 +21,7 @@
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 
 	let open: boolean;
 	let title: boolean;

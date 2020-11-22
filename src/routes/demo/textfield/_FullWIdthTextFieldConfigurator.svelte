@@ -5,7 +5,7 @@
 		Configurator,
 		generateSvelteCode,
 	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import IconTypeOption, {
 		IconType,
 	} from "src/components/configurator/common-options/IconTypeOption.svelte";

@@ -7,11 +7,10 @@
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
 
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import { RadioGroup, Radio } from "@smui/core/radio";
 	import MultipleItemControls from "src/components/configurator/common-options/MultipleItemControls.svelte";
 	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
-	import Item from "@svelte-material-ui-test/core/packages/list/src/item/Item.svelte";
 
 	let multipleItemsControls: MultipleItemControls;
 

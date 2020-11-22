@@ -6,7 +6,7 @@
 		generateSCSSCode,
 		generateSvelteCode,
 	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import { getHelperTextCode } from "src/components/configurator/snippets";
 	import HelperText from "./_HelperText.svelte";
 

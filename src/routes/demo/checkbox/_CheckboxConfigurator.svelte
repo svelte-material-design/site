@@ -5,7 +5,7 @@
 		generateSvelteCode,
 		generateSvelteTagCode,
 	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import CheckboxOptions from "./_CheckboxOptions.svelte";
 
 	let checked: boolean;

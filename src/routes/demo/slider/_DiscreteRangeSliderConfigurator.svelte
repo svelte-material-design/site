@@ -1,24 +1,36 @@
 <script lang="ts">
-	import { ContinuousSlider } from "@smui/core/slider";
-	import { FormField } from "@smui/core/form-field";
+	import { SliderValueText, DiscreteRangeSlider } from "@smui/core/slider";
+	import { FormField, Label } from "@smui/core/form-field";
 	import {
 		Configurator,
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Checkbox } from "@smui/core/checkbox";
+	import LabelledSlider from "src/components/LabelledSlider.svelte";
+	import LabelledRangeSlider from "src/components/LabelledRangeSlider.svelte";
 	import CommonSliderOptions from "./_CommonSliderOptions.svelte";
+	import BaseDiscreteSliderOptions from "./_BaseDiscreteSliderOptions.svelte";
 
-	let value: number;
-	let name = "continuous-slider";
+	let value: [number, number];
+	let name = "discrete-range-slider";
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
 	let disabled: boolean;
+
+	let tickMarks: boolean;
+	let step: number;
+	let hideValueIndicator: boolean;
+	let useValueText: boolean;
 
 	let ariaLabel: string;
 	$: ariaLabel = useAriaLabel ? "Label" : undefined;
 
 	let title: string;
 	$: title = useTitle ? "Title" : undefined;
+
+	let valueText: SliderValueText;
+	$: if (hideValueIndicator) useValueText = undefined;
+	$: valueText = useValueText ? (v: number) => `Value ${v}` : undefined;
 
 	let min: number = 0;
 	let max: number = 10;
@@ -27,13 +39,18 @@
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "Continuous",
+		tag: "DiscreteRangeSlider",
 		props: [
 			"bind:value",
 			`min={${min}}`,
 			`max={${max}}`,
+			`gap={1}`,
+			`step={${step}}`,
 			`name="${name}"`,
+			[tickMarks, "tickMarks"],
 			[disabled, "disabled"],
+			[hideValueIndicator, `hideValueIndicator`],
+			[valueText, `{valueText}`],
 			[title, `title="${title}"`],
 			[ariaLabel, `ariaLabel="${ariaLabel}"`],
 		],
@@ -62,13 +79,18 @@
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
 		<div>
-			<ContinuousSlider
+			<DiscreteRangeSlider
 				bind:value
-				min={0}
-				max={10}
+				gap={1}
+				{min}
+				{max}
+				{step}
 				{name}
+				{tickMarks}
+				{hideValueIndicator}
 				{disabled}
 				{ariaLabel}
+				{valueText}
 				{title} />
 		</div>
 	</div>
@@ -77,15 +99,22 @@
 			value:
 			{#if value != null && typeof value === 'string'}
 				"{value}"
-			{:else}{value}{/if}
+			{:else}[{value}]{/if}
 		</div>
 	</div>
 	<div slot="optionsSidebar" class="options-sidebar">
+		<div>
+			<LabelledSlider bind:value={step} min={1} max={3} label="Step" />
+		</div>
 		<CommonSliderOptions
 			bind:min
 			bind:max
 			bind:disabled
 			bind:useTitle
 			bind:useAriaLabel />
+		<BaseDiscreteSliderOptions
+			bind:hideValueIndicator
+			bind:tickMarks
+			bind:useValueText />
 	</div>
 </Configurator>

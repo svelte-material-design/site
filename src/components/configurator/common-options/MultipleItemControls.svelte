@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from "@smui/core/packages/button";
+	import { Button } from "@smui/core/button";
 	import { onMount, tick } from "svelte";
 
 	export let itemFactory: (index: number) => Item;

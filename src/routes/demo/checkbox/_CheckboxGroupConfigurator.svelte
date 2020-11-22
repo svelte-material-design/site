@@ -4,7 +4,7 @@
 		Configurator,
 		generateSvelteTagCode,
 	} from "src/components/configurator";
-	import { Checkbox, CheckboxGroup } from "@smui/core/packages/checkbox";
+	import { Checkbox, CheckboxGroup } from "@smui/core/checkbox";
 	import { Select, Option } from "@smui/core/select";
 	import CheckboxOptions from "./_CheckboxOptions.svelte";
 	import MultipleItemControls from "src/components/configurator/common-options/MultipleItemControls.svelte";

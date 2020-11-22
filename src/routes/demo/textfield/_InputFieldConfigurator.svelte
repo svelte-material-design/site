@@ -8,7 +8,7 @@
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import IconTypeOption, {
 		IconType,
 	} from "src/components/configurator/common-options/IconTypeOption.svelte";
@@ -363,7 +363,7 @@
 					Density:
 					{densitySlider ? `-${densitySlider}` : 'default'}
 				</Label>
-				<DiscreteSlider bind:value={densitySlider} discrete max={4} step={1} />
+				<DiscreteSlider bind:value={densitySlider} max={4} step={1} />
 			</FormField>
 		</div>
 		<div>

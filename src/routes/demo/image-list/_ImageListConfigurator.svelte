@@ -15,9 +15,9 @@
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
-	import { Checkbox } from "@smui/core/packages/checkbox";
+	import { Checkbox } from "@smui/core/checkbox";
 	import { getUnevenImageSize } from "./getUnevenImageSize";
-	import { ImageListVariant } from "@smui/core/packages/image-list/src/types";
+	import { ImageListVariant } from "@smui/core/image-list";
 
 	let variant: ImageListVariant;
 	let label: boolean = true;
