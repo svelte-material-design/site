@@ -8,6 +8,7 @@
 	export let max: number;
 	export let disabled: boolean;
 	export let useTitle: boolean;
+	export let useLabel: boolean;
 	export let useAriaLabel: boolean;
 
 	let minMax: [number, number] = [min, max];
@@ -36,6 +37,12 @@
 	<FormField>
 		<Checkbox bind:checked={useTitle} />
 		<Label>Title</Label>
+	</FormField>
+</div>
+<div>
+	<FormField>
+		<Checkbox bind:checked={useLabel} />
+		<Label>Use Label</Label>
 	</FormField>
 </div>
 <div>

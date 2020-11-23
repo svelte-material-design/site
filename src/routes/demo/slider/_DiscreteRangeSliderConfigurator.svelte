@@ -4,6 +4,7 @@
 	import {
 		Configurator,
 		generateSvelteCode,
+		generateSvelteTagCode,
 	} from "src/components/configurator";
 	import { Checkbox } from "@smui/core/checkbox";
 	import LabelledSlider from "src/components/LabelledSlider.svelte";
@@ -16,6 +17,8 @@
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
 	let disabled: boolean;
+	let useLabel: boolean = true;
+	let gap: number = 1;
 
 	let tickMarks: boolean;
 	let step: number;
@@ -33,29 +36,66 @@
 	$: valueText = useValueText ? (v: number) => `Value ${v}` : undefined;
 
 	let min: number = 0;
-	let max: number = 10;
+	let max: number = 20;
 
 	let svelteCode: string;
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "DiscreteRangeSlider",
-		props: [
-			"bind:value",
-			`min={${min}}`,
-			`max={${max}}`,
-			`gap={1}`,
-			`step={${step}}`,
-			`name="${name}"`,
-			[tickMarks, "tickMarks"],
-			[disabled, "disabled"],
-			[hideValueIndicator, `hideValueIndicator`],
-			[valueText, `{valueText}`],
-			[title, `title="${title}"`],
-			[ariaLabel, `ariaLabel="${ariaLabel}"`],
-		],
-		content: getContentCode(),
+		tag: "FormField",
+		props: ["vertical"],
+		content: `
+			${useLabel ? `<Label>Label</Label>` : ""}
+			${getSliderCode(
+				min,
+				max,
+				gap,
+				step,
+				name,
+				tickMarks,
+				disabled,
+				hideValueIndicator,
+				valueText,
+				title,
+				ariaLabel
+			)}
+		`,
 	});
+
+	function getSliderCode(
+		minValue: typeof min,
+		maxValue: typeof max,
+		gapValue: typeof gap,
+		stepValue: typeof step,
+		nameValue: typeof name,
+		tickMarksValue: typeof tickMarks,
+		disabledValue: typeof disabled,
+		hideValueIndicatorValue: typeof hideValueIndicator,
+		valueTextValue: typeof valueText,
+		titleValue: typeof title,
+		ariaLabelValue: typeof ariaLabel
+	) {
+		return generateSvelteTagCode({
+			tag: "DiscreteRangeSlider",
+			props: [
+				"bind:value",
+				`min={${minValue}}`,
+				`max={${maxValue}}`,
+				`gap={${gapValue}}`,
+				`step={${stepValue}}`,
+				`name="${nameValue}"`,
+				[tickMarksValue, "tickMarks"],
+				[disabledValue, "disabled"],
+				[hideValueIndicatorValue, `hideValueIndicator`],
+				[valueTextValue, `{valueText}`],
+				[titleValue, `title="${titleValue}"`],
+				[ariaLabelValue, `ariaLabel="${ariaLabelValue}"`],
+			],
+			content: getContentCode(),
+			indentFirstLine: false,
+			indentSize: 3,
+		});
+	}
 
 	function getContentCode() {
 		return ``;
@@ -79,19 +119,24 @@
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
 		<div>
-			<DiscreteRangeSlider
-				bind:value
-				gap={1}
-				{min}
-				{max}
-				{step}
-				{name}
-				{tickMarks}
-				{hideValueIndicator}
-				{disabled}
-				{ariaLabel}
-				{valueText}
-				{title} />
+			<FormField vertical>
+				{#if useLabel}
+					<Label>Label</Label>
+				{/if}
+				<DiscreteRangeSlider
+					bind:value
+					{min}
+					{max}
+					{gap}
+					{step}
+					{name}
+					{tickMarks}
+					{hideValueIndicator}
+					{disabled}
+					{ariaLabel}
+					{valueText}
+					{title} />
+			</FormField>
 		</div>
 	</div>
 	<div slot="values">
@@ -104,6 +149,9 @@
 	</div>
 	<div slot="optionsSidebar" class="options-sidebar">
 		<div>
+			<LabelledSlider bind:value={gap} min={0} max={3} label="Gap" />
+		</div>
+		<div>
 			<LabelledSlider bind:value={step} min={1} max={3} label="Step" />
 		</div>
 		<CommonSliderOptions
@@ -111,7 +159,8 @@
 			bind:max
 			bind:disabled
 			bind:useTitle
-			bind:useAriaLabel />
+			bind:useAriaLabel
+			bind:useLabel />
 		<BaseDiscreteSliderOptions
 			bind:hideValueIndicator
 			bind:tickMarks

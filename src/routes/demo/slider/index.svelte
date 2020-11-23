@@ -4,6 +4,7 @@
 	import DiscreteRangeSliderConfigurator from "./_DiscreteRangeSliderConfigurator.svelte";
 	import { Tab, Label } from "@smui/core/tab";
 	import { TabBar } from "@smui/core/tab-bar";
+	import ContinuousRangeSliderConfigurator from "./_ContinuousRangeSliderConfigurator.svelte";
 
 	let currentTab:
 		| "continuous-slider"
@@ -22,6 +23,9 @@
 		<Tab key="continuous-slider">
 			<Label>Continuous slider</Label>
 		</Tab>
+		<Tab key="continuous-range-slider">
+			<Label>Continuous rangeslider</Label>
+		</Tab>
 		<Tab key="discrete-slider">
 			<Label>Discrete slider</Label>
 		</Tab>
@@ -32,6 +36,8 @@
 
 	{#if currentTab === 'continuous-slider'}
 		<ContinuousSliderConfigurator />
+	{:else if currentTab === 'continuous-range-slider'}
+		<ContinuousRangeSliderConfigurator />
 	{:else if currentTab === 'discrete-slider'}
 		<DiscreteSliderConfigurator />
 	{:else if currentTab === 'discrete-range-slider'}

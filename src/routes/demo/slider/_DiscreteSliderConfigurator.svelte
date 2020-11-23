@@ -4,11 +4,9 @@
 	import {
 		Configurator,
 		generateSvelteCode,
+		generateSvelteTagCode,
 	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/checkbox";
-	import { typography } from "@smui/core/typography";
 	import LabelledSlider from "src/components/LabelledSlider.svelte";
-	import LabelledRangeSlider from "src/components/LabelledRangeSlider.svelte";
 	import CommonSliderOptions from "./_CommonSliderOptions.svelte";
 	import BaseDiscreteSliderOptions from "./_BaseDiscreteSliderOptions.svelte";
 
@@ -17,6 +15,7 @@
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
 	let disabled: boolean;
+	let useLabel: boolean = true;
 
 	let tickMarks: boolean;
 	let step: number;
@@ -40,22 +39,57 @@
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "DiscreteSlider",
-		props: [
-			"bind:value",
-			`min={${min}}`,
-			`max={${max}}`,
-			`step={${step}}`,
-			`name="${name}"`,
-			[tickMarks, "tickMarks"],
-			[disabled, "disabled"],
-			[hideValueIndicator, `hideValueIndicator`],
-			[valueText, `{valueText}`],
-			[title, `title="${title}"`],
-			[ariaLabel, `ariaLabel="${ariaLabel}"`],
-		],
-		content: getContentCode(),
+		tag: "FormField",
+		props: ["vertical"],
+		content: `
+			${useLabel ? `<Label>Label</Label>` : ""}
+			${getSliderCode(
+				min,
+				max,
+				step,
+				name,
+				tickMarks,
+				disabled,
+				hideValueIndicator,
+				valueText,
+				title,
+				ariaLabel
+			)}
+		`,
 	});
+
+	function getSliderCode(
+		minValue: typeof min,
+		maxValue: typeof max,
+		stepValue: typeof step,
+		nameValue: typeof name,
+		tickMarksValue: typeof tickMarks,
+		disabledValue: typeof disabled,
+		hideValueIndicatorValue: typeof hideValueIndicator,
+		valueTextValue: typeof valueText,
+		titleValue: typeof title,
+		ariaLabelValue: typeof ariaLabel
+	) {
+		return generateSvelteTagCode({
+			tag: "DiscreteSlider",
+			props: [
+				"bind:value",
+				`min={${minValue}}`,
+				`max={${maxValue}}`,
+				`step={${stepValue}}`,
+				`name="${nameValue}"`,
+				[tickMarksValue, "tickMarks"],
+				[disabledValue, "disabled"],
+				[hideValueIndicatorValue, `hideValueIndicator`],
+				[valueTextValue, `{valueText}`],
+				[titleValue, `title="${titleValue}"`],
+				[ariaLabelValue, `ariaLabel="${ariaLabelValue}"`],
+			],
+			content: getContentCode(),
+			indentFirstLine: false,
+			indentSize: 3,
+		});
+	}
 
 	function getContentCode() {
 		return ``;
@@ -79,18 +113,23 @@
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
 		<div>
-			<DiscreteSlider
-				bind:value
-				{min}
-				{max}
-				{step}
-				{name}
-				{tickMarks}
-				{hideValueIndicator}
-				{disabled}
-				{ariaLabel}
-				{valueText}
-				{title} />
+			<FormField vertical>
+				{#if useLabel}
+					<Label>Label</Label>
+				{/if}
+				<DiscreteSlider
+					bind:value
+					{min}
+					{max}
+					{step}
+					{name}
+					{tickMarks}
+					{hideValueIndicator}
+					{disabled}
+					{ariaLabel}
+					{valueText}
+					{title} />
+			</FormField>
 		</div>
 	</div>
 	<div slot="values">
@@ -110,7 +149,8 @@
 			bind:max
 			bind:disabled
 			bind:useTitle
-			bind:useAriaLabel />
+			bind:useAriaLabel
+			bind:useLabel />
 		<BaseDiscreteSliderOptions
 			bind:hideValueIndicator
 			bind:tickMarks

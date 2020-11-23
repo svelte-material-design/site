@@ -1,20 +1,21 @@
 <script lang="ts">
-	import { ContinuousSlider } from "@smui/core/slider";
+	import { ContinuousRangeSlider } from "@smui/core/slider";
 	import { FormField, Label } from "@smui/core/form-field";
 	import {
 		Configurator,
 		generateSvelteCode,
 		generateSvelteTagCode,
 	} from "src/components/configurator";
-	import { Checkbox } from "@smui/core/checkbox";
+	import LabelledSlider from "src/components/LabelledSlider.svelte";
 	import CommonSliderOptions from "./_CommonSliderOptions.svelte";
 
-	let value: number;
-	let name = "continuous-slider";
+	let value: [number, number];
+	let name = "discrete-range-slider";
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
 	let disabled: boolean;
 	let useLabel: boolean = true;
+	let gap: number = 1;
 
 	let ariaLabel: string;
 	$: ariaLabel = useAriaLabel ? "Label" : undefined;
@@ -23,7 +24,7 @@
 	$: title = useTitle ? "Title" : undefined;
 
 	let min: number = 0;
-	let max: number = 10;
+	let max: number = 20;
 
 	let svelteCode: string;
 	let scssCode: string;
@@ -33,24 +34,26 @@
 		props: ["vertical"],
 		content: `
 			${useLabel ? `<Label>Label</Label>` : ""}
-			${getSliderCode(min, max, name, disabled, title, ariaLabel)}
+			${getSliderCode(min, max, gap, name, disabled, title, ariaLabel)}
 		`,
 	});
 
 	function getSliderCode(
 		minValue: typeof min,
 		maxValue: typeof max,
+		gapValue: typeof gap,
 		nameValue: typeof name,
 		disabledValue: typeof disabled,
 		titleValue: typeof title,
 		ariaLabelValue: typeof ariaLabel
 	) {
 		return generateSvelteTagCode({
-			tag: "ContinuousSlider",
+			tag: "ContinuousRangeSlider",
 			props: [
 				"bind:value",
 				`min={${minValue}}`,
 				`max={${maxValue}}`,
+				`gap={${gapValue}}`,
 				`name="${nameValue}"`,
 				[disabledValue, "disabled"],
 				[titleValue, `title="${titleValue}"`],
@@ -88,10 +91,11 @@
 				{#if useLabel}
 					<Label>Label</Label>
 				{/if}
-				<ContinuousSlider
+				<ContinuousRangeSlider
 					bind:value
-					min={0}
-					max={10}
+					{min}
+					{max}
+					{gap}
 					{name}
 					{disabled}
 					{ariaLabel}
@@ -104,10 +108,13 @@
 			value:
 			{#if value != null && typeof value === 'string'}
 				"{value}"
-			{:else}{value}{/if}
+			{:else}[{value}]{/if}
 		</div>
 	</div>
 	<div slot="optionsSidebar" class="options-sidebar">
+		<div>
+			<LabelledSlider bind:value={gap} min={0} max={3} label="Gap" />
+		</div>
 		<CommonSliderOptions
 			bind:min
 			bind:max
