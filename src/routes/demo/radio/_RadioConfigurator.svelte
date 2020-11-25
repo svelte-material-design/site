@@ -9,7 +9,7 @@
 
 	import { Checkbox } from "@smui/core/checkbox";
 	import { RadioGroup, Radio } from "@smui/core/radio";
-	import MultipleItemControls from "src/components/configurator/common-options/MultipleItemControls.svelte";
+	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
 
 	let multipleItemsControls: MultipleItemControls;

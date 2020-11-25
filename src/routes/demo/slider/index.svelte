@@ -5,9 +5,11 @@
 	import { Tab, Label } from "@smui/core/tab";
 	import { TabBar } from "@smui/core/tab-bar";
 	import ContinuousRangeSliderConfigurator from "./_ContinuousRangeSliderConfigurator.svelte";
+	import { Typography } from "@smui/core/typography";
 
 	let currentTab:
 		| "continuous-slider"
+		| "continuous-range-slider"
 		| "discrete-slider"
 		| "discrete-range-slider" = "continuous-slider";
 </script>
@@ -17,14 +19,14 @@
 </svelte:head>
 
 <section>
-	<h2>Slider</h2>
+	<Typography variant="headline2">Slider</Typography>
 
 	<TabBar bind:active={currentTab}>
 		<Tab key="continuous-slider">
 			<Label>Continuous slider</Label>
 		</Tab>
 		<Tab key="continuous-range-slider">
-			<Label>Continuous rangeslider</Label>
+			<Label>Continuous range slider</Label>
 		</Tab>
 		<Tab key="discrete-slider">
 			<Label>Discrete slider</Label>
@@ -43,7 +45,4 @@
 	{:else if currentTab === 'discrete-range-slider'}
 		<DiscreteRangeSliderConfigurator />
 	{/if}
-	<!-- <SimpleSlider />
-	<DiscreteSlider />
-	<TickMarksSlider /> -->
 </section>

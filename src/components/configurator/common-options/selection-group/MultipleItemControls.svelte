@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Button } from "@smui/core/button";
+	import { Use } from "@smui/core/common/hooks";
 	import { onMount, tick } from "svelte";
+	import { Item } from "./types";
 
 	export let itemFactory: (index: number) => Item;
 	export let items: Item[];
@@ -29,7 +31,11 @@
 		updateItemsInstance();
 	}
 
-	function reset() {
+	async function reset() {
+		items = [];
+
+		await tick();
+
 		items = [] = Array(3)
 			.fill("")
 			.map((_, index) => {
@@ -37,9 +43,10 @@
 			});
 
 		selectedItem = items[0];
-		tick().then(() => {
-			selectedItemId = items[0].id;
-		});
+
+		await tick();
+
+		selectedItemId = items[0].id;
 	}
 
 	export function updateSelectedInstance() {
@@ -47,21 +54,21 @@
 
 		if (!~index) return;
 
-		selectedItem = items[index] = { ...items[index] };
+		selectedItem = { ...selectedItem } = items[index];
 	}
 
 	export function updateItemsInstance() {
 		items = [...items];
 		updateSelectedInstance();
 	}
-
-	interface Item {
-		id: string;
-		[prop: string]: any;
-	}
 </script>
 
 <svelte:options immutable={true} />
+
+<Use
+	hook={updateSelectedInstance}
+	when={!!selectedItemId}
+	deps={selectedItemId} />
 
 <div
 	style="grid-column: span 2; flex-direction: row; justify-content: space-between;">

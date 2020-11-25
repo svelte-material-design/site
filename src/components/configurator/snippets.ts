@@ -1,4 +1,4 @@
-import { StringListToFilter } from "@svelte-material-ui-test/core/common/functions";
+import { StringListToFilter } from "@smui/core/common/functions";
 import { generateSvelteTagCode } from "./code";
 import { GraphicType } from "@smui/core/common/components";
 
