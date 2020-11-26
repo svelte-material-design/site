@@ -5,7 +5,7 @@
 	import SwitchConfigurator from "./_SwitchConfigurator.svelte";
 	import SwitchGroupConfigurator from "./_SwitchGroupConfigurator.svelte";
 
-	let currentTab: "switch" | "group-switch" = "group";
+	let currentTab: "switch" | "group-switch" = "switch";
 </script>
 
 <svelte:head>
