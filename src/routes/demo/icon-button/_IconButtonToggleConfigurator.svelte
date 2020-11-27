@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
 	import { IconButtonToggle, Icon } from "@smui/core/icon-button";
 	import { Checkbox } from "@smui/core/checkbox";
 	import { FormField } from "@smui/core/form-field";

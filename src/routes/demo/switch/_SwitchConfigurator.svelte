@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="typescript">
 	import { Switch } from "@smui/core/switch";
 	import { FormField, Label } from "@smui/core/form-field";
 	import { Configurator } from "src/components/configurator";

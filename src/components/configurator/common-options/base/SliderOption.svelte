@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
 	import { typography } from "@smui/core/typography";
-	import { DiscreteSlider } from "@smui/core/slider";
+	import { DiscreteSlider, SliderChangeEvent } from "@smui/core/slider";
 
 	export let value: number;
 	export let precision: number = undefined;
@@ -9,6 +9,10 @@
 	export let step: number;
 	export let label: string;
 	export let showDefault: boolean = false;
+
+	function handleValue(event: SliderChangeEvent) {
+		value = Number(round(event.value));
+	}
 
 	function round(v: number) {
 		return Number(v).toFixed(precision);
@@ -34,6 +38,11 @@
 				<span>{value || !showDefault ? `${round(value)}` : 'default'}</span>
 			</div>
 		</Label>
-		<DiscreteSlider bind:value {max} {step} on:change valueText={round} />
+		<DiscreteSlider
+			{value}
+			{max}
+			{step}
+			on:change={(e) => handleValue(e.detail)}
+			valueText={round} />
 	</FormField>
 </div>
