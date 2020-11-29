@@ -10,6 +10,7 @@
 	import NonInteractiveList from "./_NonInteractiveList.svelte";
 	import ThreeLineList from "./_ThreeLineList.svelte";
 	import GroupList from "./_GroupList.svelte";
+	import ListConfigurator from "./_ListConfigurator.svelte";
 
 	let clickedGroup = "nothing yet";
 </script>
@@ -28,6 +29,7 @@
 <section>
 	<Typography variant="headline2">Lists</Typography>
 
+	<ListConfigurator />
 	<SimpleList />
 	<SimpleHorizontalList />
 	<DenseGraphicList />

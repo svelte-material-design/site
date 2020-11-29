@@ -14,7 +14,7 @@
 	let value: string[] = [];
 
 	let checkboxes: CheckboxProps[] = [];
-	let selectedCheckboxValue: CheckboxProps["value"];
+	let selectedCheckboxId: CheckboxProps["id"];
 	let selectedCheckbox: CheckboxProps = {} as any;
 
 	let svelteCode: string;
@@ -183,7 +183,7 @@
 			<FormField>
 				<Select
 					nullable={false}
-					bind:value={selectedCheckboxValue}
+					bind:value={selectedCheckboxId}
 					on:change={multipleItemsControls.updateSelectedInstance}>
 					<span slot="label">Checked value</span>
 					<div slot="options">
@@ -209,7 +209,7 @@
 			bind:this={multipleItemsControls}
 			bind:items={checkboxes}
 			bind:selectedItem={selectedCheckbox}
-			bind:selectedItemId={selectedCheckboxValue}
+			bind:selectedItemId={selectedCheckboxId}
 			itemFactory={createCheckboxItem} />
 	</div>
 </Configurator>
