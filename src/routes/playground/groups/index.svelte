@@ -1,9 +1,11 @@
 <script lang="ts">
-	import MultiSelectionGroup from "./MultiSelectionGroup.svelte";
-	import SingleSelectionGroup from "./SingleSelectionGroup.svelte";
+	import {
+		MultiSelectionGroup,
+		SingleSelectionGroup,
+	} from "@smui/core/common/selectable";
 	import Item from "./_Item.svelte";
 
-	let value: any = ["1"];
+	let value: any = ["3"];
 	let inputValue: string;
 	let multiSelectionType: boolean = true;
 	let nullable: boolean = false;
@@ -18,9 +20,9 @@
 	let itemsValue: string = JSON.stringify(initialItems, null, 2);
 	let items = [...initialItems];
 
-	// items[1].checked = true;
-	//items[2].checked = true;
-	items = [...initialItems];
+	//items[1].checked = true;
+	// items[2].checked = true;
+	// items = [...initialItems];
 
 	function applyValue() {
 		try {
@@ -99,7 +101,7 @@
 				{/each}
 			</MultiSelectionGroup>
 		{:else}
-			<SingleSelectionGroup bind:value let:group>
+			<SingleSelectionGroup bind:value let:group {nullable}>
 				{#each items as item, i}
 					<div>
 						<Item value={item.value} bind:checked={item.checked} {group} />
