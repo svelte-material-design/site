@@ -8,6 +8,8 @@
 	let currentTab: "switch" | "group-switch" = "switch";
 </script>
 
+<svelte:options immutable={true} />
+
 <svelte:head>
 	<title>Switch - SMUI</title>
 </svelte:head>

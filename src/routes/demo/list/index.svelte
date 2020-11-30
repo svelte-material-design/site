@@ -1,39 +1,43 @@
 <script lang="ts">
 	import { Typography } from "@smui/core/typography";
+	import { Tab, Label } from "@smui/core/tab";
+	import { TabBar } from "@smui/core/tab-bar";
 	import RadioList from "./_RadioList.svelte";
 	import CheckboxList from "./_CheckboxList.svelte";
 	import ListBox from "./_ListBox.svelte";
 	import SelectableList from "./_SelectableList.svelte";
-	import SimpleList from "./_SimpleList.svelte";
-	import SimpleHorizontalList from "./_SimpleHorizontalList.svelte";
-	import DenseGraphicList from "./_DenseGraphicList.svelte";
-	import NonInteractiveList from "./_NonInteractiveList.svelte";
 	import ThreeLineList from "./_ThreeLineList.svelte";
 	import GroupList from "./_GroupList.svelte";
 	import ListConfigurator from "./_ListConfigurator.svelte";
+	import ListBoxConfigurator from "./_ListBoxConfigurator.svelte";
 
-	let clickedGroup = "nothing yet";
+	let currentTab: "list" | "listbox" = "list";
 </script>
 
-<style>
-	* :global(.demo-list) {
-		max-width: 600px;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-	}
-</style>
+<svelte:options immutable={true} />
 
 <svelte:head>
-	<title>Lists - SMUI</title>
+	<title>Switch - SMUI</title>
 </svelte:head>
 
 <section>
 	<Typography variant="headline2">Lists</Typography>
 
-	<ListConfigurator />
-	<SimpleList />
-	<SimpleHorizontalList />
-	<DenseGraphicList />
-	<NonInteractiveList />
+	<TabBar bind:active={currentTab}>
+		<Tab key="list">
+			<Label>List</Label>
+		</Tab>
+		<Tab key="listbox">
+			<Label>Listbox</Label>
+		</Tab>
+	</TabBar>
+
+	{#if currentTab === 'list'}
+		<ListConfigurator />
+	{:else if currentTab === 'listbox'}
+		<ListBoxConfigurator />
+	{/if}
+
 	<SelectableList />
 	<ThreeLineList />
 	<GroupList />

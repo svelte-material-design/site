@@ -7,6 +7,8 @@
 		Title,
 		Subtitle,
 		Header,
+		NavList,
+		NavItem,
 	} from "@smui/core/drawer";
 	import {
 		TopAppBar,
@@ -14,7 +16,7 @@
 		Title as TopAppBarTitle,
 		Section,
 	} from "@smui/core/top-app-bar";
-	import { List, Item, Text } from "@smui/core/list";
+	import { Text } from "@smui/core/list";
 	import { FormField } from "@smui/core/form-field";
 	import {
 		Configurator,
@@ -73,23 +75,23 @@ ${layout === "full-height" ? getTopAppBarCode() : ""}
 		return `
 			<Content>
 ${getHeaderCode()}
-				<List>
-					<Item href="javascript:void(0)">
+				<NavList>
+					<NavItem href="javascript:void(0)">
 						<Text>Gray Kittens</Text>
-					</Item>
-					<Item href="javascript:void(0)">
+					</NavItem>
+					<NavItem href="javascript:void(0)">
 						<Text>A Space Rocket</Text>
-					</Item>
-					<Item href="javascript:void(0)">
+					</NavItem>
+					<NavItem href="javascript:void(0)">
 						<Text>100 Pounds of Gravel</Text>
-					</Item>
-					<Item href="javascript:void(0)">
+					</NavItem>
+					<NavItem href="javascript:void(0)">
 						<Text>All of the Shrimp</Text>
-					</Item>
-					<Item href="javascript:void(0)">
+					</NavItem>
+					<NavItem href="javascript:void(0)">
 						<Text>A Planet with a Mall</Text>
-					</Item>
-				</List>
+					</NavItem>
+				</NavList>
 			</Content>
 		`;
 	}
@@ -162,23 +164,23 @@ ${getHeaderCode()}
 						</Header>
 					{/if}
 					<Content>
-						<List>
-							<Item href="javascript:void(0)">
+						<NavList>
+							<NavItem href="javascript:void(0)">
 								<Text>Gray Kittens</Text>
-							</Item>
-							<Item href="javascript:void(0)">
+							</NavItem>
+							<NavItem href="javascript:void(0)">
 								<Text>A Space Rocket</Text>
-							</Item>
-							<Item href="javascript:void(0)">
+							</NavItem>
+							<NavItem href="javascript:void(0)">
 								<Text>100 Pounds of Gravel</Text>
-							</Item>
-							<Item href="javascript:void(0)">
+							</NavItem>
+							<NavItem href="javascript:void(0)">
 								<Text>All of the Shrimp</Text>
-							</Item>
-							<Item href="javascript:void(0)">
+							</NavItem>
+							<NavItem href="javascript:void(0)">
 								<Text>A Planet with a Mall</Text>
-							</Item>
-						</List>
+							</NavItem>
+						</NavList>
 					</Content>
 				</Drawer>
 			{/key}

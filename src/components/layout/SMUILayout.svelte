@@ -1,10 +1,16 @@
 <script lang="ts">
 	import * as appClasses from "./app.module.scss";
 	import { TopAppBar, Row, Section, Title } from "@smui/core/top-app-bar";
-	import { List, Item, Text } from "@smui/core/list";
+	import { Text } from "@smui/core/list";
 	import { A } from "@smui/core/common/dom";
 	import { IconButton, Icon } from "@smui/core/icon-button";
-	import { Drawer, Content, Scrim, AppContent } from "@smui/core/drawer";
+	import {
+		Drawer,
+		Content,
+		AppContent,
+		NavList,
+		NavItem,
+	} from "@smui/core/drawer";
 	import { onMount } from "svelte";
 	import { menuItems } from "./menuItems";
 	import { stores } from "@sapper/app";
@@ -115,9 +121,9 @@
 		bind:open={drawerOpen}
 		class="mdc-theme--secondary-bg {miniWindow ? appClasses['demo-drawer-adjust'] : ''}">
 		<Content>
-			<List>
+			<NavList>
 				{#each sections as section (section.name)}
-					<Item
+					<NavItem
 						bind:this={section.component}
 						style={section.indent ? 'margin-left: ' + section.indent * 25 + 'px;' : ''}
 						on:click={() => pickSection(section)}
@@ -125,15 +131,12 @@
 						href={section.route || section.shortcut}
 						props={{ title: section.name }}>
 						<Text class="mdc-theme--on-secondary">{section.name}</Text>
-					</Item>
+					</NavItem>
 				{/each}
-			</List>
+			</NavList>
 		</Content>
 	</Drawer>
 
-	{#if miniWindow}
-		<Scrim />
-	{/if}
 	<AppContent class={appClasses['demo-app-content']}>
 		<div bind:this={mainContent} class={appClasses['demo-main-content']}>
 			<slot />
