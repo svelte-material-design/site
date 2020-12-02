@@ -14,7 +14,7 @@
 	} from "src/components/configurator/snippets";
 	import IconTypeOption, {
 		IconType,
-	} from "src/components/configurator/common-options/IconTypeOption.svelte";
+	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
 	import ShapeRadiusOption from "src/components/configurator/common-options/ShapeRadiusOption.svelte";
 	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
 

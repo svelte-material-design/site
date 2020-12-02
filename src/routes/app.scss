@@ -9,6 +9,10 @@
 @use "smui-theme";
 @use "@material/typography/mdc-typography";
 
+svelte-fragment {
+	display: contents; // TODO: Create global smui style
+}
+
 html {
 	height: 100vh;
 	width: 100vw;

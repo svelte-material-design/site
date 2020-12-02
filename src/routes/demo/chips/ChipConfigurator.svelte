@@ -17,7 +17,7 @@
 	} from "src/components/configurator";
 	import IconTypeOption, {
 		IconType,
-	} from "src/components/configurator/common-options/IconTypeOption.svelte";
+	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
 	import { tick } from "svelte";
 
 	let variant: ChipSetVariant;

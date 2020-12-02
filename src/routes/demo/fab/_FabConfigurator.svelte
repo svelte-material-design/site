@@ -9,7 +9,7 @@
 	import { Option, Select } from "@smui/core/select";
 	import IconTypeOption, {
 		IconType,
-	} from "src/components/configurator/common-options/IconTypeOption.svelte";
+	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
 	import { StringListToFilter } from "@smui/core/common/functions";
 
 	let show: boolean = true;

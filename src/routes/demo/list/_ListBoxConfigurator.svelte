@@ -8,8 +8,8 @@
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
 	import ListItemOptions from "./_ListItemOptions.svelte";
 	import ListItem from "./_ListItem.svelte";
-	import { IconType } from "src/components/configurator/common-options/IconTypeOption.svelte";
-	import { createItemCode } from "./_code";
+	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	import { createItemCode, createSeparatorCode } from "./_code";
 	import { tick } from "svelte";
 	import ListBoxOptions from "./_ListBoxOptions.svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
@@ -23,7 +23,11 @@
 	let value: string;
 	let multiSelection: boolean;
 	let orientation: ListOrientation;
+
 	let separator: boolean;
+	let separatorInsetPadding: boolean;
+	let separatorInsetLeading: boolean;
+	let separatorInsetTrailing: boolean;
 
 	let svelteCode: string;
 	let scssCode: string;
@@ -41,6 +45,9 @@
 					disabled: item.disabled,
 					label: item.label,
 					leadingIcon: item.leadingIcon,
+					trailingIcon: item.trailingIcon,
+					clickableLeadingIcon: item.clickableLeadingIcon,
+					clickableTrailingIcon: item.clickableTrailingIcon,
 					ripple: item.ripple,
 					title: item.title,
 					value: item.value,
@@ -49,7 +56,11 @@
 
 				if (index === 0 && separator) {
 					res += "\n";
-					res += `<Separator />`;
+					res += createSeparatorCode({
+						insetLeading: separatorInsetLeading,
+						insetPadding: separatorInsetPadding,
+						insetTrailing: separatorInsetTrailing,
+					});
 				}
 
 				return res;
@@ -81,6 +92,9 @@
 			href: undefined,
 			label: `Item ${index}`,
 			leadingIcon: undefined,
+			trailingIcon: undefined,
+			clickableLeadingIcon: false,
+			clickableTrailingIcon: false,
 		} as ListItemProps;
 	}
 
@@ -97,6 +111,9 @@
 		title: string;
 		ariaLabel: string;
 		leadingIcon: IconType;
+		trailingIcon: IconType;
+		clickableLeadingIcon: boolean;
+		clickableTrailingIcon: boolean;
 	}
 </script>
 
@@ -122,10 +139,16 @@
 					title={item.title}
 					label={item.label}
 					leadingIcon={item.leadingIcon}
+					trailingIcon={item.trailingIcon}
+					clickableLeadingIcon={item.clickableLeadingIcon}
+					clickableTrailingIcon={item.clickableTrailingIcon}
 					listRole="listbox"
 					on:change={multipleItemsControls.updateItemsInstance} />
 				{#if index === 0 && separator}
-					<Separator />
+					<Separator
+						insetPadding={separatorInsetPadding}
+						insetLeading={separatorInsetLeading}
+						insetTrailing={separatorInsetTrailing} />
 				{/if}
 			{/each}
 		</ListBox>
@@ -140,16 +163,23 @@
 	</div>
 	<div slot="optionsSidebar">
 		<ListBoxOptions bind:multiSelection />
-		<CommonListOptions bind:orientation bind:separator />
+		<CommonListOptions
+			bind:orientation
+			bind:separator
+			bind:separatorInsetPadding
+			bind:separatorInsetLeading
+			bind:separatorInsetTrailing />
 		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
 		<ListItemOptions
-			listRole="listbox"
 			bind:ripple={selectedItem.ripple}
 			bind:disabled={selectedItem.disabled}
 			bind:title={selectedItem.title}
 			bind:label={selectedItem.label}
 			bind:ariaLabel={selectedItem.ariaLabel}
 			bind:leadingIcon={selectedItem.leadingIcon}
+			bind:trailingIcon={selectedItem.trailingIcon}
+			bind:clickableLeadingIcon={selectedItem.clickableLeadingIcon}
+			bind:clickableTrailingIcon={selectedItem.clickableTrailingIcon}
 			bind:selected={selectedItem.selected}
 			labelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}

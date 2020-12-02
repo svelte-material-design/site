@@ -5,7 +5,6 @@
 		ListRole,
 		LeadingIcon as ListItemLeadingIcon,
 		TrailingIcon as ListItemTrailingIcon,
-		Icon,
 		LeadingContent,
 		ListType,
 	} from "@smui/core/list";
@@ -44,34 +43,25 @@
 	{title}
 	let:selected
 	on:change>
-	<svelte-fragment slot="leading">
-		{#if listType === 'image'}
-			<img alt="" src="" />
-		{:else if listType === 'icon'}
-			<LeadingIcon
-				type={leadingIcon}
-				component={Icon}
-				button={clickableLeadingIcon} />
+	<slot name="leading" slot="leading" />
+	{#if !$$slots.leading}
+		{#if leadingIcon}
+			<LeadingContent>
+				<LeadingIcon
+					type={leadingIcon}
+					component={ListItemLeadingIcon}
+					button={clickableLeadingIcon} />
+			</LeadingContent>
 		{/if}
-	</svelte-fragment>
-	{#if listRole === 'radiogroup'}
-		<LeadingContent>
-			<Radio checked={selected} />
-		</LeadingContent>
-	{:else if listRole === 'group'}
-		<LeadingContent>
-			<Checkbox checked={selected} />
-		</LeadingContent>
 	{/if}
 	{#if label}
 		<Text>{label}</Text>
 	{/if}
-	<svelte-fragment slot="trailing">
-		{#if trailingIcon}
-			<TrailingIcon
-				type={trailingIcon}
-				component={Icon}
-				button={clickableTrailingIcon} />
-		{/if}
-	</svelte-fragment>
+	{#if trailingIcon}
+		<TrailingIcon
+			type={trailingIcon}
+			component={ListItemTrailingIcon}
+			button={clickableTrailingIcon} />
+	{/if}
+	<slot name="trailing" slot="trailing" />
 </Item>

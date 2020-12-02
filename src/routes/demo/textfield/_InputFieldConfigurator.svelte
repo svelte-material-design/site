@@ -11,7 +11,7 @@
 	import { Checkbox } from "@smui/core/checkbox";
 	import IconTypeOption, {
 		IconType,
-	} from "src/components/configurator/common-options/IconTypeOption.svelte";
+	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
 	import { DiscreteSlider } from "@smui/core/slider";
 	import {
 		getIconCode,
