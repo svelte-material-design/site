@@ -44,8 +44,9 @@
 
 	async function handleListTypeUpdate() {
 		if (listType !== "icon") {
-			await tick();
 			leadingIcon = null;
+		} else {
+			leadingIcon = "material-icon";
 		}
 	}
 </script>
@@ -56,7 +57,7 @@
 
 <IconsOptions
 	bind:leadingIcon
-	leadingIconDisabled={listType !== "icon"}
+	leadingIconDisabled={listType !== 'icon'}
 	bind:trailingIcon
 	bind:clickableLeadingIcon
 	bind:clickableTrailingIcon

@@ -9,6 +9,7 @@
 		ListOrientation,
 		Separator,
 		ListType,
+		ListItemsRows,
 	} from "@smui/core/list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
@@ -30,6 +31,7 @@
 	let role: ListRole;
 	let orientation: ListOrientation;
 	let type: ListType;
+	let itemsRows: ListItemsRows;
 
 	let separator: boolean;
 	let separatorInsetPadding: boolean;
@@ -99,6 +101,8 @@
 			selected: false,
 			href: undefined,
 			label: `Item ${index}`,
+			labelRow2: `Secondary text`,
+			labelRow3: `Third line`,
 			leadingIcon: undefined,
 			trailingIcon: undefined,
 			clickableLeadingIcon: false,
@@ -117,6 +121,8 @@
 		selected: boolean;
 		href: string;
 		label: string;
+		labelRow2: string;
+		labelRow3: string;
 		title: string;
 		ariaLabel: string;
 		leadingIcon: IconType;
@@ -137,7 +143,7 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<List bind:value {role} {orientation} {type}>
+		<List bind:value {role} {orientation} {type} {itemsRows}>
 			{#each items as item, index}
 				<ListItem
 					value={item.value}
@@ -147,12 +153,15 @@
 					ariaLabel={item.ariaLabel}
 					title={item.title}
 					label={item.label}
+					labelRow2={item.labelRow2}
+					labelRow3={item.labelRow3}
 					leadingIcon={item.leadingIcon}
 					trailingIcon={item.trailingIcon}
 					clickableLeadingIcon={item.clickableLeadingIcon}
 					clickableTrailingIcon={item.clickableTrailingIcon}
 					listRole={role}
 					listType={type}
+					listItemsRows={itemsRows}
 					on:change={multipleItemsControls.updateItemsInstance} />
 				{#if index === 0 && separator}
 					<Separator
@@ -172,10 +181,11 @@
 		</div>
 	</div>
 	<div slot="optionsSidebar">
-		<ListOptions bind:role />
+		<ListOptions bind:role {type} />
 		<CommonListOptions
 			bind:orientation
 			bind:type
+			bind:itemsRows
 			bind:separator
 			bind:separatorInsetPadding
 			bind:separatorInsetLeading

@@ -1,22 +1,31 @@
 <script lang="ts">
 	import { FormField } from "@smui/core/form-field";
 	import { Select, Option } from "@smui/core/select";
-	import { ListRole } from "@smui/core/list";
+	import { ListRole, ListType } from "@smui/core/list";
+	import { UseState } from "@smui/core/common/hooks";
 
 	export let role: ListRole;
+	export let type: ListType;
 
 	function handleRoleChange(newValue: string) {
 		if (newValue === "list") role = undefined;
 		else role = newValue as ListRole;
 	}
+
+	async function handleTypeUpdate() {
+		role = "list";
+	}
 </script>
 
 <svelte:options immutable={true} />
+
+<UseState value={type} onUpdate={handleTypeUpdate} />
 
 <div>
 	<FormField>
 		<Select
 			nullable={false}
+			disabled={type !== 'textual'}
 			on:change={(event) => handleRoleChange(event.detail.value)}>
 			<span slot="label">Role</span>
 			<div slot="options">

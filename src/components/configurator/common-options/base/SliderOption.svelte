@@ -5,6 +5,7 @@
 
 	export let value: number;
 	export let precision: number = undefined;
+	export let min: number = undefined;
 	export let max: number;
 	export let step: number;
 	export let label: string;
@@ -40,6 +41,7 @@
 		</Label>
 		<DiscreteSlider
 			{value}
+			{min}
 			{max}
 			{step}
 			on:change={(e) => handleValue(e.detail)}

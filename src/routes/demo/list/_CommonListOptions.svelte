@@ -2,8 +2,10 @@
 	import { FormField, Label } from "@smui/core/form-field";
 	import { Checkbox } from "@smui/core/checkbox";
 	import { Select, Option } from "@smui/core/select";
-	import { ListType } from "@smui/core/list";
+	import { DiscreteSlider } from "@smui/core/slider";
+	import { ListType, ListItemsRows } from "@smui/core/list";
 	import { createEventDispatcher } from "svelte";
+	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
 
 	export let orientation: string;
 	export let separator: boolean;
@@ -11,20 +13,12 @@
 	export let separatorInsetLeading: boolean;
 	export let separatorInsetTrailing: boolean;
 	export let type: ListType;
-
-	const dispatch = createEventDispatcher<{
-		change: any;
-	}>();
+	export let itemsRows: ListItemsRows = 1;
 
 	$: if (!separator) {
 		separatorInsetPadding = false;
 		separatorInsetLeading = false;
 		separatorInsetTrailing = false;
-	}
-
-	function handleTypeChange(value: string) {
-		type = value as ListType;
-		dispatch("change");
 	}
 </script>
 
@@ -32,18 +26,26 @@
 
 <div>
 	<FormField>
-		<Select
-			value={type || 'textual'}
-			nullable={false}
-			on:change={(event) => handleTypeChange(event.detail.value)}>
+		<Select bind:value={type} nullable={false}>
 			<span slot="label">Type</span>
 			<span slot="options">
 				<Option value="textual">Textual list</Option>
 				<Option value="image">Image list</Option>
 				<Option value="icon">Icons list</Option>
+				<Option value="avatar">Avatar list</Option>
+				<Option value="thumbnail">Thumbnail list</Option>
+				<Option value="video">Video list</Option>
 			</span>
 		</Select>
 	</FormField>
+</div>
+<div>
+	<SliderOption
+		bind:value={itemsRows}
+		min={1}
+		max={3}
+		step={1}
+		label="Items rows" />
 </div>
 <div>
 	<FormField>
@@ -56,15 +58,6 @@
 	<FormField>
 		<Checkbox bind:checked={separator} on:change />
 		<Label>Separator</Label>
-	</FormField>
-</div>
-<div>
-	<FormField>
-		<Checkbox
-			bind:checked={separatorInsetPadding}
-			disabled={!separator}
-			on:change />
-		<Label>Separator inset padding</Label>
 	</FormField>
 </div>
 <div>
@@ -83,5 +76,14 @@
 			disabled={!separator}
 			on:change />
 		<Label>Separator inset trailing</Label>
+	</FormField>
+</div>
+<div>
+	<FormField>
+		<Checkbox
+			bind:checked={separatorInsetPadding}
+			disabled={!separator || !separatorInsetLeading || !separatorInsetTrailing}
+			on:change />
+		<Label>Separator inset padding</Label>
 	</FormField>
 </div>

@@ -2,10 +2,6 @@
 	import { Typography } from "@smui/core/typography";
 	import { Tab, Label } from "@smui/core/tab";
 	import { TabBar } from "@smui/core/tab-bar";
-	import RadioList from "./_RadioList.svelte";
-	import CheckboxList from "./_CheckboxList.svelte";
-	import ListBox from "./_ListBox.svelte";
-	import SelectableList from "./_SelectableList.svelte";
 	import ThreeLineList from "./_ThreeLineList.svelte";
 	import GroupList from "./_GroupList.svelte";
 	import ListConfigurator from "./_ListConfigurator.svelte";
@@ -38,10 +34,6 @@
 		<ListBoxConfigurator />
 	{/if}
 
-	<SelectableList />
 	<ThreeLineList />
 	<GroupList />
-	<ListBox />
-	<RadioList />
-	<CheckboxList />
 </section>

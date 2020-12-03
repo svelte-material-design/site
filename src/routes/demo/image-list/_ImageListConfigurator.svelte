@@ -18,6 +18,7 @@
 	import { Checkbox } from "@smui/core/checkbox";
 	import { getUnevenImageSize } from "./getUnevenImageSize";
 	import { ImageListVariant } from "@smui/core/image-list";
+	import { getImgPlaceholderSrc } from "src/functions/imgPlacehoder";
 
 	let variant: ImageListVariant;
 	let label: boolean = true;
@@ -97,22 +98,14 @@
 			return `
 					<ImageAspectContainer>
 						<Image
-							src="https://via.placeholder.com/${getImageRes(
-								variantValue,
-								counter,
-								columnsValue
-							)}.png?text=${getImageRes(variantValue, counter, columnsValue)}"
+							src="${getImageSrc(variantValue, counter, columnsValue)}"
 							alt="Image ${counter + 1}" />
 					</ImageAspectContainer>
 			`;
 		} else {
 			return `
 					<Image
-						src="https://via.placeholder.com/${getImageRes(
-							variantValue,
-							counter,
-							columnsValue
-						)}.png?text=${getImageRes(variantValue, counter, columnsValue)}"
+						src="${getImageSrc(variantValue, counter, columnsValue)}"
 						alt="Image ${counter + 1}" />
 			`;
 		}
@@ -158,7 +151,7 @@
 		}
 	}
 
-	function getImageRes(
+	function getImageSrc(
 		variantValue: typeof variant,
 		counter: number,
 		columnsValue: typeof columns
@@ -173,7 +166,13 @@
 						Math.abs,
 						columnsValue == 3 ? 2 : 3
 				  );
-		return `190x${height}`;
+
+		const width = 190;
+		return getImgPlaceholderSrc({
+			width,
+			height,
+			text: `${width}x${height}`,
+		});
 	}
 </script>
 
@@ -194,9 +193,7 @@
 			{#each Array(4) as _, i}
 				<Item>
 					{#if variant === 'masonry' || !aspectContainer}
-						<Image
-							src="https://via.placeholder.com/{getImageRes(variant, i, columns)}.png?text={getImageRes(variant, i, columns)}"
-							alt="Image {i + 1}" />
+						<Image src={getImageSrc(variant, i, columns)} alt="Image {i + 1}" />
 						{#if label}
 							<Supporting>
 								<Label>Image {i + 1}</Label>
@@ -205,7 +202,7 @@
 					{:else}
 						<ImageAspectContainer>
 							<Image
-								src="https://via.placeholder.com/{getImageRes(variant, i, columns)}.png?text={getImageRes(variant, i, columns)}"
+								src={getImageSrc(variant, i, columns)}
 								alt="Image {i + 1}" />
 						</ImageAspectContainer>
 						{#if label}
