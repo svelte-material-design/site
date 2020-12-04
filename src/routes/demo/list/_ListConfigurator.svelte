@@ -26,6 +26,7 @@
 	let items: ListItemProps[] = [];
 	let selectedItem: ListItemProps = {} as any;
 	let selectedItemId: ListItemProps["id"];
+	let itemsInstance: ListItem[] = [];
 
 	let value: string;
 	let role: ListRole;
@@ -44,8 +45,11 @@
 	$: svelteCode = generateSvelteCode({
 		tag: "List",
 		props: [
+			"bind:value",
 			[role, `role="${role}"`],
 			[orientation, `orientation="${orientation}"`],
+			[type, `type="${type}"`],
+			[itemsRows > 1, `itemsRows={${itemsRows}}`],
 		],
 		content: items
 			.map((item, index) => {
@@ -53,6 +57,8 @@
 					ariaLabel: item.ariaLabel,
 					disabled: item.disabled,
 					label: item.label,
+					labelRow2: item.labelRow2,
+					labelRow3: item.labelRow3,
 					leadingIcon: item.leadingIcon,
 					trailingIcon: item.trailingIcon,
 					clickableLeadingIcon: item.clickableLeadingIcon,
@@ -61,6 +67,11 @@
 					title: item.title,
 					value: item.value,
 					selected: item.selected,
+					listItemsRows: itemsRows,
+					listRole: role,
+					listType: type,
+					imageSrc: itemsInstance[index]?.getImageSrc(),
+					imageTxt: itemsInstance[index]?.getImageTxt(),
 				});
 
 				if (index === 0 && separator) {
@@ -77,7 +88,9 @@
 			.join("\n"),
 	});
 
-	async function handleItemOptionsChange() {
+	async function getSvelteCode() {}
+
+	async function handleOptionsChange() {
 		const oldValue = value;
 
 		multipleItemsControls.updateItemsInstance();
@@ -146,6 +159,7 @@
 		<List bind:value {role} {orientation} {type} {itemsRows}>
 			{#each items as item, index}
 				<ListItem
+					bind:this={itemsInstance[index]}
 					value={item.value}
 					disabled={item.disabled}
 					ripple={item.ripple}
@@ -181,7 +195,7 @@
 		</div>
 	</div>
 	<div slot="optionsSidebar">
-		<ListOptions bind:role {type} />
+		<ListOptions bind:role {type} on:change={handleOptionsChange} />
 		<CommonListOptions
 			bind:orientation
 			bind:type
@@ -189,7 +203,8 @@
 			bind:separator
 			bind:separatorInsetPadding
 			bind:separatorInsetLeading
-			bind:separatorInsetTrailing />
+			bind:separatorInsetTrailing
+			on:change={handleOptionsChange} />
 		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
 		<ListItemOptions
 			listRole={role}
@@ -207,7 +222,7 @@
 			labelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			titleFn={() => `Title ${items.indexOf(selectedItem)}`}
-			on:change={handleItemOptionsChange} />
+			on:change={handleOptionsChange} />
 		<MultipleItemControls
 			bind:this={multipleItemsControls}
 			bind:items

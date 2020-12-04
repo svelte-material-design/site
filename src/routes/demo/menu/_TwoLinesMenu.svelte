@@ -5,7 +5,7 @@
 		List,
 		Item,
 		Separator,
-		Text,
+		Content,
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
@@ -23,31 +23,31 @@
 			Open Menu
 		</MenuButton>
 		<Menu bind:this={menu} anchorCorner={Corner.TOP_RIGHT}>
-			<List twoLine>
+			<List itemsRows={2}>
 				<Item on:click={() => (clicked = 'Cut')}>
-					<Text>
+					<Content>
 						<PrimaryText>Cut</PrimaryText>
 						<SecondaryText>Copy to clipboard and remove.</SecondaryText>
-					</Text>
+					</Content>
 				</Item>
 				<Item on:click={() => (clicked = 'Copy')}>
-					<Text>
+					<Content>
 						<PrimaryText>Copy</PrimaryText>
 						<SecondaryText>Copy to clipboard.</SecondaryText>
-					</Text>
+					</Content>
 				</Item>
 				<Item on:click={() => (clicked = 'Paste')}>
-					<Text>
+					<Content>
 						<PrimaryText>Paste</PrimaryText>
 						<SecondaryText>Paste from clipboard.</SecondaryText>
-					</Text>
+					</Content>
 				</Item>
 				<Separator />
 				<Item on:click={() => (clicked = 'Delete')}>
-					<Text>
+					<Content>
 						<PrimaryText>Delete</PrimaryText>
 						<SecondaryText>Remove item.</SecondaryText>
-					</Text>
+					</Content>
 				</Item>
 			</List>
 		</Menu>

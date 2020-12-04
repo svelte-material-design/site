@@ -3,17 +3,26 @@
 	import { Select, Option } from "@smui/core/select";
 	import { ListRole, ListType } from "@smui/core/list";
 	import { UseState } from "@smui/core/common/hooks";
+	import { createEventDispatcher, tick } from "svelte";
 
 	export let role: ListRole;
 	export let type: ListType;
 
-	function handleRoleChange(newValue: string) {
+	const dispatch = createEventDispatcher<{ change: any }>();
+
+	async function handleRoleChange(newValue: string) {
 		if (newValue === "list") role = undefined;
 		else role = newValue as ListRole;
+
+		await tick();
+		dispatch("change");
 	}
 
 	async function handleTypeUpdate() {
 		role = "list";
+
+		await tick();
+		dispatch("change");
 	}
 </script>
 

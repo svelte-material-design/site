@@ -3,7 +3,7 @@
 	import { Button, Icon, Label, MenuButton } from "@smui/core/button";
 	import { Group, GroupItem } from "@smui/core/button/group";
 	import { Menu } from "@smui/core/menu";
-	import { List, Item, Text, Separator } from "@smui/core/list";
+	import { List, Item, Content, Separator } from "@smui/core/list";
 	import { Corner } from "@smui/core/menu-surface";
 	import { Typography } from "@smui/core/typography";
 	import { SelectionGroup, SelectionGroupIcon } from "@smui/core/menu";
@@ -117,19 +117,19 @@
 				on:selected={() => clicked++}>
 				<List>
 					<Item>
-						<Text>Thing 1</Text>
+						<Content>Thing 1</Content>
 					</Item>
 					<Item>
-						<Text>Thing 2</Text>
+						<Content>Thing 2</Content>
 					</Item>
 					<Separator />
 					<Item>
-						<Text>Thing 3</Text>
+						<Content>Thing 3</Content>
 					</Item>
 					<SelectionGroup>
 						<Item>
 							<SelectionGroupIcon>check</SelectionGroupIcon>
-							<Text>Thing 4</Text>
+							<Content>Thing 4</Content>
 						</Item>
 					</SelectionGroup>
 				</List>
@@ -150,14 +150,14 @@
 				<Menu bind:this={menu2} anchorCorner={Corner.TOP_LEFT}>
 					<List>
 						<Item on:click={() => clicked++}>
-							<Text>Thing 1</Text>
+							<Content>Thing 1</Content>
 						</Item>
 						<Item on:click={() => clicked++}>
-							<Text>Thing 2</Text>
+							<Content>Thing 2</Content>
 						</Item>
 						<Separator />
 						<Item on:click={() => clicked++}>
-							<Text>Thing 3</Text>
+							<Content>Thing 3</Content>
 						</Item>
 					</List>
 				</Menu>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Menu, SelectionGroup, SelectionGroupIcon } from "@smui/core/menu";
-	import { List, Item, Separator, Text } from "@smui/core/list";
+	import { List, Item, Separator, Content } from "@smui/core/list";
 	import { MenuButton } from "@smui/core/button";
 
 	let menu: Menu;
@@ -26,7 +26,7 @@
 							<SelectionGroupIcon>
 								<i class="material-icons">check</i>
 							</SelectionGroupIcon>
-							<Text>{item}</Text>
+							<Content>{item}</Content>
 						</Item>
 					{/each}
 				</SelectionGroup>
@@ -39,13 +39,13 @@
 							<SelectionGroupIcon>
 								<i class="material-icons">check</i>
 							</SelectionGroupIcon>
-							<Text>{item}</Text>
+							<Content>{item}</Content>
 						</Item>
 					{/each}
 				</SelectionGroup>
 				<Separator />
 				<Item on:click={() => (clicked = 'Save for Later')}>
-					<Text>Save for Later</Text>
+					<Content>Save for Later</Content>
 				</Item>
 			</List>
 		</Menu>

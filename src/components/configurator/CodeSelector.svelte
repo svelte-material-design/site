@@ -1,8 +1,7 @@
 <script lang="ts">
 	import classes from "./CodeSelector.module.scss";
-	import { ExtractNamedSlot } from "@smui/core/common/components";
 	import Code from "./code/Code.svelte";
-	import { Item, List, Text } from "@smui/core/list";
+	import { Item, ListBox, Content } from "@smui/core/list";
 
 	export let svelte: string;
 	export let scss: string;
@@ -24,18 +23,17 @@
 	</div>
 	{#if scss}
 		<div class={classes['selection-list']}>
-			<List
+			<ListBox
 				class={classes['list']}
 				bind:value={selection}
-				role="listbox"
 				orientation="horizontal">
 				<Item value="svelte">
-					<Text>Svelte</Text>
+					<Content>Svelte</Content>
 				</Item>
 				<Item value="scss">
-					<Text>SCSS</Text>
+					<Content>SCSS</Content>
 				</Item>
-			</List>
+			</ListBox>
 		</div>
 	{/if}
 </div>

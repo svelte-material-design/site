@@ -16,7 +16,7 @@
 		Title as TopAppBarTitle,
 		Section,
 	} from "@smui/core/top-app-bar";
-	import { Text } from "@smui/core/list";
+	import { Content as ListItemContent } from "@smui/core/list";
 	import { FormField } from "@smui/core/form-field";
 	import {
 		Configurator,
@@ -77,19 +77,19 @@ ${layout === "full-height" ? getTopAppBarCode() : ""}
 ${getHeaderCode()}
 				<NavList>
 					<NavItem href="javascript:void(0)">
-						<Text>Gray Kittens</Text>
+						<ListItemContent>Gray Kittens</ListItemContent>
 					</NavItem>
 					<NavItem href="javascript:void(0)">
-						<Text>A Space Rocket</Text>
+						<ListItemContent>A Space Rocket</ListItemContent>
 					</NavItem>
 					<NavItem href="javascript:void(0)">
-						<Text>100 Pounds of Gravel</Text>
+						<ListItemContent>100 Pounds of Gravel</ListItemContent>
 					</NavItem>
 					<NavItem href="javascript:void(0)">
-						<Text>All of the Shrimp</Text>
+						<ListItemContent>All of the Shrimp</ListItemContent>
 					</NavItem>
 					<NavItem href="javascript:void(0)">
-						<Text>A Planet with a Mall</Text>
+						<ListItemContent>A Planet with a Mall</ListItemContent>
 					</NavItem>
 				</NavList>
 			</Content>
@@ -166,19 +166,19 @@ ${getHeaderCode()}
 					<Content>
 						<NavList>
 							<NavItem href="javascript:void(0)">
-								<Text>Gray Kittens</Text>
+								<ListItemContent>Gray Kittens</ListItemContent>
 							</NavItem>
 							<NavItem href="javascript:void(0)">
-								<Text>A Space Rocket</Text>
+								<ListItemContent>A Space Rocket</ListItemContent>
 							</NavItem>
 							<NavItem href="javascript:void(0)">
-								<Text>100 Pounds of Gravel</Text>
+								<ListItemContent>100 Pounds of Gravel</ListItemContent>
 							</NavItem>
 							<NavItem href="javascript:void(0)">
-								<Text>All of the Shrimp</Text>
+								<ListItemContent>All of the Shrimp</ListItemContent>
 							</NavItem>
 							<NavItem href="javascript:void(0)">
-								<Text>A Planet with a Mall</Text>
+								<ListItemContent>A Planet with a Mall</ListItemContent>
 							</NavItem>
 						</NavList>
 					</Content>

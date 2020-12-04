@@ -2,9 +2,8 @@
 	import { FormField, Label } from "@smui/core/form-field";
 	import { Checkbox } from "@smui/core/checkbox";
 	import { Select, Option } from "@smui/core/select";
-	import { DiscreteSlider } from "@smui/core/slider";
 	import { ListType, ListItemsRows } from "@smui/core/list";
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher, tick } from "svelte";
 	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
 
 	export let orientation: string;
@@ -15,10 +14,19 @@
 	export let type: ListType;
 	export let itemsRows: ListItemsRows = 1;
 
+	const dispatch = createEventDispatcher<{ change: any }>();
+
 	$: if (!separator) {
 		separatorInsetPadding = false;
 		separatorInsetLeading = false;
 		separatorInsetTrailing = false;
+	}
+
+	async function handleOrientationChange(checked: boolean) {
+		orientation = checked ? "horizontal" : undefined;
+
+		await tick();
+		dispatch("change");
 	}
 </script>
 
@@ -26,7 +34,7 @@
 
 <div>
 	<FormField>
-		<Select bind:value={type} nullable={false}>
+		<Select bind:value={type} nullable={false} on:change>
 			<span slot="label">Type</span>
 			<span slot="options">
 				<Option value="textual">Textual list</Option>
@@ -50,7 +58,7 @@
 <div>
 	<FormField>
 		<Checkbox
-			on:change={(event) => (orientation = event.detail.checked ? 'horizontal' : undefined)} />
+			on:change={(event) => handleOrientationChange(event.detail.checked)} />
 		<Label>Horizontal</Label>
 	</FormField>
 </div>

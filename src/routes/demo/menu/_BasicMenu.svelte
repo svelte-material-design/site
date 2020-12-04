@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Menu } from "@smui/core/menu";
-	import { List, Item, Separator, Text } from "@smui/core/list";
+	import { List, Item, Separator, Content } from "@smui/core/list";
 	import { MenuButton } from "@smui/core/button";
 
 	export let clicked: string;
@@ -17,17 +17,17 @@
 		<Menu bind:this={menu}>
 			<List>
 				<Item on:click={() => (clicked = 'Cut')}>
-					<Text>Cut</Text>
+					<Content>Cut</Content>
 				</Item>
 				<Item on:click={() => (clicked = 'Copy')}>
-					<Text>Copy</Text>
+					<Content>Copy</Content>
 				</Item>
 				<Item on:click={() => (clicked = 'Paste')}>
-					<Text>Paste</Text>
+					<Content>Paste</Content>
 				</Item>
 				<Separator />
 				<Item on:click={() => (clicked = 'Delete')}>
-					<Text>Delete</Text>
+					<Content>Delete</Content>
 				</Item>
 			</List>
 		</Menu>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { MenuSurface } from "@smui/core/menu-surface";
-	import { List, Item, Separator, Text } from "@smui/core/list";
+	import { List, Item, Separator, Content } from "@smui/core/list";
 
 	let clicked = "";
 </script>
@@ -9,17 +9,17 @@
 	<MenuSurface class="non-abosulte-menu-surface" open>
 		<List>
 			<Item on:click={() => (clicked = 'Cut')}>
-				<Text>Cut</Text>
+				<Content>Cut</Content>
 			</Item>
 			<Item on:click={() => (clicked = 'Copy')}>
-				<Text>Copy</Text>
+				<Content>Copy</Content>
 			</Item>
 			<Item on:click={() => (clicked = 'Paste')}>
-				<Text>Paste</Text>
+				<Content>Paste</Content>
 			</Item>
 			<Separator />
 			<Item on:click={() => (clicked = 'Delete')}>
-				<Text>Delete</Text>
+				<Content>Delete</Content>
 			</Item>
 		</List>
 	</MenuSurface>

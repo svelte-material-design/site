@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as appClasses from "./app.module.scss";
 	import { TopAppBar, Row, Section, Title } from "@smui/core/top-app-bar";
-	import { Text } from "@smui/core/list";
+	import { Content as ListItemContent } from "@smui/core/list";
 	import { A } from "@smui/core/common/dom";
 	import { IconButton, Icon } from "@smui/core/icon-button";
 	import {
@@ -130,7 +130,9 @@
 						activated={'route' in section && section.route === $page.path}
 						href={section.route || section.shortcut}
 						props={{ title: section.name }}>
-						<Text class="mdc-theme--on-secondary">{section.name}</Text>
+						<ListItemContent class="mdc-theme--on-secondary">
+							{section.name}
+						</ListItemContent>
 					</NavItem>
 				{/each}
 			</NavList>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Item, List, Text } from "@smui/core/list";
+	import { Item, ListBox, Content } from "@smui/core/list";
 
 	let value;
 </script>
@@ -7,21 +7,21 @@
 <div>
 	Select item list using value prop:
 	<input type="number" bind:value />
-	<List class="demo-list" bind:value role="listbox">
+	<ListBox class="demo-list" bind:value>
 		<Item>
-			<Text>Bruce Willis</Text>
+			<Content>Bruce Willis</Content>
 		</Item>
 		<Item>
-			<Text>Tom Hanks</Text>
+			<Content>Tom Hanks</Content>
 		</Item>
 		<Item>
-			<Text>Jack Nicholson</Text>
+			<Content>Jack Nicholson</Content>
 		</Item>
 		<Item>
-			<Text>Leonardo DiCaprio</Text>
+			<Content>Leonardo DiCaprio</Content>
 		</Item>
 		<Item>
-			<Text>Matt Damon</Text>
+			<Content>Matt Damon</Content>
 		</Item>
-	</List>
+	</ListBox>
 </div>

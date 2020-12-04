@@ -7,6 +7,7 @@ export type Position = "leading" | "trailing";
 export function getIconCode({
 	type,
 	position,
+	clickable,
 	props,
 	additionalProps = [],
 	content = "",
@@ -15,6 +16,7 @@ export function getIconCode({
 }: {
 	type: GraphicType;
 	position: Position;
+	clickable?: boolean;
 	props?: StringListToFilter;
 	additionalProps?: StringListToFilter;
 	content?: string;
@@ -26,6 +28,7 @@ export function getIconCode({
 			tag: "Icon",
 			props: [
 				[type !== "icon", `type="${type}"`],
+				[clickable, `role="button"`],
 				...(props ? props : getDefaultIconProps(type, position)),
 				...additionalProps,
 			],

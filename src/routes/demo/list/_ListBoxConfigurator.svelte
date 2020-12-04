@@ -3,7 +3,13 @@
 		Configurator,
 		generateSvelteCode,
 	} from "src/components/configurator";
-	import { ListBox, ListOrientation, Separator } from "@smui/core/list";
+	import {
+		ListBox,
+		ListOrientation,
+		Separator,
+		ListType,
+		ListItemsRows,
+	} from "@smui/core/list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
 	import ListItemOptions from "./_ListItemOptions.svelte";
@@ -19,10 +25,13 @@
 	let items: ListItemProps[] = [];
 	let selectedItem: ListItemProps = {} as any;
 	let selectedItemId: ListItemProps["id"];
+	let itemsInstance: ListItem[] = [];
 
 	let value: string;
 	let multiSelection: boolean;
 	let orientation: ListOrientation;
+	let type: ListType;
+	let itemsRows: ListItemsRows;
 
 	let separator: boolean;
 	let separatorInsetPadding: boolean;
@@ -33,10 +42,13 @@
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "List",
+		tag: "ListBox",
 		props: [
+			"bind:value",
 			[multiSelection, `multiSelection`],
 			[orientation, `orientation="${orientation}"`],
+			[type, `type="${type}"`],
+			[itemsRows > 1, `itemsRows={${itemsRows}}`],
 		],
 		content: items
 			.map((item, index) => {
@@ -44,6 +56,8 @@
 					ariaLabel: item.ariaLabel,
 					disabled: item.disabled,
 					label: item.label,
+					labelRow2: item.labelRow2,
+					labelRow3: item.labelRow3,
 					leadingIcon: item.leadingIcon,
 					trailingIcon: item.trailingIcon,
 					clickableLeadingIcon: item.clickableLeadingIcon,
@@ -52,6 +66,10 @@
 					title: item.title,
 					value: item.value,
 					selected: item.selected,
+					listItemsRows: itemsRows,
+					listType: type,
+					imageSrc: itemsInstance[index]?.getImageSrc(),
+					imageTxt: itemsInstance[index]?.getImageTxt(),
 				});
 
 				if (index === 0 && separator) {
@@ -68,7 +86,7 @@
 			.join("\n"),
 	});
 
-	async function handleItemOptionsChange() {
+	async function handleOptionsChange() {
 		const oldValue = value;
 
 		multipleItemsControls.updateItemsInstance();
@@ -86,11 +104,14 @@
 			id: value,
 			value,
 			ripple: true,
+			highlightSelected: true,
 			disabled: false,
 			readonly: false,
 			selected: false,
 			href: undefined,
 			label: `Item ${index}`,
+			labelRow2: `Secondary text`,
+			labelRow3: `Third line`,
 			leadingIcon: undefined,
 			trailingIcon: undefined,
 			clickableLeadingIcon: false,
@@ -103,11 +124,14 @@
 		name: string;
 		value: string;
 		ripple: boolean;
+		highlightSelected: boolean;
 		disabled: boolean;
 		readonly: boolean;
 		selected: boolean;
 		href: string;
 		label: string;
+		labelRow2: string;
+		labelRow3: string;
 		title: string;
 		ariaLabel: string;
 		leadingIcon: IconType;
@@ -128,9 +152,10 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<ListBox bind:value {multiSelection} {orientation}>
+		<ListBox bind:value {multiSelection} {orientation} {type} {itemsRows}>
 			{#each items as item, index}
 				<ListItem
+					bind:this={itemsInstance[index]}
 					value={item.value}
 					disabled={item.disabled}
 					ripple={item.ripple}
@@ -138,11 +163,14 @@
 					ariaLabel={item.ariaLabel}
 					title={item.title}
 					label={item.label}
+					labelRow2={item.labelRow2}
+					labelRow3={item.labelRow3}
 					leadingIcon={item.leadingIcon}
 					trailingIcon={item.trailingIcon}
 					clickableLeadingIcon={item.clickableLeadingIcon}
 					clickableTrailingIcon={item.clickableTrailingIcon}
-					listRole="listbox"
+					listType={type}
+					listItemsRows={itemsRows}
 					on:change={multipleItemsControls.updateItemsInstance} />
 				{#if index === 0 && separator}
 					<Separator
@@ -162,15 +190,19 @@
 		</div>
 	</div>
 	<div slot="optionsSidebar">
-		<ListBoxOptions bind:multiSelection />
+		<ListBoxOptions bind:multiSelection on:change={handleOptionsChange} />
 		<CommonListOptions
 			bind:orientation
+			bind:type
+			bind:itemsRows
 			bind:separator
 			bind:separatorInsetPadding
 			bind:separatorInsetLeading
-			bind:separatorInsetTrailing />
+			bind:separatorInsetTrailing
+			on:change={handleOptionsChange} />
 		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
 		<ListItemOptions
+			listType={type}
 			bind:ripple={selectedItem.ripple}
 			bind:disabled={selectedItem.disabled}
 			bind:title={selectedItem.title}
@@ -184,7 +216,7 @@
 			labelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			titleFn={() => `Title ${items.indexOf(selectedItem)}`}
-			on:change={handleItemOptionsChange} />
+			on:change={handleOptionsChange} />
 		<MultipleItemControls
 			bind:this={multipleItemsControls}
 			bind:items

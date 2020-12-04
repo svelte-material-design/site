@@ -8,7 +8,7 @@
 		Action,
 	} from "@smui/core/dialog";
 	import { Button, Label } from "@smui/core/button";
-	import { List, Item, Text } from "@smui/core/list";
+	import { List, Item, Content as ListItemContent } from "@smui/core/list";
 	import { FormField } from "@smui/core/form-field";
 	import {
 		Configurator,
@@ -54,7 +54,7 @@
 				{#each [...Array(100)].map((v, i) => i + 1) as item}
 					<Item
 						props={{ 'data-mdc-dialog-action': \`item #\${item}\` }}>
-						<Text>Item #{item}</Text>
+						<ListItemContent>Item #{item}</ListItemContent>
 					</Item>
 				{/each}
 			</List>
@@ -103,7 +103,7 @@
 				<List>
 					{#each [...Array(100)].map((v, i) => i + 1) as item}
 						<Item props={{ 'data-mdc-dialog-action': `item #${item}` }}>
-							<Text>Item #{item}</Text>
+							<ListItemContent>Item #{item}</ListItemContent>
 						</Item>
 					{/each}
 				</List>

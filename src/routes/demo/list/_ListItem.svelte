@@ -1,10 +1,9 @@
 <script lang="ts">
 	import {
 		Item,
-		Text,
+		Content,
 		ListRole,
 		Icon,
-		LeadingContent,
 		ListType,
 		ListItemsRows,
 		PrimaryText,
@@ -59,6 +58,14 @@
 	let imageSrc: string;
 	$: if (imageRes)
 		imageSrc = getImgPlaceholderSrc({ ...imageRes, text: imageTxt });
+
+	export function getImageSrc() {
+		return imageSrc;
+	}
+
+	export function getImageTxt() {
+		return imageTxt;
+	}
 </script>
 
 <svelte:options immutable={true} />
@@ -91,7 +98,7 @@
 		{/if}
 	</svelte-fragment>
 	{#if label}
-		<Text>
+		<Content>
 			{#if listItemsRows === 1}
 				{label}
 			{:else if listItemsRows > 1}
@@ -101,7 +108,7 @@
 			{#if listItemsRows === 3}
 				<SecondaryText>{labelRow3}</SecondaryText>
 			{/if}
-		</Text>
+		</Content>
 	{/if}
 	<svelte-fragment slot="trailing">
 		{#if trailingIcon}
