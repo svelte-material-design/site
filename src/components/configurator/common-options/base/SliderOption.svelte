@@ -2,6 +2,7 @@
 	import { FormField, Label } from "@smui/core/form-field";
 	import { typography } from "@smui/core/typography";
 	import { DiscreteSlider, SliderChangeEvent } from "@smui/core/slider";
+	import { createEventDispatcher } from "svelte";
 
 	export let value: number;
 	export let precision: number = undefined;
@@ -10,13 +11,26 @@
 	export let step: number;
 	export let label: string;
 	export let showDefault: boolean = false;
+	export let disabled: boolean = false;
+	export let valueText: (value: number) => string = undefined;
+
+	const dispatch = createEventDispatcher<{
+		change: {
+			value: number;
+		};
+	}>();
 
 	function handleValue(event: SliderChangeEvent) {
-		value = Number(round(event.value));
+		value = round(event.value);
+		dispatch("change", { value });
 	}
 
 	function round(v: number) {
-		return Number(v).toFixed(precision);
+		return Number(Number(v).toFixed(precision));
+	}
+
+	function _valueText(v: number): string {
+		return `${valueText ? valueText(v) : v}`;
 	}
 </script>
 
@@ -36,7 +50,7 @@
 		<Label class="label">
 			<div use:typography={'body2'}>
 				<span>{label}</span>
-				<span>{value || !showDefault ? `${round(value)}` : 'default'}</span>
+				<span>{value ? `${_valueText(value)}` : showDefault ? 'default' : `${_valueText(value)}`}</span>
 			</div>
 		</Label>
 		<DiscreteSlider
@@ -44,7 +58,8 @@
 			{min}
 			{max}
 			{step}
+			{disabled}
 			on:change={(e) => handleValue(e.detail)}
-			valueText={round} />
+			valueText={(v) => _valueText(round(v))} />
 	</FormField>
 </div>

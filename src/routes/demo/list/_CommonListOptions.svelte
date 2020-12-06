@@ -8,6 +8,8 @@
 
 	export let wrapFocus: boolean;
 	export let orientation: string;
+	export let dense: boolean;
+	export let density: number = 0;
 	export let separator: boolean;
 	export let separatorInsetPadding: boolean;
 	export let separatorInsetLeading: boolean;
@@ -27,6 +29,19 @@
 		orientation = checked ? "horizontal" : undefined;
 
 		await tick();
+		dispatch("change");
+	}
+
+	function handleDensityChange(value: number) {
+		density = value * -1;
+		dispatch("change");
+	}
+
+	function handleItemsRowsChange(value: number) {
+		itemsRows = value as ListItemsRows;
+		if (itemsRows > 1) {
+			density = 0;
+		}
 		dispatch("change");
 	}
 </script>
@@ -50,16 +65,35 @@
 </div>
 <div>
 	<SliderOption
-		bind:value={itemsRows}
+		value={itemsRows}
 		min={1}
 		max={3}
 		step={1}
-		label="Items rows" />
+		label="Items rows"
+		on:change={(event) => handleItemsRowsChange(event.detail.value)} />
+</div>
+<div>
+	<SliderOption
+		value={density}
+		min={0}
+		max={4}
+		step={1}
+		label="Density"
+		disabled={itemsRows > 1}
+		showDefault
+		valueText={(v) => `${v * -1}`}
+		on:change={(event) => handleDensityChange(event.detail.value)} />
 </div>
 <div>
 	<FormField>
 		<Checkbox bind:checked={wrapFocus} on:change />
 		<Label>Wrap focus</Label>
+	</FormField>
+</div>
+<div>
+	<FormField>
+		<Checkbox bind:checked={dense} on:change />
+		<Label>Dense</Label>
 	</FormField>
 </div>
 <div>

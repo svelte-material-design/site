@@ -29,7 +29,11 @@
 
 	let value: string;
 	let role: ListRole;
-	let wrapFocus: boolean;
+	let wrapFocus: boolean = true;
+
+	let dense: boolean;
+	let density: number;
+
 	let orientation: ListOrientation;
 	let type: ListType;
 	let itemsRows: ListItemsRows;
@@ -47,8 +51,10 @@
 		props: [
 			[orientation, `orientation="${orientation}"`],
 			[type, `type="${type}"`],
-			[!wrapFocus, `wrapFocus={false}`],
+			[density, `density={${density}}`],
+			[dense, `dense`],
 			[itemsRows > 1, `itemsRows={${itemsRows}}`],
+			[!wrapFocus, `wrapFocus={false}`],
 		],
 		content: items
 			.map((item, index) => {
@@ -133,7 +139,7 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<NavList {orientation} {type} {itemsRows} {wrapFocus}>
+		<NavList {orientation} {type} {itemsRows} {wrapFocus} {dense} {density}>
 			{#each items as item, index}
 				<NavListItem
 					bind:this={itemsInstance[index]}
@@ -164,6 +170,7 @@
 	<div slot="optionsSidebar">
 		<CommonListOptions
 			bind:wrapFocus
+			bind:dense
 			bind:orientation
 			bind:type
 			bind:itemsRows

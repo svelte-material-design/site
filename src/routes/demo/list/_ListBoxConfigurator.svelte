@@ -19,7 +19,6 @@
 	import { tick } from "svelte";
 	import ListBoxOptions from "./_ListBoxOptions.svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
-	import ListOptions from "./_ListOptions.svelte";
 	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
 
 	let multipleItemsControls: MultipleItemControls;
@@ -31,7 +30,11 @@
 
 	let value: string;
 	let multiSelection: boolean;
-	let wrapFocus: boolean;
+	let wrapFocus: boolean = true;
+
+	let dense: boolean;
+	let density: number;
+
 	let orientation: ListOrientation;
 	let type: ListType;
 	let itemsRows: ListItemsRows;
@@ -48,15 +51,16 @@
 		tag: "ListBox",
 		props: [
 			"bind:value",
-			[multiSelection, `multiSelection`],
 			[orientation, `orientation="${orientation}"`],
 			[type, `type="${type}"`],
-			[!wrapFocus, `wrapFocus={false}`],
+			[density, `density={${density}}`],
+			[dense, `dense`],
 			[itemsRows > 1, `itemsRows={${itemsRows}}`],
+			[!wrapFocus, `wrapFocus={false}`],
 		],
 		content: items
 			.map((item, index) => {
-				let res = createItemCode({
+				let res = createItemCode("Item", {
 					ariaLabel: item.ariaLabel,
 					disabled: item.disabled,
 					label: item.label,
@@ -141,7 +145,9 @@
 			{orientation}
 			{type}
 			{itemsRows}
-			{wrapFocus}>
+			{wrapFocus}
+			{dense}
+			{density}>
 			{#each items as item, index}
 				<ListItem
 					bind:this={itemsInstance[index]}
@@ -182,6 +188,7 @@
 		<ListBoxOptions bind:multiSelection on:change={handleOptionsChange} />
 		<CommonListOptions
 			bind:wrapFocus
+			bind:dense
 			bind:orientation
 			bind:type
 			bind:itemsRows

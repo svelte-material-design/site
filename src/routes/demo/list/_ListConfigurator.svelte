@@ -31,7 +31,11 @@
 
 	let value: string;
 	let role: ListRole;
-	let wrapFocus: boolean;
+	let wrapFocus: boolean = true;
+
+	let dense: boolean;
+	let density: number;
+
 	let orientation: ListOrientation;
 	let type: ListType;
 	let itemsRows: ListItemsRows;
@@ -51,8 +55,10 @@
 			[role, `role="${role}"`],
 			[orientation, `orientation="${orientation}"`],
 			[type, `type="${type}"`],
-			[!wrapFocus, `wrapFocus={false}`],
+			[density, `density={${density}}`],
+			[dense, `dense`],
 			[itemsRows > 1, `itemsRows={${itemsRows}}`],
+			[!wrapFocus, `wrapFocus={false}`],
 		],
 		content: items
 			.map((item, index) => {
@@ -136,7 +142,15 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<List bind:value {role} {orientation} {type} {itemsRows} {wrapFocus}>
+		<List
+			bind:value
+			{role}
+			{orientation}
+			{type}
+			{itemsRows}
+			{wrapFocus}
+			{dense}
+			{density}>
 			{#each items as item, index}
 				<ListItem
 					bind:this={itemsInstance[index]}
@@ -178,6 +192,8 @@
 		<ListOptions bind:role {type} on:change={handleOptionsChange} />
 		<CommonListOptions
 			bind:wrapFocus
+			bind:dense
+			bind:density
 			bind:orientation
 			bind:type
 			bind:itemsRows
