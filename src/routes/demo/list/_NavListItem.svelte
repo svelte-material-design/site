@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export interface ListItemProps {
+	export interface NavListItemProps {
 		id: string;
 		name: string;
 		value: string;
@@ -8,7 +8,7 @@
 		highlightSelected: boolean;
 		disabled: boolean;
 		readonly: boolean;
-		selected: boolean;
+		activated: boolean;
 		href: string;
 		label: string;
 		labelRow2: string;
@@ -24,9 +24,7 @@
 
 <script lang="ts">
 	import {
-		Item,
 		Content,
-		ListRole,
 		Icon,
 		ListType,
 		ListItemsRows,
@@ -34,8 +32,6 @@
 		SecondaryText,
 	} from "@smui/core/list";
 	import { NavItem } from "@smui/core/list/nav-list";
-	import { Radio } from "@smui/core/radio";
-	import { Checkbox } from "@smui/core/checkbox";
 	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
 	import LeadingIcon from "src/components/configurator/common-options/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/common-options/icons/TrailingIcon.svelte";
@@ -44,10 +40,9 @@
 		ImgPlaceholderParams,
 	} from "src/functions/imgPlacehoder";
 
-	export let value: string = undefined;
 	export let disabled: boolean;
 	export let ripple: boolean;
-	export let selected: boolean;
+	export let activated: boolean;
 	export let ariaLabel: string;
 	export let title: string;
 	export let label: string;
@@ -59,9 +54,10 @@
 	export let clickableLeadingIcon: boolean;
 	export let clickableTrailingIcon: boolean;
 
-	export let listRole: ListRole | "listbox" = undefined;
 	export let listType: ListType;
 	export let listItemsRows: ListItemsRows;
+
+	export let href: string = undefined;
 
 	let imageRes: ImgPlaceholderParams;
 	$: switch (listType) {
@@ -95,15 +91,7 @@
 
 <svelte:options immutable={true} />
 
-<Item
-	bind:selected
-	{value}
-	{disabled}
-	{ripple}
-	{ariaLabel}
-	{title}
-	let:selected
-	on:change>
+<NavItem {activated} {disabled} {ripple} {ariaLabel} {title} {href}>
 	<svelte-fragment slot="leading">
 		{#if listType === 'image' || listType === 'avatar' || listType === 'thumbnail' || listType === 'video'}
 			<img alt={imageTxt} src={imageSrc} />
@@ -112,14 +100,6 @@
 				type={leadingIcon}
 				component={Icon}
 				button={clickableLeadingIcon} />
-		{:else if listRole === 'radiogroup'}
-			<span>
-				<Radio checked={selected} />
-			</span>
-		{:else if listRole === 'group'}
-			<span>
-				<Checkbox checked={selected} />
-			</span>
 		{/if}
 	</svelte-fragment>
 	{#if label}
@@ -143,4 +123,4 @@
 				button={clickableTrailingIcon} />
 		{/if}
 	</svelte-fragment>
-</Item>
+</NavItem>

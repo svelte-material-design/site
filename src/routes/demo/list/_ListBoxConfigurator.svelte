@@ -9,16 +9,18 @@
 		Separator,
 		ListType,
 		ListItemsRows,
+		Item,
 	} from "@smui/core/list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
 	import ListItemOptions from "./_ListItemOptions.svelte";
-	import ListItem from "./_ListItem.svelte";
-	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	import ListItem, { ListItemProps } from "./_ListItem.svelte";
 	import { createItemCode, createSeparatorCode } from "./_code";
 	import { tick } from "svelte";
 	import ListBoxOptions from "./_ListBoxOptions.svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
+	import ListOptions from "./_ListOptions.svelte";
+	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
 
 	let multipleItemsControls: MultipleItemControls;
 
@@ -29,6 +31,7 @@
 
 	let value: string;
 	let multiSelection: boolean;
+	let wrapFocus: boolean;
 	let orientation: ListOrientation;
 	let type: ListType;
 	let itemsRows: ListItemsRows;
@@ -48,6 +51,7 @@
 			[multiSelection, `multiSelection`],
 			[orientation, `orientation="${orientation}"`],
 			[type, `type="${type}"`],
+			[!wrapFocus, `wrapFocus={false}`],
 			[itemsRows > 1, `itemsRows={${itemsRows}}`],
 		],
 		content: items
@@ -118,27 +122,6 @@
 			clickableTrailingIcon: false,
 		} as ListItemProps;
 	}
-
-	interface ListItemProps {
-		id: string;
-		name: string;
-		value: string;
-		ripple: boolean;
-		highlightSelected: boolean;
-		disabled: boolean;
-		readonly: boolean;
-		selected: boolean;
-		href: string;
-		label: string;
-		labelRow2: string;
-		labelRow3: string;
-		title: string;
-		ariaLabel: string;
-		leadingIcon: IconType;
-		trailingIcon: IconType;
-		clickableLeadingIcon: boolean;
-		clickableTrailingIcon: boolean;
-	}
 </script>
 
 <style lang="scss">
@@ -152,14 +135,20 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<ListBox bind:value {multiSelection} {orientation} {type} {itemsRows}>
+		<ListBox
+			bind:value
+			{multiSelection}
+			{orientation}
+			{type}
+			{itemsRows}
+			{wrapFocus}>
 			{#each items as item, index}
 				<ListItem
 					bind:this={itemsInstance[index]}
+					bind:selected={item.selected}
 					value={item.value}
 					disabled={item.disabled}
 					ripple={item.ripple}
-					bind:selected={item.selected}
 					ariaLabel={item.ariaLabel}
 					title={item.title}
 					label={item.label}
@@ -192,6 +181,7 @@
 	<div slot="optionsSidebar">
 		<ListBoxOptions bind:multiSelection on:change={handleOptionsChange} />
 		<CommonListOptions
+			bind:wrapFocus
 			bind:orientation
 			bind:type
 			bind:itemsRows
@@ -202,6 +192,10 @@
 			on:change={handleOptionsChange} />
 		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
 		<ListItemOptions
+			listRole="listbox"
+			bind:selected={selectedItem.selected}
+			on:change={handleOptionsChange} />
+		<CommonListItemOptions
 			listType={type}
 			bind:ripple={selectedItem.ripple}
 			bind:disabled={selectedItem.disabled}
@@ -212,7 +206,6 @@
 			bind:trailingIcon={selectedItem.trailingIcon}
 			bind:clickableLeadingIcon={selectedItem.clickableLeadingIcon}
 			bind:clickableTrailingIcon={selectedItem.clickableTrailingIcon}
-			bind:selected={selectedItem.selected}
 			labelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			titleFn={() => `Title ${items.indexOf(selectedItem)}`}

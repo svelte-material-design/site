@@ -4,8 +4,9 @@
 	import { TabBar } from "@smui/core/tab-bar";
 	import ListConfigurator from "./_ListConfigurator.svelte";
 	import ListBoxConfigurator from "./_ListBoxConfigurator.svelte";
+	import NavListConfigurator from "./_NavListConfigurator.svelte";
 
-	let currentTab: "list" | "listbox" = "list";
+	let currentTab: "list" | "listbox" | "navlist" = "list";
 </script>
 
 <svelte:options immutable={true} />
@@ -24,11 +25,16 @@
 		<Tab key="listbox">
 			<Label>Listbox</Label>
 		</Tab>
+		<Tab key="navlist">
+			<Label>Navlist</Label>
+		</Tab>
 	</TabBar>
 
 	{#if currentTab === 'list'}
 		<ListConfigurator />
 	{:else if currentTab === 'listbox'}
 		<ListBoxConfigurator />
+	{:else if currentTab === 'navlist'}
+		<NavListConfigurator />
 	{/if}
 </section>

@@ -4,30 +4,28 @@
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import {
-		List,
 		ListRole,
 		ListOrientation,
 		Separator,
 		ListType,
 		ListItemsRows,
-		Item,
 	} from "@smui/core/list";
+	import { NavList } from "@smui/core/list/nav-list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
-	import ListItemOptions from "./_ListItemOptions.svelte";
-	import ListItem, { ListItemProps } from "./_ListItem.svelte";
-	import ListOptions from "./_ListOptions.svelte";
+	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
 	import { createItemCode, createSeparatorCode } from "./_code";
 	import { tick } from "svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
-	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
+	import NavListItem, { NavListItemProps } from "./_NavListItem.svelte";
+	import NavItemOptions from "./_NavItemOptions.svelte";
 
 	let multipleItemsControls: MultipleItemControls;
 
-	let items: ListItemProps[] = [];
-	let selectedItem: ListItemProps = {} as any;
-	let selectedItemId: ListItemProps["id"];
-	let itemsInstance: ListItem[] = [];
+	let items: NavListItemProps[] = [];
+	let selectedItem: NavListItemProps = {} as any;
+	let selectedItemId: NavListItemProps["id"];
+	let itemsInstance: NavListItem[] = [];
 
 	let value: string;
 	let role: ListRole;
@@ -45,10 +43,8 @@
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "List",
+		tag: "NavList",
 		props: [
-			"bind:value",
-			[role, `role="${role}"`],
 			[orientation, `orientation="${orientation}"`],
 			[type, `type="${type}"`],
 			[!wrapFocus, `wrapFocus={false}`],
@@ -56,7 +52,7 @@
 		],
 		content: items
 			.map((item, index) => {
-				let res = createItemCode("Item", {
+				let res = createItemCode("NavItem", {
 					ariaLabel: item.ariaLabel,
 					disabled: item.disabled,
 					label: item.label,
@@ -69,12 +65,13 @@
 					ripple: item.ripple,
 					title: item.title,
 					value: item.value,
-					selected: item.selected,
+					activated: item.activated,
 					listItemsRows: itemsRows,
 					listRole: role,
 					listType: type,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
 					imageTxt: itemsInstance[index]?.getImageTxt(),
+					href: "javascript:void(0);",
 				});
 
 				if (index === 0 && separator) {
@@ -112,7 +109,7 @@
 			highlightSelected: true,
 			disabled: false,
 			readonly: false,
-			selected: false,
+			activated: false,
 			href: undefined,
 			label: `Item ${index}`,
 			labelRow2: `Secondary text`,
@@ -121,7 +118,7 @@
 			trailingIcon: undefined,
 			clickableLeadingIcon: false,
 			clickableTrailingIcon: false,
-		} as ListItemProps;
+		} as NavListItemProps;
 	}
 </script>
 
@@ -136,12 +133,11 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<List bind:value {role} {orientation} {type} {itemsRows} {wrapFocus}>
+		<NavList {orientation} {type} {itemsRows} {wrapFocus}>
 			{#each items as item, index}
-				<ListItem
+				<NavListItem
 					bind:this={itemsInstance[index]}
-					bind:selected={item.selected}
-					value={item.value}
+					activated={item.activated}
 					disabled={item.disabled}
 					ripple={item.ripple}
 					ariaLabel={item.ariaLabel}
@@ -153,10 +149,9 @@
 					trailingIcon={item.trailingIcon}
 					clickableLeadingIcon={item.clickableLeadingIcon}
 					clickableTrailingIcon={item.clickableTrailingIcon}
-					listRole={role}
 					listType={type}
 					listItemsRows={itemsRows}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					href="javascript:void(0)" />
 				{#if index === 0 && separator}
 					<Separator
 						insetPadding={separatorInsetPadding}
@@ -164,18 +159,9 @@
 						insetTrailing={separatorInsetTrailing} />
 				{/if}
 			{/each}
-		</List>
-	</div>
-	<div slot="values">
-		<div>
-			value:
-			{#if Array.isArray(value)}
-				[{value}]
-			{:else if typeof value === 'string'}"{value}"{:else}{value}{/if}
-		</div>
+		</NavList>
 	</div>
 	<div slot="optionsSidebar">
-		<ListOptions bind:role {type} on:change={handleOptionsChange} />
 		<CommonListOptions
 			bind:wrapFocus
 			bind:orientation
@@ -187,12 +173,10 @@
 			bind:separatorInsetTrailing
 			on:change={handleOptionsChange} />
 		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
-		<ListItemOptions
-			listRole={role}
-			bind:selected={selectedItem.selected}
+		<NavItemOptions
+			bind:activated={selectedItem.activated}
 			on:change={handleOptionsChange} />
 		<CommonListItemOptions
-			listType={type}
 			bind:ripple={selectedItem.ripple}
 			bind:disabled={selectedItem.disabled}
 			bind:title={selectedItem.title}

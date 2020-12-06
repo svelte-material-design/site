@@ -3,18 +3,20 @@ import { ListRole, ListType } from "@smui/core/list";
 import { getIconCode } from "src/components/configurator/snippets";
 import { GraphicType } from "@svelte-material-ui-test/core/packages/common";
 
-export function createItemCode(props: ItemCodeProps) {
+export function createItemCode(tag: "Item" | "NavItem", props: ItemCodeProps) {
 	const { listRole } = props;
 
 	return generateSvelteTagCode({
-		tag: "Item",
+		tag,
 		props: [
 			`value="${props.value}"`,
 			[!props.ripple, "ripple={false}"],
 			[props.disabled, "disabled"],
 			[props.selected, "selected"],
+			[props.activated, "activated"],
 			[props.ariaLabel, `ariaLabel="${props.ariaLabel}"`],
 			[props.title, `title="${props.title}"`],
+			[props.href, `href="${props.href}"`],
 			[listRole !== "list", "let:selected"],
 		],
 		content: createItemContentCode(props),
@@ -116,23 +118,6 @@ function createItemTrailingContentCode(props: ItemCodeProps) {
 	}
 }
 
-// {#if listType === 'image' || listType === 'avatar' || listType === 'thumbnail' || listType === 'video'}
-// 			<img alt={imageTxt} src={imageSrc} />
-// 		{:else if listType === 'icon'}
-// 			<LeadingIcon
-// 				type={leadingIcon}
-// 				component={Icon}
-// 				button={clickableLeadingIcon} />
-// 		{:else if listRole === 'radiogroup'}
-// 			<span>
-// 				<Radio checked={selected} />
-// 			</span>
-// 		{:else if listRole === 'group'}
-// 			<span>
-// 				<Checkbox checked={selected} />
-// 			</span>
-// 		{/if}
-
 export function createSeparatorCode({
 	insetPadding,
 	insetLeading,
@@ -148,28 +133,12 @@ export function createSeparatorCode({
 	});
 }
 
-// value={item.value}
-// disabled={item.disabled}
-// ripple={item.ripple}
-// bind:selected={item.selected}
-// ariaLabel={item.ariaLabel}
-// title={item.title}
-// label={item.label}
-// labelRow2={item.labelRow2}
-// labelRow3={item.labelRow3}
-// leadingIcon={item.leadingIcon}
-// trailingIcon={item.trailingIcon}
-// clickableLeadingIcon={item.clickableLeadingIcon}
-// clickableTrailingIcon={item.clickableTrailingIcon}
-// listRole={role}
-// listType={type}
-// listItemsRows={itemsRows}
-
 interface ItemCodeProps {
 	value: string;
 	disabled: boolean;
 	ripple: boolean;
-	selected: boolean;
+	selected?: boolean;
+	activated?: boolean;
 	ariaLabel: string;
 	title: string;
 	label: string;
@@ -184,6 +153,7 @@ interface ItemCodeProps {
 	listItemsRows: number;
 	imageTxt: string;
 	imageSrc: string;
+	href?: string;
 }
 
 interface SeparatorCodeProps {

@@ -6,6 +6,7 @@
 	import { createEventDispatcher, tick } from "svelte";
 	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
 
+	export let wrapFocus: boolean;
 	export let orientation: string;
 	export let separator: boolean;
 	export let separatorInsetPadding: boolean;
@@ -54,6 +55,12 @@
 		max={3}
 		step={1}
 		label="Items rows" />
+</div>
+<div>
+	<FormField>
+		<Checkbox bind:checked={wrapFocus} on:change />
+		<Label>Wrap focus</Label>
+	</FormField>
 </div>
 <div>
 	<FormField>
