@@ -171,6 +171,7 @@
 		<CommonListOptions
 			bind:wrapFocus
 			bind:dense
+			bind:density
 			bind:orientation
 			bind:type
 			bind:itemsRows
