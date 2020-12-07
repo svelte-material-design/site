@@ -1,25 +1,16 @@
 <script lang="ts">
-  import "./index.scss";
-  import TextMenuSurface from "./_TextMenuSurface.svelte";
-  import ListMenuSurface from "./_ListMenuSurface.svelte";
-  import AnchorMenuSurface from "./_AnchorMenuSurface.svelte";
-  // import ManualAnchorMenuSurface from "./_ManualAnchorMenuSurface.svelte";
+	import MenuSurfaceCofigurator from "./_MenuSurfaceCofigurator.svelte";
+	import { Typography } from "@smui/core/typography";
+	// import ManualAnchorMenuSurface from "./_ManualAnchorMenuSurface.svelte";
 </script>
 
 <svelte:head>
-  <title>Menu Surface - SMUI</title>
+	<title>Menu Surface - SMUI</title>
 </svelte:head>
 
 <section>
-  <h2>Menu Surface</h2>
+	<Typography variant="headline2">Menu Surface</Typography>
 
-  <TextMenuSurface />
-  <ListMenuSurface />
-  <AnchorMenuSurface /> 
-  <!-- <ManualAnchorMenuSurface /> seems not worthy to expose this API -->
-  
-  
-  <div style="padding-top: 200px;">
-    Long div for scrolling...
-  </div>
+	<MenuSurfaceCofigurator />
+	<div style="padding-top: 200px;">Long div for scrolling...</div>
 </section>

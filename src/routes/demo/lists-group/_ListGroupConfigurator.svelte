@@ -10,9 +10,12 @@
 		Item,
 		Content,
 	} from "@smui/core/list";
-	import { ListGroup, SubHeader } from "@smui/core/list/group";
+	import {
+		ListGroup,
+		SubHeader,
+		ListGroupSeparator,
+	} from "@smui/core/list/group";
 	import ListGroupOptions from "./_ListGroupOptions.svelte";
-	import ListGroupSeparator from "@svelte-material-ui-test/core/packages/list/src/group/ListGroupSeparator.svelte";
 
 	let showSubHeader: boolean;
 	let showSeparator: boolean;

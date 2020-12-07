@@ -67,7 +67,7 @@
 		max-height: calc(80vh + var(--extra-code-height) - 64px);
 	}
 
-	.preview {
+	.configurator__preview {
 		grid-area: preview;
 		padding: $padding;
 		background-color: #efefef;
@@ -76,22 +76,7 @@
 		flex-direction: column;
 		overflow: auto;
 		max-height: 60vh;
-
-		.preview-slot {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			height: 100%;
-
-			> :global([slot="preview"]) {
-				flex-grow: 1;
-				align-items: center;
-				justify-content: center;
-				display: flex;
-			}
-		}
+		align-items: center;
 
 		.values {
 			margin-top: 1em;
@@ -130,15 +115,22 @@
 			}
 		}
 	}
+
+	.preview-slot {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+	}
 </style>
 
 <svelte:window on:resize={() => handleWindowResize()} />
 
 <div class="configurator" style="--extra-code-height: {extraCodeHeight}em;">
-	<div class="preview">
-		<div class="preview-slot">
-			<slot name="preview" />
-		</div>
+	<div class="configurator__preview">
+		<slot name="preview" class="preview-slot" />
 		{#if $$slots.values}
 			<div class="values">
 				<slot name="values" />
