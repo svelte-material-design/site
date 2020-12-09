@@ -13,7 +13,7 @@ export function generateSvelteCode({
 	before,
 }: {
 	tag: string;
-	props: StringListToFilter;
+	props?: StringListToFilter;
 	content?: string;
 	indentSize?: number;
 	after?: string;

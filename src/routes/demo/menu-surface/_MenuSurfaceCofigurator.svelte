@@ -2,29 +2,22 @@
 	import {
 		Configurator,
 		generateSvelteCode,
+		generateSvelteTagCode,
 	} from "src/components/configurator";
-	import {
-		List,
-		ListRole,
-		ListOrientation,
-		Item,
-		Content,
-	} from "@smui/core/list";
-	import { ListGroup, SubHeader } from "@smui/core/list/group";
 	import MenuSurfaceOptions from "./_MenuSurfaceOptions.svelte";
 	import { Button } from "@smui/core/button";
 	import {
 		MenuSurface,
-		Corner,
+		MenuSurfaceAnchorCorner,
 		MenuSurfaceVariant,
 		MDCMenuDistance,
 	} from "@smui/core/menu-surface";
 
-	let anchorCorner: Corner;
+	let anchorCorner: MenuSurfaceAnchorCorner;
+	let anchorFlipRtl: boolean;
 	let quickOpen: boolean;
 	let open: boolean;
 	let variant: MenuSurfaceVariant;
-	let anchor: HTMLElement;
 
 	let anchorMargin: MDCMenuDistance;
 
@@ -32,64 +25,68 @@
 	let scssCode: string;
 
 	$: svelteCode = generateSvelteCode({
-		tag: "ListGroup",
-		props: [],
-		content: "",
+		tag: "div",
+		content: `
+			<Button on:click={openMenuSurface}>Open Surface</Button>
+			${getMenuSurfaceCode({
+				anchorCorner,
+				anchorFlipRtl,
+				quickOpen,
+				open,
+				variant,
+				anchorMargin,
+			})}
+		`,
 	});
 
-	function getContentCode(props: CodeProps) {
-		return `
-			${getListCode(1)}
-			${getSubHeaderCode(props)}
-			${getSeparatorCode(props)}
-			${getListCode(2)}
-		`;
+	function getMenuSurfaceCode(props: CodeProps) {
+		const {
+			open,
+			anchorCorner,
+			anchorFlipRtl,
+			anchorMargin,
+			quickOpen,
+			variant,
+		} = props;
+		return generateSvelteTagCode({
+			tag: "MenuSurface",
+			props: [
+				"bind:open",
+				[anchorCorner !== "bottom-start", `anchorCorner="${anchorCorner}"`],
+				[anchorFlipRtl === false, "anchorFlipRtl={false}"],
+				[quickOpen, "quickOpen"],
+				[variant, `variant={${variant}}`],
+				[
+					anchorMargin,
+					`anchorMargin={${
+						anchorMargin && JSON.stringify(anchorMargin).replaceAll(`"`, "")
+					}}`,
+				],
+			],
+			content: `
+				<div>Menu surface content</div>
+				<Button on:click={closeMenuSurface}>Close Surface</Button>
+			`,
+			indentSize: 3,
+			indentFirstLine: false,
+		});
 	}
 
-	function getListCode(index: number) {
-		return `
-			<List>
-				<Item value="group-item-1">
-					<Content>List ${index} Item 1</Content>
-				</Item>
-				<Item value="group-item-2">
-					<Content>List ${index} Item 2</Content>
-				</Item>
-			</List>
-		`;
-	}
-
-	function getSubHeaderCode({ showSubHeader }: CodeProps) {
-		if (showSubHeader) {
-			return `
-			<SubHeader>List 1 Sub Header</SubHeader>
-			`;
-		} else {
-			return "";
-		}
-	}
-
-	function getSeparatorCode({ showSeparator }: CodeProps) {
-		if (showSeparator) {
-			return `
-			<Seperator>
-			`;
-		} else {
-			return "";
-		}
-	}
-
-	function openSurface() {
+	function openMenuSurface() {
 		open = true;
 	}
 
-	function closeSurface() {
+	function closeMenuSurface() {
 		open = false;
 	}
 
 	interface CodeProps {
-		showSubHeader: boolean;
-		showSeparator: boolean;
+		anchorCorner: MenuSurfaceAnchorCorner;
+		anchorFlipRtl: boolean;
+		quickOpen: boolean;
+		open: boolean;
+		variant: MenuSurfaceVariant;
+		anchorMargin: MDCMenuDistance;
 	}
 </script>
 
@@ -120,18 +117,18 @@
 	<Configurator {svelteCode} {scssCode}>
 		<svelte-fragment slot="preview" let:class={baseClass}>
 			<div class="{baseClass} preview">
-				<div class="anchor" bind:this={anchor}>
-					<Button on:click={openSurface}>Open Surface</Button>
+				<div class="anchor">
+					<Button on:click={openMenuSurface}>Open Surface</Button>
 					<MenuSurface
 						bind:open
-						{anchor}
 						{anchorCorner}
+						{anchorFlipRtl}
 						{quickOpen}
 						{variant}
 						{anchorMargin}>
 						<div class="surface">
 							<div>Menu surface content</div>
-							<Button on:click={closeSurface}>Close Surface</Button>
+							<Button on:click={closeMenuSurface}>Close Surface</Button>
 						</div>
 					</MenuSurface>
 				</div>
@@ -140,6 +137,7 @@
 		<div slot="optionsSidebar">
 			<MenuSurfaceOptions
 				bind:anchorCorner
+				bind:anchorFlipRtl
 				bind:quickOpen
 				bind:open
 				bind:variant

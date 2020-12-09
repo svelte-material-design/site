@@ -3,45 +3,35 @@
 	import { Checkbox } from "@smui/core/checkbox";
 	import { Select, Option } from "@smui/core/select";
 	import {
-		Corner,
+		MenuSurfaceAnchorCorner,
 		MenuSurfaceVariant,
 		MDCMenuDistance,
 	} from "@smui/core/menu-surface";
-	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
 	import AnchorMarginOption from "./_AnchorMarginOption.svelte";
 
-	export let anchorCorner: Corner;
+	export let anchorCorner: MenuSurfaceAnchorCorner;
+	export let anchorFlipRtl: MenuSurfaceAnchorCorner = true;
 	export let quickOpen: boolean;
 	export let open: boolean;
 	export let variant: MenuSurfaceVariant;
 	export let anchorMargin: MDCMenuDistance;
-
-	function handleCorderChange(value: string) {
-		anchorCorner = Number(value);
-	}
 </script>
 
 <svelte:options immutable={true} />
 
 <div>
-	<Select
-		nullable={false}
-		on:change={(event) => handleCorderChange(event.detail.value)}>
+	<Select bind:value={anchorCorner} nullable={false} on:change>
 		<span slot="label">Corner</span>
 		<span slot="options">
-			<Option value={`${Corner.BOTTOM_LEFT}`}>Bottom left</Option>
-			<Option value={`${Corner.BOTTOM_RIGHT}`}>Bottom right</Option>
-			<Option value={`${Corner.BOTTOM_START}`}>Bottom start</Option>
-			<Option value={`${Corner.BOTTOM_END}`}>Bottom end</Option>
-			<Option value={`${Corner.TOP_LEFT}`}>Top left</Option>
-			<Option value={`${Corner.TOP_RIGHT}`}>Top right</Option>
-			<Option value={`${Corner.TOP_START}`}>Top start</Option>
-			<Option value={`${Corner.TOP_END}`}>Top end</Option>
+			<Option value="bottom-start">Bottom start</Option>
+			<Option value="bottom-end">Bottom end</Option>
+			<Option value="top-start">Top start</Option>
+			<Option value="top-end">Top end</Option>
 		</span>
 	</Select>
 </div>
 <div>
-	<Select bind:value={variant} nullable={false}>
+	<Select bind:value={variant} nullable={false} on:change>
 		<span slot="label">Variant</span>
 		<span slot="options">
 			<Option />
@@ -49,6 +39,12 @@
 			<Option value="fullwidth">Full width</Option>
 		</span>
 	</Select>
+</div>
+<div>
+	<FormField>
+		<Checkbox bind:checked={anchorFlipRtl} on:change />
+		<Label>Anchor flip RTL</Label>
+	</FormField>
 </div>
 <div>
 	<FormField>
@@ -62,4 +58,5 @@
 		<Label>Quick open</Label>
 	</FormField>
 </div>
+<div />
 <AnchorMarginOption bind:value={anchorMargin} />

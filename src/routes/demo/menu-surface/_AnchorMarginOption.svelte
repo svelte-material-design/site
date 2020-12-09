@@ -1,13 +1,5 @@
 <script lang="ts">
-	import { FormField, Label } from "@smui/core/form-field";
-	import { Checkbox } from "@smui/core/checkbox";
-	import { Select, Option } from "@smui/core/select";
-	import {
-		Corner,
-		MenuSurfaceVariant,
-		MDCMenuDistance,
-	} from "@smui/core/menu-surface";
-	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
+	import { MDCMenuDistance } from "@smui/core/menu-surface";
 	import { InputField } from "@smui/core/textfield";
 	import { Typography } from "@svelte-material-ui-test/core/typography";
 
@@ -71,7 +63,7 @@
 <svelte:options immutable={true} />
 
 <div class="anchor-margin-option">
-	<Typography variant="body2">Anchor margin</Typography>
+	<Typography variant="body2">Anchor margin (px)</Typography>
 
 	<div>
 		<div class="area-top">
