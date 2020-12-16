@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	import { IconType } from ".";
 
 	export let type: IconType;
 	export let component: any;
@@ -8,7 +8,7 @@
 
 {#if type === 'material-icon'}
 	<svelte:component this={component} role={button ? 'button' : undefined}>
-		event
+		{button ? 'clear' : 'alarm'}
 	</svelte:component>
 {:else if type === 'svg'}
 	<svelte:component
@@ -16,12 +16,12 @@
 		role={button ? 'button' : undefined}
 		type="svg"
 		props={{ viewBox: '0 0 24 24' }}>
-		<circle cx="12" cy="12" r="12" />
+		<polygon points="0,24 12,0 24,24" />
 	</svelte:component>
 {:else if type === 'img'}
 	<svelte:component
 		this={component}
 		role={button ? 'button' : undefined}
 		type="img"
-		props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
+		props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
 {/if}

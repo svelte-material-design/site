@@ -1,31 +1,28 @@
 import { StringListToFilter } from "@smui/core/common/functions";
-import { generateSvelteTagCode } from "./code";
+import { generateSvelteTagCode, TagCodeGenerationProps } from "./code";
 import { GraphicType } from "@smui/core/common/components";
 
 export type Position = "leading" | "trailing";
 
-export function getIconCode({
-	type,
-	position,
-	clickable,
-	props,
-	additionalProps = [],
-	content = "",
-	indentSize,
-	indentFirstLine,
-}: {
-	type: GraphicType;
-	position: Position;
-	clickable?: boolean;
-	props?: StringListToFilter;
-	additionalProps?: StringListToFilter;
-	content?: string;
-	indentSize?: number;
-	indentFirstLine?: boolean;
-}) {
+export function getIconCode(
+	options: Partial<TagCodeGenerationProps>,
+	{
+		type,
+		position,
+		clickable,
+		additionalProps = [],
+	}: {
+		type: GraphicType;
+		position: Position;
+		clickable?: boolean;
+		additionalProps?: StringListToFilter;
+	}
+) {
+	const { tag, content, indentSize, indentFirstLine, props } = options;
+
 	if (type) {
 		return generateSvelteTagCode({
-			tag: "Icon",
+			tag: tag ?? "Icon",
 			props: [
 				[type !== "icon", `type="${type}"`],
 				[clickable, `role="button"`],

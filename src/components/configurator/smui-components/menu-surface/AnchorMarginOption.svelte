@@ -27,6 +27,7 @@
 <style lang="scss">
 	.anchor-margin-option {
 		grid-row: span 4;
+		grid-column: span 2;
 
 		> div {
 			display: grid !important;
@@ -64,7 +65,6 @@
 
 <div class="anchor-margin-option">
 	<Typography variant="body2">Anchor margin (px)</Typography>
-
 	<div>
 		<div class="area-top">
 			<InputField

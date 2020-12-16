@@ -8,23 +8,22 @@
 		ListOrientation,
 		Separator,
 		ListType,
-		ListItemsRows,
 	} from "@smui/core/list";
 	import { NavList } from "@smui/core/list/nav-list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
 	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
-	import { createItemCode, createSeparatorCode } from "./_code";
+	import { createItemCode, createSeparatorCode, ListItemProps } from "./_code";
 	import { tick } from "svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
-	import NavListItem, { NavListItemProps } from "./_NavListItem.svelte";
+	import NavListItem from "./_NavListItem.svelte";
 	import NavItemOptions from "./_NavItemOptions.svelte";
 
 	let multipleItemsControls: MultipleItemControls;
 
-	let items: NavListItemProps[] = [];
-	let selectedItem: NavListItemProps = {} as any;
-	let selectedItemId: NavListItemProps["id"];
+	let items: ListItemProps[] = [];
+	let selectedItem: ListItemProps = {} as any;
+	let selectedItemId: ListItemProps["id"];
 	let itemsInstance: NavListItem[] = [];
 
 	let value: string;
@@ -36,7 +35,7 @@
 
 	let orientation: ListOrientation;
 	let type: ListType;
-	let itemsRows: ListItemsRows;
+	let itemsRows: number;
 
 	let separator: boolean;
 	let separatorInsetPadding: boolean;
@@ -64,20 +63,19 @@
 					label: item.label,
 					labelRow2: item.labelRow2,
 					labelRow3: item.labelRow3,
-					leadingIcon: item.leadingIcon,
-					trailingIcon: item.trailingIcon,
-					clickableLeadingIcon: item.clickableLeadingIcon,
-					clickableTrailingIcon: item.clickableTrailingIcon,
 					ripple: item.ripple,
 					title: item.title,
 					value: item.value,
-					activated: item.activated,
+					selected: item.selected,
+					href: "javascript:void(0);",
 					listItemsRows: itemsRows,
-					listRole: role,
 					listType: type,
+					clickableLeadingIcon: item.clickableLeadingIcon,
+					leadingIcon: item.leadingIcon,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
 					imageTxt: itemsInstance[index]?.getImageTxt(),
-					href: "javascript:void(0);",
+					trailingIcon: item.trailingIcon,
+					clickableTrailingIcon: item.clickableTrailingIcon,
 				});
 
 				if (index === 0 && separator) {
@@ -112,7 +110,6 @@
 			id: value,
 			value,
 			ripple: true,
-			highlightSelected: true,
 			disabled: false,
 			readonly: false,
 			activated: false,
@@ -124,7 +121,7 @@
 			trailingIcon: undefined,
 			clickableLeadingIcon: false,
 			clickableTrailingIcon: false,
-		} as NavListItemProps;
+		} as ListItemProps;
 	}
 </script>
 
@@ -185,6 +182,7 @@
 			bind:activated={selectedItem.activated}
 			on:change={handleOptionsChange} />
 		<CommonListItemOptions
+			listType={type}
 			bind:ripple={selectedItem.ripple}
 			bind:disabled={selectedItem.disabled}
 			bind:title={selectedItem.title}

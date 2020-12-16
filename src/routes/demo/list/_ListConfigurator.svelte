@@ -9,18 +9,21 @@
 		ListOrientation,
 		Separator,
 		ListType,
-		ListItemsRows,
 		Item,
 	} from "@smui/core/list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
 	import ListItemOptions from "./_ListItemOptions.svelte";
-	import ListItem, { ListItemProps } from "./_ListItem.svelte";
+	import ListItem from "./_ListItem.svelte";
 	import ListOptions from "./_ListOptions.svelte";
-	import { createItemCode, createSeparatorCode } from "./_code";
+	import { createItemCode, createSeparatorCode, ListItemProps } from "./_code";
 	import { tick } from "svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
 	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
+	import {
+		getProps as getListCodeProps,
+		ItemCodeProps,
+	} from "src/components/configurator/smui-components/list";
 
 	let multipleItemsControls: MultipleItemControls;
 
@@ -38,7 +41,7 @@
 
 	let orientation: ListOrientation;
 	let type: ListType;
-	let itemsRows: ListItemsRows;
+	let itemsRows: number;
 
 	let separator: boolean;
 	let separatorInsetPadding: boolean;
@@ -50,16 +53,15 @@
 
 	$: svelteCode = generateSvelteCode({
 		tag: "List",
-		props: [
-			"bind:value",
-			[role, `role="${role}"`],
-			[orientation, `orientation="${orientation}"`],
-			[type, `type="${type}"`],
-			[density, `density={${density}}`],
-			[dense, `dense`],
-			[itemsRows > 1, `itemsRows={${itemsRows}}`],
-			[!wrapFocus, `wrapFocus={false}`],
-		],
+		props: getListCodeProps({
+			role,
+			orientation,
+			type,
+			density,
+			dense,
+			itemsRows,
+			wrapFocus,
+		}),
 		content: items
 			.map((item, index) => {
 				let res = createItemCode("Item", {
@@ -68,10 +70,6 @@
 					label: item.label,
 					labelRow2: item.labelRow2,
 					labelRow3: item.labelRow3,
-					leadingIcon: item.leadingIcon,
-					trailingIcon: item.trailingIcon,
-					clickableLeadingIcon: item.clickableLeadingIcon,
-					clickableTrailingIcon: item.clickableTrailingIcon,
 					ripple: item.ripple,
 					title: item.title,
 					value: item.value,
@@ -79,8 +77,12 @@
 					listItemsRows: itemsRows,
 					listRole: role,
 					listType: type,
+					clickableLeadingIcon: item.clickableLeadingIcon,
+					leadingIcon: item.leadingIcon,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
 					imageTxt: itemsInstance[index]?.getImageTxt(),
+					trailingIcon: item.trailingIcon,
+					clickableTrailingIcon: item.clickableTrailingIcon,
 				});
 
 				if (index === 0 && separator) {
@@ -115,7 +117,6 @@
 			id: value,
 			value,
 			ripple: true,
-			highlightSelected: true,
 			disabled: false,
 			readonly: false,
 			selected: false,
@@ -123,10 +124,10 @@
 			label: `Item ${index}`,
 			labelRow2: `Secondary text`,
 			labelRow3: `Third line`,
-			leadingIcon: undefined,
 			trailingIcon: undefined,
 			clickableLeadingIcon: false,
 			clickableTrailingIcon: false,
+			leadingIcon: undefined,
 		} as ListItemProps;
 	}
 </script>

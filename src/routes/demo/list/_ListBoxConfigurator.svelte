@@ -8,14 +8,12 @@
 		ListOrientation,
 		Separator,
 		ListType,
-		ListItemsRows,
-		Item,
 	} from "@smui/core/list";
 	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
 	import ListItemOptions from "./_ListItemOptions.svelte";
-	import ListItem, { ListItemProps } from "./_ListItem.svelte";
-	import { createItemCode, createSeparatorCode } from "./_code";
+	import ListItem from "./_ListItem.svelte";
+	import { createItemCode, createSeparatorCode, ListItemProps } from "./_code";
 	import { tick } from "svelte";
 	import ListBoxOptions from "./_ListBoxOptions.svelte";
 	import CommonListOptions from "./_CommonListOptions.svelte";
@@ -37,7 +35,7 @@
 
 	let orientation: ListOrientation;
 	let type: ListType;
-	let itemsRows: ListItemsRows;
+	let itemsRows: number;
 
 	let separator: boolean;
 	let separatorInsetPadding: boolean;
@@ -66,18 +64,18 @@
 					label: item.label,
 					labelRow2: item.labelRow2,
 					labelRow3: item.labelRow3,
-					leadingIcon: item.leadingIcon,
-					trailingIcon: item.trailingIcon,
-					clickableLeadingIcon: item.clickableLeadingIcon,
-					clickableTrailingIcon: item.clickableTrailingIcon,
 					ripple: item.ripple,
 					title: item.title,
 					value: item.value,
 					selected: item.selected,
 					listItemsRows: itemsRows,
 					listType: type,
+					clickableLeadingIcon: item.clickableLeadingIcon,
+					leadingIcon: item.leadingIcon,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
 					imageTxt: itemsInstance[index]?.getImageTxt(),
+					trailingIcon: item.trailingIcon,
+					clickableTrailingIcon: item.clickableTrailingIcon,
 				});
 
 				if (index === 0 && separator) {
@@ -112,7 +110,6 @@
 			id: value,
 			value,
 			ripple: true,
-			highlightSelected: true,
 			disabled: false,
 			readonly: false,
 			selected: false,

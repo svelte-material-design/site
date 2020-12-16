@@ -9,9 +9,10 @@
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
 	import { Checkbox } from "@smui/core/checkbox";
-	import IconTypeOption, {
+	import {
+		IconTypeOption,
 		IconType,
-	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	} from "src/components/configurator/smui-components/icons";
 	import { DiscreteSlider } from "@smui/core/slider";
 	import {
 		getIconCode,
@@ -192,14 +193,18 @@
 		if (leadingIconValue) {
 			return `
 			<span slot="leadingIcon">
-				${getIconCode({
-					type:
-						leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
-					position: "leading",
-					content: leadingIconValue === "material-icon" ? "event" : undefined,
-					indentSize: 4,
-					indentFirstLine: false,
-				})}
+				${getIconCode(
+					{
+						content: leadingIconValue === "material-icon" ? "event" : undefined,
+						indentSize: 4,
+						indentFirstLine: false,
+					},
+					{
+						type:
+							leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
+						position: "leading",
+					}
+				)}
 			</span>
 			`;
 		} else {
@@ -214,22 +219,28 @@
 		if (trailingIconValue) {
 			return `
 			<span slot="trailingIcon">
-				${getIconCode({
-					type:
-						trailingIconValue === "material-icon" ? "icon" : trailingIconValue,
-					position: "trailing",
-					content:
-						trailingIconValue === "material-icon"
-							? clearOnTrailingIconClick
-								? "clear"
-								: "alarm"
-							: undefined,
-					additionalProps: clearOnTrailingIconClickValue
-						? [`role="button"`, `on:click={clear}`]
-						: [],
-					indentSize: 4,
-					indentFirstLine: false,
-				})}
+				${getIconCode(
+					{
+						indentSize: 4,
+						indentFirstLine: false,
+						content:
+							trailingIconValue === "material-icon"
+								? clearOnTrailingIconClick
+									? "clear"
+									: "alarm"
+								: undefined,
+					},
+					{
+						type:
+							trailingIconValue === "material-icon"
+								? "icon"
+								: trailingIconValue,
+						position: "trailing",
+						additionalProps: clearOnTrailingIconClickValue
+							? [`role="button"`, `on:click={clear}`]
+							: [],
+					}
+				)}
 			</span>
 			`;
 		} else {

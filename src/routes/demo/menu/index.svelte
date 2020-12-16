@@ -1,25 +1,14 @@
 <script lang="ts">
-  import AlwaysOpenMenu from "./_AlwaysOpenMenu.svelte";
-  import BasicMenu from "./_BasicMenu.svelte";
-  import SelectionGroupMenu from "./_SelectionGroupMenu.svelte";
-  import TwoLinesMenu from "./_TwoLinesMenu.svelte";
-
-  let clicked: string = "nothing yet";
+	import { Typography } from "@smui/core/typography";
+	import MenuConfigurator from "./_MenuConfigurator.svelte";
 </script>
 
 <svelte:head>
-  <title>Menu - SMUI</title>
+	<title>Menu - SMUI</title>
 </svelte:head>
 
 <section>
-  <h2>Menu</h2>
+	<Typography variant="headline2">Menu</Typography>
 
-  <AlwaysOpenMenu bind:clicked />
-  <BasicMenu bind:clicked />
-  <TwoLinesMenu bind:clicked />
-  <SelectionGroupMenu bind:clicked />
-
-  <pre class="status">Clicked: {clicked}</pre>
-
-  <div style="padding-top: 200px;">Long div for scrolling...</div>
+	<MenuConfigurator />
 </section>

@@ -4,7 +4,6 @@
 		generateSvelteCode,
 		generateSvelteTagCode,
 	} from "src/components/configurator";
-	import MenuSurfaceOptions from "./_MenuSurfaceOptions.svelte";
 	import { Button } from "@smui/core/button";
 	import {
 		MenuSurface,
@@ -12,6 +11,11 @@
 		MenuSurfaceVariant,
 		MDCMenuDistance,
 	} from "@smui/core/menu-surface";
+	import {
+		getProps as getMenuSurfaceCodeProps,
+		CodeProps,
+		MenuSurfaceOptions,
+	} from "src/components/configurator/smui-components/menu-surface";
 
 	let anchorCorner: MenuSurfaceAnchorCorner;
 	let anchorFlipRtl: boolean;
@@ -40,29 +44,9 @@
 	});
 
 	function getMenuSurfaceCode(props: CodeProps) {
-		const {
-			open,
-			anchorCorner,
-			anchorFlipRtl,
-			anchorMargin,
-			quickOpen,
-			variant,
-		} = props;
 		return generateSvelteTagCode({
 			tag: "MenuSurface",
-			props: [
-				"bind:open",
-				[anchorCorner !== "bottom-start", `anchorCorner="${anchorCorner}"`],
-				[anchorFlipRtl === false, "anchorFlipRtl={false}"],
-				[quickOpen, "quickOpen"],
-				[variant, `variant={${variant}}`],
-				[
-					anchorMargin,
-					`anchorMargin={${
-						anchorMargin && JSON.stringify(anchorMargin).replaceAll(`"`, "")
-					}}`,
-				],
-			],
+			props: getMenuSurfaceCodeProps(props),
 			content: `
 				<div>Menu surface content</div>
 				<Button on:click={closeMenuSurface}>Close Surface</Button>
@@ -78,15 +62,6 @@
 
 	function closeMenuSurface() {
 		open = false;
-	}
-
-	interface CodeProps {
-		anchorCorner: MenuSurfaceAnchorCorner;
-		anchorFlipRtl: boolean;
-		quickOpen: boolean;
-		open: boolean;
-		variant: MenuSurfaceVariant;
-		anchorMargin: MDCMenuDistance;
 	}
 </script>
 

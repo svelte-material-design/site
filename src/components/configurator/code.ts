@@ -11,14 +11,7 @@ export function generateSvelteCode({
 	indentSize,
 	after,
 	before,
-}: {
-	tag: string;
-	props?: StringListToFilter;
-	content?: string;
-	indentSize?: number;
-	after?: string;
-	before?: string;
-}) {
+}: TagCodeGenerationProps) {
 	const filteredProps = filterStringList(props) || [];
 
 	const propsIntend = `
@@ -47,15 +40,7 @@ export function generateSvelteTagCode({
 	indentFirstLine,
 	after,
 	before,
-}: {
-	tag: string;
-	props?: StringListToFilter;
-	content?: string;
-	indentSize?: number;
-	indentFirstLine?: boolean;
-	after?: string;
-	before?: string;
-}) {
+}: TagCodeGenerationProps) {
 	const filteredProps = filterStringList(props) || [];
 
 	const propsIntend = `
@@ -106,4 +91,14 @@ export function indentCode({
 
 	const result = startIndent + code.replace(/\n/g, "\n" + indent);
 	return result;
+}
+
+export interface TagCodeGenerationProps {
+	tag: string;
+	props?: StringListToFilter;
+	content?: string;
+	indentSize?: number;
+	indentFirstLine?: boolean;
+	after?: string;
+	before?: string;
 }

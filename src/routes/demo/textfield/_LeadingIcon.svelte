@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon } from "@smui/core/textfield/icon";
-	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 
 	export let type: IconType;
 </script>

@@ -2,8 +2,8 @@
 	import { Option, Select, SelectVariant } from "@smui/core/select";
 	import { Icon } from "@smui/core/select/icon";
 	import { HelperText } from "@smui/core/select/helper-text";
-	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
-	import LeadingIcon from "src/components/configurator/common-options/icons/LeadingIcon.svelte";
+	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 
 	let className: string;
 	export { className as class };

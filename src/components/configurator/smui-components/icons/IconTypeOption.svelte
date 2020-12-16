@@ -1,10 +1,7 @@
-<script context="module" lang="ts">
-	export type IconType = "material-icon" | "svg" | "img";
-</script>
-
 <script lang="ts">
 	import { FormField } from "@smui/core/form-field";
 	import { Option, Select } from "@smui/core/select";
+	import { IconType } from ".";
 
 	export let value: IconType = undefined;
 	export let allowEmpty: boolean = false;

@@ -8,7 +8,7 @@
 	} from "src/components/configurator";
 	import IconTypeOption, {
 		IconType,
-	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	} from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 	import { StringListToFilter } from "@smui/core/common/functions";
 
 	let disabled: boolean = false;

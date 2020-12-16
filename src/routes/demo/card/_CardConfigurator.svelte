@@ -99,24 +99,6 @@
 			[outlinedValue, `variant="outlined"`],
 		];
 	}
-
-	// function getIconCode(selectedIconType: typeof iconType) {
-	//   if (selectedIconType === "material-icon") {
-	//     return `<Icon>favorite</Icon>`;
-	//   } else if (selectedIconType === "svg") {
-	//     return `
-	// 			<Icon type="svg" props={{ viewBox: '0 0 24 24' }}>
-	// 				<circle cx="12" cy="12" r="12" />
-	// 			</Icon>
-	// 		`;
-	//   } else {
-	//     return `
-	// 			<Icon
-	// 				type="img"
-	// 				props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }}/>
-	// 		`;
-	//   }
-	// }
 </script>
 
 <style lang="scss">

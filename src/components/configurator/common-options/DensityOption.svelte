@@ -19,10 +19,5 @@
 			{densitySlider ? `-${densitySlider}` : 'default'}
 		</span>
 	</Label>
-	<DiscreteSlider
-		bind:value={densitySlider}
-		discrete
-		{max}
-		step={1}
-		on:change />
+	<DiscreteSlider bind:value={densitySlider} {max} step={1} on:change />
 </FormField>

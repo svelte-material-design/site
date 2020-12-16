@@ -1,14 +1,36 @@
+<script lang="ts" context="module">
+	export interface ListItemProps {
+		id: string;
+		name: string;
+		value: string;
+		wrapFocus: boolean;
+		ripple: boolean;
+		disabled: boolean;
+		readonly: boolean;
+		selected: boolean;
+		href: string;
+		label: string;
+		labelRow2: string;
+		labelRow3: string;
+		title: string;
+		ariaLabel: string;
+		leadingIcon: IconType;
+		trailingIcon: IconType;
+		clickableLeadingIcon: boolean;
+		clickableTrailingIcon: boolean;
+	}
+</script>
+
 <script lang="ts">
 	import {
-		Content,
 		Item,
-		ListRole,
-		ListType,
-		Icon,
+		MenuListType,
+		Content,
 		PrimaryText,
 		SecondaryText,
-	} from "@smui/core/list";
-	import { IconType } from "src/components/configurator/smui-components/icons";
+		Icon,
+	} from "@smui/core/menu";
+	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
 	export let value: string = undefined;
@@ -26,8 +48,7 @@
 	export let clickableLeadingIcon: boolean;
 	export let clickableTrailingIcon: boolean;
 
-	export let listRole: ListRole | "listbox" = undefined;
-	export let listType: ListType;
+	export let listType: MenuListType;
 	export let listItemsRows: number;
 
 	let listItem: ListItem;
@@ -64,7 +85,6 @@
 	{clickableLeadingIcon}
 	{clickableTrailingIcon}
 	{listItemsRows}
-	{listRole}
 	{listType}
 	let:selected
 	on:change />

@@ -7,10 +7,10 @@
 		MenuSurfaceVariant,
 		MDCMenuDistance,
 	} from "@smui/core/menu-surface";
-	import AnchorMarginOption from "./_AnchorMarginOption.svelte";
+	import AnchorMarginOption from "./AnchorMarginOption.svelte";
 
 	export let anchorCorner: MenuSurfaceAnchorCorner;
-	export let anchorFlipRtl: MenuSurfaceAnchorCorner = true;
+	export let anchorFlipRtl: boolean = true;
 	export let quickOpen: boolean;
 	export let open: boolean;
 	export let variant: MenuSurfaceVariant;
@@ -58,5 +58,4 @@
 		<Label>Quick open</Label>
 	</FormField>
 </div>
-<div />
 <AnchorMarginOption bind:value={anchorMargin} />

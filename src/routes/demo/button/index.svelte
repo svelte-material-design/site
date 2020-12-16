@@ -6,7 +6,7 @@
 	import { List, Item, Content, Separator } from "@smui/core/list";
 	import { Corner } from "@smui/core/menu-surface";
 	import { Typography } from "@smui/core/typography";
-	import { SelectionGroup, SelectionGroupIcon } from "@smui/core/menu";
+	import { Group as MenuGroup, Icon as MenuItemIcon } from "@smui/core/menu";
 	import ButtonConfigurator from "./_ButtonConfigurator.svelte";
 	import ApiList from "src/components/api-list/APIList.svelte";
 
@@ -126,12 +126,14 @@
 					<Item>
 						<Content>Thing 3</Content>
 					</Item>
-					<SelectionGroup>
+					<MenuGroup>
 						<Item>
-							<SelectionGroupIcon>check</SelectionGroupIcon>
+							<svelte-fragment slot="leading">
+								<MenuItemIcon>check</MenuItemIcon>
+							</svelte-fragment>
 							<Content>Thing 4</Content>
 						</Item>
-					</SelectionGroup>
+					</MenuGroup>
 				</List>
 			</Menu>
 		</Group>

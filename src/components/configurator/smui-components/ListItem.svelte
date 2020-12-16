@@ -1,25 +1,56 @@
+<script lang="ts" context="module">
+	export interface ListItemProps {
+		id: string;
+		name: string;
+		value: string;
+		wrapFocus: boolean;
+		ripple: boolean;
+		disabled: boolean;
+		readonly: boolean;
+		selected: boolean;
+		href: string;
+		label: string;
+		labelRow2: string;
+		labelRow3: string;
+		title: string;
+		ariaLabel: string;
+		leadingIcon: IconType;
+		trailingIcon: IconType;
+		clickableLeadingIcon: boolean;
+		clickableTrailingIcon: boolean;
+	}
+</script>
+
 <script lang="ts">
 	import {
+		Item,
 		Content,
+		ListRole,
 		Icon,
 		ListType,
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
-	import { NavItem } from "@smui/core/list/nav-list";
-	import {
-		IconType,
-		LeadingIcon,
-		TrailingIcon,
-	} from "src/components/configurator/smui-components/icons";
+	import { Radio } from "@smui/core/radio";
+	import { Checkbox } from "@smui/core/checkbox";
+	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
+	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
 	import {
 		getImgPlaceholderSrc,
 		ImgPlaceholderParams,
 	} from "src/functions/imgPlacehoder";
+	import { IconType } from "./icons";
 
+	export let component: any;
+	export let contentComponent: any;
+	export let primaryTextComponent: any;
+	export let secondaryTextComponent: any;
+	export let iconComponent: any;
+
+	export let value: string = undefined;
 	export let disabled: boolean;
 	export let ripple: boolean;
-	export let activated: boolean;
+	export let selected: boolean = undefined;
 	export let ariaLabel: string;
 	export let title: string;
 	export let label: string;
@@ -31,10 +62,9 @@
 	export let clickableLeadingIcon: boolean;
 	export let clickableTrailingIcon: boolean;
 
+	export let listRole: ListRole | "listbox" = undefined;
 	export let listType: ListType;
 	export let listItemsRows: number;
-
-	export let href: string = undefined;
 
 	let imageRes: ImgPlaceholderParams;
 	$: switch (listType) {
@@ -68,36 +98,57 @@
 
 <svelte:options immutable={true} />
 
-<NavItem {activated} {disabled} {ripple} {ariaLabel} {title} {href}>
+<svelte:component
+	this={component}
+	bind:selected
+	{value}
+	{disabled}
+	{ripple}
+	{ariaLabel}
+	{title}
+	let:selected
+	on:change>
 	<svelte-fragment slot="leading">
 		{#if listType === 'image' || listType === 'avatar' || listType === 'thumbnail' || listType === 'video'}
 			<img alt={imageTxt} src={imageSrc} />
-		{:else if listType === 'icon'}
+		{:else if listType === 'icon' || listType === 'textual'}
 			<LeadingIcon
 				type={leadingIcon}
-				component={Icon}
+				component={iconComponent}
 				button={clickableLeadingIcon} />
+		{:else if listRole === 'radiogroup'}
+			<span>
+				<Radio checked={selected} />
+			</span>
+		{:else if listRole === 'group'}
+			<span>
+				<Checkbox checked={selected} />
+			</span>
 		{/if}
 	</svelte-fragment>
 	{#if label}
-		<Content>
+		<svelte:component this={contentComponent}>
 			{#if listItemsRows === 1}
 				{label}
 			{:else if listItemsRows > 1}
-				<PrimaryText>{label}</PrimaryText>
-				<SecondaryText>{labelRow2}</SecondaryText>
+				<svelte:component this={primaryTextComponent}>{label}</svelte:component>
+				<svelte:component this={secondaryTextComponent}>
+					{labelRow2}
+				</svelte:component>
 			{/if}
 			{#if listItemsRows === 3}
-				<SecondaryText>{labelRow3}</SecondaryText>
+				<svelte:component this={secondaryTextComponent}>
+					{labelRow3}
+				</svelte:component>
 			{/if}
-		</Content>
+		</svelte:component>
 	{/if}
 	<svelte-fragment slot="trailing">
 		{#if trailingIcon}
 			<TrailingIcon
 				type={trailingIcon}
-				component={Icon}
+				component={iconComponent}
 				button={clickableTrailingIcon} />
 		{/if}
 	</svelte-fragment>
-</NavItem>
+</svelte:component>

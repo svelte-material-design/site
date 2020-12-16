@@ -12,9 +12,10 @@
 		getHelperTextCode,
 		getIconCode,
 	} from "src/components/configurator/snippets";
-	import IconTypeOption, {
+	import {
+		IconTypeOption,
 		IconType,
-	} from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	} from "src/components/configurator/smui-components/icons";
 	import ShapeRadiusOption from "src/components/configurator/common-options/ShapeRadiusOption.svelte";
 	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
 
@@ -123,14 +124,18 @@
 		if (leadingIconValue) {
 			return `
 			<span slot="leadingIcon">
-				${getIconCode({
-					type:
-						leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
-					position: "leading",
-					content: leadingIconValue === "material-icon" ? "event" : undefined,
-					indentSize: 4,
-					indentFirstLine: false,
-				})}
+				${getIconCode(
+					{
+						indentSize: 4,
+						indentFirstLine: false,
+						content: leadingIconValue === "material-icon" ? "event" : undefined,
+					},
+					{
+						type:
+							leadingIconValue === "material-icon" ? "icon" : leadingIconValue,
+						position: "leading",
+					}
+				)}
 			</span>
 			`;
 		} else {

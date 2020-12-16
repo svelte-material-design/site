@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Chip, Text, Icon, Checkmark } from "@smui/core/chips";
 	import { generateSvelteCode } from "src/components/configurator";
-	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 
 	export let value: string;
 	export let ripple: boolean = true;

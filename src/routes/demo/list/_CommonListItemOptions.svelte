@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
 	import { Checkbox } from "@smui/core/checkbox";
-	import { IconType } from "src/components/configurator/common-options/icons/IconTypeOption.svelte";
+	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 	import { ListType } from "@smui/core/list";
-	import IconsOptions from "src/components/configurator/common-options/icons/IconsOptions.svelte";
+	import IconsOptions from "src/components/configurator/smui-components/icons/IconsOptions.svelte";
 	import { UseState } from "@smui/core/common/hooks";
+	import { tick } from "svelte";
 
 	export let ripple: boolean = true;
 	export let disabled: boolean;
@@ -36,9 +37,10 @@
 	$: title = useTitle ? (titleFn ? titleFn() : "Title") : undefined;
 
 	async function handleListTypeUpdate() {
-		if (listType !== "icon") {
+		await tick();
+		if (listType !== "icon" && listType !== "textual") {
 			leadingIcon = null;
-		} else {
+		} else if (listType === "icon" && !leadingIcon) {
 			leadingIcon = "material-icon";
 		}
 	}
@@ -80,7 +82,7 @@
 </div>
 <IconsOptions
 	bind:leadingIcon
-	leadingIconDisabled={listType !== 'icon'}
+	leadingIconDisabled={listType !== 'icon' && listType !== 'textual'}
 	bind:trailingIcon
 	bind:clickableLeadingIcon
 	bind:clickableTrailingIcon
