@@ -2,7 +2,7 @@ import {
 	StringListToFilter,
 	filterStringList,
 } from "@smui/core/common/functions";
-import { stripIndent } from "common-tags";
+import { source, stripIndent } from "common-tags";
 
 export function generateSvelteCode({
 	tag = "",
@@ -36,29 +36,19 @@ export function generateSvelteTagCode({
 	tag = "",
 	props = [],
 	content = "",
-	indentSize,
-	indentFirstLine,
-	after,
-	before,
 }: TagCodeGenerationProps) {
 	const filteredProps = filterStringList(props) || [];
 
-	const propsIntend = `
-			`.substr(1);
-	let parsedProps = filteredProps.join(" \n" + propsIntend);
+	let parsedProps = filteredProps.join(" ${escape}" + "\t");
 	if (parsedProps.length > 0) parsedProps = " " + parsedProps;
 
-	const code = stripIndent`
-${before ? indentCode({ code: stripIndent(before), indentSize: 2 }) : ""}
+	const code = source`
 		<${tag}${parsedProps}>
-${indentCode({ code: stripIndent(content), indentSize: 3 })}
+			${content.trim()}
 		</${tag}>
-${after ? indentCode({ code: stripIndent(after), indentSize: 2 }) : ""}
-	`;
+	`.trim();
 
-	const result = indentCode({ code, indentSize, indentFirstLine });
-
-	return result;
+	return code;
 }
 
 export function generateSCSSCode({
@@ -91,6 +81,27 @@ export function indentCode({
 
 	const result = startIndent + code.replace(/\n/g, "\n" + indent);
 	return result;
+}
+
+export function removeEmptyLines(code: string) {
+	return code
+		.split("\n")
+		.filter((e) => e.match(/[^ \t]/))
+		.join("\n");
+}
+
+export function tab({
+	code,
+	size,
+	firstLine,
+}: {
+	code: string;
+	size: number;
+	firstLine?: boolean;
+}) {
+	const tab = "\t".repeat(size);
+	const tabbedCode = (firstLine ? tab : "") + code.split("\n").join("\n" + tab);
+	return tabbedCode;
 }
 
 export interface TagCodeGenerationProps {

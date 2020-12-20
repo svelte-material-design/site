@@ -10,10 +10,8 @@
 		IconTypeOption,
 		IconType,
 	} from "src/components/configurator/smui-components/icons";
-	import {
-		getHelperTextCode,
-		getIconCode,
-	} from "src/components/configurator/snippets";
+	import { getHelperTextCode } from "src/components/configurator/snippets";
+	import { getIconCode } from "src/components/configurator/smui-components/icons";
 	import FullWidthTextField from "./_FullWidthTextField.svelte";
 	import { Select, Option } from "@smui/core/select";
 

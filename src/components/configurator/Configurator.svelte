@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { Use } from "@smui/core/common/hooks";
 	import { afterUpdate, onMount } from "svelte";
 	import CodeSelector from "./CodeSelector.svelte";
+	import { source } from "common-tags";
 
+	export let svelteScriptCode: string = undefined;
 	export let svelteCode: string;
 	export let scssCode: string;
 
@@ -48,6 +49,19 @@
 			checkAndFixCodeHeight();
 		}
 	});
+
+	function getSvelteCode(...deps) {
+		if (svelteScriptCode) {
+			const res = source`
+				${svelteScriptCode.trim()}
+
+				${svelteCode.trim()}
+			`;
+			return res;
+		} else {
+			return source(svelteCode);
+		}
+	}
 </script>
 
 <style lang="scss">
@@ -126,6 +140,7 @@
 	}
 </style>
 
+<svelte:options immutable={true} />
 <svelte:window on:resize={() => handleWindowResize()} />
 
 <div class="configurator" style="--extra-code-height: {extraCodeHeight}em;">
@@ -141,6 +156,8 @@
 		<slot name="optionsSidebar" />
 	</div>
 	<div class="code" bind:this={codeElement}>
-		<CodeSelector svelte={svelteCode} scss={scssCode} />
+		<CodeSelector
+			svelte={getSvelteCode(svelteCode, svelteScriptCode)}
+			scss={scssCode} />
 	</div>
 </div>

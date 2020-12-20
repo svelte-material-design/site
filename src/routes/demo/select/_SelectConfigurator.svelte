@@ -8,10 +8,8 @@
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Checkbox } from "@smui/core/checkbox";
-	import {
-		getHelperTextCode,
-		getIconCode,
-	} from "src/components/configurator/snippets";
+	import { getHelperTextCode } from "src/components/configurator/snippets";
+	import { getIconCode } from "src/components/configurator/smui-components/icons";
 	import {
 		IconTypeOption,
 		IconType,

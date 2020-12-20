@@ -14,10 +14,8 @@
 		IconType,
 	} from "src/components/configurator/smui-components/icons";
 	import { DiscreteSlider } from "@smui/core/slider";
-	import {
-		getIconCode,
-		getHelperTextCode,
-	} from "src/components/configurator/snippets";
+	import { getHelperTextCode } from "src/components/configurator/snippets";
+	import { getIconCode } from "src/components/configurator/smui-components/icons";
 
 	let ripple: boolean = true;
 	let lineRipple: boolean = true;

@@ -2,7 +2,7 @@ import { ListRole, ListOrientation, ListType } from "@smui/core/list";
 import { StringListToFilter } from "@svelte-material-ui-test/core/common/functions";
 import { IconType } from "../icons";
 import { GraphicType } from "@smui/core/packages/common";
-import { getIconCode } from "src/components/configurator/snippets";
+import { getIconCode } from "src/components/configurator/smui-components/icons";
 import { generateSvelteTagCode, TagCodeGenerationProps } from "../../code";
 
 export function getProps(props: CodeProps): StringListToFilter {

@@ -10,12 +10,11 @@
 	import { Select, Option } from "@smui/core/select";
 	import { FormField, Label } from "@smui/core/form-field";
 	import { SelectionType } from "@smui/core/common/hoc";
-	import IconTypeOption, {
-		IconType,
-	} from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 	import CommonListItemOptions from "../list/_CommonListItemOptions.svelte";
 	import CommonListOptions from "../list/_CommonListOptions.svelte";
 	import { MenuSurfaceOptions } from "src/components/configurator/smui-components/menu-surface";
+	import { IconType } from "src/components/configurator/smui-components/icons";
+	import IconTypeOption from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 
 	export let selectionType: SelectionType;
 

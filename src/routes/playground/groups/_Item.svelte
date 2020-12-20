@@ -3,10 +3,8 @@
 </script>
 
 <script lang="ts">
-	import { GroupBinding } from "./types";
 	import { Selectable } from "@smui/core/common/selectable";
 
-	export let group: GroupBinding;
 	export let value: string;
 	export let checked: boolean;
 
@@ -21,12 +19,7 @@
 
 <svelte:options immutable={true} />
 
-<Selectable
-	bind:this={selectable}
-	bind:selected={checked}
-	{value}
-	{dom}
-	{group}>
+<Selectable bind:this={selectable} bind:selected={checked} {value} {dom}>
 	<label for={id}>
 		<input
 			bind:this={dom}

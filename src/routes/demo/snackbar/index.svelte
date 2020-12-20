@@ -1,19 +1,14 @@
-<script>
-  import BasicSnackbar from "./_BasicSnackbar.svelte";
-  import LeadingSnackbar from "./_LeadingSnackbar.svelte";
-  import StackedSnackbar from "./_StackedSnackbar.svelte";
-  import DynamicTextSnackbar from "./_DynamicTextSnackbar.svelte";
+<script lang="ts">
+	import { Typography } from "@smui/core/typography";
+	import SnackbarConfigurator from "./_SnackbarConfigurator.svelte";
 </script>
 
 <svelte:head>
-  <title>Snackbars - SMUI</title>
+	<title>Snackbar - SMUI</title>
 </svelte:head>
 
 <section>
-  <h2>Snackbars</h2>
+	<Typography variant="headline2">Snackbar</Typography>
 
-  <BasicSnackbar />
-  <LeadingSnackbar />
-  <StackedSnackbar />
-  <DynamicTextSnackbar />
+	<SnackbarConfigurator />
 </section>

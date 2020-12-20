@@ -37,6 +37,8 @@
 <style lang="scss">
 	.slider-options :global(.label) {
 		width: 100%;
+		padding: 0 24px;
+		box-sizing: border-box;
 
 		> :global(div) {
 			display: flex;

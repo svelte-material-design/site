@@ -1,27 +1,15 @@
 <script lang="ts">
-	import { IconType } from ".";
+	import { IconType, Icon } from ".";
 
 	export let type: IconType;
 	export let component: any;
 	export let button: boolean = false;
 </script>
 
-{#if type === 'material-icon'}
-	<svelte:component this={component} role={button ? 'button' : undefined}>
+<Icon {type} {component} {button}>
+	{#if type === 'material-icon'}
 		{button ? 'clear' : 'alarm'}
-	</svelte:component>
-{:else if type === 'svg'}
-	<svelte:component
-		this={component}
-		role={button ? 'button' : undefined}
-		type="svg"
-		props={{ viewBox: '0 0 24 24' }}>
+	{:else if type === 'svg'}
 		<polygon points="0,24 12,0 24,24" />
-	</svelte:component>
-{:else if type === 'img'}
-	<svelte:component
-		this={component}
-		role={button ? 'button' : undefined}
-		type="img"
-		props={{ src: '/icons/emojis/grinning-face.png', alt: 'Grinning face' }} />
-{/if}
+	{/if}
+</Icon>
