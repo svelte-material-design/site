@@ -8,7 +8,7 @@
 
 <div>
 	<FormField>
-		<Checkbox bind:checked />
+		<Checkbox bind:checked on:change />
 		<Label>{label}</Label>
 	</FormField>
 </div>

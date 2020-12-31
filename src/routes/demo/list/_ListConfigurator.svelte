@@ -11,8 +11,8 @@
 		ListType,
 		Item,
 	} from "@smui/core/list";
-	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
-	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
+	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
+	import MultipleItemSelector from "src/components/configurator/common-options/multiple-items/MultipleItemSelector.svelte";
 	import ListItemOptions from "./_ListItemOptions.svelte";
 	import ListItem from "./_ListItem.svelte";
 	import ListOptions from "./_ListOptions.svelte";

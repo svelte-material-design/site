@@ -49,6 +49,8 @@
 		"sirv": "^1.0.6"
 	},
 	"devDependencies": {
+		"@raythurnevoid/svelte-hooks": "^0.0.2",
+		"@raythurnevoid/svelte-group-components": "^0.0.5",
 		"@teamsupercell/typings-for-css-modules-loader": "^2.3.0",
 		"@types/common-tags": "^1.8.0",
 		"@types/node": "^14.11.2",

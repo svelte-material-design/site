@@ -7,7 +7,7 @@
 	import { Checkbox, CheckboxGroup } from "@smui/core/checkbox";
 	import { Select, Option } from "@smui/core/select";
 	import CheckboxOptions from "./_CheckboxOptions.svelte";
-	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
+	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
 
 	let multipleItemsControls: MultipleItemControls;
 

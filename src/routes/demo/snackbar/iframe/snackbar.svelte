@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from "@smui/core/button";
-	import { UseState } from "@smui/core/common/hooks";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { IFrameContent } from "src/components/configurator";
 	import { SnackbarConfigurations } from "../types";
 	import SnackbarWrapper from "./_Snackbar.svelte";

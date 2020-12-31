@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import { Selectable } from "@smui/core/common/selectable";
+	import { Selectable } from "@raythurnevoid/svelte-group-components/esm/selectable";
 
 	export let value: string;
 	export let checked: boolean;

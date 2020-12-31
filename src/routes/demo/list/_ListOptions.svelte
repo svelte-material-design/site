@@ -2,7 +2,7 @@
 	import { FormField } from "@smui/core/form-field";
 	import { Select, Option } from "@smui/core/select";
 	import { ListRole, ListType } from "@smui/core/list";
-	import { UseState } from "@smui/core/common/hooks";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { createEventDispatcher, tick } from "svelte";
 
 	export let role: ListRole;

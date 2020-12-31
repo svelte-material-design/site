@@ -7,8 +7,8 @@
 		generateSvelteTagCode,
 	} from "src/components/configurator";
 	import SwitchOptions from "./_SwitchOptions.svelte";
-	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
-	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
+	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
+	import MultipleItemSelector from "src/components/configurator/common-options/multiple-items/MultipleItemSelector.svelte";
 	import { getSwitchCode } from "./_switchCode";
 
 	let multipleItemsControls: MultipleItemControls;

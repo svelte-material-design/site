@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Configurator, IFrame } from "src/components/configurator";
-	import TabsConfigurations from "./_TabsConfigurations.svelte";
+	import TabsConfigurations from "./_configurations/TabBarConfigurations.svelte";
 	import { script, template } from "./code";
 	import { IconType } from "src/components/configurator/smui-components/icons";
-	import { Tab, Icon, Label } from "@smui/core/tab";
-	import { TabBar } from "@smui/core/tab-bar";
+	import TabBarPreview from "./_preview/TabBar.svelte";
+	import { TabConfigurations } from "./types";
 
 	let active: string = undefined;
 
@@ -22,6 +22,8 @@
 	export let showDismiss: boolean = undefined;
 	export let dismissRipple: boolean = undefined;
 	//#endregion
+
+	let tabs: TabConfigurations[] = [];
 
 	//#region code
 	let svelteCode: string = "test";
@@ -52,31 +54,10 @@
 <div class="configurator">
 	<Configurator svelteScriptCode={script} {svelteCode} {scssCode}>
 		<svelte-fragment slot="preview">
-			<TabBar bind:active>
-				<Tab key="tab:1">
-					<Label>Tab 1</Label>
-				</Tab>
-				<Tab key="tab:2">
-					<Label>Tab 2</Label>
-				</Tab>
-				<Tab key="tab:3">
-					<Label>Tab 3</Label>
-				</Tab>
-			</TabBar>
+			<TabBarPreview bind:active {tabs} />
 		</svelte-fragment>
 		<div slot="optionsSidebar">
-			<TabsConfigurations
-				bind:open
-				bind:timeoutMs
-				bind:stacked
-				bind:leading
-				bind:closeOnEscape
-				bind:showActionBtn
-				bind:actionRipple
-				bind:iconActionType
-				bind:iconActionRipple
-				bind:showDismiss
-				bind:dismissRipple />
+			<TabsConfigurations bind:tabsConfigurations={tabs} />
 		</div>
 	</Configurator>
 </div>

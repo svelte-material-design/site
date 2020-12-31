@@ -4,7 +4,7 @@
 	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 	import { ListType } from "@smui/core/list";
 	import IconsOptions from "src/components/configurator/smui-components/icons/IconsOptions.svelte";
-	import { UseState } from "@smui/core/common/hooks";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { tick } from "svelte";
 
 	export let ripple: boolean = true;

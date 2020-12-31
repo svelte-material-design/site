@@ -1,5 +1,5 @@
 export interface Item {
 	id: string;
-	label?: string;
+	label: string;
 	[prop: string]: any;
 }

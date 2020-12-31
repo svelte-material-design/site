@@ -2,7 +2,7 @@
 	import {
 		MultiSelectionGroup,
 		SingleSelectionGroup,
-	} from "@smui/core/common/selectable";
+	} from "@raythurnevoid/svelte-group-components/esm/selectable";
 	import Item from "./_Item.svelte";
 
 	let value: any = ["3"];

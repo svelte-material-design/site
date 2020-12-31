@@ -10,8 +10,8 @@
 		ListType,
 	} from "@smui/core/list";
 	import { NavList } from "@smui/core/list/nav-list";
-	import MultipleItemControls from "src/components/configurator/common-options/selection-group/MultipleItemControls.svelte";
-	import MultipleItemSelector from "src/components/configurator/common-options/selection-group/MultipleItemSelector.svelte";
+	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
+	import MultipleItemSelector from "src/components/configurator/common-options/multiple-items/MultipleItemSelector.svelte";
 	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
 	import { createItemCode, createSeparatorCode, ListItemProps } from "./_code";
 	import { tick } from "svelte";

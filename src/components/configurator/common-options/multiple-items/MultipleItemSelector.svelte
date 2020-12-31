@@ -1,11 +1,18 @@
 <script lang="ts">
 	import { FormField } from "@smui/core/form-field";
 	import { Select, Option } from "@smui/core/select";
+	import { MultipleItemsConfigurations } from ".";
 	import { Item } from "./types";
 
 	export let label: string;
 	export let items: Item[];
-	export let selectedItemId: string;
+	export let selectedItem: Item;
+
+	export let multipleItemsConfigurations: MultipleItemsConfigurations;
+
+	function handleSelection(id: string) {
+		multipleItemsConfigurations.setSelectedItem(id);
+	}
 </script>
 
 <style>
@@ -14,12 +21,15 @@
 	}
 </style>
 
+<svelte:options immutable={true} />
+
 <div style="grid-column: span 2;">
 	<FormField>
 		<Select
 			class="multiple-items-selector__select"
 			nullable={false}
-			bind:value={selectedItemId}
+			value={selectedItem.id}
+			on:change={(e) => handleSelection(e.detail.value)}
 			on:change>
 			<span slot="label">{label}</span>
 			<div slot="options">

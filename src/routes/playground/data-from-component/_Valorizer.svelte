@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount, tick } from "svelte";
-	import { Use } from "@smui/core/packages/common/src/hooks";
+	import { Use } from "@raythurnevoid/svelte-hooks";
 
 	const value: string = "value";
 
