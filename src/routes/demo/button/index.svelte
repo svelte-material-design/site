@@ -4,9 +4,11 @@
 	import { Group, GroupItem } from "@smui/core/button/group";
 	import { Menu } from "@smui/core/menu";
 	import { List, Item, Content, Separator } from "@smui/core/list";
-	import { Corner } from "@smui/core/menu-surface";
 	import { Typography } from "@smui/core/typography";
-	import { Group as MenuGroup, Icon as MenuItemIcon } from "@smui/core/menu";
+	import {
+		SelectionGroup as MenuGroup,
+		Icon as MenuItemIcon,
+	} from "@smui/core/menu";
 	import ButtonConfigurator from "./_ButtonConfigurator.svelte";
 	import ApiList from "src/components/api-list/APIList.svelte";
 
@@ -113,7 +115,7 @@
 
 			<Menu
 				bind:this={menu}
-				anchorCorner={Corner.TOP_LEFT}
+				anchorCorner={'top-start'}
 				on:selected={() => clicked++}>
 				<List>
 					<Item>
@@ -149,7 +151,7 @@
 					menu={menu2}>
 					<Icon class="material-icons" style="margin: 0;">arrow_drop_down</Icon>
 				</MenuButton>
-				<Menu bind:this={menu2} anchorCorner={Corner.TOP_LEFT}>
+				<Menu bind:this={menu2} anchorCorner={'top-start'}>
 					<List>
 						<Item on:click={() => clicked++}>
 							<Content>Thing 1</Content>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { MDCMenuDistance } from "@smui/core/menu-surface";
 	import { InputField } from "@smui/core/textfield";
-	import { Typography } from "@svelte-material-ui-test/core/typography";
+	import { Typography } from "@smui/core/typography";
 
 	export let value: MDCMenuDistance;
 

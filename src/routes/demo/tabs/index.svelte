@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Typography } from "@smui/core/packages/typography/src";
+	import { Typography } from "@smui/core/typography";
 	import TabsConfigurator from "./_TabsConfigurator.svelte";
 </script>
 

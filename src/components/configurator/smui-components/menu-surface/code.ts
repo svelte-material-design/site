@@ -3,7 +3,7 @@ import {
 	MenuSurfaceVariant,
 	MDCMenuDistance,
 } from "@smui/core/menu-surface";
-import { StringListToFilter } from "@svelte-material-ui-test/core/common/functions";
+import { StringListToFilter } from "@smui/core/common/functions";
 
 export function getProps(props: CodeProps): StringListToFilter {
 	const {

@@ -10,9 +10,10 @@
 		generateSvelteCode,
 		generateSCSSCode,
 	} from "src/components/configurator";
-	import IconTypeOption, {
+	import {
+		IconTypeOption,
 		IconType,
-	} from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	} from "src/components/configurator/smui-components/icons";
 	import classes from "./button.module.scss";
 
 	let disabled: boolean = false;

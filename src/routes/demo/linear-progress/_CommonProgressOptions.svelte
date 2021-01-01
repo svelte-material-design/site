@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
-	import Checkbox from "@svelte-material-ui-test/core/packages/checkbox/src/Checkbox.svelte";
+	import { Checkbox } from "@smui/core/checkbox";
 
 	export let reversed: boolean;
 	export let closed: boolean;

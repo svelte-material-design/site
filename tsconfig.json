@@ -23,7 +23,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@smui/core/*": [
-				"./node_modules/@svelte-material-ui-test/core/*"
+				"./node_modules/@svelte-material-ui-test/core/esm/*"
 			],
 			"svelte-prism/*": [
 				"./node_modules/@raythurnevoid/svelte-prism/*"
