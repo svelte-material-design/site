@@ -4,97 +4,97 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
-import { SnackbarConfigurations } from "./types";
+import type {
+	IconType,
+	Position,
+} from "src/components/configurator/smui-components/icons";
+import type { TabBarConfigurations, TabConfigurations } from "./types";
 
 export const script = `
 <script>
-	let open;
-
-	function showSnackbar() {
-		open = true;
-	}
+	import {
+		TabBar,
+		Tab,
+		Label,
+		Content,
+		TabIndicator,
+		Icon } from "@smui/core/tab-bar";
 </script>
 `;
 
-export function template(props: SnackbarConfigurations) {
-	const code = source`
-		${getBtnCode()}
-		${getSnackbarCode(props)}
-	`;
-
-	return code;
-}
-
-function getBtnCode() {
-	return `<Button on:click={showSnackbar}>Open snackbar</Button>`;
-}
-
-function getSnackbarCode(props: SnackbarConfigurations) {
-	const { timeoutMs, stacked, leading, closeOnEscape } = props;
+export function template(
+	props: TabBarConfigurations,
+	tabs: TabConfigurations[]
+) {
+	const { focusOnActivate, activateOnKeyboardNavigation, transition } = props;
 
 	const code = generateSvelteTagCode({
-		tag: "Snackbar",
+		tag: "TabBar",
 		props: [
-			"bind:open",
-			[timeoutMs, `timeoutMs=${timeoutMs}`],
-			[stacked, "stacked"],
-			[leading, "leading"],
-			[closeOnEscape, "closeOnEscape"],
+			"bind:active",
+			[!focusOnActivate, `focusOnActivate={${focusOnActivate}}`],
+			[
+				!activateOnKeyboardNavigation,
+				`activateOnKeyboardNavigation={${activateOnKeyboardNavigation}}`,
+			],
+			[transition !== "slide", `transition="${transition}"`],
 		],
 		content: source`
-			<Content>Content</Content>
-			${getActionsCode(props).trim()}
+			${tabs.map((tab) => getTabCode(tab)).join("\n")}
+		`,
+	});
+
+	return removeEmptyLines(code);
+}
+
+function getTabCode(props: TabConfigurations) {
+	const {
+		active,
+		key,
+		ripple,
+		stacked,
+		useMinWidth,
+		tabIndicatorPosition,
+		trailingIcon,
+		leadingIcon,
+		label,
+	} = props;
+
+	const code = generateSvelteTagCode({
+		tag: "Tab",
+		props: [
+			[active, "active"],
+			`key="${key}"`,
+			[!ripple, `ripple={${ripple}}`],
+			[stacked, "stacked"],
+			[useMinWidth, "useMinWidth"],
+		],
+		content: source`
+			<Content>
+				${getTabIconCode(leadingIcon, "leading")}
+				<Label>${label}</Label>
+				${getTabIconCode(trailingIcon, "trailing")}
+				${tabIndicatorPosition === "label" ? "<TabIndicator />" : ""}
+			</Content>
+			${tabIndicatorPosition === "tab" ? "<TabIndicator />" : ""}
 		`,
 	});
 
 	return code;
 }
 
-function getActionsCode(props: SnackbarConfigurations) {
-	const {
-		showActionBtn,
-		actionRipple,
-		showDismiss,
-		dismissRipple,
-		iconActionType,
-	} = props;
-
-	let code: string;
-
-	if (showActionBtn || showDismiss || iconActionType) {
-		code = source`
-			<Actions>
-				${showActionBtn ? `<Action${actionRipple ? "ripple" : ""}>Retry</Action>` : ""}
-				${showDismiss ? `<Dismiss${dismissRipple ? "ripple" : ""}></Dismiss>` : ""}
-				${getIconActionCode(props).trim()}
-			</Actions>
-		`;
-	} else {
-		code = "";
+function getTabIconCode(type: IconType, position: Position) {
+	if (type) {
+		return getIconCode(
+			{
+				tag: "Icon",
+			},
+			{
+				type,
+				position,
+			}
+		);
 	}
 
-	return removeEmptyLines(code);
-}
-
-function getIconActionCode(props: SnackbarConfigurations) {
-	const { iconActionType, iconActionRipple } = props;
-
-	let code: string;
-
-	if (iconActionType) {
-		code = generateSvelteTagCode({
-			tag: "IconAction",
-			props: [[iconActionRipple, "ripple"]],
-			content: getIconCode(
-				{},
-				{
-					type: iconActionType,
-				}
-			),
-		});
-	} else {
-		code = "";
-	}
-
-	return code;
+	return "";
 }

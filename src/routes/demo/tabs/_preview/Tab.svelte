@@ -9,6 +9,8 @@
 	import {
 		IconType,
 		Icon,
+		LeadingIcon,
+		TrailingIcon,
 	} from "src/components/configurator/smui-components/icons";
 	import { TabIndicatorPosition } from "../types";
 
@@ -30,11 +32,11 @@
 <Tab bind:active {key} {ripple} {stacked} {useMinWidth} on:selected>
 	<Content>
 		{#if leadingIcon}
-			<Icon type={leadingIcon} component={TabIcon} />
+			<LeadingIcon type={leadingIcon} component={TabIcon} />
 		{/if}
 		<Label>{label}</Label>
 		{#if trailingIcon}
-			<Icon type={trailingIcon} component={TabIcon} />
+			<TrailingIcon type={trailingIcon} component={TabIcon} />
 		{/if}
 		{#if tabIndicatorPosition === 'label'}
 			<TabIndicator />

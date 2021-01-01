@@ -1,27 +1,21 @@
 <script lang="ts">
 	import { Configurator, IFrame } from "src/components/configurator";
-	import TabsConfigurations from "./_configurations/TabBarConfigurations.svelte";
+	import Configurations from "./_configurations/Configurations.svelte";
 	import { script, template } from "./code";
-	import { IconType } from "src/components/configurator/smui-components/icons";
 	import TabBarPreview from "./_preview/TabBar.svelte";
 	import { TabConfigurations } from "./types";
+	import { MultipleItemsConfigurations } from "src/components/configurator/common-options/multiple-items";
+	import type { TabIndicatorTransition } from "@smui/core/tab-bar";
 
 	let active: string = undefined;
 
 	//#region configurations
-	export let open: boolean = undefined;
-	export let timeoutMs: number = undefined;
-	export let stacked: boolean = undefined;
-	export let leading: boolean = undefined;
-	export let closeOnEscape: boolean = true;
-
-	export let showActionBtn: boolean = undefined;
-	export let actionRipple: boolean = undefined;
-	export let iconActionType: IconType = undefined;
-	export let iconActionRipple: boolean = undefined;
-	export let showDismiss: boolean = undefined;
-	export let dismissRipple: boolean = undefined;
+	export let focusOnActivate: boolean;
+	export let activateOnKeyboardNavigation: boolean;
+	export let transition: TabIndicatorTransition;
 	//#endregion
+
+	let multipleItemsConfigurations: MultipleItemsConfigurations;
 
 	let tabs: TabConfigurations[] = [];
 
@@ -29,23 +23,20 @@
 	let svelteCode: string = "test";
 	let scssCode: string = "";
 
-	$: svelteCode = template({
-		open,
-		timeoutMs,
-		stacked,
-		leading,
-		closeOnEscape,
-		showActionBtn,
-		actionRipple,
-		iconActionType,
-		iconActionRipple,
-		showDismiss,
-		dismissRipple,
-	});
+	$: svelteCode = template(
+		{
+			focusOnActivate,
+			activateOnKeyboardNavigation,
+			transition,
+		},
+		tabs
+	);
 	//#endregion
 
-	function handleUpdate(props) {
-		open = props.open;
+	function handleTabChange(props) {
+		multipleItemsConfigurations.updateSelectedInstance();
+
+		//() => multipleItemsConfigurations.updateSelectedInstance()
 	}
 </script>
 
@@ -54,10 +45,21 @@
 <div class="configurator">
 	<Configurator svelteScriptCode={script} {svelteCode} {scssCode}>
 		<svelte-fragment slot="preview">
-			<TabBarPreview bind:active {tabs} />
+			<TabBarPreview
+				bind:active
+				{tabs}
+				{focusOnActivate}
+				{activateOnKeyboardNavigation}
+				{transition}
+				on:change={handleTabChange} />
 		</svelte-fragment>
 		<div slot="optionsSidebar">
-			<TabsConfigurations bind:tabsConfigurations={tabs} />
+			<Configurations
+				bind:focusOnActivate
+				bind:activateOnKeyboardNavigation
+				bind:transition
+				bind:tabsConfigurations={tabs}
+				bind:multipleItemsConfigurations />
 		</div>
 	</Configurator>
 </div>
