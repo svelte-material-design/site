@@ -19,7 +19,6 @@
 	let disabled: boolean = false;
 	let ripple: boolean = true;
 	let variant: ButtonVariant = undefined;
-	let density: number = 0;
 	let link: boolean = false;
 	let secondary: boolean = false;
 	let iconOnly: boolean = false;
@@ -32,15 +31,7 @@
 
 	$: svelteCode = generateSvelteCode({
 		tag: "Button",
-		props: props(
-			customStyle,
-			disabled,
-			ripple,
-			variant,
-			density,
-			link,
-			iconOnly
-		),
+		props: props(customStyle, disabled, ripple, variant, link, iconOnly),
 		content: `
 			${getLeadingIconCode(leadingIcon, iconOnly)}
 			${iconOnly ? "" : `<Label>Button</Label>`}
@@ -97,7 +88,6 @@
 		disabledValue: typeof disabled,
 		rippleValue: typeof ripple,
 		selectedVariant: typeof variant,
-		densityValue: typeof density,
 		linkValue: typeof link,
 		iconOnlyValue: typeof iconOnly
 	): StringListToFilter {
@@ -110,15 +100,10 @@
 			[disabledValue, `disabled`],
 			[rippleValue, `ripple`],
 			[selectedVariant, `variant="${selectedVariant}"`],
-			[densityValue, `density={${getDensity(densityValue)}}`],
 			[linkValue, `href="javascript:void(0)"`],
 			[linkValue, `target="_blank"`],
 			[secondary, `props="javascript:void(0)"`],
 		];
-	}
-
-	function getDensity(density: number): number {
-		return density ? density : null;
 	}
 
 	function getCustomStyleClass(selectedCustomStyle: typeof customStyle) {
@@ -190,7 +175,6 @@
 			{disabled}
 			{ripple}
 			{variant}
-			density={getDensity(density)}
 			href={link ? 'javascript:void(0)' : undefined}
 			target={link ? '_blank' : undefined}
 			color={secondary ? 'secondary' : undefined}>
@@ -259,12 +243,6 @@
 			<FormField>
 				<Checkbox bind:checked={iconOnly} />
 				<span slot="label">Icon only</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField align="end" vertical>
-				<DiscreteSlider bind:value={density} min={0} max={3} step={1} />
-				<span slot="label">Density: {density}</span>
 			</FormField>
 		</div>
 		<div>

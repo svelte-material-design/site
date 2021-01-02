@@ -48,7 +48,7 @@
 		"@teamsupercell/typings-for-css-modules-loader": "^2.3.0",
 		"@mdi/js": "^5.6.55",
 		"@raythurnevoid/svelte-prism": "1.0.0-ts.0",
-		"@svelte-material-ui-test/core": "file:../svelte-material-ui-core/lib",
+		"@svelte-material-ui-test/core": "file:../svelte-material-ui-core",
 		"prismjs": "^1.22.0",
 		"pug": "^3.0.0",
 		"ejs": "^3.1.5",
