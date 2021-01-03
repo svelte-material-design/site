@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { Label, Tab } from "@smui/core/tab";
-
-	import { TabBar } from "@smui/core/tab-bar";
+	import { TabBar, Content, Tab, TabIndicator } from "@smui/core/tab-bar";
 	import BasicIconButtonConfigurator from "./_BasicIconButtonConfigurator.svelte";
 	import IconButtonToggleConfigurator from "./_IconButtonToggleConfigurator.svelte";
 
-	let currentTab;
+	let currentTab: "basic" | "toggle" = "basic";
 </script>
 
 <svelte:head>
@@ -17,10 +15,12 @@
 
 	<TabBar bind:active={currentTab}>
 		<Tab key="basic">
-			<Label>Icon Button</Label>
+			<Content>Icon Button</Content>
+			<TabIndicator />
 		</Tab>
 		<Tab key="toggle">
-			<Label>Icon Button Toggle</Label>
+			<Content>Icon Button Toggle</Content>
+			<TabIndicator />
 		</Tab>
 	</TabBar>
 	{#if currentTab === 'basic'}

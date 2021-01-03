@@ -25,6 +25,9 @@
 			"@smui/core/*": [
 				"./node_modules/@svelte-material-ui-test/core/packages/*"
 			],
+			"@svelte-material-design/core/*": [
+				"./node_modules/@svelte-material-ui-test/core/packages/*"
+			],
 			"svelte-prism/*": [
 				"./node_modules/@raythurnevoid/svelte-prism/*"
 			]

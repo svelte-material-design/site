@@ -6,8 +6,9 @@
 		LeadingIcon,
 		TrailingIcon,
 	} from "src/components/configurator/smui-components/icons";
-	import { scss, template, getCustomStyleClass } from "./code";
+	import { scss, template, getCustomStyleClass, script } from "./code";
 	import classes from "./button.module.scss";
+	import { ButtonConfigurations as ButtonConfigurationsProps } from "./types";
 	import ButtonConfigurations from "./_configurations/ButtonConfigurations.svelte";
 
 	let disabled: boolean = false;
@@ -20,10 +21,12 @@
 	let trailingIcon: IconType = undefined;
 	let customStyle: "mdc-mixins" | "custom-css" | "" = "";
 
+	let svelteScriptCode: string;
 	let svelteCode: string;
 	let scssCode: string;
 
-	$: svelteCode = template({
+	let buttonConfigurations: ButtonConfigurationsProps;
+	$: buttonConfigurations = {
 		disabled,
 		ripple,
 		variant,
@@ -33,24 +36,16 @@
 		leadingIcon,
 		trailingIcon,
 		customStyle,
-	});
+	};
 
-	$: scssCode = scss({
-		disabled,
-		ripple,
-		variant,
-		link,
-		secondary,
-		iconOnly,
-		leadingIcon,
-		trailingIcon,
-		customStyle,
-	});
+	$: svelteScriptCode = script(buttonConfigurations);
+	$: svelteCode = template(buttonConfigurations);
+	$: scssCode = scss(buttonConfigurations);
 </script>
 
 <svelte:options immutable={true} />
 
-<Configurator {svelteCode} {scssCode}>
+<Configurator {svelteScriptCode} {svelteCode} {scssCode}>
 	<div slot="preview">
 		<Button
 			style={iconOnly ? 'padding: 0;' : undefined}

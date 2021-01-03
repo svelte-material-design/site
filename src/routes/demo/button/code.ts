@@ -6,6 +6,27 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
+import { filterStringList } from "@svelte-material-design/core/common/functions";
+
+export function script(props: ButtonConfigurations) {
+	const { iconOnly, leadingIcon, trailingIcon } = props;
+
+	const imports = filterStringList([
+		"Button",
+		[!iconOnly, "Label"],
+		[leadingIcon || trailingIcon, "Icon"],
+	]).join(",\n");
+
+	const code = source`
+		<script>
+			import {
+				${imports}
+			} from "@svelte-material-design/core/button";
+		</script>
+	`;
+
+	return removeEmptyLines(code);
+}
 
 export function template(props: ButtonConfigurations) {
 	const {
