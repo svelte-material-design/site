@@ -8,8 +8,6 @@
 	export let language: "html" | "scss";
 
 	function transformSource(src: string) {
-		src = src.replace(/\$\{escape\}/g, "\n");
-
 		return src;
 	}
 </script>

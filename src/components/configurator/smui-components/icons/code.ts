@@ -7,19 +7,10 @@ export type Position = "leading" | "trailing";
 
 export function getIconCode(
 	options: Partial<TagCodeGenerationProps>,
-	{
-		type,
-		position,
-		clickable,
-		additionalProps = [],
-	}: {
-		type: IconType;
-		position?: Position;
-		clickable?: boolean;
-		additionalProps?: StringListToFilter;
-	}
+	iconProps: IconConfigurations
 ) {
-	const { tag, content, indentSize, indentFirstLine, props } = options;
+	const { tag, content, props } = options;
+	const { type, clickable, additionalProps = [] } = iconProps;
 	const graphicType = getGraphicType(type);
 
 	if (type) {
@@ -28,41 +19,33 @@ export function getIconCode(
 			props: [
 				[graphicType !== "icon", `type="${graphicType}"`],
 				[clickable, `role="button"`],
-				...(props ? props : getDefaultIconProps(type, position)),
+				...(props ? props : getDefaultIconProps(iconProps)),
 				...additionalProps,
 			],
-			content: content ? content : getDefaultIconContent(type, position),
-			indentSize,
-			indentFirstLine,
+			content: content ? content : getDefaultIconContent(iconProps),
 		});
 	} else {
 		return "";
 	}
 }
 
-function getDefaultIconProps(type: IconType, position: Position) {
+function getDefaultIconProps(iconProps: IconConfigurations) {
+	const { type, position } = iconProps;
+
 	if (type === "svg") {
-		return [`props={{viewBox: "0 0 24 24"}}`];
+		return [`viewBox="0 0 24 24"`];
 	} else if (type === "img") {
 		return position === "leading" || !position
-			? [
-					`props={{
-				src: '/icons/emojis/upside-down-face.png',
-				alt: 'Upside down face'
-			}}`,
-			  ]
-			: [
-					`props={{
-				src: '/icons/emojis/grinning-face.png',
-				alt: 'Grinning face'
-			}}`,
-			  ];
+			? [`src="/icons/emojis/upside-down-face.png"`, `alt="Upside down face"`]
+			: [`src="/icons/emojis/grinning-face.png"`, `alt="Grinning face"`];
 	} else {
 		return [];
 	}
 }
 
-function getDefaultIconContent(type: IconType, position: Position) {
+function getDefaultIconContent(iconProps: IconConfigurations) {
+	const { type, position, clickable } = iconProps;
+
 	const graphicType = getGraphicType(type);
 	switch (graphicType) {
 		case "svg":
@@ -74,10 +57,12 @@ function getDefaultIconContent(type: IconType, position: Position) {
 		case "icon":
 		default:
 			return position === "leading"
-				? `favorite`
+				? "favorite"
 				: position === "trailing"
-				? `delete`
-				: `refresh`;
+				? clickable
+					? "clear"
+					: "alarm"
+				: "refresh";
 	}
 }
 
@@ -87,4 +72,11 @@ export function getGraphicType(iconType: IconType): GraphicType {
 	} else {
 		return iconType;
 	}
+}
+
+interface IconConfigurations {
+	type: IconType;
+	position?: Position;
+	clickable?: boolean;
+	additionalProps?: StringListToFilter;
 }

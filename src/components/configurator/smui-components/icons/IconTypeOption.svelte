@@ -11,7 +11,12 @@
 
 <div>
 	<FormField>
-		<Select bind:value style="width: 100%" {disabled} on:change>
+		<Select
+			bind:value
+			style="width: 100%"
+			{disabled}
+			on:change
+			nullable={allowEmpty}>
 			<span slot="label">{label}</span>
 			<div slot="options">
 				{#if allowEmpty}

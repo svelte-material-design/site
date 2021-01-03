@@ -7,7 +7,10 @@
 </script>
 
 {#if type === 'material-icon'}
-	<svelte:component this={component} role={button ? 'button' : undefined}>
+	<svelte:component
+		this={component}
+		{...$$restProps}
+		role={button ? 'button' : undefined}>
 		{#if $$slots.default}
 			<slot />
 		{:else}refresh{/if}
@@ -15,9 +18,10 @@
 {:else if type === 'svg'}
 	<svelte:component
 		this={component}
+		{...$$restProps}
 		role={button ? 'button' : undefined}
 		type="svg"
-		props={{ viewBox: '0 0 24 24' }}>
+		viewBox="0 0 24 24">
 		{#if $$slots.default}
 			<slot />
 		{:else}
@@ -27,7 +31,9 @@
 {:else if type === 'img'}
 	<svelte:component
 		this={component}
+		{...$$restProps}
 		role={button ? 'button' : undefined}
 		type="img"
-		props={{ src: '/icons/emojis/upside-down-face.png', alt: 'Upside down face' }} />
+		src={$$restProps.src || '/icons/emojis/upside-down-face.png'}
+		alt={$$restProps.alt || 'Upside down face'} />
 {/if}

@@ -10,7 +10,7 @@
 		Icon as MenuItemIcon,
 	} from "@smui/core/menu";
 	import ButtonConfigurator from "./_ButtonConfigurator.svelte";
-	import ApiList from "src/components/api-list/APIList.svelte";
+	import { Events, Props } from "src/components/components-api";
 
 	let clicked = 0;
 	let menu: Menu;
@@ -22,9 +22,9 @@
 
 	<ButtonConfigurator />
 
-	<Typography variant="headline3">Events</Typography>
-
-	<ApiList />
+	<Props />
+	<Events
+		forwardedHTMLEvents={['click', 'mousedown', 'mouseup', 'keydown', 'keyup', 'focus', 'blur']} />
 
 	<div>
 		Button groups:

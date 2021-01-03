@@ -6,7 +6,13 @@
 	export let button: boolean = false;
 </script>
 
-<Icon {type} {component} {button}>
+<Icon
+	{...$$restProps}
+	{type}
+	{component}
+	{button}
+	src={type === 'img' ? '/icons/emojis/grinning-face.png' : undefined}
+	alt={type === 'img' ? 'Grinning face' : undefined}>
 	{#if type === 'material-icon'}
 		{button ? 'clear' : 'alarm'}
 	{:else if type === 'svg'}

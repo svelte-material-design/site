@@ -1,5 +1,5 @@
-import { IconType } from "src/components/configurator/smui-components/icons";
-import { TabIndicatorTransition } from "@smui/core/tab-bar";
+import type { IconType } from "src/components/configurator/smui-components/icons";
+import type { TabIndicatorTransition } from "@smui/core/tab-bar";
 
 export interface TabBarConfigurations {
 	focusOnActivate: boolean;

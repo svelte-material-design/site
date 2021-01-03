@@ -1,0 +1,7 @@
+@use "@material/chips";
+
+.readonly-chip {
+	@include chips.density(-2);
+	@include chips.fill-color-accessible(#6883b8);
+	pointer-events: none;
+}

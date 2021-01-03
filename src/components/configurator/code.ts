@@ -8,9 +8,6 @@ export function generateSvelteCode({
 	tag = "",
 	props = [],
 	content = "",
-	indentSize,
-	after,
-	before,
 }: TagCodeGenerationProps) {
 	const filteredProps = filterStringList(props) || [];
 
@@ -19,17 +16,13 @@ export function generateSvelteCode({
 	let parsedProps = filteredProps.join(" \n" + propsIntend);
 	if (parsedProps.length > 0) parsedProps = " " + parsedProps;
 
-	const code = stripIndent`
-${before ? indentCode({ code: stripIndent(before), indentSize: 2 }) : ""}
+	const code = source`
 		<${tag}${parsedProps}>
-${indentCode({ code: stripIndent(content), indentSize: 3 })}
+			${content}
 		</${tag}>
-${after ? indentCode({ code: stripIndent(after), indentSize: 2 }) : ""}
 	`;
 
-	const result = indentCode({ code, indentSize });
-
-	return result;
+	return code;
 }
 
 export function generateSvelteTagCode({
@@ -40,7 +33,7 @@ export function generateSvelteTagCode({
 	const filteredProps = filterStringList(props) || [];
 
 	let parsedProps = filteredProps.join(" ${escape}" + "\t");
-	if (parsedProps.length > 0) parsedProps = " " + parsedProps;
+	if (parsedProps.length) parsedProps = " " + parsedProps;
 
 	const code = source`
 		<${tag}${parsedProps}>
@@ -48,7 +41,7 @@ export function generateSvelteTagCode({
 		</${tag}>
 	`.trim();
 
-	return code;
+	return code.replace(/\$\{escape\}/g, "\n");
 }
 
 export function generateSCSSCode({
@@ -108,8 +101,4 @@ export interface TagCodeGenerationProps {
 	tag: string;
 	props?: StringListToFilter;
 	content?: string;
-	indentSize?: number;
-	indentFirstLine?: boolean;
-	after?: string;
-	before?: string;
 }

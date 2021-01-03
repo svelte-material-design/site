@@ -86,9 +86,7 @@ function getTabCode(props: TabConfigurations) {
 function getTabIconCode(type: IconType, position: Position) {
 	if (type) {
 		return getIconCode(
-			{
-				tag: "Icon",
-			},
+			{},
 			{
 				type,
 				position,

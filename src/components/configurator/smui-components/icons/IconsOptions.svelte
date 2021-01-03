@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { FormField, Label } from "@smui/core/form-field";
-	import IconTypeOption, { IconType } from "./IconTypeOption.svelte";
-	import { Checkbox } from "@smui/core/checkbox";
+	import { IconTypeOption, IconType } from ".";
+	import { Checkbox } from "src/components/configurator/common-options/base";
 
 	export let leadingIcon: IconType = undefined;
 	export let leadingIconDisabled: boolean = false;
 	export let trailingIcon: IconType = undefined;
 	export let clickableLeadingIcon: boolean = false;
 	export let clickableTrailingIcon: boolean = false;
+
+	export let showClickableOptions: boolean = false;
 </script>
 
 <svelte:options immutable={true} />
@@ -23,21 +24,15 @@
 	label="Trailing icon"
 	allowEmpty
 	on:change />
-<div>
-	<FormField>
-		<Checkbox
-			bind:checked={clickableLeadingIcon}
-			disabled={!leadingIcon}
-			on:change />
-		<Label>Clickable leading icon</Label>
-	</FormField>
-</div>
-<div>
-	<FormField>
-		<Checkbox
-			bind:checked={clickableTrailingIcon}
-			disabled={!trailingIcon}
-			on:change />
-		<Label>Clickable trailing icon</Label>
-	</FormField>
-</div>
+{#if showClickableOptions}
+	<Checkbox
+		bind:checked={clickableLeadingIcon}
+		label="Clickable leading icon"
+		disabled={!leadingIcon}
+		on:change />
+	<Checkbox
+		bind:checked={clickableTrailingIcon}
+		label="Clickable trailing icon"
+		disabled={!trailingIcon}
+		on:change />
+{/if}

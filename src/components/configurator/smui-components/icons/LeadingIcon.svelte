@@ -6,9 +6,9 @@
 	export let button: boolean = false;
 </script>
 
-<Icon {type} {component} {button}>
+<Icon {...$$restProps} {type} {component} {button}>
 	{#if type === 'material-icon'}
-		event
+		favorite
 	{:else if type === 'svg'}
 		<circle cx="12" cy="12" r="12" />
 	{/if}

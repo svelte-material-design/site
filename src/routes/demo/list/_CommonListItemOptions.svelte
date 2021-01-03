@@ -81,6 +81,7 @@
 	</FormField>
 </div>
 <IconsOptions
+	showClickableOptions
 	bind:leadingIcon
 	leadingIconDisabled={listType !== 'icon' && listType !== 'textual'}
 	bind:trailingIcon
