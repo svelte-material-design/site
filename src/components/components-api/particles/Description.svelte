@@ -4,9 +4,10 @@
 
 <style lang="scss">
 	.description {
-		> :global(code) {
+		:global(code) {
 			position: relative;
 			padding: 0 0.2em;
+			white-space: nowrap;
 
 			&:after {
 				content: "";

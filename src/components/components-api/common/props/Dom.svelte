@@ -5,18 +5,19 @@
 		Signature,
 		Description,
 	} from "src/components/components-api/props";
+
+	export let keyword: string = undefined;
+	export let name: string = undefined;
+	export let instances: string[];
 </script>
 
 <Prop>
 	<Name readonly>dom</Name>
-	<Signature instances={['HTMLButtonElement', 'HTMLAnchorElement']} />
+	<Signature {keyword} {name} {instances} />
 	<Description>
 		The root
-		<code>HTMLElement</code>. It's
-		<code>HTMLAnchorElement</code>
-		when
-		<code>href</code>
-		is not empty; otherwise it's
-		<code>HTMLButtonElement</code>.
+		<code>HTMLElement</code>.
+
+		<slot />
 	</Description>
 </Prop>

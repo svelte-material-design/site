@@ -8,43 +8,54 @@
 		Props,
 	} from "src/components/components-api/props";
 	import {
-		Ripple,
-		Disabled,
-		Color,
+		BaseComponentProps,
 		Dom,
-		Class,
-		Style,
-		Id,
 	} from "src/components/components-api/common/props";
-	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>Icon</ApiTitle>
 <Props>
 	<Prop>
-		<Name>variant</Name>
+		<Name>type</Name>
 		<Signature
 			keyword="type"
-			name="ButtonVariant"
-			allowedValues={['"text"', '"raised"', '"unelevated"', '"outlined"']}>
-			<Default>"text"</Default>
+			name="IconType"
+			allowedValues={['"icon"', '"svg"', '"img"']}>
+			<Default>"icon"</Default>
 		</Signature>
-		<Description>The variant to use.</Description>
-	</Prop>
-	<Ripple />
-	<Disabled />
-	<Color />
-	<Prop>
-		<Name>href</Name>
-		<Signature keyword="string" />
 		<Description>
-			The URL to link to when the button is clicked. If defined, an
-			<code>a</code>
-			element will be used.
+			Define the tag used to create the icon element in the following way:
+			<ul>
+				<li>
+					when
+					<code>"icon"</code>, the tag will be
+					<code>{'<i />'}</code>
+				</li>
+				<li>
+					when
+					<code>"svg"</code>, the tag will be
+					<code>{'<svg />'}</code>
+				</li>
+				<li>
+					when
+					<code>"img"</code>, the tag will be
+					<code>{'<img />'}</code>
+				</li>
+			</ul>
+			<b>Note</b>
+			<br />
+			When
+			<code>"icon"</code>
+			is used, a default class
+			<code>"material-icons"</code>
+			will be applied to the element if none is passed.
 		</Description>
 	</Prop>
-	<Dom />
-	<Class />
-	<Style />
-	<Id />
+	<BaseComponentProps>
+		<Dom
+			keyword="type"
+			name="IconDOM"
+			instances={['HTMLSpanElement', 'HTMLSVGElement', 'HTMLImageElement']}>
+			<slot name="additional-dom-desc" />
+		</Dom>
+	</BaseComponentProps>
 </Props>

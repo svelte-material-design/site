@@ -11,15 +11,11 @@
 		Ripple,
 		Disabled,
 		Color,
+		BaseComponentProps,
 		Dom,
-		Class,
-		Style,
-		Id,
 	} from "src/components/components-api/common/props";
-	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>Button</ApiTitle>
 <Props>
 	<Prop>
 		<Name>variant</Name>
@@ -43,8 +39,16 @@
 			element will be used.
 		</Description>
 	</Prop>
-	<Dom />
-	<Class />
-	<Style />
-	<Id />
+	<BaseComponentProps>
+		<Dom instances={['HTMLButtonElement', 'HTMLAnchorElement']}>
+			<span slot="additional-dom-desc">
+				It's
+				<code>HTMLAnchorElement</code>
+				when
+				<code>href</code>
+				is not empty; otherwise it's
+				<code>HTMLButtonElement</code>.
+			</span>
+		</Dom>
+	</BaseComponentProps>
 </Props>

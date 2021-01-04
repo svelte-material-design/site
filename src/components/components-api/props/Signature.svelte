@@ -13,7 +13,7 @@
 		color: #ab0d90;
 	}
 
-	.name {
+	.instance {
 		color: #1a1aa8;
 	}
 
@@ -26,10 +26,8 @@
 	<div>
 		<code>
 			{#if keyword}<span class="keyword">{keyword}</span>{/if}
-			{#if name && allowedValues}
-				<span />
-				<span class="name">{name}</span>
-				<span />
+			{#if name}<span /> <span class="name">{name}</span> <span />{/if}
+			{#if allowedValues}
 				<span>
 					=
 					<Pipe values={allowedValues} let:value>
@@ -38,8 +36,9 @@
 				</span>
 			{/if}
 			{#if instances}
+				{#if name}={/if}
 				<Pipe values={instances} let:value>
-					<span class="name">{value}</span>
+					<span class="instance">{value}</span>
 				</Pipe>
 			{/if}
 		</code>
