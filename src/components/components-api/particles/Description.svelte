@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Cell } from "../particles/atoms";
+	import { Cell } from "../common/table";
 </script>
 
 <style lang="scss">

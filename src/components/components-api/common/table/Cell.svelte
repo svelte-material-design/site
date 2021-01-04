@@ -1,3 +1,9 @@
+<script lang="ts">
+	import { getCellClass } from "./TableContext";
+
+	const className = getCellClass();
+</script>
+
 <style lang="scss">
 	@use "@material/data-table";
 
@@ -7,13 +13,9 @@
 		height: 100%;
 		flex-direction: column;
 		justify-content: center;
-
-		&:nth-of-type(1n + 4) {
-			border-top: data-table.$divider-color solid;
-		}
 	}
 </style>
 
-<div class="cell">
+<div class="cell {className}">
 	<slot />
 </div>

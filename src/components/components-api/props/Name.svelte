@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { ReadonlyChip } from "../particles/read-only-chip";
-	import { Cell } from "../particles/atoms";
+	import { ReadonlyChip } from "../particles/chips";
+	import { Cell } from "../common/table";
 
 	export let readonly: boolean = false;
 </script>

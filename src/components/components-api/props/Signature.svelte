@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Value, Pipe } from "../particles";
-	import { Cell } from "../particles/atoms";
+	import { Cell } from "../common/table";
 
 	export let keyword: string;
 	export let name: string = undefined;

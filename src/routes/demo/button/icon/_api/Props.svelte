@@ -19,7 +19,7 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>Button</ApiTitle>
+<ApiTitle>Icon</ApiTitle>
 <Props>
 	<Prop>
 		<Name>variant</Name>

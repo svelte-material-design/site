@@ -1,0 +1,5 @@
+@use "@material/data-table";
+
+.cell {
+	border-top-color: data-table.$divider-color;
+}
