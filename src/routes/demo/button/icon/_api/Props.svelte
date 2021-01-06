@@ -25,19 +25,17 @@
 		<Description>
 			Define the tag used to create the icon element in the following way:
 			<ul>
+				<li>when <code>"icon"</code> the tag will be <code>{'<i />'}</code></li>
 				<li>
 					when
-					<code>"icon"</code>, the tag will be
-					<code>{'<i />'}</code>
-				</li>
-				<li>
-					when
-					<code>"svg"</code>, the tag will be
+					<code>"svg"</code>
+					the tag will be
 					<code>{'<svg />'}</code>
 				</li>
 				<li>
 					when
-					<code>"img"</code>, the tag will be
+					<code>"img"</code>
+					the tag will be
 					<code>{'<img />'}</code>
 				</li>
 			</ul>
@@ -55,7 +53,31 @@
 			keyword="type"
 			name="IconDOM"
 			instances={['HTMLSpanElement', 'HTMLSVGElement', 'HTMLImageElement']}>
-			<slot name="additional-dom-desc" />
+			<slot name="additional-dom-desc">
+				Type depends on the
+				<code>type</code>
+				prop:
+				<ul>
+					<li>
+						when
+						<code>"icon"</code>
+						it will be
+						<code>HTMLSpanElement</code>
+					</li>
+					<li>
+						when
+						<code>"svg"</code>
+						it will be
+						<code>HTMLSVGElement</code>
+					</li>
+					<li>
+						when
+						<code>"img"</code>
+						it will be
+						<code>HTMLImageElement</code>
+					</li>
+				</ul>
+			</slot>
 		</Dom>
 	</BaseComponentProps>
 </Props>

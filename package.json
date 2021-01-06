@@ -48,6 +48,7 @@
 		"@raythurnevoid/svelte-hooks": "^0.0.2",
 		"@raythurnevoid/svelte-prism": "1.0.0-ts.0",
 		"@svelte-material-ui-test/core": "file:../svelte-material-ui-core",
+		"@svelte-material-design/space-modules": "file:../svelte-material-design-space-modules",
 		"@teamsupercell/typings-for-css-modules-loader": "^2.3.0",
 		"@types/common-tags": "^1.8.0",
 		"@types/node": "^14.11.2",

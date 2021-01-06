@@ -18,7 +18,8 @@
 	}
 
 	.default {
-		padding-left: 1em;
+		padding-left: 0.2em;
+		color: gray;
 	}
 </style>
 

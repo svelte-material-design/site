@@ -2,6 +2,7 @@
 	import { Select, Option } from "@smui/core/select";
 	import { FormField } from "@smui/core/form-field";
 
+	export let disabled: boolean;
 	export let value: string;
 	export let label: string;
 	export let nullable: boolean;
@@ -11,9 +12,15 @@
 	}[] = [];
 </script>
 
-<div>
+<style>
+	.select-option :global(.select) {
+		width: 100%;
+	}
+</style>
+
+<div class="select-option">
 	<FormField>
-		<Select {nullable} bind:value on:change>
+		<Select class="select" {nullable} {disabled} bind:value on:change>
 			<span slot="label">{label}</span>
 			<div slot="options">
 				{#each options as option (option.value)}

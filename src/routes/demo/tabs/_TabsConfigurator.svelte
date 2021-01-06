@@ -35,8 +35,6 @@
 
 	function handleTabChange(props) {
 		multipleItemsConfigurations.updateSelectedInstance();
-
-		//() => multipleItemsConfigurations.updateSelectedInstance()
 	}
 </script>
 

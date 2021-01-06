@@ -70,15 +70,15 @@
 	$border: variables.$border-color 1px solid;
 
 	.configurator {
-		max-width: 80em;
 		display: grid;
 		grid-template:
 			"preview options-sidebar" max-content
-			"code options-sidebar" 1fr
-			/ 1fr minmax(200px, min-content);
+			"code options-sidebar" 1fr /
+			1fr minmax(max(300px, 40%), min-content);
 		white-space: normal;
 		border: $border;
 		max-height: calc(80vh + var(--extra-code-height) - 64px);
+		margin-bottom: 1em;
 	}
 
 	.configurator__preview {
@@ -114,13 +114,9 @@
 
 		:global([slot="optionsSidebar"]) {
 			display: grid;
-			grid-template: auto / minmax(150px, min-content) minmax(
-					150px,
-					min-content
-				);
+			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 			gap: 0.6em;
 			white-space: nowrap;
-			width: max-content;
 
 			> :global(div) {
 				display: flex;

@@ -28,6 +28,9 @@
 			"@svelte-material-design/core/*": [
 				"./node_modules/@svelte-material-ui-test/core/packages/*"
 			],
+			"@svelte-material-design/space-modules/*": [
+				"./node_modules/@svelte-material-design/space-modules/packages/*"
+			],
 			"svelte-prism/*": [
 				"./node_modules/@raythurnevoid/svelte-prism/*"
 			]
