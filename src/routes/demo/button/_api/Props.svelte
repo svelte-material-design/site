@@ -11,9 +11,9 @@
 		Ripple,
 		Disabled,
 		Color,
-		BaseComponentProps,
-		Dom,
+		Href,
 	} from "src/components/components-api/common/props";
+	import { BaseButtonProps } from "src/components/components-api/common/props/button";
 </script>
 
 <Props>
@@ -29,26 +29,7 @@
 	</Prop>
 	<Ripple />
 	<Disabled />
-	<Color />
-	<Prop>
-		<Name>href</Name>
-		<Signature keyword="string" />
-		<Description>
-			The URL to link to when the button is clicked. If defined, an
-			<code>a</code>
-			element will be used.
-		</Description>
-	</Prop>
-	<BaseComponentProps>
-		<Dom instances={['HTMLButtonElement', 'HTMLAnchorElement']}>
-			<span slot="additional-dom-desc">
-				It's
-				<code>HTMLAnchorElement</code>
-				when
-				<code>href</code>
-				is not empty; otherwise it's
-				<code>HTMLButtonElement</code>.
-			</span>
-		</Dom>
-	</BaseComponentProps>
+	<Color allowedValues={['"primary"', '"secondary"']} />
+	<Href />
+	<BaseButtonProps />
 </Props>

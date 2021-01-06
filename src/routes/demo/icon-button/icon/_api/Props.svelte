@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		Prop,
-		Name,
-		Signature,
-		Default,
-		Description,
-		Props,
-	} from "src/components/components-api/props";
+	import { Props } from "src/components/components-api/props";
 	import {
 		BaseComponentProps,
 		Dom,

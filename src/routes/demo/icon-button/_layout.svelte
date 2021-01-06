@@ -1,16 +1,16 @@
 <script lang="ts">
-	import ButtonConfigurator from "./_configurator/ButtonConfigurator.svelte";
+	import IconButtonConfigurator from "./_configurator/IconButtonConfigurator.svelte";
 	import { SubComponents } from "./_api";
 	import { setLayoutPath } from "src/contexts";
 	import { Title } from "src/components/components-api";
 
-	setLayoutPath("/demo/button");
+	setLayoutPath("/demo/icon-button");
 </script>
 
 <section>
-	<Title module="button">Button</Title>
+	<Title module="icon-button">Icon button</Title>
 
-	<ButtonConfigurator />
+	<IconButtonConfigurator />
 
 	<SubComponents />
 	<slot />

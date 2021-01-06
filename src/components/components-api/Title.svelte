@@ -11,7 +11,7 @@
 </style>
 
 <Typography variant="headline2">
-	Button
+	<slot />
 	<small
 		aria-hidden="true"><code>@svelte-material-design/core/{module}</code></small>
 </Typography>

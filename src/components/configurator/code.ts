@@ -97,6 +97,20 @@ export function tab({
 	return tabbedCode;
 }
 
+export function getModulePath(name: string) {
+	return `@svelte-material-design/core/${name}`;
+}
+
+export function getImportCode(imports: string[], moduleName: string) {
+	const importsCode = filterStringList(["IconButton", "Icon"]).join(",\n");
+
+	return source`
+		import {
+			${importsCode}
+		} from "${getModulePath(moduleName)}";
+	`;
+}
+
 export interface TagCodeGenerationProps {
 	tag: string;
 	props?: StringListToFilter;

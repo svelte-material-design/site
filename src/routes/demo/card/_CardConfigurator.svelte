@@ -25,7 +25,12 @@
 		AspectRatio,
 	} from "@smui/core/card";
 	import { Button, Label } from "@smui/core/button";
-	import { IconButton, IconButtonToggle, Icon } from "@smui/core/icon-button";
+	import { IconButton, Icon } from "@smui/core/icon-button";
+	import {
+		IconButtonToggle,
+		IconOn,
+		IconOff,
+	} from "@smui/core/icon-button-toggle";
 	import CardConfiguratorBody from "./_CardConfiguratorBody.svelte";
 	import { Typography } from "@smui/core/typography";
 	import CardConfiguratorContent from "./_CardConfiguratorContent.svelte";
@@ -188,8 +193,8 @@
 						{#if actionsLayout === 'icons' || actionsLayout === 'all'}
 							<ActionIcons>
 								<IconButtonToggle title="Add to favorites">
-									<Icon on>favorite</Icon>
-									<Icon>favorite_border</Icon>
+									<IconOn>favorite</IconOn>
+									<IconOff>favorite_border</IconOff>
 								</IconButtonToggle>
 								<IconButton title="Share">
 									<Icon>share</Icon>

@@ -8,8 +8,8 @@
 	} from "src/components/configurator/smui-components/icons";
 	import { scss, template, getCustomStyleClass, script } from "./code";
 	import classes from "./button.module.scss";
-	import { ButtonConfigurations as ButtonConfigurationsProps } from "./types";
-	import ButtonConfigurations from "./_configurations/ButtonConfigurations.svelte";
+	import { ButtonConfigurations as ButtonConfigurationsProps } from "../types";
+	import ButtonConfigurations from "./ButtonConfigurations.svelte";
 
 	let disabled: boolean = false;
 	let ripple: boolean = true;
@@ -66,7 +66,7 @@
 			<TrailingIcon component={Icon} type={trailingIcon} />
 		</Button>
 	</div>
-	<div slot="optionsSidebar" class="options-sidebar">
+	<div slot="optionsSidebar">
 		<ButtonConfigurations
 			bind:disabled
 			bind:ripple

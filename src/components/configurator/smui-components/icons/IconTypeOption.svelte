@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { FormField } from "@svelte-material-design/core/form-field";
 	import { IconType } from ".";
 	import { Select } from "../../common-options/base";
 

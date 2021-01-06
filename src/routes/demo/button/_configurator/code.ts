@@ -1,8 +1,9 @@
-import { ButtonConfigurations, CustomStyle } from "./types";
+import { ButtonConfigurations, CustomStyle } from "../types";
 import { source } from "common-tags";
 import {
 	generateSCSSCode,
 	generateSvelteTagCode,
+	getModulePath,
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
@@ -21,7 +22,7 @@ export function script(props: ButtonConfigurations) {
 		<script>
 			import {
 				${imports}
-			} from "@svelte-material-design/core/button";
+			} from "${getModulePath("button")}";
 		</script>
 	`;
 
@@ -45,7 +46,7 @@ export function template(props: ButtonConfigurations) {
 			[iconOnly, `style="padding: 0;"`],
 			[customStyle, `class="${getCustomStyleClass(customStyle)}"`],
 			[disabled, `disabled`],
-			[ripple, `ripple`],
+			[!ripple, `ripple={false}`],
 			[variant, `variant="${variant}"`],
 			[link, `href="javascript:void(0)"`],
 			[secondary, `color="secondary"`],
