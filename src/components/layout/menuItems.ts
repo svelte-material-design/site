@@ -32,6 +32,14 @@ export const menuItems = [
 		],
 	},
 	{
+		name: "Icon Buttons Toggle",
+		route: "/demo/icon-button-toggle",
+		indent: 1,
+		repos: [
+			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button",
+		],
+	},
+	{
 		name: "Cards",
 		route: "/demo/card",
 		indent: 0,

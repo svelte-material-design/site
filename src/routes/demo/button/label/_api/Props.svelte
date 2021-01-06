@@ -3,7 +3,7 @@
 	import {
 		BaseComponentProps,
 		Dom,
-	} from "src/components/components-api/common/props";
+	} from "src/components/components-api/props/common";
 </script>
 
 <Props>

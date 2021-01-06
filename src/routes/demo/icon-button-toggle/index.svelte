@@ -1,13 +1,8 @@
 <script lang="ts">
-	import IconButtonToggleConfigurator from "./_configurator/IconButtonToggleConfigurator.svelte";
+	import { Props, Events } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Icon Button Toggle - Svelte Material Design</title>
-</svelte:head>
-
-<section>
-	<h2>Icon Button</h2>
-
-	<IconButtonToggleConfigurator />
-</section>
+<ApiTitle>IconButtonToggle</ApiTitle>
+<Props />
+<Events />

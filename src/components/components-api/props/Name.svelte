@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { ReadonlyChip } from "../particles/chips";
+	import { ReadonlyChip, ReadwriteChip } from "../common/particles/chips";
 	import { Cell } from "../common/table";
 
 	export let readonly: boolean = false;
+	export let readwrite: boolean = false;
 </script>
 
 <Cell>
@@ -10,6 +11,9 @@
 		<b>
 			<slot />
 		</b>
+		{#if readwrite}
+			<ReadwriteChip />
+		{/if}
 		{#if readonly}
 			<ReadonlyChip />
 		{/if}

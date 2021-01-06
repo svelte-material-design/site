@@ -80,8 +80,6 @@ export function createItemLeadingContentCode(props: ItemCodeProps) {
 				{
 					tag,
 					content: leadingIcon === "material-icon" ? "event" : undefined,
-					indentSize: 3,
-					indentFirstLine: false,
 				},
 				{
 					type: leadingIcon,
@@ -117,8 +115,6 @@ export function createItemTrailingContentCode(props: ItemCodeProps) {
 			${getIconCode(
 				{
 					content: trailingIcon === "material-icon" ? "event" : undefined,
-					indentSize: 3,
-					indentFirstLine: false,
 				},
 				{
 					type: trailingIcon,

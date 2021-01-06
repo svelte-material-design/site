@@ -7,9 +7,6 @@
 	} from "src/components/components-api/sub-components";
 </script>
 
-<style>
-</style>
-
 <SubComponents>
 	<SubComponent>
 		<Tag mandatory href="icon">Icon</Tag>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Cell } from "../common/table";
 	import { Tag } from "../common";
-	import { MandatoryChip } from "../particles/chips";
+	import { MandatoryChip } from "../common/particles/chips";
 	import { getLayoutPath } from "src/contexts";
 	import { stores } from "@sapper/app";
 

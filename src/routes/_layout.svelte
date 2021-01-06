@@ -1,3 +1,9 @@
+<script lang="ts">
+	import { setLayoutPath } from "src/contexts";
+
+	setLayoutPath("/demo");
+</script>
+
 <svelte:head>
 	<link
 		rel="stylesheet"
@@ -10,4 +16,4 @@
 		href="https://fonts.googleapis.com/css?family=Roboto+Mono" />
 </svelte:head>
 
-<slot></slot>
+<slot />

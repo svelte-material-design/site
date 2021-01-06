@@ -2,18 +2,18 @@
 	import {
 		Prop,
 		Name,
-		Signature,
 		Default,
 		Description,
 		Props,
+		Signature,
 	} from "src/components/components-api/props";
 	import {
 		Ripple,
 		Disabled,
 		Color,
 		Href,
-	} from "src/components/components-api/common/props";
-	import { BaseButtonProps } from "src/components/components-api/common/props/button";
+	} from "src/components/components-api/props/common";
+	import { BaseButtonProps } from "src/components/components-api/props/common/button";
 </script>
 
 <Props>

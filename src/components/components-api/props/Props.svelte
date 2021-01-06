@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Typography } from "@svelte-material-design/core/typography";
-	import { Table } from "../particles";
-	import { Text } from "../particles/atoms";
+	import { Table } from "../common/table";
+	import { Text } from "../common/particles/atoms";
 </script>
 
 <style>

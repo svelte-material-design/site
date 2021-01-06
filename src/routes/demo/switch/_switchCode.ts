@@ -36,8 +36,6 @@ function getSwitchTagCode(props: SwitchCodeProps) {
 			[props.title, `title="${props.title}"`],
 			[props.ariaLabel, `ariaLabel="${props.ariaLabel}"`],
 		],
-		indentFirstLine: false,
-		indentSize: 3,
 	});
 }
 
