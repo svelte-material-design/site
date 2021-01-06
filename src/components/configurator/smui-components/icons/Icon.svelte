@@ -4,6 +4,7 @@
 	export let type: IconType;
 	export let component: any;
 	export let button: boolean = false;
+	export let iconContent: string = undefined;
 </script>
 
 {#if type === 'material-icon'}
@@ -11,9 +12,7 @@
 		this={component}
 		{...$$restProps}
 		role={button ? 'button' : undefined}>
-		{#if $$slots.default}
-			<slot />
-		{:else}refresh{/if}
+		{#if iconContent}{iconContent}{:else}refresh{/if}
 	</svelte:component>
 {:else if type === 'svg'}
 	<svelte:component

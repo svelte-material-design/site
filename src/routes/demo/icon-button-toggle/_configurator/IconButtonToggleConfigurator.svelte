@@ -43,14 +43,22 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<IconButtonToggle
-			bind:active
-			title={{ on: 'button-toggle-on', off: 'button-toggle-off' }}
-			{disabled}
-			{ripple}
-			{color}>
-			<IconPreview type={iconType} component={IconOn}>star</IconPreview>
-			<IconPreview type={iconType} component={IconOff}>star_border</IconPreview>
+		<IconButtonToggle bind:active {disabled} {ripple} {color}>
+			<IconPreview type={iconType} component={IconOn} iconContent="star" />
+			<IconPreview
+				type={iconType}
+				component={IconOff}
+				iconContent="star_border"
+				src="/icons/emojis/grinning-face.png"
+				alt="Grinning face">
+				<circle
+					cx="12"
+					cy="12"
+					r="10"
+					fill="transparent"
+					stroke-width="2"
+					stroke="black" />
+			</IconPreview>
 		</IconButtonToggle>
 	</div>
 	<div slot="values">active: {active}</div>

@@ -45,10 +45,24 @@ function getIconCode(
 ): string {
 	const { iconType } = props;
 
+	let content: string;
+	if (iconType === "material-icon") {
+		content = tag === "IconOn" ? "star" : "star_border";
+	} else if (iconType === "svg" && tag === "IconOff") {
+		content = source`
+			<circle cx="12" cy="12" r="10"
+				fill="transparent" stroke-width="2" stroke="black" />
+	`;
+	}
+
 	return getCommonIconCode(
 		{
 			tag,
-			content: tag === "IconOn" ? "star" : "star_border",
+			content,
+			props:
+				iconType === "img" && tag === "IconOff"
+					? [`src="/icons/emojis/grinning-face.png"`, `alt="Grinning face"`]
+					: null,
 		},
 		{
 			type: iconType,
