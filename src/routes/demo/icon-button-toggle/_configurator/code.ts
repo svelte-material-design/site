@@ -10,7 +10,10 @@ import { getIconCode as getCommonIconCode } from "src/components/configurator/sm
 export function script() {
 	const code = source`
 		<script>
-			${getImportCode(["IconButton", "Icon"], "icon-button")}
+			${getImportCode(
+				["IconButtonToggle", "IconOn", "IconOff"],
+				"icon-button-toggle"
+			)} 
 
 			let active;
 		</script>
@@ -27,7 +30,7 @@ export function template(props: IconButtonToggleConfigurations) {
 		props: [
 			"bind:active",
 			[!ripple, `ripple={false}`],
-			[color, `color="${color}"`],
+			[color !== "inherit", `color="${color}"`],
 			[disabled, `disabled`],
 		],
 		content: source`

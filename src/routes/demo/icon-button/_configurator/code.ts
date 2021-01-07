@@ -24,7 +24,7 @@ export function template(props: IconButtonConfigurations) {
 		tag: "IconButton",
 		props: [
 			[!ripple, `ripple={false}`],
-			[color, `color="${color}"`],
+			[color !== "inherit", `color="${color}"`],
 			[disabled, `disabled`],
 			[link, `href="javascript:void(0)"`],
 		],

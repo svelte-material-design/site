@@ -110,13 +110,14 @@
 	.options-sidebar {
 		grid-area: options-sidebar;
 		padding: $padding;
-		overflow: auto;
+		overflow: overlay;
 
 		:global([slot="optionsSidebar"]) {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 			gap: 0.6em;
 			white-space: nowrap;
+			width: 100%;
 
 			> :global(div) {
 				display: flex;

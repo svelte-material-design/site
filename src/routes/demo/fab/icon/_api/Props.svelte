@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Props } from "src/components/components-api/props";
-	import { BaseLabelProps } from "src/components/components-api/props/common/label";
+	import { BaseIconProps } from "src/components/components-api/props/common/icon";
 </script>
 
 <Props>
-	<BaseLabelProps />
+	<BaseIconProps />
 </Props>

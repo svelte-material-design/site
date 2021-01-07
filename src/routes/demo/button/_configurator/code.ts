@@ -3,26 +3,20 @@ import { source } from "common-tags";
 import {
 	generateSCSSCode,
 	generateSvelteTagCode,
-	getModulePath,
+	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
-import { filterStringList } from "@svelte-material-design/core/common/functions";
 
 export function script(props: ButtonConfigurations) {
 	const { iconOnly, leadingIcon, trailingIcon } = props;
 
-	const imports = filterStringList([
-		"Button",
-		[!iconOnly, "Label"],
-		[leadingIcon || trailingIcon, "Icon"],
-	]).join(",\n");
-
 	const code = source`
 		<script>
-			import {
-				${imports}
-			} from "${getModulePath("button")}";
+			${getImportCode(
+				["Button", [!iconOnly, "Label"], [leadingIcon || trailingIcon, "Icon"]],
+				"button"
+			)}
 		</script>
 	`;
 
@@ -37,19 +31,21 @@ export function template(props: ButtonConfigurations) {
 		ripple,
 		variant,
 		link,
-		secondary,
+		color,
+		accessibleTouch,
 	} = props;
 
 	const code = generateSvelteTagCode({
 		tag: "Button",
 		props: [
+			[variant !== "text", `variant="${variant}"`],
+			[color !== "primary", `color="${color}"`],
 			[iconOnly, `style="padding: 0;"`],
 			[customStyle, `class="${getCustomStyleClass(customStyle)}"`],
 			[disabled, `disabled`],
+			[accessibleTouch, `accessibleTouch`],
 			[!ripple, `ripple={false}`],
-			[variant, `variant="${variant}"`],
 			[link, `href="javascript:void(0)"`],
-			[secondary, `color="secondary"`],
 		],
 		content: source`
 			${getLeadingIconCode(props)}

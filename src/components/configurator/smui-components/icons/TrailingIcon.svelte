@@ -12,10 +12,7 @@
 	{component}
 	{button}
 	src={type === 'img' ? '/icons/emojis/grinning-face.png' : undefined}
-	alt={type === 'img' ? 'Grinning face' : undefined}>
-	{#if type === 'material-icon'}
-		{button ? 'clear' : 'alarm'}
-	{:else if type === 'svg'}
-		<polygon points="0,24 12,0 24,24" />
-	{/if}
+	alt={type === 'img' ? 'Grinning face' : undefined}
+	iconContent={button ? 'clear' : 'alarm'}>
+	<polygon points="0,24 12,0 24,24" />
 </Icon>

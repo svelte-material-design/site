@@ -13,7 +13,10 @@
 		Color,
 		Href,
 	} from "src/components/components-api/props/common";
-	import { BaseButtonProps } from "src/components/components-api/props/common/button";
+	import {
+		BaseButtonProps,
+		AccessibleTouch,
+	} from "src/components/components-api/props/common/button";
 </script>
 
 <Props>
@@ -27,9 +30,17 @@
 		</Signature>
 		<Description>The variant to use.</Description>
 	</Prop>
+	<Color>
+		<Signature
+			keyword="type"
+			name="ButtonColor"
+			allowedValues={['"primary"', '"secondary"']}>
+			<Default>"primary"</Default>
+		</Signature>
+	</Color>
 	<Ripple />
 	<Disabled />
-	<Color allowedValues={['"primary"', '"secondary"']} />
 	<Href />
+	<AccessibleTouch />
 	<BaseButtonProps />
 </Props>

@@ -8,7 +8,8 @@
 		<Default>true</Default>
 	</Signature>
 	<Description>
-		Signature If
-		<code>false</code>, the ripple effect will be disabled.
+		If
+		<code>false</code>
+		the ripple effect will be disabled.
 	</Description>
 </Prop>

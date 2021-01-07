@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { Props, Events } from "./_api";
+	import { Props } from "./_api";
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>Fab</ApiTitle>
+<ApiTitle>Label</ApiTitle>
 <Props />
-<Events />

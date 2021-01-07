@@ -101,8 +101,8 @@ export function getModulePath(name: string) {
 	return `@svelte-material-design/core/${name}`;
 }
 
-export function getImportCode(imports: string[], moduleName: string) {
-	const importsCode = filterStringList(["IconButton", "Icon"]).join(",\n");
+export function getImportCode(imports: StringListToFilter, moduleName: string) {
+	const importsCode = filterStringList(imports).join(",\n");
 
 	return source`
 		import {

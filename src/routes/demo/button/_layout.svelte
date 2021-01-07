@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ButtonConfigurator from "./_configurator/ButtonConfigurator.svelte";
+	import ButtonConfigurator from "./_configurator/Configurator.svelte";
 	import { SubComponents } from "./_api";
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
 	import { Title } from "src/components/components-api";

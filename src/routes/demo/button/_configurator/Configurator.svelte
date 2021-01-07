@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Button, Label, ButtonVariant, Icon } from "@smui/core/button";
+	import { Button, Label, Icon } from "@smui/core/button";
+	import type { ButtonColor, ButtonVariant } from "@smui/core/button";
 	import { Configurator } from "src/components/configurator";
 	import {
 		IconType,
@@ -8,34 +9,36 @@
 	} from "src/components/configurator/smui-components/icons";
 	import { scss, template, getCustomStyleClass, script } from "./code";
 	import classes from "./button.module.scss";
-	import { ButtonConfigurations as ButtonConfigurationsProps } from "../types";
-	import ButtonConfigurations from "./ButtonConfigurations.svelte";
+	import { ButtonConfigurations } from "../types";
+	import Configurations from "./Configurations.svelte";
 
 	let disabled: boolean = false;
 	let ripple: boolean = true;
-	let variant: ButtonVariant = undefined;
+	let variant: ButtonVariant = "text";
 	let link: boolean = false;
-	let secondary: boolean = false;
+	let color: ButtonColor = "primary";
 	let iconOnly: boolean = false;
 	let leadingIcon: IconType = undefined;
 	let trailingIcon: IconType = undefined;
 	let customStyle: "mdc-mixins" | "custom-css" | "" = "";
+	let accessibleTouch: boolean = false;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
 	let scssCode: string;
 
-	let buttonConfigurations: ButtonConfigurationsProps;
+	let buttonConfigurations: ButtonConfigurations;
 	$: buttonConfigurations = {
 		disabled,
 		ripple,
 		variant,
 		link,
-		secondary,
+		color,
 		iconOnly,
 		leadingIcon,
 		trailingIcon,
 		customStyle,
+		accessibleTouch,
 	};
 
 	$: svelteScriptCode = script(buttonConfigurations);
@@ -55,7 +58,8 @@
 			{variant}
 			href={link ? 'javascript:void(0)' : undefined}
 			target={link ? '_blank' : undefined}
-			color={secondary ? 'secondary' : undefined}>
+			{color}
+			{accessibleTouch}>
 			<LeadingIcon
 				component={Icon}
 				type={leadingIcon}
@@ -67,15 +71,16 @@
 		</Button>
 	</div>
 	<div slot="optionsSidebar">
-		<ButtonConfigurations
+		<Configurations
 			bind:disabled
 			bind:ripple
 			bind:variant
 			bind:link
-			bind:secondary
+			bind:color
 			bind:iconOnly
 			bind:leadingIcon
 			bind:trailingIcon
-			bind:customStyle />
+			bind:customStyle
+			bind:accessibleTouch />
 	</div>
 </Configurator>

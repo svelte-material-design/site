@@ -4,15 +4,15 @@
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
 	import { Title } from "src/components/components-api";
 
-	setLayoutPath(`${getLayoutPath()}/icon-button-toggle`);
+	setLayoutPath(`${getLayoutPath()}/fab`);
 </script>
 
 <svelte:head>
-	<title>Icon Button Toggle - Svelte Material Design</title>
+	<title>Fab - Svelte Material Design</title>
 </svelte:head>
 
 <section>
-	<Title module="icon-button-toggle">Icon button toggle</Title>
+	<Title module="fab">Fab</Title>
 	<Configurator />
 	<SubComponents />
 	<slot />

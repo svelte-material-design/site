@@ -11,14 +11,15 @@
 
 	export let disabled: boolean = false;
 	export let ripple: boolean = true;
-	export let color: IconButtonColor = undefined;
+	export let color: IconButtonColor = "inherit";
 	export let iconType: IconType = "material-icon";
 </script>
 
 <Select
 	bind:value={color}
 	label="Color"
-	options={[{ value: '', label: '' }, { value: 'primary', label: 'Primary' }, { value: 'secondary', label: 'Secondary' }]} />
+	options={[{ value: 'inherit', label: 'Inherit' }, { value: 'primary', label: 'Primary' }, { value: 'secondary', label: 'Secondary' }]}
+	nullable={false} />
 <IconTypeOption bind:value={iconType} label="Icon type" />
 <Checkbox bind:checked={disabled} label="Disabled" />
 <Checkbox bind:checked={ripple} label="Ripple" />
