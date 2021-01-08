@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CardConfigurator from "./_CardConfigurator.svelte";
+	import CardConfigurator from "./_configurator/Configurator.svelte";
 	import { Typography } from "@smui/core/typography";
 </script>
 

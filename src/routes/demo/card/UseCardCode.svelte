@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AspectRatio } from "@smui/core/card";
-	import { ActionsLayout } from "./_CardConfigurator.svelte";
+	import { ActionsLayout } from "./_configurator/Configurator.svelte";
 
 	export let showTitle: boolean = false;
 	export let showSubtitle: boolean = false;
