@@ -1,4 +1,4 @@
-import { IconButtonToggleConfigurations } from "../types";
+import { IconButtonToggleConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,

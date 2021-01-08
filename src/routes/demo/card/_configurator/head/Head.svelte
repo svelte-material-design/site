@@ -1,12 +1,9 @@
 <script lang="ts">
 	import Content from "../Content.svelte";
 
-	export let showTitle: boolean = false;
-	export let showSubtitle: boolean = false;
-	export let showText: boolean = true;
+	export let title: string = undefined;
+	export let subtitle: string = undefined;
+	export let text: string = undefined;
 </script>
 
-<Content
-	title={showTitle ? 'Head title' : ''}
-	subtitle={showSubtitle ? 'Head subtitle' : ''}
-	text={showText ? 'Head text' : ''} />
+<Content {title} {subtitle} {text} />

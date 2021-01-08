@@ -9,7 +9,7 @@
 	} from "src/components/configurator/smui-components/icons";
 	import { scss, template, getCustomStyleClass, script } from "./code";
 	import classes from "./button.module.scss";
-	import { ButtonConfigurations } from "../types";
+	import { ButtonConfigurations } from "./types";
 	import Configurations from "./Configurations.svelte";
 
 	let disabled: boolean = false;

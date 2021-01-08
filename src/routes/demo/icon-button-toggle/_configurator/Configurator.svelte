@@ -12,7 +12,7 @@
 	} from "src/components/configurator/smui-components/icons";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
-	import type { IconButtonToggleConfigurations } from "../types";
+	import type { IconButtonToggleConfigurations } from "./types";
 
 	let disabled: boolean = false;
 	let ripple: boolean = true;

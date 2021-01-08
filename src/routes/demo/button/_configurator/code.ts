@@ -1,4 +1,4 @@
-import { ButtonConfigurations, CustomStyle } from "../types";
+import { ButtonConfigurations, CustomStyle } from "./types";
 import { source } from "common-tags";
 import {
 	generateSCSSCode,

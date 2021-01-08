@@ -6,7 +6,7 @@
 		Icon as IconPreview,
 	} from "src/components/configurator/smui-components/icons";
 	import Configurations from "./Configurations.svelte";
-	import { IconButtonConfigurations } from "../types";
+	import { IconButtonConfigurations } from "./types";
 	import { template, script } from "./code";
 
 	let disabled: boolean = false;

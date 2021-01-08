@@ -1,17 +1,13 @@
 <script lang="ts">
-	import {
-		Configurator,
-		generateSvelteCode,
-	} from "src/components/configurator";
+	import { Configurator } from "src/components/configurator";
 	import { Card, AspectRatio } from "@smui/core/card";
-	import UseCardCode from "../UseCardCode.svelte";
 	import UseCardStyleCode from "../UseCardStyleCode.svelte";
-	import { StringListToFilter } from "@smui/core/common/functions";
 	import Body from "./body/Body.svelte";
 	import Actions from "./actions/Actions.svelte";
 	import Configurations from "./Configurations.svelte";
 	import Head from "./head/Head.svelte";
-	import { ActionsLayout } from "./types";
+	import { ActionsLayout, CardConfigurations } from "./types";
+	import { script, template } from "./code";
 
 	let outlined: boolean = false;
 
@@ -26,28 +22,33 @@
 	let showMediaContent: boolean = false;
 	let horizontalLayout: boolean = false;
 	let clickableBody: boolean = false;
+	let primaryActionRipple: boolean = true;
 
 	let actionsLayout: ActionsLayout = undefined;
 
+	let cardConfigurations: CardConfigurations;
+	$: cardConfigurations = {
+		outlined,
+		title: showTitle ? "Head title" : undefined,
+		subtitle: showSubtitle ? "Head subtitle" : undefined,
+		text: showText ? "Head text" : undefined,
+		bodyTitle: showBodyTitle ? "Body title" : undefined,
+		bodySubtitle: showBodySubtitle ? "Body subtitle" : undefined,
+		bodyText: showBodyText ? "Body text" : undefined,
+		media,
+		mediaContent: showMediaContent ? "Media content" : undefined,
+		horizontalLayout,
+		clickableBody,
+		primaryActionRipple,
+		actionsLayout,
+	};
+
+	let svelteScriptCode: string;
 	let svelteCode: string;
-	let svelteContentCode: string;
-	$: svelteCode = generateSvelteCode({
-		tag: "Card",
-		props: props(outlined, horizontalLayout),
-		content: svelteContentCode,
-	});
+	$: svelteCode = template(cardConfigurations);
+	$: svelteScriptCode = script(cardConfigurations);
 
 	let scssCode: string;
-
-	function props(
-		outlinedValue: typeof outlined,
-		horizontalLayoutValue: typeof horizontalLayout
-	): StringListToFilter {
-		return [
-			`style="min-width: ${!horizontalLayoutValue ? 350 : 550}px"`,
-			[outlinedValue, `variant="outlined"`],
-		];
-	}
 </script>
 
 <style lang="scss">
@@ -56,36 +57,15 @@
 	}
 </style>
 
-<UseCardCode
-	bind:svelteContentCode
-	{showTitle}
-	{showText}
-	{showSubtitle}
-	{media}
-	{showMediaContent}
-	{showBodyTitle}
-	{showBodyText}
-	{showBodySubtitle}
-	{horizontalLayout}
-	{clickableBody}
-	{actionsLayout} />
-
 <UseCardStyleCode bind:styleCode={scssCode} {media} {horizontalLayout} />
 
-<Configurator {svelteCode} {scssCode}>
+<Configurator {svelteScriptCode} {svelteCode} {scssCode}>
 	<div slot="preview">
 		<Card
 			variant={outlined ? 'outlined' : undefined}
 			style="min-width: {!horizontalLayout ? 350 : 550}px">
-			<Head {showTitle} {showSubtitle} {showText} />
-			<Body
-				{showBodyTitle}
-				{showBodySubtitle}
-				{showBodyText}
-				{media}
-				{showMediaContent}
-				{horizontalLayout}
-				{clickableBody} />
+			<Head {...cardConfigurations} />
+			<Body {...cardConfigurations} />
 			<Actions {actionsLayout} />
 		</Card>
 	</div>
@@ -102,6 +82,7 @@
 			bind:showMediaContent
 			bind:horizontalLayout
 			bind:clickableBody
+			bind:primaryActionRipple
 			bind:actionsLayout />
 	</div>
 </Configurator>

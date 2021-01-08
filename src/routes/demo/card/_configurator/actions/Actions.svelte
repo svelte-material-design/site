@@ -2,15 +2,14 @@
 	import {
 		Actions,
 		ActionButtons,
-		IconActions,
-		IconAction,
+		ActionIcons,
+		ActionIcon,
 		Icon,
-		IconActionToggle,
+		ActionIconToggle,
 		IconOn,
 		IconOff,
-		Action,
-		ActionIcon,
-		ActionLabel,
+		ActionButton,
+		Label,
 	} from "@smui/core/card";
 	import { ActionsLayout } from "../types";
 
@@ -20,37 +19,37 @@
 {#if actionsLayout}
 	<Actions fullBleed={actionsLayout === 'full-bleed'}>
 		{#if actionsLayout === 'full-bleed'}
-			<Action>
-				<ActionLabel>Action</ActionLabel>
-				<ActionIcon>arrow_forward</ActionIcon>
-			</Action>
+			<ActionButton>
+				<Label>Action</Label>
+				<Icon>arrow_forward</Icon>
+			</ActionButton>
 		{:else}
 			{#if actionsLayout === 'single' || actionsLayout === 'multi' || actionsLayout === 'all'}
 				<ActionButtons>
-					<Action>
-						<ActionLabel>Action</ActionLabel>
-						<ActionIcon>refresh</ActionIcon>
-					</Action>
+					<ActionButton>
+						<Label>Action</Label>
+						<Icon>refresh</Icon>
+					</ActionButton>
 					{#if actionsLayout === 'multi' || actionsLayout === 'all'}
-						<Action>
-							<ActionLabel>Another</ActionLabel>
-						</Action>
+						<ActionButton>
+							<Label>Another</Label>
+						</ActionButton>
 					{/if}
 				</ActionButtons>
 			{/if}
 			{#if actionsLayout === 'icons' || actionsLayout === 'all'}
-				<IconActions>
-					<IconActionToggle title="Add to favorites">
+				<ActionIcons>
+					<ActionIconToggle title="Add to favorites">
 						<IconOn>favorite</IconOn>
 						<IconOff>favorite_border</IconOff>
-					</IconActionToggle>
-					<IconAction title="Share">
+					</ActionIconToggle>
+					<ActionIcon title="Share">
 						<Icon>share</Icon>
-					</IconAction>
-					<IconAction title="More options">
+					</ActionIcon>
+					<ActionIcon title="More options">
 						<Icon>more_vert</Icon>
-					</IconAction>
-				</IconActions>
+					</ActionIcon>
+				</ActionIcons>
 			{/if}
 		{/if}
 	</Actions>

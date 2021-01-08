@@ -3,7 +3,7 @@
 	import { Media, MediaContent, AspectRatio } from "@smui/core/card";
 	import { Typography } from "@smui/core/typography";
 
-	export let showMediaContent: boolean;
+	export let mediaContent: string;
 	export let aspectRatio: AspectRatio;
 </script>
 
@@ -11,12 +11,12 @@
 	<Media
 		class={aspectRatio === '16x9' ? classes['card-media-16x9'] : classes['card-media-square']}
 		{aspectRatio}>
-		{#if showMediaContent}
+		{#if mediaContent}
 			<MediaContent>
 				<Typography
 					variant="headline6"
 					style="color: white; margin: 1em 0em 0em 1em;">
-					Card media content
+					{mediaContent}
 				</Typography>
 			</MediaContent>
 		{/if}

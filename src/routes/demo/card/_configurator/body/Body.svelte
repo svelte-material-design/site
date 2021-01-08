@@ -5,32 +5,33 @@
 	} from "@svelte-material-design/core/card";
 	import BodyContent from "./BodyContent.svelte";
 
-	export let showBodyTitle: boolean = false;
-	export let showBodySubtitle: boolean = false;
-	export let showBodyText: boolean = false;
+	export let bodyTitle: string = undefined;
+	export let bodySubtitle: string = undefined;
+	export let bodyText: string = undefined;
 	export let media: AspectRatio = undefined;
-	export let showMediaContent: boolean = false;
+	export let mediaContent: string = undefined;
 	export let horizontalLayout: boolean = false;
 	export let clickableBody: boolean = false;
+	export let primaryActionRipple: boolean = false;
 </script>
 
-{#if showBodyTitle || showBodySubtitle || showBodyText || media || showMediaContent}
+{#if bodyTitle || bodySubtitle || bodyText || media || mediaContent}
 	{#if !clickableBody}
 		<BodyContent
-			{showBodyTitle}
-			{showBodySubtitle}
-			{showBodyText}
+			{bodyTitle}
+			{bodySubtitle}
+			{bodyText}
 			{media}
-			{showMediaContent}
+			{mediaContent}
 			{horizontalLayout} />
 	{:else}
-		<PrimaryAction>
+		<PrimaryAction ripple={primaryActionRipple}>
 			<BodyContent
-				{showBodyTitle}
-				{showBodySubtitle}
-				{showBodyText}
+				{bodyTitle}
+				{bodySubtitle}
+				{bodyText}
 				{media}
-				{showMediaContent}
+				{mediaContent}
 				{horizontalLayout} />
 		</PrimaryAction>
 	{/if}

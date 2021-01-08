@@ -20,6 +20,7 @@
 	export let showMediaContent: boolean = false;
 	export let horizontalLayout: boolean = false;
 	export let clickableBody: boolean = false;
+	export let primaryActionRipple: boolean = true;
 
 	export let actionsLayout: ActionsLayout = undefined;
 
@@ -52,6 +53,7 @@
 	$: if (!media) showMediaContent = false;
 	$: if (isHeadTextDisabled) showText = true;
 	$: if (isClickableBodyDisabled) clickableBody = false;
+	$: if (!clickableBody) primaryActionRipple = true;
 
 	let actionsLayoutOptions = [
 		{ value: "", label: "" },
@@ -87,6 +89,10 @@
 <Checkbox
 	bind:checked={clickableBody}
 	disabled={isClickableBodyDisabled}
+	label="Clickable" />
+<Checkbox
+	bind:checked={primaryActionRipple}
+	disabled={!clickableBody}
 	label="Clickable" />
 <Checkbox
 	bind:checked={horizontalLayout}
