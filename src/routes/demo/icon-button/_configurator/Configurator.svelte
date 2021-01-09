@@ -44,12 +44,12 @@
 			<IconPreview component={Icon} type={iconType} />
 		</IconButton>
 	</div>
-	<div slot="optionsSidebar">
+	<svelte-fragment slot="optionsSidebar">
 		<Configurations
 			bind:color
 			bind:disabled
 			bind:ripple
 			bind:link
 			bind:iconType />
-	</div>
+	</svelte-fragment>
 </Configurator>

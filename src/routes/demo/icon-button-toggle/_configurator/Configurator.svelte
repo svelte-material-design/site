@@ -62,7 +62,7 @@
 		</IconButtonToggle>
 	</div>
 	<div slot="values">active: {active}</div>
-	<div slot="optionsSidebar" class="options-sidebar">
+	<svelte-fragment slot="optionsSidebar" class="options-sidebar">
 		<Configurations bind:color bind:disabled bind:ripple bind:iconType />
-	</div>
+	</svelte-fragment>
 </Configurator>

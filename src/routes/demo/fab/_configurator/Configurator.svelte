@@ -40,7 +40,7 @@
 			{/if}
 		</Fab>
 	</div>
-	<div slot="optionsSidebar" class="options-sidebar">
+	<svelte-fragment slot="optionsSidebar">
 		<Configurations
 			bind:accessibleTouch
 			bind:ripple
@@ -48,5 +48,5 @@
 			bind:color
 			bind:variant
 			bind:iconType />
-	</div>
+	</svelte-fragment>
 </Configurator>

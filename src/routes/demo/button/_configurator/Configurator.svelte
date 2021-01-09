@@ -70,7 +70,7 @@
 			<TrailingIcon component={Icon} type={trailingIcon} />
 		</Button>
 	</div>
-	<div slot="optionsSidebar">
+	<svelte-fragment slot="optionsSidebar">
 		<Configurations
 			bind:disabled
 			bind:ripple
@@ -82,5 +82,5 @@
 			bind:trailingIcon
 			bind:customStyle
 			bind:accessibleTouch />
-	</div>
+	</svelte-fragment>
 </Configurator>

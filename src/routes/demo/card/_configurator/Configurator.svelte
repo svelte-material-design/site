@@ -67,7 +67,7 @@
 			<Actions {actionsLayout} />
 		</Card>
 	</div>
-	<div slot="optionsSidebar" class="options-sidebar">
+	<svelte-fragment slot="optionsSidebar">
 		<Configurations
 			bind:outlined
 			bind:showTitle
@@ -82,5 +82,5 @@
 			bind:clickableBody
 			bind:primaryActionRipple
 			bind:actionsLayout />
-	</div>
+	</svelte-fragment>
 </Configurator>

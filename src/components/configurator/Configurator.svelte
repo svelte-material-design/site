@@ -2,6 +2,7 @@
 	import { afterUpdate, onMount } from "svelte";
 	import CodeSelector from "./CodeSelector.svelte";
 	import { source } from "common-tags";
+	import { ConfigurationsGrid } from "./configurations";
 
 	export let svelteScriptCode: string = undefined;
 	export let svelteCode: string;
@@ -111,20 +112,6 @@
 		grid-area: options-sidebar;
 		padding: $padding;
 		overflow: overlay;
-
-		:global([slot="optionsSidebar"]) {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-			gap: 0.6em;
-			white-space: nowrap;
-			width: 100%;
-
-			> :global(div) {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-			}
-		}
 	}
 
 	.preview-slot {
@@ -150,7 +137,9 @@
 		{/if}
 	</div>
 	<div class="options-sidebar">
-		<slot name="optionsSidebar" />
+		<ConfigurationsGrid>
+			<slot name="optionsSidebar" />
+		</ConfigurationsGrid>
 	</div>
 	<div class="code" bind:this={codeElement}>
 		<CodeSelector

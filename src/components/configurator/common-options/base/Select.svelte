@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Select, Option } from "@smui/core/select";
 	import { FormField } from "@smui/core/form-field";
+	import { Configuration } from "src/components/configurator";
 
 	export let disabled: boolean;
 	export let value: string;
@@ -18,15 +19,17 @@
 	}
 </style>
 
-<div class="select-option">
-	<FormField>
-		<Select class="select" {nullable} {disabled} bind:value on:change>
-			<span slot="label">{label}</span>
-			<div slot="options">
-				{#each options as option (option.value)}
-					<Option value={option.value}>{option.label}</Option>
-				{/each}
-			</div>
-		</Select>
-	</FormField>
-</div>
+<Configuration>
+	<div class="select-option">
+		<FormField>
+			<Select class="select" {nullable} {disabled} bind:value on:change>
+				<span slot="label">{label}</span>
+				<div slot="options">
+					{#each options as option (option.value)}
+						<Option value={option.value}>{option.label}</Option>
+					{/each}
+				</div>
+			</Select>
+		</FormField>
+	</div>
+</Configuration>
