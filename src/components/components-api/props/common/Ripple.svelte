@@ -5,7 +5,7 @@
 <Prop>
 	<Name>ripple</Name>
 	<Signature keyword="boolean">
-		<Default>true</Default>
+		<Default value={true} />
 	</Signature>
 	<Description>
 		If

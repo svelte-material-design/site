@@ -1,14 +1,7 @@
 <script lang="ts">
-	import CardConfigurator from "./_configurator/Configurator.svelte";
-	import { Typography } from "@smui/core/typography";
+	import { Props } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Cards - SMUI</title>
-</svelte:head>
-
-<section>
-	<Typography variant="headline2">Cards</Typography>
-
-	<CardConfigurator />
-</section>
+<ApiTitle>Card</ApiTitle>
+<Props />

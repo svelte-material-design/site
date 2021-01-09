@@ -25,8 +25,8 @@
 		<Signature
 			keyword="type"
 			name="ButtonVariant"
-			allowedValues={['"text"', '"raised"', '"unelevated"', '"outlined"']}>
-			<Default>"text"</Default>
+			allowedValues={['text', 'raised', 'unelevated', 'outlined']}>
+			<Default value="text" />
 		</Signature>
 		<Description>The variant to use.</Description>
 	</Prop>
@@ -34,8 +34,8 @@
 		<Signature
 			keyword="type"
 			name="ButtonColor"
-			allowedValues={['"primary"', '"secondary"']}>
-			<Default>"primary"</Default>
+			allowedValues={['primary', 'secondary']}>
+			<Default value="primary" />
 		</Signature>
 	</Color>
 	<Ripple />

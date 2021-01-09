@@ -13,8 +13,8 @@
 	<Signature
 		keyword="type"
 		name="IconType"
-		allowedValues={['"icon"', '"svg"', '"img"']}>
-		<Default>"icon"</Default>
+		allowedValues={['icon', 'svg', 'img']}>
+		<Default value="icon" />
 	</Signature>
 	<Description>
 		Define the tag used to create the icon element in the following way:

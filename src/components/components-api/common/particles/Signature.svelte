@@ -32,7 +32,7 @@
 				<span>
 					=
 					<Pipe values={allowedValues} let:value>
-						<Value>{value}</Value>
+						<Value {value} />
 					</Pipe>
 				</span>
 			{/if}

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { Configurator } from "src/components/configurator";
 	import { Card, AspectRatio } from "@smui/core/card";
-	import UseCardStyleCode from "../UseCardStyleCode.svelte";
 	import Body from "./body/Body.svelte";
 	import Actions from "./actions/Actions.svelte";
 	import Configurations from "./Configurations.svelte";
 	import Head from "./head/Head.svelte";
 	import { ActionsLayout, CardConfigurations } from "./types";
-	import { script, template } from "./code";
+	import { script, template, scss } from "./code";
 
 	let outlined: boolean = false;
 
@@ -45,10 +44,11 @@
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
+	let scssCode: string;
+
 	$: svelteCode = template(cardConfigurations);
 	$: svelteScriptCode = script(cardConfigurations);
-
-	let scssCode: string;
+	$: scssCode = scss(cardConfigurations);
 </script>
 
 <style lang="scss">
@@ -56,8 +56,6 @@
 		gap: 0 !important;
 	}
 </style>
-
-<UseCardStyleCode bind:styleCode={scssCode} {media} {horizontalLayout} />
 
 <Configurator {svelteScriptCode} {svelteCode} {scssCode}>
 	<div slot="preview">

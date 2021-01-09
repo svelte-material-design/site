@@ -21,8 +21,8 @@
 		<Signature
 			keyword="type"
 			name="FabVariant"
-			allowedValues={['"regular"', '"expanded"', '"mini"']}>
-			<Default>"regular"</Default>
+			allowedValues={['regular', 'expanded', 'mini']}>
+			<Default value="regular" />
 		</Signature>
 		<Description>The variant to use.</Description>
 	</Prop>
@@ -30,15 +30,15 @@
 		<Signature
 			keyword="type"
 			name="FabColor"
-			allowedValues={['"primary"', '"secondary"']}>
-			<Default>"secondary"</Default>
+			allowedValues={['primary', 'secondary']}>
+			<Default value="secondary" />
 		</Signature>
 	</Color>
 	<Ripple />
 	<Prop>
 		<Name>show</Name>
 		<Signature keyword="boolean">
-			<Default>true</Default>
+			<Default value={true} />
 		</Signature>
 		<Description>If <code>false</code> the component is hidden.</Description>
 	</Prop>

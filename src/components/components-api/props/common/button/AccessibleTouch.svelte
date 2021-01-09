@@ -5,7 +5,7 @@
 <Prop>
 	<Name>accessibleTouch</Name>
 	<Signature keyword="boolean">
-		<Default>false</Default>
+		<Default value={false} />
 	</Signature>
 	<Description>
 		Ensure the touch area to be accessible. Material Design spec advises that

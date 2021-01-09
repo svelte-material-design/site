@@ -40,11 +40,12 @@ export function script(configurations: CardConfigurations) {
 					"Card",
 					[importContent, "Content"],
 					[title, "Title"],
-					[subtitle, "subtitle"],
+					[subtitle, "SubTitle"],
 					[horizontalLayout, "HorizontalLayout"],
 					[media, "Media"],
 					[mediaContent, "MediaContent"],
 					[clickableBody, "PrimaryAction"],
+					[importIconActions || importActions, "Actions"],
 					[importIconActions, "ActionIcons"],
 					[importIconActions, "ActionIcon"],
 					[importIconActions, "ActionIconToggle"],
@@ -238,4 +239,22 @@ function getActionsCode(configurations: CardConfigurations) {
 			${getActionButtonsCode(configurations)}
 			${getActionIconsCode(configurations)}
 		</Actions>`;
+}
+
+export function scss(configurations: CardConfigurations) {
+	const { media } = configurations;
+
+	if (media === "16x9") {
+		return source`
+			.card-media-16x9 {
+				background-image: url(https://via.placeholder.com/320x180.png?text=16x9);
+			}`;
+	} else if (media === "square") {
+		return source`
+			.card-media-square {
+				background-image: url(https://via.placeholder.com/320x320.png?text=square);
+			}`;
+	} else {
+		return "";
+	}
 }

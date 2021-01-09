@@ -14,7 +14,7 @@
 	<Signature
 		keyword="type"
 		name="IconButtonColor"
-		allowedValues={['"inherit"', '"primary"', '"secondary"']}>
-		<Default>"inherit"</Default>
+		allowedValues={['inherit', 'primary', 'secondary']}>
+		<Default value={'inherit'} />
 	</Signature>
 </Color>

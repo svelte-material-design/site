@@ -5,7 +5,7 @@
 <Prop>
 	<Name>disabled</Name>
 	<Signature keyword="boolean">
-		<Default>false</Default>
+		<Default value={false} />
 	</Signature>
 	<Description>If <code>true</code>, the button will be disabled.</Description>
 </Prop>

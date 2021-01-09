@@ -14,6 +14,6 @@
 		{#if subtitle}
 			<SubTitle>{subtitle}</SubTitle>
 		{/if}
-		{text}
+		{text ? text : ''}
 	</Content>
 {/if}
