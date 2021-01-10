@@ -5,15 +5,21 @@
 	import { Title } from "src/components/components-api";
 
 	setLayoutPath(`${getLayoutPath()}/button`);
+
+	export let segment: string;
 </script>
 
 <svelte:head>
 	<title>Button - Svelte Material Design</title>
 </svelte:head>
 
-<section>
-	<Title module="button">Button</Title>
-	<Configurator />
-	<SubComponents />
+{#if segment === 'iframe'}
 	<slot />
-</section>
+{:else}
+	<section>
+		<Title module="button">Button</Title>
+		<Configurator />
+		<SubComponents />
+		<slot />
+	</section>
+{/if}

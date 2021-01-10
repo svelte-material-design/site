@@ -1,6 +1,5 @@
 import { source } from "common-tags";
 import {
-	generateSCSSCode,
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,

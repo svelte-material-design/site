@@ -59,7 +59,7 @@
 				${svelteCode.trim()}
 			`;
 			return res;
-		} else {
+		} else if (svelteCode) {
 			return source(svelteCode);
 		}
 	}

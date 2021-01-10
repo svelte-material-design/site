@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getLayoutPath } from "src/contexts";
 	import { onMount, tick, createEventDispatcher } from "svelte";
 
 	export let src: string;
@@ -16,10 +17,8 @@
 
 	$: if (iframe && iframeReady) updateProps(props);
 
-	let currentPath: string;
+	let currentPath: string = getLayoutPath();
 	onMount(async () => {
-		currentPath = window.location.href;
-
 		await tick();
 
 		iframe.contentWindow.addEventListener("message", (event) => {

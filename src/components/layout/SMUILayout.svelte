@@ -54,7 +54,7 @@
 <svelte:window on:resize={setMiniWindow} />
 
 <div class={appClasses['app-container']}>
-	<TopAppBar variant="static" class={appClasses['demo-app-bar']}>
+	<TopAppBar class={appClasses['demo-app-bar']}>
 		<Row>
 			<Section>
 				{#if miniWindow}
@@ -114,34 +114,35 @@
 				</IconButton>
 			</Section>
 		</Row>
+		<svelte-fragment slot="content">
+			<Drawer
+				variant={miniWindow ? 'modal' : null}
+				bind:open={drawerOpen}
+				class="mdc-theme--secondary-bg {miniWindow ? appClasses['demo-drawer-adjust'] : ''}">
+				<Content>
+					<NavList>
+						{#each sections as section (section.name)}
+							<NavItem
+								bind:this={section.component}
+								style={section.indent ? 'margin-left: ' + section.indent * 25 + 'px;' : ''}
+								on:click={() => pickSection(section)}
+								activated={'route' in section && section.route === $page.path}
+								href={section.route || section.shortcut}
+								props={{ title: section.name }}>
+								<ListItemContent class="mdc-theme--on-secondary">
+									{section.name}
+								</ListItemContent>
+							</NavItem>
+						{/each}
+					</NavList>
+				</Content>
+			</Drawer>
+
+			<AppContent class={appClasses['demo-app-content']}>
+				<div bind:this={mainContent} class={appClasses['demo-main-content']}>
+					<slot />
+				</div>
+			</AppContent>
+		</svelte-fragment>
 	</TopAppBar>
-
-	<Drawer
-		variant={miniWindow ? 'modal' : null}
-		bind:open={drawerOpen}
-		class="mdc-theme--secondary-bg {miniWindow ? appClasses['demo-drawer-adjust'] : ''}">
-		<Content>
-			<NavList>
-				{#each sections as section (section.name)}
-					<NavItem
-						bind:this={section.component}
-						style={section.indent ? 'margin-left: ' + section.indent * 25 + 'px;' : ''}
-						on:click={() => pickSection(section)}
-						activated={'route' in section && section.route === $page.path}
-						href={section.route || section.shortcut}
-						props={{ title: section.name }}>
-						<ListItemContent class="mdc-theme--on-secondary">
-							{section.name}
-						</ListItemContent>
-					</NavItem>
-				{/each}
-			</NavList>
-		</Content>
-	</Drawer>
-
-	<AppContent class={appClasses['demo-app-content']}>
-		<div bind:this={mainContent} class={appClasses['demo-main-content']}>
-			<slot />
-		</div>
-	</AppContent>
 </div>
