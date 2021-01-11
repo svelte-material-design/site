@@ -15,10 +15,6 @@
 </script>
 
 <Select
-	bind:value={variant}
-	options={[{ value: 'standard', label: 'Standard' }, { value: 'fixed', label: 'fixed' }]}
-	label="Variant" />
-<Select
 	bind:value={color}
 	options={[{ value: 'primary', label: 'Primary' }, { value: 'secondary', label: 'Secondary' }]}
 	label="Color" />

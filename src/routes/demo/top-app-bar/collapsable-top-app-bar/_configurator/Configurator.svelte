@@ -1,24 +1,23 @@
 <script lang="ts">
 	import { Configurator, IFrame } from "src/components/configurator";
 	import Configurations from "./Configurations.svelte";
-	import type { TopAppBarConfigurations } from "./types";
-	import { script, template, scss } from "./code";
-	import type {
-		TopAppBarVariant,
-		TopAppBarColor,
-	} from "@smui/core/top-app-bar";
+	import type { CollapsableTopAppBarConfigurations } from "./types";
+	import { script, template } from "./code";
+	import type { TopAppBarColor } from "@smui/core/top-app-bar";
 
-	let variant: TopAppBarVariant = "standard";
+	let collapsed: boolean;
+
 	let color: TopAppBarColor = "primary";
 	let prominent: boolean = false;
 	let dense: boolean = false;
+	let alwaysCollapsed: boolean = false;
 
-	let cardConfigurations: TopAppBarConfigurations;
+	let cardConfigurations: CollapsableTopAppBarConfigurations;
 	$: cardConfigurations = {
-		variant,
 		prominent,
 		dense,
 		color,
+		alwaysCollapsed,
 	};
 
 	let svelteScriptCode: string;
@@ -29,8 +28,8 @@
 	$: svelteScriptCode = script(cardConfigurations);
 	// $: scssCode = scss(cardConfigurations);
 
-	function handleUpdate(props: TopAppBarConfigurations) {
-		// open = props.open;
+	function handleUpdate(props: CollapsableTopAppBarConfigurations) {
+		collapsed = props.collapsed;
 	}
 </script>
 
@@ -41,14 +40,14 @@
 </style>
 
 <Configurator {svelteScriptCode} {svelteCode} {scssCode}>
-	<div slot="preview" style="width: 100%;">
+	<div slot="preview" style="width: 100%; height: 15em;">
 		<IFrame
-			src="/iframe"
-			title="Top App Bar preview"
+			title="Collapsable Top App Bar preview"
 			props={cardConfigurations}
 			on:update={(e) => handleUpdate(e.detail.props)} />
 	</div>
+	<div slot="values">Collapsed: {collapsed}</div>
 	<svelte-fragment slot="optionsSidebar">
-		<Configurations bind:variant bind:prominent bind:dense bind:color />
+		<Configurations bind:prominent bind:dense bind:color bind:alwaysCollapsed />
 	</svelte-fragment>
 </Configurator>

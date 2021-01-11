@@ -1,2 +1,2 @@
-export { Configurator as TopAppBarConfigurator } from "./top-app-bar";
-export { Configurator as CollapsableTopAppBarConfigurator } from "./collapsable-top-app-bar";
+export { default as Configurator } from "./Configurator.svelte";
+export { default as CommonTopAppBarConfigurations } from "./CommonTopAppBarConfigurations.svelte";

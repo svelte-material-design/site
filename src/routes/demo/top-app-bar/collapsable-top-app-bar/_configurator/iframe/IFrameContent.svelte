@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { IFrameContent } from "src/components/configurator";
-	import { TopAppBarConfigurations } from "../types";
+	import { CollapsableTopAppBarConfigurations } from "../types";
 	import Preview from "./Preview.svelte";
 
 	let iframeContent: IFrameContent;
 
-	let props = {} as TopAppBarConfigurations;
+	let props = {} as CollapsableTopAppBarConfigurations;
+	let collapsed: boolean;
 	let propsState: UseState;
 
 	function handlePropsUpdate(newProps) {
@@ -14,9 +15,14 @@
 		propsState.setValue(props);
 	}
 
-	function updateIFrame() {
-		iframeContent.setProps(props);
+	function updateIFrame(...deps) {
+		iframeContent.setProps({
+			...props,
+			collapsed,
+		});
 	}
+
+	$: if (iframeContent) updateIFrame(collapsed);
 </script>
 
 <svelte:options immutable={true} />
@@ -26,5 +32,5 @@
 <IFrameContent
 	bind:this={iframeContent}
 	on:update={(event) => handlePropsUpdate(event.detail.props)}>
-	<Preview {...props} />
+	<Preview {...props} bind:collapsed />
 </IFrameContent>

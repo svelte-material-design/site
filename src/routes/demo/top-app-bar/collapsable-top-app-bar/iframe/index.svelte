@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IFrameContent } from "../../_configurator/collapsable-top-app-bar/iframe";
+	import { IFrameContent } from "../_configurator/iframe";
 </script>
 
 <IFrameContent />

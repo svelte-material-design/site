@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as appClasses from "./app.module.scss";
-	import { TopAppBar, Row, Section, Title } from "@smui/core/top-app-bar";
+	import { TopAppBar, Section, Title } from "@smui/core/top-app-bar";
 	import { Content as ListItemContent } from "@smui/core/list";
 	import { A } from "@smui/core/common/dom";
 	import { IconButton, Icon } from "@smui/core/icon-button";
@@ -55,65 +55,63 @@
 
 <div class={appClasses['app-container']}>
 	<TopAppBar class={appClasses['demo-app-bar']}>
-		<Row>
-			<Section>
-				{#if miniWindow}
-					<IconButton
-						class="material-icons"
-						on:click={() => (drawerOpen = !drawerOpen)}>
-						menu
-					</IconButton>
-				{/if}
-				<Title
-					component={A}
-					href="/"
-					on:click={() => (activeSection = null)}
-					class="mdc-theme--primary"
-					style={miniWindow ? 'padding-left: 0;' : ''}>
-					Svelte Material UI
-				</Title>
-			</Section>
-			<Section align="end" toolbar>
-				{#each repos as repo}
-					<IconButton
-						href={repo}
-						title={`View Component: ${repo.split('/').slice(-1)[0]}`}>
-						<Icon>
-							<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-								<path fill="#000000" d={mdiFileDocument} />
-							</svg>
-						</Icon>
-					</IconButton>
-				{/each}
-				{#if activeSection}
-					<IconButton
-						href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`}
-						title={`View Demo Code: ${activeSection.route
-								.split('/')
-								.slice(-1)[0]}`}>
-						<Icon>
-							<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-								<path fill="#000000" d={mdiCodeTags} />
-							</svg>
-						</Icon>
-					</IconButton>
-				{/if}
-				<IconButton href="https://twitter.com/SciActive">
+		<Section>
+			{#if miniWindow}
+				<IconButton
+					class="material-icons"
+					on:click={() => (drawerOpen = !drawerOpen)}>
+					menu
+				</IconButton>
+			{/if}
+			<Title
+				component={A}
+				href="/"
+				on:click={() => (activeSection = null)}
+				class="mdc-theme--primary"
+				style={miniWindow ? 'padding-left: 0;' : ''}>
+				Svelte Material UI
+			</Title>
+		</Section>
+		<Section align="end" toolbar>
+			{#each repos as repo}
+				<IconButton
+					href={repo}
+					title={`View Component: ${repo.split('/').slice(-1)[0]}`}>
 					<Icon>
 						<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-							<path fill="#000000" d={mdiTwitter} />
+							<path fill="#000000" d={mdiFileDocument} />
 						</svg>
 					</Icon>
 				</IconButton>
-				<IconButton href="https://github.com/hperrin/svelte-material-ui">
+			{/each}
+			{#if activeSection}
+				<IconButton
+					href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`}
+					title={`View Demo Code: ${activeSection.route
+							.split('/')
+							.slice(-1)[0]}`}>
 					<Icon>
 						<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-							<path fill="#000000" d={mdiGithub} />
+							<path fill="#000000" d={mdiCodeTags} />
 						</svg>
 					</Icon>
 				</IconButton>
-			</Section>
-		</Row>
+			{/if}
+			<IconButton href="https://twitter.com/SciActive">
+				<Icon>
+					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+						<path fill="#000000" d={mdiTwitter} />
+					</svg>
+				</Icon>
+			</IconButton>
+			<IconButton href="https://github.com/hperrin/svelte-material-ui">
+				<Icon>
+					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+						<path fill="#000000" d={mdiGithub} />
+					</svg>
+				</Icon>
+			</IconButton>
+		</Section>
 		<svelte-fragment slot="content">
 			<Drawer
 				variant={miniWindow ? 'modal' : null}

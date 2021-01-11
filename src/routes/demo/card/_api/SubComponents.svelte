@@ -5,6 +5,11 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
+	import {
+		ActionButton,
+		ActionIcon,
+		GenericIcon,
+	} from "src/components/components-api/sub-components/common";
 </script>
 
 <style>
@@ -61,67 +66,14 @@
 		</Description>
 	</SubComponent>
 	<SubComponent>
-		<Tag href="action-icons">ActionIcons</Tag>
-		<Description>A group of <code>{'<ActionIcon />'}</code>.</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="action-icon">ActionIcon</Tag>
-		<Description>
-			Like an
-			<code>{'<IconButton />'}</code>
-			but used as action for the card.
-		</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="action-icon-toggle">ActionIconToggle</Tag>
-		<Description>
-			Like an
-			<code>{'<IconButtonToggle />'}</code>
-			but used as action for the card.
-		</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="icon-on">IconOn</Tag>
-		<Description>
-			The icon to use when the
-			<code>{'<IconButtonToggle />'}</code>
-			is active.
-		</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="icon-off">IconOff</Tag>
-		<Description>
-			The icon to use when the
-			<code>{'<IconButtonToggle />'}</code>
-			isn't active.
-		</Description>
-	</SubComponent>
-	<SubComponent>
 		<Tag href="action-buttons">ActionButtons</Tag>
 		<Description>A group of <code>{'<ActionButton />'}</code>.</Description>
 	</SubComponent>
+	<ActionButton />
 	<SubComponent>
-		<Tag href="action-button">ActionButton</Tag>
-		<Description>
-			Like a
-			<code>{'<Button />'}</code>
-			but used as action for the card.
-		</Description>
+		<Tag href="action-icons">ActionIcons</Tag>
+		<Description>A group of <code>{'<ActionIcon />'}</code>.</Description>
 	</SubComponent>
-	<SubComponent>
-		<Tag href="label">Label</Tag>
-		<Description>
-			The label for the
-			<code>{'<ActionButton />'}</code>.
-		</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="icon">Icon</Tag>
-		<Description>
-			A generic icon that can be used for the
-			<code>{'<ActionIcon />'}</code>
-			or as both leading and trailing icon of the
-			<code>{'<ActionButton />'}</code>.
-		</Description>
-	</SubComponent>
+	<ActionIcon />
+	<GenericIcon />
 </SubComponents>

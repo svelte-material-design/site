@@ -15,7 +15,9 @@
 	}
 
 	function updateIFrame() {
-		iframeContent.setProps(props);
+		iframeContent.setProps({
+			...props,
+		});
 	}
 </script>
 

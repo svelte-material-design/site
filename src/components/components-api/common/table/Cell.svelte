@@ -2,6 +2,7 @@
 	import { getCellClass } from "./TableContext";
 
 	const className = getCellClass();
+	let dom: HTMLDivElement;
 </script>
 
 <style lang="scss">
@@ -16,6 +17,6 @@
 	}
 </style>
 
-<div class="cell {className}">
+<div bind:this={dom} class="cell {className}">
 	<slot />
 </div>

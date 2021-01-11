@@ -1,12 +1,10 @@
 <script lang="ts">
-	import {
-		Checkbox,
-		Select,
-	} from "src/components/configurator/common-options/base";
+	import { Select } from "src/components/configurator/common-options/base";
 	import type {
 		TopAppBarVariant,
 		TopAppBarColor,
 	} from "@smui/core/top-app-bar";
+	import { CommonTopAppBarConfigurations } from ".";
 
 	export let variant: TopAppBarVariant = "standard";
 	export let color: TopAppBarColor = "primary";
@@ -18,9 +16,4 @@
 	bind:value={variant}
 	options={[{ value: 'standard', label: 'Standard' }, { value: 'fixed', label: 'fixed' }]}
 	label="Variant" />
-<Select
-	bind:value={color}
-	options={[{ value: 'primary', label: 'Primary' }, { value: 'secondary', label: 'Secondary' }]}
-	label="Color" />
-<Checkbox bind:checked={prominent} label="Prominent" />
-<Checkbox bind:checked={dense} label="Dense" />
+<CommonTopAppBarConfigurations bind:color bind:prominent bind:dense />

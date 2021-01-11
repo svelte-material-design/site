@@ -43,11 +43,12 @@
 	iframe {
 		width: 100%;
 		border: none;
+		height: 100%;
 	}
 </style>
 
 <svelte:options immutable={true} />
 
 {#if currentPath}
-	<iframe bind:this={iframe} src="{currentPath}{src}" {title} />
+	<iframe bind:this={iframe} src="{currentPath}/{src || 'iframe'}" {title} />
 {/if}

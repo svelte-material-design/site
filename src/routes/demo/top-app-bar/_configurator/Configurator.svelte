@@ -43,7 +43,6 @@
 <Configurator {svelteScriptCode} {svelteCode} {scssCode}>
 	<div slot="preview" style="width: 100%;">
 		<IFrame
-			src="/iframe/collapsable-top-app-bar"
 			title="Top App Bar preview"
 			props={cardConfigurations}
 			on:update={(e) => handleUpdate(e.detail.props)} />

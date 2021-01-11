@@ -104,11 +104,11 @@ export function getModulePath(name: string) {
 export function getImportCode(imports: StringListToFilter, moduleName: string) {
 	const importsCode = filterStringList(imports).join(",\n");
 
-	return source`
+	return removeEmptyLines(source`
 		import {
 			${importsCode}
 		} from "${getModulePath(moduleName)}";
-	`;
+	`);
 }
 
 export interface TagCodeGenerationProps {
