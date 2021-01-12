@@ -6,6 +6,7 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/events";
+	import { CommonTopAppBarEvents } from "../../_api/common";
 </script>
 
 <Events>
@@ -19,15 +20,6 @@
 				value change following a user scroll action.
 			</Description>
 		</Event>
-		<Event>
-			<Name>nav</Name>
-			<Signature keyword="type" name="OnTopAppBarNav" />
-			<Description>
-				Event fired when the user click on the
-				<code>{'<Navigationicon />'}</code>
-				or the
-				<code>{'<NavigationButton />'}</code>.
-			</Description>
-		</Event>
+		<CommonTopAppBarEvents />
 	</svelte-fragment>
 </Events>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import {
 		CollapsableTopAppBar,
-		Row,
 		Section,
-		Navigation,
+		NavigationIcon,
+		NavigationButton,
 		Icon,
 	} from "@smui/core/top-app-bar";
 
@@ -13,6 +13,10 @@
 
 	function handleChange(collapsed: boolean) {
 		log = [...log, `Collapsed: ${collapsed}`];
+	}
+
+	function handleNav() {
+		log = [...log, `Nav`];
 	}
 </script>
 
@@ -37,14 +41,13 @@
 	{alwaysCollapsed}
 	dense
 	on:change={(e) => handleChange(e.detail.collapsed)}
+	on:nav={(e) => handleNav()}
 	bind:collapsed>
-	<Row>
-		<Section>
-			<Navigation>
-				<Icon>menu</Icon>
-			</Navigation>
-		</Section>
-	</Row>
+	<Section>
+		<NavigationIcon>
+			<Icon>menu</Icon>
+		</NavigationIcon>
+	</Section>
 	<div slot="content">
 		<div class="content">
 			<div class="log">
@@ -52,7 +55,9 @@
 					<input type="checkbox" bind:checked={alwaysCollapsed} />
 					Always collapsed
 				</label>
-				{#each log as log}<span>{log}</span> <br />{/each}
+				<div>
+					{#each log as log}<span>{log}</span> <br />{/each}
+				</div>
 			</div>
 		</div>
 	</div>

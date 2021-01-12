@@ -3,6 +3,6 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>CollapsableTopAppBar</ApiTitle>
+<ApiTitle>NavigationIcon</ApiTitle>
 <Props />
 <Events />

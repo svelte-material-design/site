@@ -4,9 +4,6 @@
 	import { Configurator } from "./_configurator";
 </script>
 
-<Configurator />
-<SubComponents />
-
 <ApiTitle>TopAppBar</ApiTitle>
 <Props />
 <Events />

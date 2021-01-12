@@ -9,6 +9,8 @@
 		TabIndicator,
 	} from "@svelte-material-design/core/tab-bar";
 	import { stores } from "@sapper/app";
+	import { SubComponents } from "./_api";
+	import { Configurator } from "./_configurator";
 
 	export let configurator: "standard" | "collapsable" = "standard";
 	export let segment: string;
@@ -54,6 +56,12 @@
 				</Tab>
 			</a>
 		</TabBar>
-		<slot />
+		{#if segment === 'collapsable-top-app-bar'}
+			<slot />
+		{:else}
+			<Configurator />
+			<SubComponents />
+			<slot />
+		{/if}
 	</section>
 {/if}

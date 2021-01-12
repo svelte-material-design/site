@@ -1,11 +1,10 @@
 <script lang="ts">
-	import {
-		Events,
-		ForwardedEvents,
-	} from "src/components/components-api/events";
+	import { Events } from "src/components/components-api/events";
+	import { CommonTopAppBarEvents } from "./common";
 </script>
 
 <Events>
-	<ForwardedEvents
-		events={['click', 'mousedown', 'mouseup', 'keydown', 'keyup', 'focus', 'blur']} />
+	<svelte-fragment slot="table">
+		<CommonTopAppBarEvents />
+	</svelte-fragment>
 </Events>

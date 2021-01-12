@@ -1,46 +1,28 @@
 <script lang="ts">
 	import {
+		Props,
 		Prop,
 		Name,
-		Default,
 		Description,
-		Props,
 		Signature,
 	} from "src/components/components-api/props";
 	import {
-		Ripple,
-		Disabled,
-		Color,
-		Href,
+		BaseComponentProps,
+		Dom,
 	} from "src/components/components-api/props/common";
-	import {
-		BaseButtonProps,
-		AccessibleTouch,
-	} from "src/components/components-api/props/common/button";
+	import { CommonTopAppBarProps } from "./common";
 </script>
 
 <Props>
 	<Prop>
 		<Name>variant</Name>
-		<Signature
-			keyword="type"
-			name="ButtonVariant"
-			allowedValues={['text', 'raised', 'unelevated', 'outlined']}>
-			<Default value="text" />
-		</Signature>
-		<Description>The variant to use.</Description>
+		<Signature keyword="type" name="TopAppBarVariant" />
+		<Description>
+			The variant of the TopAppBar. Fixed TopAppBar won't hide on user scrolls.
+		</Description>
 	</Prop>
-	<Color>
-		<Signature
-			keyword="type"
-			name="ButtonColor"
-			allowedValues={['primary', 'secondary']}>
-			<Default value="primary" />
-		</Signature>
-	</Color>
-	<Ripple />
-	<Disabled />
-	<Href />
-	<AccessibleTouch />
-	<BaseButtonProps />
+	<CommonTopAppBarProps />
+	<BaseComponentProps>
+		<Dom instances={['HTMLDivElement']} />
+	</BaseComponentProps>
 </Props>
