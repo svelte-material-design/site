@@ -1,11 +1,5 @@
 <script lang="ts">
-	import {
-		Events,
-		ForwardedEvents,
-	} from "src/components/components-api/events";
+	import { CommonButtonEvents } from "src/components/components-api/events/common/button";
 </script>
 
-<Events>
-	<ForwardedEvents
-		events={['click', 'mousedown', 'mouseup', 'keydown', 'keyup', 'focus', 'blur']} />
-</Events>
+<CommonButtonEvents />

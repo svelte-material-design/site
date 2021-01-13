@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CommonIconActionProps } from "src/components/components-api/props/common/button";
+	import { CommonActionIconProps } from "src/components/components-api/props/common/button";
 </script>
 
-<CommonIconActionProps />
+<CommonActionIconProps />
