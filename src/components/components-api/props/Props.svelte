@@ -1,21 +1,15 @@
 <script lang="ts">
-	import { Typography } from "@svelte-material-design/core/typography";
-	import { Table } from "../common/table";
 	import { Text } from "../common/particles/atoms";
+	import { Section } from "../common";
 </script>
 
-<style>
-	.props,
-	.note {
-		margin-bottom: 1em;
-	}
-</style>
-
 <div class="props">
-	<Typography variant="headline3">Props</Typography>
-	<Table cols={3}>
+	<Section title="Props" slots={$$slots}>
+		<slot slot="table" name="table">
+			<slot />
+		</slot>
 		<slot />
-	</Table>
+	</Section>
 </div>
 <div class="note">
 	<Text>
@@ -27,3 +21,10 @@
 		magical global.
 	</Text>
 </div>
+
+<style>
+	.props,
+	.note {
+		margin-bottom: 1em;
+	}
+</style>

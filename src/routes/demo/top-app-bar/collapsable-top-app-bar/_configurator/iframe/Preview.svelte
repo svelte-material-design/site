@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		CollapsableTopAppBar,
@@ -23,21 +25,13 @@
 	export let alwaysCollapsed: boolean = false;
 </script>
 
-<style>
-	:global(app, body, html) {
-		width: auto !important;
-		position: static !important;
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <CollapsableTopAppBar
 	bind:collapsed
 	{prominent}
 	{dense}
 	{color}
-	{alwaysCollapsed}>
+	{alwaysCollapsed}
+>
 	<Section>
 		<NavigationIcon>
 			<Icon>menu</Icon>
@@ -59,5 +53,14 @@
 			<Icon>bookmark</Icon>
 		</ActionIcon>
 	</Toolbar>
-	<div slot="content" style="height: 200vh;">Content</div>
+	<div slot="content" let:className>
+		<div class={className} style="height: 200vh;">Content</div>
+	</div>
 </CollapsableTopAppBar>
+
+<style>
+	:global(app, body, html) {
+		width: auto !important;
+		position: static !important;
+	}
+</style>

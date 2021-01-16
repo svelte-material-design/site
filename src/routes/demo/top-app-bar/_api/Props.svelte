@@ -23,6 +23,6 @@
 	</Prop>
 	<CommonTopAppBarProps />
 	<BaseComponentProps>
-		<Dom instances={['HTMLDivElement']} />
+		<Dom instances={["HTMLDivElement"]} />
 	</BaseComponentProps>
 </Props>

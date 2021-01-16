@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		TopAppBar,
@@ -24,17 +26,6 @@
 	export let dense: boolean = false;
 </script>
 
-<style>
-	:global(app, body, html) {
-		display: block !important;
-		height: auto !important;
-		width: auto !important;
-		position: static !important;
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <TopAppBar {variant} {prominent} {dense} {color}>
 	<Section>
 		<NavigationIcon>
@@ -55,5 +46,16 @@
 			<Icon>bookmark</Icon>
 		</ActionIcon>
 	</Toolbar>
-	<div slot="content" style="height: 200vh;">Content</div>
+	<div slot="content" let:className>
+		<div class={className} style="height: 200vh;">Content</div>
+	</div>
 </TopAppBar>
+
+<style>
+	:global(app, body, html) {
+		display: block !important;
+		height: auto !important;
+		width: auto !important;
+		position: static !important;
+	}
+</style>

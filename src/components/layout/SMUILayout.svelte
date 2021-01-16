@@ -53,30 +53,31 @@
 
 <svelte:window on:resize={setMiniWindow} />
 
-<div class={appClasses['app-container']}>
-	<TopAppBar class={appClasses['demo-app-bar']}>
+<div class={appClasses["app-container"]}>
+	<TopAppBar class={appClasses["demo-app-bar"]}>
 		<Section>
 			{#if miniWindow}
 				<IconButton
 					class="material-icons"
-					on:click={() => (drawerOpen = !drawerOpen)}>
-					menu
-				</IconButton>
+					on:click={() => (drawerOpen = !drawerOpen)}
+				>menu</IconButton
+				>
 			{/if}
 			<Title
 				component={A}
 				href="/"
 				on:click={() => (activeSection = null)}
 				class="mdc-theme--primary"
-				style={miniWindow ? 'padding-left: 0;' : ''}>
-				Svelte Material UI
-			</Title>
+				style={miniWindow ? "padding-left: 0;" : ""}
+			>Svelte Material UI</Title
+			>
 		</Section>
 		<Section align="end" toolbar>
 			{#each repos as repo}
 				<IconButton
 					href={repo}
-					title={`View Component: ${repo.split('/').slice(-1)[0]}`}>
+					title={`View Component: ${repo.split("/").slice(-1)[0]}`}
+				>
 					<Icon>
 						<svg style="width:24px;height:24px" viewBox="0 0 24 24">
 							<path fill="#000000" d={mdiFileDocument} />
@@ -87,9 +88,10 @@
 			{#if activeSection}
 				<IconButton
 					href={`https://github.com/hperrin/svelte-material-ui/blob/master/site/src/routes${activeSection.route}.svelte`}
-					title={`View Demo Code: ${activeSection.route
-							.split('/')
-							.slice(-1)[0]}`}>
+					title={`View Demo Code: ${
+						activeSection.route.split("/").slice(-1)[0]
+					}`}
+				>
 					<Icon>
 						<svg style="width:24px;height:24px" viewBox="0 0 24 24">
 							<path fill="#000000" d={mdiCodeTags} />
@@ -112,21 +114,27 @@
 				</Icon>
 			</IconButton>
 		</Section>
-		<svelte-fragment slot="content">
+		<svelte-fragment slot="content" let:className={contentClass}>
 			<Drawer
-				variant={miniWindow ? 'modal' : null}
+				variant={miniWindow ? "modal" : null}
 				bind:open={drawerOpen}
-				class="mdc-theme--secondary-bg {miniWindow ? appClasses['demo-drawer-adjust'] : ''}">
+				class="mdc-theme--secondary-bg {miniWindow
+					? appClasses['demo-drawer-adjust']
+					: ''} {contentClass}"
+			>
 				<Content>
 					<NavList>
 						{#each sections as section (section.name)}
 							<NavItem
 								bind:this={section.component}
-								style={section.indent ? 'margin-left: ' + section.indent * 25 + 'px;' : ''}
+								style={section.indent
+									? "margin-left: " + section.indent * 25 + "px;"
+									: ""}
 								on:click={() => pickSection(section)}
-								activated={'route' in section && section.route === $page.path}
+								activated={"route" in section && section.route === $page.path}
 								href={section.route || section.shortcut}
-								props={{ title: section.name }}>
+								props={{ title: section.name }}
+							>
 								<ListItemContent class="mdc-theme--on-secondary">
 									{section.name}
 								</ListItemContent>
@@ -135,9 +143,8 @@
 					</NavList>
 				</Content>
 			</Drawer>
-
-			<AppContent class={appClasses['demo-app-content']}>
-				<div bind:this={mainContent} class={appClasses['demo-main-content']}>
+			<AppContent class={contentClass}>
+				<div bind:this={mainContent} class={appClasses["demo-main-content"]}>
 					<slot />
 				</div>
 			</AppContent>

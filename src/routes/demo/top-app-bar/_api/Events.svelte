@@ -4,7 +4,5 @@
 </script>
 
 <Events>
-	<svelte-fragment slot="table">
-		<CommonTopAppBarEvents />
-	</svelte-fragment>
+	<CommonTopAppBarEvents />
 </Events>

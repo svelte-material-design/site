@@ -10,16 +10,14 @@
 </script>
 
 <Events>
-	<svelte-fragment slot="table">
-		<Event>
-			<Name>change</Name>
-			<Signature keyword="type" name="OnTopAppBarCollapsedChange" />
-			<Description>
-				Event fired when the
-				<code>collapsed</code>
-				value change following a user scroll action.
-			</Description>
-		</Event>
-		<CommonTopAppBarEvents />
-	</svelte-fragment>
+	<Event>
+		<Name>change</Name>
+		<Signature keyword="type" name="OnTopAppBarCollapsedChange" />
+		<Description>
+			Event fired when the
+			<code>collapsed</code>
+			value change following a user scroll action.
+		</Description>
+	</Event>
+	<CommonTopAppBarEvents />
 </Events>

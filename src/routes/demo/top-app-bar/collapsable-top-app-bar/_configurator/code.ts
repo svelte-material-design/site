@@ -4,7 +4,7 @@ import {
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import { commonTopAppBarImport } from "../../_configurator/code";
+import { commonTopAppBarImport, contentCode } from "../../_configurator/code";
 import type { CollapsableTopAppBarConfigurations } from "./types";
 
 export function script(configurations: CollapsableTopAppBarConfigurations) {
@@ -63,6 +63,6 @@ function getContentCode(configurations: CollapsableTopAppBarConfigurations) {
 				<Icon>bookmark</Icon>
 			</ActionIcon>
 		</Toolbar>
-		<div slot="content" style="height: 200vh;">Content</div>
+		${contentCode()}
 	`;
 }
