@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Configurator,
@@ -11,25 +13,24 @@
 		ListType,
 		Item,
 	} from "@smui/core/list";
-	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
-	import MultipleItemSelector from "src/components/configurator/common-options/multiple-items/MultipleItemSelector.svelte";
-	import ListItemOptions from "./_ListItemOptions.svelte";
-	import ListItem from "./_ListItem.svelte";
-	import ListOptions from "./_ListOptions.svelte";
+	import {
+		MultipleItemsConfigurations,
+		MultipleItemControls,
+		MultipleItemSelector,
+	} from "src/components/configurator/common-options/multiple-items";
+	import ListItemOptions from "./_configurator/_ListItemOptions.svelte";
+	import ListItem from "./_configurator/_ListItem.svelte";
+	import ListOptions from "./_configurator/_ListOptions.svelte";
 	import { createItemCode, createSeparatorCode, ListItemProps } from "./_code";
 	import { tick } from "svelte";
-	import CommonListOptions from "./_CommonListOptions.svelte";
-	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
-	import {
-		getProps as getListCodeProps,
-		ItemCodeProps,
-	} from "src/components/configurator/smui-components/list";
+	import CommonListOptions from "./_configurator/_CommonListOptions.svelte";
+	import CommonListItemOptions from "./_configurator/_CommonListItemOptions.svelte";
+	import { getProps as getListCodeProps } from "src/components/configurator/smui-components/list";
 
-	let multipleItemsControls: MultipleItemControls;
+	let multipleItemsConfigurations: MultipleItemsConfigurations;
 
 	let items: ListItemProps[] = [];
 	let selectedItem: ListItemProps = {} as any;
-	let selectedItemId: ListItemProps["id"];
 	let itemsInstance: ListItem[] = [];
 
 	let value: string;
@@ -102,12 +103,12 @@
 	async function handleOptionsChange() {
 		const oldValue = value;
 
-		multipleItemsControls.updateItemsInstance();
+		multipleItemsConfigurations.updateSelectedInstance();
 
 		await tick();
 
 		if (oldValue !== value) {
-			multipleItemsControls.updateItemsInstance();
+			multipleItemsConfigurations.updateSelectedInstance();
 		}
 	}
 
@@ -132,15 +133,6 @@
 	}
 </script>
 
-<style lang="scss">
-	[slot="preview"] {
-		min-height: 10em;
-		width: 80%;
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
 		<List
@@ -151,7 +143,8 @@
 			{itemsRows}
 			{wrapFocus}
 			{dense}
-			{density}>
+			{density}
+		>
 			{#each items as item, index}
 				<ListItem
 					bind:this={itemsInstance[index]}
@@ -171,12 +164,15 @@
 					listRole={role}
 					listType={type}
 					listItemsRows={itemsRows}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsConfigurations &&
+						multipleItemsConfigurations.updateSelectedInstance}
+				/>
 				{#if index === 0 && separator}
 					<Separator
 						insetPadding={separatorInsetPadding}
 						insetLeading={separatorInsetLeading}
-						insetTrailing={separatorInsetTrailing} />
+						insetTrailing={separatorInsetTrailing}
+					/>
 				{/if}
 			{/each}
 		</List>
@@ -186,48 +182,67 @@
 			value:
 			{#if Array.isArray(value)}
 				[{value}]
-			{:else if typeof value === 'string'}"{value}"{:else}{value}{/if}
+			{:else if typeof value === "string"}"{value}"{:else}{value}{/if}
 		</div>
 	</div>
 	<div slot="optionsSidebar">
-		<ListOptions bind:role {type} on:change={handleOptionsChange} />
-		<CommonListOptions
-			bind:wrapFocus
-			bind:dense
-			bind:density
-			bind:orientation
-			bind:type
-			bind:itemsRows
-			bind:separator
-			bind:separatorInsetPadding
-			bind:separatorInsetLeading
-			bind:separatorInsetTrailing
-			on:change={handleOptionsChange} />
-		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
-		<ListItemOptions
-			listRole={role}
-			bind:selected={selectedItem.selected}
-			on:change={handleOptionsChange} />
-		<CommonListItemOptions
-			listType={type}
-			bind:ripple={selectedItem.ripple}
-			bind:disabled={selectedItem.disabled}
-			bind:title={selectedItem.title}
-			bind:label={selectedItem.label}
-			bind:ariaLabel={selectedItem.ariaLabel}
-			bind:leadingIcon={selectedItem.leadingIcon}
-			bind:trailingIcon={selectedItem.trailingIcon}
-			bind:clickableLeadingIcon={selectedItem.clickableLeadingIcon}
-			bind:clickableTrailingIcon={selectedItem.clickableTrailingIcon}
-			labelFn={() => `Item ${items.indexOf(selectedItem)}`}
-			ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
-			titleFn={() => `Title ${items.indexOf(selectedItem)}`}
-			on:change={handleOptionsChange} />
-		<MultipleItemControls
-			bind:this={multipleItemsControls}
+		<MultipleItemsConfigurations
+			bind:this={multipleItemsConfigurations}
 			bind:items
 			bind:selectedItem
-			bind:selectedItemId
-			itemFactory={createListItem} />
+		>
+			<ListOptions bind:role {type} on:change={handleOptionsChange} />
+			<CommonListOptions
+				bind:wrapFocus
+				bind:dense
+				bind:density
+				bind:orientation
+				bind:type
+				bind:itemsRows
+				bind:separator
+				bind:separatorInsetPadding
+				bind:separatorInsetLeading
+				bind:separatorInsetTrailing
+				on:change={handleOptionsChange}
+			/>
+			<MultipleItemSelector
+				{items}
+				label="Edit tab"
+				{selectedItem}
+				{multipleItemsConfigurations}
+			/>
+			<ListItemOptions
+				listRole={role}
+				bind:selected={selectedItem.selected}
+				on:change={handleOptionsChange}
+			/>
+			<CommonListItemOptions
+				listType={type}
+				bind:ripple={selectedItem.ripple}
+				bind:disabled={selectedItem.disabled}
+				bind:title={selectedItem.title}
+				bind:label={selectedItem.label}
+				bind:ariaLabel={selectedItem.ariaLabel}
+				bind:leadingIcon={selectedItem.leadingIcon}
+				bind:trailingIcon={selectedItem.trailingIcon}
+				bind:clickableLeadingIcon={selectedItem.clickableLeadingIcon}
+				bind:clickableTrailingIcon={selectedItem.clickableTrailingIcon}
+				labelFn={() => `Item ${items.indexOf(selectedItem)}`}
+				ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
+				titleFn={() => `Title ${items.indexOf(selectedItem)}`}
+				on:change={handleOptionsChange}
+			/>
+			<MultipleItemControls
+				itemFactory={createListItem}
+				{multipleItemsConfigurations}
+			/>
+		</MultipleItemsConfigurations>
 	</div>
 </Configurator>
+
+<style lang="scss">
+	[slot="preview"] {
+		min-height: 10em;
+		width: 80%;
+	}
+</style>

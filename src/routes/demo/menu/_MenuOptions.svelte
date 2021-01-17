@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		MenuAnchorCorner,
@@ -10,8 +12,8 @@
 	import { Select, Option } from "@smui/core/select";
 	import { FormField, Label } from "@smui/core/form-field";
 	import { SelectionType } from "@smui/core/common/hoc";
-	import CommonListItemOptions from "../list/_CommonListItemOptions.svelte";
-	import CommonListOptions from "../list/_CommonListOptions.svelte";
+	import CommonListItemOptions from "../list/_configurator/_CommonListItemOptions.svelte";
+	import CommonListOptions from "../list/_configurator/_CommonListOptions.svelte";
 	import { MenuSurfaceOptions } from "src/components/configurator/smui-components/menu-surface";
 	import { IconType } from "src/components/configurator/smui-components/icons";
 	import IconTypeOption from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
@@ -61,8 +63,6 @@
 	//#endregion
 </script>
 
-<svelte:options immutable={true} />
-
 <div>
 	<Select bind:value={selectionType}>
 		<span slot="label">Selection Type</span>
@@ -79,7 +79,8 @@
 	bind:quickOpen
 	bind:open
 	bind:variant
-	bind:anchorMargin />
+	bind:anchorMargin
+/>
 <div style="grid-column: span 2;">Group Configurations</div>
 <div>
 	<FormField>
@@ -92,7 +93,8 @@
 	label="Selection Group Icon"
 	allowEmpty
 	disabled={!showSelectionGroup}
-	on:change />
+	on:change
+/>
 <div style="grid-column: span 2;">Menu List Configurations</div>
 <CommonListOptions
 	bind:wrapFocus
@@ -104,7 +106,8 @@
 	bind:separator
 	bind:separatorInsetPadding
 	bind:separatorInsetLeading
-	bind:separatorInsetTrailing />
+	bind:separatorInsetTrailing
+/>
 <div style="grid-column: span 2;">Menu Item Configurations</div>
 <CommonListItemOptions
 	listType={type}
@@ -116,4 +119,5 @@
 	bind:leadingIcon
 	bind:trailingIcon
 	bind:clickableLeadingIcon
-	bind:clickableTrailingIcon />
+	bind:clickableTrailingIcon
+/>

@@ -177,7 +177,7 @@ export interface ItemCodeProps {
 	disabled?: boolean;
 	selected?: boolean;
 	href?: string;
-	label?: string;
+	label: string;
 	labelRow2?: string;
 	labelRow3?: string;
 	title?: string;

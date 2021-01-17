@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		MultipleItemControls,
@@ -62,21 +64,22 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <TabBarConfigurations
 	bind:focusOnActivate
 	bind:activateOnKeyboardNavigation
-	bind:transition />
+	bind:transition
+/>
 <MultipleItemsConfigurations
 	bind:this={multipleItemsConfigurations}
 	bind:items={tabs}
-	bind:selectedItem={selectedTab}>
+	bind:selectedItem={selectedTab}
+>
 	<MultipleItemSelector
 		items={tabs}
 		label="Edit tab"
 		selectedItem={selectedTab}
-		{multipleItemsConfigurations} />
+		{multipleItemsConfigurations}
+	/>
 	<TabConfigurationsComponent
 		bind:active={selectedTabConfigurations.active}
 		bind:ripple={selectedTabConfigurations.ripple}
@@ -85,8 +88,10 @@
 		bind:tabIndicatorPosition={selectedTabConfigurations.tabIndicatorPosition}
 		bind:leadingIcon={selectedTabConfigurations.leadingIcon}
 		bind:trailingIcon={selectedTabConfigurations.trailingIcon}
-		on:change={handleTabConfigurationsChange} />
+		on:change={handleTabConfigurationsChange}
+	/>
 	<MultipleItemControls
 		itemFactory={tabFactory}
-		{multipleItemsConfigurations} />
+		{multipleItemsConfigurations}
+	/>
 </MultipleItemsConfigurations>

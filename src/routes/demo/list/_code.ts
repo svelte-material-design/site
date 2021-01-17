@@ -4,6 +4,7 @@ import {
 	getItemProps,
 	createItemContentCode,
 } from "src/components/configurator/smui-components/list";
+import type { Item } from "src/components/configurator/common-options/multiple-items";
 
 export function createItemCode(tag: "Item" | "NavItem", props: ItemCodeProps) {
 	return generateSvelteTagCode({
@@ -34,6 +35,4 @@ interface SeparatorCodeProps {
 	insetTrailing: boolean;
 }
 
-export interface ListItemProps extends ItemCodeProps {
-	id: string;
-}
+export interface ListItemProps extends ItemCodeProps, Item {}

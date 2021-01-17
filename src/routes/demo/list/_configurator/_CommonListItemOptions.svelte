@@ -1,11 +1,12 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { FormField, Label } from "@smui/core/form-field";
-	import { Checkbox } from "@smui/core/checkbox";
-	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	import { IconsOptions } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { ListType } from "@smui/core/list";
-	import IconsOptions from "src/components/configurator/smui-components/icons/IconsOptions.svelte";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { tick } from "svelte";
+	import { Checkbox } from "src/components/configurator/common-options/base";
 
 	export let ripple: boolean = true;
 	export let disabled: boolean;
@@ -46,45 +47,19 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <UseState value={listType} onUpdate={handleListTypeUpdate} />
 
-<div>
-	<FormField>
-		<Checkbox bind:checked={ripple} on:change />
-		<Label>Ripple</Label>
-	</FormField>
-</div>
-<div>
-	<FormField>
-		<Checkbox bind:checked={useLabel} on:change />
-		<Label>Label</Label>
-	</FormField>
-</div>
-<div>
-	<FormField>
-		<Checkbox bind:checked={disabled} on:change />
-		<Label>Disabled</Label>
-	</FormField>
-</div>
-<div>
-	<FormField>
-		<Checkbox bind:checked={useAriaLabel} on:change />
-		<Label>Use aria label</Label>
-	</FormField>
-</div>
-<div>
-	<FormField>
-		<Checkbox bind:checked={useTitle} on:change />
-		<Label>Use title</Label>
-	</FormField>
-</div>
+<Checkbox bind:checked={ripple} label="Ripple" on:change />
+<Checkbox bind:checked={useLabel} label="Label" on:change />
+<Checkbox bind:checked={disabled} label="Disabled" on:change />
+<Checkbox bind:checked={useAriaLabel} label="Use aria label" on:change />
+<Checkbox bind:checked={useTitle} label="Use title" on:change />
 <IconsOptions
 	showClickableOptions
 	bind:leadingIcon
-	leadingIconDisabled={listType !== 'icon' && listType !== 'textual'}
+	leadingIconDisabled={listType !== "icon" && listType !== "textual"}
 	bind:trailingIcon
 	bind:clickableLeadingIcon
 	bind:clickableTrailingIcon
-	on:change />
+	on:change
+/>

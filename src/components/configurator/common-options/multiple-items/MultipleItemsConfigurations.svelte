@@ -1,6 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Use } from "@raythurnevoid/svelte-hooks";
-	import { Item } from "./types";
+	import type { Item } from "./types";
 
 	export let itemFactory: (index: number) => Item;
 	export let items: Item[];
@@ -37,11 +39,10 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <Use
 	hook={updateSelectedInstance}
 	when={!!selectedItemId}
-	deps={selectedItemId} />
+	deps={selectedItemId}
+/>
 
 <slot />

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Content,
@@ -41,8 +43,6 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <ListItem
 	bind:this={listItem}
 	component={Item}
@@ -67,4 +67,5 @@
 	{listRole}
 	{listType}
 	let:selected
-	on:change />
+	on:change
+/>

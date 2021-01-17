@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts" context="module">
 	export interface ListItemProps {
 		id: string;
@@ -22,17 +24,7 @@
 </script>
 
 <script lang="ts">
-	import {
-		Item,
-		Content,
-		ListRole,
-		Icon,
-		ListType,
-		PrimaryText,
-		SecondaryText,
-	} from "@smui/core/list";
-	import { Radio } from "@smui/core/radio";
-	import { Checkbox } from "@smui/core/checkbox";
+	import { ListRole, ListType, Radio, Checkbox } from "@smui/core/list";
 	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
 	import {
@@ -96,8 +88,6 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <svelte:component
 	this={component}
 	bind:selected
@@ -106,26 +96,25 @@
 	{ripple}
 	{ariaLabel}
 	{title}
-	let:selected
-	on:change>
-	<svelte-fragment slot="leading">
-		{#if listType === 'image' || listType === 'avatar' || listType === 'thumbnail' || listType === 'video'}
-			<img alt={imageTxt} src={imageSrc} />
-		{:else if listType === 'icon' || listType === 'textual'}
-			<LeadingIcon
-				type={leadingIcon}
-				component={iconComponent}
-				button={clickableLeadingIcon} />
-		{:else if listRole === 'radiogroup'}
-			<span>
-				<Radio checked={selected} />
-			</span>
-		{:else if listRole === 'group'}
-			<span>
-				<Checkbox checked={selected} />
-			</span>
-		{/if}
-	</svelte-fragment>
+	on:change
+	let:leadingClassName
+	let:trailingClassName
+>
+	{#if listRole === "radiogroup"}
+		<Radio class={leadingClassName} />
+	{:else if listRole === "group"}
+		<Checkbox class={leadingClassName} />
+	{/if}
+	{#if listType === "image" || listType === "avatar" || listType === "thumbnail" || listType === "video"}
+		<img class={leadingClassName} alt={imageTxt} src={imageSrc} />
+	{:else if listType === "icon" || listType === "textual"}
+		<LeadingIcon
+			class={leadingClassName}
+			type={leadingIcon}
+			component={iconComponent}
+			button={clickableLeadingIcon}
+		/>
+	{/if}
 	{#if label}
 		<svelte:component this={contentComponent}>
 			{#if listItemsRows === 1}
@@ -143,12 +132,12 @@
 			{/if}
 		</svelte:component>
 	{/if}
-	<svelte-fragment slot="trailing">
-		{#if trailingIcon}
-			<TrailingIcon
-				type={trailingIcon}
-				component={iconComponent}
-				button={clickableTrailingIcon} />
-		{/if}
-	</svelte-fragment>
+	{#if trailingIcon}
+		<TrailingIcon
+			class={trailingClassName}
+			type={trailingIcon}
+			component={iconComponent}
+			button={clickableTrailingIcon}
+		/>
+	{/if}
 </svelte:component>

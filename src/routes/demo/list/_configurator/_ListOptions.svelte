@@ -1,9 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { FormField } from "@smui/core/form-field";
-	import { Select, Option } from "@smui/core/select";
 	import { ListRole, ListType } from "@smui/core/list";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { createEventDispatcher, tick } from "svelte";
+	import { Select } from "src/components/configurator/common-options/base";
 
 	export let role: ListRole;
 	export let type: ListType;
@@ -26,24 +27,25 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <UseState value={type} onUpdate={handleTypeUpdate} />
 
-<div>
-	<FormField>
-		<Select
-			nullable={false}
-			disabled={type !== 'textual'}
-			on:change={(event) => handleRoleChange(event.detail.value)}>
-			<span slot="label">Role</span>
-			<div slot="options">
-				<Option value="list" selected={role == null}>list</Option>
-				<Option value="radiogroup" selected={role == 'radiogroup'}>
-					radiogroup
-				</Option>
-				<Option value="group" selected={role == 'group'}>group</Option>
-			</div>
-		</Select>
-	</FormField>
-</div>
+<Select
+	label="Role"
+	nullable={false}
+	disabled={type !== "textual"}
+	options={[
+		{
+			label: "list",
+			value: "list",
+		},
+		{
+			label: "radiogroup",
+			value: "radiogroup",
+		},
+		{
+			label: "group",
+			value: "group",
+		},
+	]}
+	on:change={(event) => handleRoleChange(event.detail.value)}
+/>

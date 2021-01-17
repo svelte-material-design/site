@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Configurator,
@@ -12,10 +14,10 @@
 	import { NavList } from "@smui/core/list/nav-list";
 	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
 	import MultipleItemSelector from "src/components/configurator/common-options/multiple-items/MultipleItemSelector.svelte";
-	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
+	import CommonListItemOptions from "./_configurator/_CommonListItemOptions.svelte";
 	import { createItemCode, createSeparatorCode, ListItemProps } from "./_code";
 	import { tick } from "svelte";
-	import CommonListOptions from "./_CommonListOptions.svelte";
+	import CommonListOptions from "./_configurator/_CommonListOptions.svelte";
 	import NavListItem from "./_NavListItem.svelte";
 	import NavItemOptions from "./_NavItemOptions.svelte";
 
@@ -125,15 +127,6 @@
 	}
 </script>
 
-<style lang="scss">
-	[slot="preview"] {
-		min-height: 10em;
-		width: 80%;
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
 		<NavList {orientation} {type} {itemsRows} {wrapFocus} {dense} {density}>
@@ -154,12 +147,14 @@
 					clickableTrailingIcon={item.clickableTrailingIcon}
 					listType={type}
 					listItemsRows={itemsRows}
-					href="javascript:void(0)" />
+					href="javascript:void(0)"
+				/>
 				{#if index === 0 && separator}
 					<Separator
 						insetPadding={separatorInsetPadding}
 						insetLeading={separatorInsetLeading}
-						insetTrailing={separatorInsetTrailing} />
+						insetTrailing={separatorInsetTrailing}
+					/>
 				{/if}
 			{/each}
 		</NavList>
@@ -176,11 +171,13 @@
 			bind:separatorInsetPadding
 			bind:separatorInsetLeading
 			bind:separatorInsetTrailing
-			on:change={handleOptionsChange} />
+			on:change={handleOptionsChange}
+		/>
 		<MultipleItemSelector label="Selected Item" {items} bind:selectedItemId />
 		<NavItemOptions
 			bind:activated={selectedItem.activated}
-			on:change={handleOptionsChange} />
+			on:change={handleOptionsChange}
+		/>
 		<CommonListItemOptions
 			listType={type}
 			bind:ripple={selectedItem.ripple}
@@ -195,12 +192,21 @@
 			labelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
 			titleFn={() => `Title ${items.indexOf(selectedItem)}`}
-			on:change={handleOptionsChange} />
+			on:change={handleOptionsChange}
+		/>
 		<MultipleItemControls
 			bind:this={multipleItemsControls}
 			bind:items
 			bind:selectedItem
 			bind:selectedItemId
-			itemFactory={createListItem} />
+			itemFactory={createListItem}
+		/>
 	</div>
 </Configurator>
+
+<style lang="scss">
+	[slot="preview"] {
+		min-height: 10em;
+		width: 80%;
+	}
+</style>

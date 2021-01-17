@@ -1,16 +1,38 @@
 <script lang="ts">
-	import { ListBox, Item, Content } from "@smui/core/list";
+	import { List, Item, Content, Icon } from "@svelte-material-design/core/list";
+	import { getImgPlaceholderSrc } from "src/functions/imgPlacehoder";
 
-	let value: string;
+	let avatarImg = getImgPlaceholderSrc({
+		height: 40,
+		width: 40,
+		text: "40x40",
+	});
 </script>
 
-<ListBox bind:value>
-	<Item value="1">
+<List>
+	<Item let:leadingClassName let:trailingClassName>
+		<Icon class={leadingClassName}>alarm</Icon>
+		<Content>1</Content>
+		<Icon class={trailingClassName}>alarm</Icon>
+	</Item>
+	<Item let:leadingClassName let:trailingClassName>
+		<Icon class={leadingClassName} type="svg"
+			><circle cx="12" cy="12" r="12" /></Icon
+		>
+		<Content>2</Content>
+		<Icon class={trailingClassName} type="svg"
+			><circle cx="12" cy="12" r="12" /></Icon
+		>
+	</Item>
+</List>
+
+<List type="avatar">
+	<Item let:leadingClassName>
+		<img class={leadingClassName} src={avatarImg} alt="avatar" />
 		<Content>1</Content>
 	</Item>
-	<Item value="2" selected>
+	<Item let:leadingClassName>
+		<img class={leadingClassName} src={avatarImg} alt="avatar" />
 		<Content>2</Content>
 	</Item>
-</ListBox>
-
-{value}
+</List>
