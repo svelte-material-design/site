@@ -4,6 +4,7 @@
 	import { Select, Option } from "@smui/core/select";
 	import { createEventDispatcher, tick } from "svelte";
 	import DensityOption from "src/components/configurator/common-options/DensityOption.svelte";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
 
 	export let checked: boolean;
 	export let ripple: boolean;
@@ -13,6 +14,9 @@
 	export let disabled: boolean;
 	export let readonly: boolean;
 	export let required: boolean;
+
+	let checkedState: UseState;
+	let checkedStateValue: "checked" | "unchecked" | "indeterminate";
 
 	const dispatch = createEventDispatcher();
 
@@ -26,7 +30,18 @@
 			checked = null;
 		}
 
+		checkedState.setValue(checked);
+
 		handleChange();
+	}
+
+	function handleCheckedChange(checked: boolean) {
+		debugger;
+		checkedStateValue = checked
+			? "checked"
+			: checked === null
+			? "indeterminate"
+			: "unchecked";
 	}
 
 	function handleChange() {
@@ -34,11 +49,15 @@
 	}
 </script>
 
+<UseState value={checked} onUpdate={handleCheckedChange} />
+
 <div>
 	<FormField>
 		<Select
+			bind:checkedStateValue
 			nullable={false}
-			on:change={(event) => handleCheckedSelectChange(event.detail.value)}>
+			on:change={(event) => handleCheckedSelectChange(event.detail.value)}
+		>
 			<span slot="label">Checked value</span>
 			<div slot="options">
 				<Option value="unchecked" selected={checked === false}>
@@ -48,9 +67,9 @@
 				<Option
 					value="indeterminate"
 					selected={checked == undefined}
-					disabled={!allowIndeterminated}>
-					Indeterminate
-				</Option>
+					disabled={!allowIndeterminated}
+				>Indeterminate</Option
+				>
 			</div>
 		</Select>
 	</FormField>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Prop, Name, Default, Description, Signature } from "../..";
+	import { Prop, Name, Default, Description, Signature } from "..";
 </script>
 
 <Prop>

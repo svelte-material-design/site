@@ -4,7 +4,7 @@
 </script>
 
 <div class="props">
-	<Section title="Props" slots={$$slots}>
+	<Section title="Props">
 		<slot slot="table" name="table">
 			<slot />
 		</slot>
@@ -14,11 +14,14 @@
 <div class="note">
 	<Text>
 		<b>Note:</b>
-		any other props are forwarded directly to the root
-		<code>HTMLElement</code>
-		via
-		<code>$$restProps</code>
-		magical global.
+		<slot name="notes" />
+		{#if !$$slots.notes}
+			any other props are forwarded directly to the root
+			<code>HTMLElement</code>
+			via
+			<code>$$restProps</code>
+			magical global.
+		{/if}
 	</Text>
 </div>
 

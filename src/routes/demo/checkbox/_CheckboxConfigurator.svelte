@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
 	import {
@@ -64,23 +66,9 @@
 				[readonlyValue, "readonly"],
 				[requiredValue, "required"],
 			],
-			indentSize: 3,
 		});
 	}
-
-	function handleCheckedSelectChange(_value: string) {
-		const value = _value as "checked" | "unchecked" | "indeterminate";
-		if (value === "checked" && checked !== true) {
-			checked = true;
-		} else if (value === "unchecked" && checked !== false) {
-			checked = false;
-		} else if (value === "indeterminate" && checked != null) {
-			checked = null;
-		}
-	}
 </script>
-
-<svelte:options immutable={true} />
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
@@ -95,7 +83,8 @@
 				{allowIndeterminated}
 				{disabled}
 				{required}
-				{readonly} />
+				{readonly}
+			/>
 			<Label>Label</Label>
 		</FormField>
 	</div>
@@ -109,6 +98,7 @@
 			bind:readonly
 			bind:density
 			bind:expandedTouchTarget
-			bind:required />
+			bind:required
+		/>
 	</div>
 </Configurator>

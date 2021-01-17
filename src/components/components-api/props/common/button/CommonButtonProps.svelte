@@ -4,19 +4,14 @@
 		Name,
 		Default,
 		Description,
-		Props,
 		Signature,
 	} from "src/components/components-api/props";
 	import {
 		Ripple,
 		Disabled,
 		Color,
-		Href,
 	} from "src/components/components-api/props/common";
-	import {
-		BaseButtonProps,
-		AccessibleTouch,
-	} from "src/components/components-api/props/common/button";
+	import { AccessibleTouch } from "src/components/components-api/props/common";
 </script>
 
 <Prop>
@@ -24,7 +19,8 @@
 	<Signature
 		keyword="type"
 		name="ButtonVariant"
-		allowedValues={['text', 'raised', 'unelevated', 'outlined']}>
+		allowedValues={["text", "raised", "unelevated", "outlined"]}
+	>
 		<Default value="text" />
 	</Signature>
 	<Description>The variant to use.</Description>
@@ -33,7 +29,8 @@
 	<Signature
 		keyword="type"
 		name="ButtonColor"
-		allowedValues={['primary', 'secondary']}>
+		allowedValues={["primary", "secondary"]}
+	>
 		<Default value="primary" />
 	</Signature>
 </Color>

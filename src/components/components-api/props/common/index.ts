@@ -7,3 +7,4 @@ export { default as StyleProp } from "./StyleProp.svelte";
 export { default as Id } from "./Id.svelte";
 export { default as BaseComponentProps } from "./BaseComponentProps.svelte";
 export { default as Href } from "./Href.svelte";
+export { default as AccessibleTouch } from "./AccessibleTouch.svelte";

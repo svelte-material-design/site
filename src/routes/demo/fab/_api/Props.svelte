@@ -7,12 +7,13 @@
 		Props,
 		Signature,
 	} from "src/components/components-api/props";
-	import { Color, Ripple } from "src/components/components-api/props/common";
-	import { Dom } from "src/components/components-api/props/common";
 	import {
-		BaseButtonProps,
+		Color,
+		Ripple,
 		AccessibleTouch,
-	} from "src/components/components-api/props/common/button";
+	} from "src/components/components-api/props/common";
+	import { Dom } from "src/components/components-api/props/common";
+	import { BaseButtonProps } from "src/components/components-api/props/common/button";
 </script>
 
 <Props>
@@ -21,7 +22,8 @@
 		<Signature
 			keyword="type"
 			name="FabVariant"
-			allowedValues={['regular', 'expanded', 'mini']}>
+			allowedValues={["regular", "expanded", "mini"]}
+		>
 			<Default value="regular" />
 		</Signature>
 		<Description>The variant to use.</Description>
@@ -30,7 +32,8 @@
 		<Signature
 			keyword="type"
 			name="FabColor"
-			allowedValues={['primary', 'secondary']}>
+			allowedValues={["primary", "secondary"]}
+		>
 			<Default value="secondary" />
 		</Signature>
 	</Color>
@@ -44,6 +47,6 @@
 	</Prop>
 	<AccessibleTouch />
 	<BaseButtonProps>
-		<Dom instances={['HTMLButtonElement']} />
+		<Dom instances={["HTMLButtonElement"]} />
 	</BaseButtonProps>
 </Props>
