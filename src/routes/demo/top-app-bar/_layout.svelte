@@ -33,7 +33,7 @@
 				{
 					key: "collapsable",
 					label: "Collapsable Top App Bar",
-					href: `${currentPath}/listbox`,
+					href: `${segment}/collapsable-top-app-bar`,
 				},
 			]}
 		/>

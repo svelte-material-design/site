@@ -1,12 +1,12 @@
-import { CheckboxConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
+import { CheckboxConfigurationsItem } from "./types";
 
-export function script(props: CheckboxConfigurations) {
+export function script() {
 	const code = source`
 		<script>
 			${getImportCode(["Checkbox"], "checkbox")}
@@ -16,22 +16,22 @@ export function script(props: CheckboxConfigurations) {
 		</script>
 	`;
 
-	return code;
+	return removeEmptyLines(code);
 }
 
-export function template(props: CheckboxConfigurations) {
-	const { label } = props;
+export function template(items: CheckboxConfigurationsItem[]) {
+	// const code = generateSvelteTagCode({
+	// 	tag: "FormField",
+	// 	props: [],
+	// 	content: source`
+	// 		${getCheckboxCode(props)}
+	// 		<Label>Label</Label>
+	// 	`,
+	// });
 
-	const code = generateSvelteTagCode({
-		tag: "FormField",
-		props: [],
-		content: source`
-			${getCheckboxCode(props)}
-			<Label>${label}</Label>
-		`,
-	});
+	// return removeEmptyLines(code);
 
-	return removeEmptyLines(code);
+	return "";
 }
 
 function getCheckboxCode(props: CheckboxConfigurations) {

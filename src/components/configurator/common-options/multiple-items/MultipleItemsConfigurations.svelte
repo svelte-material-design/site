@@ -1,7 +1,8 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Use } from "@raythurnevoid/svelte-hooks";
+	import { Use, UseState } from "@raythurnevoid/svelte-hooks";
+	import { tick } from "svelte";
 	import type { Item } from "./types";
 
 	export let itemFactory: (index: number) => Item;
@@ -9,8 +10,10 @@
 	export let selectedItem: Item = {} as Item;
 
 	let selectedItemId: string;
+	let selectedItemIdState: UseState;
+	let itemsState: UseState;
 
-	export function updateSelectedInstance() {
+	export async function updateSelectedInstance() {
 		const index = items.findIndex((item) => item.id === selectedItemId);
 
 		if (!~index) return;
@@ -18,6 +21,9 @@
 		selectedItem = { ...items[index] };
 		items[index] = selectedItem;
 		items = [...items];
+		itemsState.setValue(items);
+
+		await tick();
 	}
 
 	export function setItems(newValue: Item[]) {
@@ -31,6 +37,7 @@
 
 	export function setSelectedItem(id: string) {
 		selectedItemId = id;
+		selectedItemIdState.setValue(selectedItemId);
 		updateSelectedInstance();
 	}
 
@@ -39,10 +46,15 @@
 	}
 </script>
 
-<Use
-	hook={updateSelectedInstance}
-	when={!!selectedItemId}
-	deps={selectedItemId}
+<UseState
+	bind:this={selectedItemIdState}
+	value={selectedItemId}
+	onUpdate={updateSelectedInstance}
+/>
+<UseState
+	bind:this={itemsState}
+	value={items}
+	onUpdate={updateSelectedInstance}
 />
 
 <slot />

@@ -22,28 +22,11 @@
 	let checkedStateValue: "checked" | "unchecked" | "indeterminate";
 	let checkedOptions: { value: string; label: string }[];
 
-	const dispatch = createEventDispatcher();
+	handleCheckedChange();
 
-	function handleCheckedSelectChange(_value: string) {
-		const value = _value as "checked" | "unchecked" | "indeterminate";
-		if (value === "checked" && checked !== true) {
-			checked = true;
-		} else if (value === "unchecked" && checked !== false) {
-			checked = false;
-		} else if (value === "indeterminate" && checked != null) {
-			checked = null;
-		}
-
-		handleChange();
-	}
-
-	function handleCheckedChange() {
-		checkedStateValue = checked
-			? "checked"
-			: checked === null
-			? "indeterminate"
-			: "unchecked";
-	}
+	const dispatch = createEventDispatcher<{
+		change: void;
+	}>();
 
 	$: {
 		checkedOptions = [
@@ -57,21 +40,49 @@
 		}
 	}
 
+	function handleCheckedSelectChange(_value: string) {
+		const value = _value as "checked" | "unchecked" | "indeterminate";
+		if (value === "checked" && checked !== true) {
+			checked = true;
+		} else if (value === "unchecked" && checked !== false) {
+			checked = false;
+		} else if (value === "indeterminate" && checked != null) {
+			checked = null;
+		}
+
+		checkedState.setValue(checked);
+
+		handleChange();
+	}
+
+	function handleCheckedChange() {
+		checkedStateValue = checked
+			? "checked"
+			: checked === null
+			? "indeterminate"
+			: "unchecked";
+	}
+
 	function handleChange() {
 		dispatch("change");
 	}
 </script>
 
-<UseState value={checked} onUpdate={handleCheckedChange} />
+<UseState
+	bind:this={checkedState}
+	value={checked}
+	onUpdate={handleCheckedChange}
+/>
 
 <Select
 	value={checkedStateValue}
 	on:change={(event) => handleCheckedSelectChange(event.detail.value)}
 	label="Checked value"
 	options={checkedOptions}
+	nullable={false}
 />
 <div>
-	<DensityOption bind:density on:change={handleChange} max={3} />
+	<!-- <DensityOption bind:density on:change={handleChange} max={3} /> -->
 </div>
 <Checkbox bind:checked={ripple} label="Ripple" on:change={handleChange} />
 <Checkbox

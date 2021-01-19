@@ -4,10 +4,10 @@
 	import { Configurator } from "src/components/configurator";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
-	import { FormField, Label } from "@smui/core/form-field";
-	import { Checkbox } from "@smui/core/checkbox";
 	import { CheckboxConfigurations } from "./types";
+	import Preview from "./Preview.svelte";
 
+	let label: string = "Label";
 	let checked: boolean;
 	let ripple: boolean = true;
 	let density: number;
@@ -30,6 +30,7 @@
 		required,
 		disabled,
 		readonly,
+		label,
 	};
 
 	$: svelteScriptCode = script(configurations);
@@ -38,21 +39,17 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<FormField>
-			<Checkbox
-				bind:checked
-				value="checkbox-value"
-				name="checkbox"
-				{ripple}
-				{density}
-				{expandedTouchTarget}
-				{allowIndeterminated}
-				{disabled}
-				{required}
-				{readonly}
-			/>
-			<Label>Label</Label>
-		</FormField>
+		<Preview
+			bind:checked
+			{ripple}
+			{density}
+			{expandedTouchTarget}
+			{allowIndeterminated}
+			{required}
+			{disabled}
+			{readonly}
+			{label}
+		/>
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations

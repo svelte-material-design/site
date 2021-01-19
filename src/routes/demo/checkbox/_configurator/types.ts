@@ -1,4 +1,5 @@
 export interface CheckboxConfigurations {
+	value?: string;
 	checked: boolean;
 	ripple: boolean;
 	density: number;
@@ -7,4 +8,5 @@ export interface CheckboxConfigurations {
 	required: boolean;
 	disabled: boolean;
 	readonly: boolean;
+	label: string;
 }
