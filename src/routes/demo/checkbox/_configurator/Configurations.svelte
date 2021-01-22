@@ -4,19 +4,17 @@
 	import {
 		Checkbox,
 		Select,
-	} from "src/components/configurator/common-options/base";
-	import { createEventDispatcher, tick } from "svelte";
-	import { DensityOption } from "src/components/configurator/common-options";
+	} from "src/components/configurator/atoms/configurations";
+	import { createEventDispatcher } from "svelte";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
+	import { Section } from "src/components/configurator/molecules/configurations";
 
 	export let checked: boolean;
 	export let ripple: boolean;
-	export let density: number;
-	export let expandedTouchTarget: boolean;
+	export let accessibleTouch: boolean;
 	export let allowIndeterminated: boolean;
 	export let disabled: boolean;
 	export let readonly: boolean;
-	export let required: boolean;
 
 	let checkedState: UseState;
 	let checkedStateValue: "checked" | "unchecked" | "indeterminate";
@@ -74,27 +72,27 @@
 	onUpdate={handleCheckedChange}
 />
 
-<Select
-	value={checkedStateValue}
-	on:change={(event) => handleCheckedSelectChange(event.detail.value)}
-	label="Checked value"
-	options={checkedOptions}
-	nullable={false}
-/>
-<div>
-	<!-- <DensityOption bind:density on:change={handleChange} max={3} /> -->
-</div>
-<Checkbox bind:checked={ripple} label="Ripple" on:change={handleChange} />
-<Checkbox
-	bind:checked={expandedTouchTarget}
-	label="Expanded touch target"
-	on:change={handleChange}
-/>
-<Checkbox
-	bind:checked={allowIndeterminated}
-	label="Allow indeterminate"
-	on:change={handleChange}
-/>
-<Checkbox bind:checked={disabled} label="Disabled" on:change={handleChange} />
-<Checkbox bind:checked={readonly} label="Readonly" on:change={handleChange} />
-<Checkbox bind:checked={required} label="Required" on:change={handleChange} />
+<Section>
+	<Select
+		value={checkedStateValue}
+		on:change={(event) => handleCheckedSelectChange(event.detail.value)}
+		label="Checked value"
+		options={checkedOptions}
+		nullable={false}
+	/>
+</Section>
+<Section>
+	<Checkbox bind:checked={ripple} label="Ripple" on:change={handleChange} />
+	<Checkbox
+		bind:checked={accessibleTouch}
+		label="Accessible touch"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={allowIndeterminated}
+		label="Allow indeterminate"
+		on:change={handleChange}
+	/>
+	<Checkbox bind:checked={disabled} label="Disabled" on:change={handleChange} />
+	<Checkbox bind:checked={readonly} label="Readonly" on:change={handleChange} />
+</Section>

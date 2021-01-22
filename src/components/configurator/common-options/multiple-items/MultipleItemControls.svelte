@@ -1,7 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Button } from "@smui/core/button";
 	import { onMount, tick } from "svelte";
 	import { MultipleItemsConfigurations } from ".";
+	import { Section } from "../../molecules/configurations";
 	import { Item } from "./types";
 
 	export let itemFactory: (index: number) => Item;
@@ -55,10 +58,7 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
-<div
-	style="grid-column: span 2; flex-direction: row; justify-content: space-between;">
+<Section>
 	<div>
 		<Button on:click={reset}>Reset</Button>
 	</div>
@@ -66,4 +66,4 @@
 		<Button on:click={removeCurrentItem}>Remove</Button>
 		<Button on:click={addItem}>Add</Button>
 	</div>
-</div>
+</Section>

@@ -3,11 +3,11 @@
 <script lang="ts">
 	import type { ListType } from "@smui/core/list";
 	import { createEventDispatcher, tick } from "svelte";
-	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
+	import { Slider } from "src/components/configurator/common-options/base";
 	import {
 		Checkbox,
 		Select,
-	} from "src/components/configurator/common-options/base";
+	} from "src/components/configurator/atoms/configurations";
 
 	export let wrapFocus: boolean;
 	export let orientation: string;
@@ -64,7 +64,7 @@
 	on:change
 />
 <div>
-	<SliderOption
+	<Slider
 		value={itemsRows}
 		min={1}
 		max={3}
@@ -74,7 +74,7 @@
 	/>
 </div>
 <div>
-	<SliderOption
+	<Slider
 		value={density}
 		min={0}
 		max={4}

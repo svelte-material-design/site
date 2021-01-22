@@ -37,13 +37,12 @@ export function template(props: CheckboxConfigurations) {
 function getCheckboxCode(props: CheckboxConfigurations) {
 	const {
 		ripple,
-		expandedTouchTarget,
-		density,
+		accessibleTouch: expandedTouchTarget,
 		checked,
 		allowIndeterminated,
 		disabled,
 		readonly,
-		required,
+		value,
 	} = props;
 
 	const code = generateSvelteTagCode({
@@ -51,16 +50,14 @@ function getCheckboxCode(props: CheckboxConfigurations) {
 		props: [
 			"bind:checked",
 			`name="checkbox"`,
-			`value="checkbox-value"`,
+			[value, `value="${value}"`],
 			[!ripple, "ripple={false}"],
 			[!expandedTouchTarget, "expandedTouchTarget={false}"],
-			[density, `density={${density}}`],
 			[checked, "checked"],
 			[checked == null, "checked={null}"],
 			[allowIndeterminated, "allowIndeterminated"],
 			[disabled, "disabled"],
 			[readonly, "readonly"],
-			[required, "required"],
 		],
 	});
 

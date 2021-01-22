@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Select, Option } from "@smui/core/select";
-	import { FormField } from "@smui/core/form-field";
-	import { Configuration } from "src/components/configurator";
+	import { Select, Option } from "@svelte-material-design/core/select";
+	import { FormField } from "@svelte-material-design/core/form-field";
+	import { Configuration } from "src/components/configurator/atoms/configurations";
 
 	export let disabled: boolean;
 	export let value: string;
@@ -12,12 +12,6 @@
 		label: string;
 	}[] = [];
 </script>
-
-<style>
-	.select-option :global(.select) {
-		width: 100%;
-	}
-</style>
 
 <Configuration>
 	<div class="select-option">
@@ -33,3 +27,9 @@
 		</FormField>
 	</div>
 </Configuration>
+
+<style>
+	.select-option :global(.select) {
+		width: 100%;
+	}
+</style>

@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { Configurator } from "src/components/configurator";
-	import { Values } from "src/components/configurator/particles";
+	import { Values } from "src/components/configurator/atoms";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
 	import { CheckboxConfigurationsItem } from "./types";
@@ -25,7 +25,7 @@
 	<div slot="values">
 		value: <Values {value} />
 	</div>
-	<svelte-fragment slot="optionsSidebar">
+	<div slot="optionsSidebar">
 		<Configurations bind:items />
-	</svelte-fragment>
+	</div>
 </Configurator>

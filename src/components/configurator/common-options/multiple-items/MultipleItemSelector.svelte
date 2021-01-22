@@ -1,9 +1,9 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { FormField } from "@smui/core/form-field";
-	import { Select, Option } from "@smui/core/select";
 	import { MultipleItemsConfigurations } from ".";
+	import { Select } from "../../atoms/configurations";
+	import { Section } from "../../molecules/configurations";
 	import { Item } from "./types";
 
 	export let label: string;
@@ -17,27 +17,16 @@
 	}
 </script>
 
-<div style="grid-column: span 2;">
-	<FormField>
-		<Select
-			class="multiple-items-selector__select"
-			nullable={false}
-			value={selectedItem && selectedItem.id}
-			on:change={(e) => handleSelection(e.detail.value)}
-			on:change
-		>
-			<span slot="label">{label}</span>
-			<div slot="options">
-				{#each items as item (item.id)}
-					<Option value={item.id}>{item.label}</Option>
-				{/each}
-			</div>
-		</Select>
-	</FormField>
-</div>
-
-<style>
-	:global(.multiple-items-selector__select) {
-		width: 100%;
-	}
-</style>
+<Section>
+	<Select
+		{label}
+		nullable={false}
+		value={selectedItem && selectedItem.id}
+		options={items.map((item) => ({
+			value: item.id,
+			label: item.label,
+		}))}
+		on:change={(e) => handleSelection(e.detail.value)}
+		on:change
+	/>
+</Section>

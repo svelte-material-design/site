@@ -4,12 +4,13 @@ import {
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
+import { template as checkboxTemplate } from "../../_configurator/code";
 import { CheckboxConfigurationsItem } from "./types";
 
 export function script() {
 	const code = source`
 		<script>
-			${getImportCode(["Checkbox"], "checkbox")}
+			${getImportCode(["Checkbox", "CheckboxGroup"], "checkbox")}
 			${getImportCode(["FormField", "Label"], "form-field")}
 
 			let checked;
@@ -20,49 +21,24 @@ export function script() {
 }
 
 export function template(items: CheckboxConfigurationsItem[]) {
-	// const code = generateSvelteTagCode({
-	// 	tag: "FormField",
-	// 	props: [],
-	// 	content: source`
-	// 		${getCheckboxCode(props)}
-	// 		<Label>Label</Label>
-	// 	`,
-	// });
+	const code = generateSvelteTagCode({
+		tag: "CheckboxGroup",
+		props: [],
+		content: source`
+			${getCheckboxesCode(items)}
+		`,
+	});
 
-	// return removeEmptyLines(code);
-
-	return "";
+	return removeEmptyLines(code);
 }
 
-function getCheckboxCode(props: CheckboxConfigurations) {
-	const {
-		ripple,
-		expandedTouchTarget,
-		density,
-		checked,
-		allowIndeterminated,
-		disabled,
-		readonly,
-		required,
-	} = props;
-
-	const code = generateSvelteTagCode({
-		tag: "Checkbox",
-		props: [
-			"bind:checked",
-			`name="checkbox"`,
-			`value="checkbox-value"`,
-			[!ripple, "ripple={false}"],
-			[!expandedTouchTarget, "expandedTouchTarget={false}"],
-			[density, `density={${density}}`],
-			[checked, "checked"],
-			[checked == null, "checked={null}"],
-			[allowIndeterminated, "allowIndeterminated"],
-			[disabled, "disabled"],
-			[readonly, "readonly"],
-			[required, "required"],
-		],
-	});
+function getCheckboxesCode(items: CheckboxConfigurationsItem[]) {
+	const code =
+		items
+			?.map((item) => {
+				return checkboxTemplate(item);
+			})
+			.join("\n") ?? "";
 
 	return removeEmptyLines(code);
 }

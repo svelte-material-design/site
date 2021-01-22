@@ -1,10 +1,12 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Configurator,
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { LinearProgress } from "@smui/core/linear-progress";
-	import SliderOption from "src/components/configurator/common-options/base/SliderOption.svelte";
+	import { Slider } from "src/components/configurator/common-options/base";
 	import CommonProgressOptions from "./_CommonProgressOptions.svelte";
 
 	let reversed: boolean;
@@ -28,15 +30,6 @@
 	});
 </script>
 
-<style lang="scss">
-	[slot="preview"] {
-		min-height: 10em;
-		width: 80%;
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
 		<LinearProgress {reversed} {closed} {progress} {buffer} {ariaLabel} />
@@ -45,20 +38,29 @@
 		<CommonProgressOptions bind:reversed bind:closed />
 		<div />
 		<div>
-			<SliderOption
+			<Slider
 				label="Progress"
 				bind:value={progress}
 				max={1}
 				step={0.1}
-				precision={1} />
+				precision={1}
+			/>
 		</div>
 		<div>
-			<SliderOption
+			<Slider
 				label="Buffer"
 				bind:value={buffer}
 				max={1}
 				step={0.1}
-				precision={1} />
+				precision={1}
+			/>
 		</div>
 	</div>
 </Configurator>
+
+<style lang="scss">
+	[slot="preview"] {
+		min-height: 10em;
+		width: 80%;
+	}
+</style>

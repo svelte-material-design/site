@@ -4,7 +4,7 @@
 	import {
 		Configuration,
 		ConfigurationsGrid,
-	} from "src/components/configurator";
+	} from "src/components/configurator/atoms";
 	import {
 		Checkbox,
 		Select,
@@ -78,37 +78,48 @@
 		<Checkbox
 			bind:checked={showText}
 			disabled={isHeadTextDisabled}
-			label="Text" />
+			label="Text"
+		/>
 	</ConfigurationsGrid>
 	<Typography>Body</Typography>
 	<ConfigurationsGrid>
 		<Select
 			bind:value={media}
-			options={[{ value: '', label: '' }, { value: '16x9', label: '16x9' }, { value: 'square', label: 'Square' }]}
-			label="Media" />
+			options={[
+				{ value: "", label: "" },
+				{ value: "16x9", label: "16x9" },
+				{ value: "square", label: "Square" },
+			]}
+			label="Media"
+		/>
 		<Checkbox
 			bind:checked={showMediaContent}
 			disabled={!media}
-			label="Media content" />
+			label="Media content"
+		/>
 		<Checkbox bind:checked={showBodyTitle} label="Title" />
 		<Checkbox bind:checked={showBodySubtitle} label="Subtitle" />
 		<Checkbox bind:checked={showBodyText} label="Text" />
 		<Checkbox
 			bind:checked={clickableBody}
 			disabled={isClickableBodyDisabled}
-			label="Clickable" />
+			label="Clickable"
+		/>
 		<Checkbox
 			bind:checked={primaryActionRipple}
 			disabled={!clickableBody}
-			label="Clickable" />
+			label="Clickable"
+		/>
 		<Checkbox
 			bind:checked={horizontalLayout}
 			disabled={isHorizontalLayoutDisabled}
-			label="Horizontal layout" />
+			label="Horizontal layout"
+		/>
 	</ConfigurationsGrid>
 	<Typography>Actions</Typography>
 	<Select
 		bind:value={actionsLayout}
 		options={actionsLayoutOptions}
-		label="Actions layout" />
+		label="Actions layout"
+	/>
 </div>

@@ -26,13 +26,13 @@
 	}
 
 	.demo-main-content {
-		section {
+		.section {
 			padding: 16px;
 			width: 100%;
 			box-sizing: border-box;
 		}
 
-		section:after {
+		.section:after {
 			height: 32px;
 			display: block;
 			content: " ";

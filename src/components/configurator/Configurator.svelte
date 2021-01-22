@@ -1,8 +1,9 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { afterUpdate, onMount } from "svelte";
 	import CodeSelector from "./CodeSelector.svelte";
 	import { source } from "common-tags";
-	import { ConfigurationsGrid } from "./configurations";
 
 	export let svelteScriptCode: string = undefined;
 	export let svelteCode: string;
@@ -65,6 +66,28 @@
 	}
 </script>
 
+<svelte:window on:resize={() => handleWindowResize()} />
+
+<div class="configurator" style="--extra-code-height: {extraCodeHeight}em;">
+	<div class="configurator__preview">
+		<slot name="preview" class="preview-slot" />
+		{#if $$slots.values}
+			<div class="values">
+				<slot name="values" />
+			</div>
+		{/if}
+	</div>
+	<div class="options-sidebar">
+		<slot name="optionsSidebar" />
+	</div>
+	<div class="code" bind:this={codeElement}>
+		<CodeSelector
+			svelte={getSvelteCode(svelteCode, svelteScriptCode)}
+			scss={scssCode}
+		/>
+	</div>
+</div>
+
 <style lang="scss">
 	@use "src/styles/smui/_variables";
 	$padding: 1em;
@@ -123,27 +146,3 @@
 		height: 100%;
 	}
 </style>
-
-<svelte:options immutable={true} />
-<svelte:window on:resize={() => handleWindowResize()} />
-
-<div class="configurator" style="--extra-code-height: {extraCodeHeight}em;">
-	<div class="configurator__preview">
-		<slot name="preview" class="preview-slot" />
-		{#if $$slots.values}
-			<div class="values">
-				<slot name="values" />
-			</div>
-		{/if}
-	</div>
-	<div class="options-sidebar">
-		<ConfigurationsGrid>
-			<slot name="optionsSidebar" />
-		</ConfigurationsGrid>
-	</div>
-	<div class="code" bind:this={codeElement}>
-		<CodeSelector
-			svelte={getSvelteCode(svelteCode, svelteScriptCode)}
-			scss={scssCode} />
-	</div>
-</div>

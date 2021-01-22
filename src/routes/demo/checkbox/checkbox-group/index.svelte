@@ -9,6 +9,6 @@
 </svelte:head>
 
 <Configurator />
-<ApiTitle>Checkbox</ApiTitle>
+<ApiTitle>CheckboxGroup</ApiTitle>
 <Props />
 <Events />

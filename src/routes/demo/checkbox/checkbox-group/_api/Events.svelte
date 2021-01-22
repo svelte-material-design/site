@@ -6,18 +6,24 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/events";
-	import { CommonButtonForwardedEvents } from "src/components/components-api/events/common/button";
 </script>
 
 <Events>
 	<Event>
 		<Name>change</Name>
-		<Signature keyword="type" name="OnCheckboxChangeEvent" />
+		<Signature keyword="type" name="OnMultiSelectionGroupChangeEvent" />
 		<Description>
 			Event fired when the
-			<code>checked</code>
-			value change following a user click.
+			<code>value</code>
+			change following a user click.
+		</Description>
+	</Event>
+	<Event>
+		<Name>optionsChange</Name>
+		<Signature keyword="type" name="OnSelectionGroupOptionsChangeEvent" />
+		<Description>
+			Event fired when a child <code>{"<Checkbox />"}</code> is added/removed or
+			when the <code>value</code> of an existing child gets updated.
 		</Description>
 	</Event>
 </Events>
-<CommonButtonForwardedEvents />

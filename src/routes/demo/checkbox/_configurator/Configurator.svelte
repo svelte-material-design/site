@@ -11,7 +11,7 @@
 	let checked: boolean;
 	let ripple: boolean = true;
 	let density: number;
-	let expandedTouchTarget: boolean = true;
+	let accessibleTouch: boolean = true;
 	let allowIndeterminated: boolean;
 	let required: boolean;
 	let disabled: boolean;
@@ -25,7 +25,7 @@
 		checked,
 		ripple,
 		density,
-		expandedTouchTarget,
+		accessibleTouch,
 		allowIndeterminated,
 		required,
 		disabled,
@@ -43,7 +43,7 @@
 			bind:checked
 			{ripple}
 			{density}
-			{expandedTouchTarget}
+			{accessibleTouch}
 			{allowIndeterminated}
 			{required}
 			{disabled}
@@ -58,9 +58,7 @@
 			bind:allowIndeterminated
 			bind:disabled
 			bind:readonly
-			bind:density
-			bind:expandedTouchTarget
-			bind:required
+			bind:accessibleTouch
 		/>
 	</svelte-fragment>
 </Configurator>

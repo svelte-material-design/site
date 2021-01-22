@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Checkbox } from "@smui/core/checkbox";
-	import { FormField, Label } from "@smui/core/form-field";
-	import { Configuration } from "src/components/configurator";
+	import { Checkbox } from "@svelte-material-design/core/checkbox";
+	import { FormField, Label } from "@svelte-material-design/core/form-field";
+	import { Configuration } from "src/components/configurator/atoms/configurations";
 
 	export let checked: boolean;
 	export let disabled: boolean = undefined;
