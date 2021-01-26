@@ -1,5 +1,7 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { SliderValueText, DiscreteRangeSlider } from "@smui/core/slider";
+	import { SliderValueText, DiscreteSlider } from "@smui/core/slider";
 	import { FormField, Label } from "@smui/core/form-field";
 	import {
 		Configurator,
@@ -76,7 +78,7 @@
 		ariaLabelValue: typeof ariaLabel
 	) {
 		return generateSvelteTagCode({
-			tag: "DiscreteRangeSlider",
+			tag: "DiscreteSlider",
 			props: [
 				"bind:value",
 				`min={${minValue}}`,
@@ -102,20 +104,6 @@
 	}
 </script>
 
-<style lang="scss">
-	.preview-container {
-		height: 10em;
-	}
-
-	.options-sidebar {
-		:global(.mdc-select) {
-			width: 100%;
-		}
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" class="preview-container">
 		<div>
@@ -123,7 +111,7 @@
 				{#if useLabel}
 					<Label>Label</Label>
 				{/if}
-				<DiscreteRangeSlider
+				<DiscreteSlider
 					bind:value
 					{min}
 					{max}
@@ -135,14 +123,15 @@
 					{disabled}
 					{ariaLabel}
 					{valueText}
-					{title} />
+					{title}
+				/>
 			</FormField>
 		</div>
 	</div>
 	<div slot="values">
 		<div>
 			value:
-			{#if value != null && typeof value === 'string'}
+			{#if value != null && typeof value === "string"}
 				"{value}"
 			{:else}[{value}]{/if}
 		</div>
@@ -160,10 +149,24 @@
 			bind:disabled
 			bind:useTitle
 			bind:useAriaLabel
-			bind:useLabel />
+			bind:useLabel
+		/>
 		<BaseDiscreteSliderOptions
 			bind:hideValueIndicator
 			bind:tickMarks
-			bind:useValueText />
+			bind:useValueText
+		/>
 	</div>
 </Configurator>
+
+<style lang="scss">
+	.preview-container {
+		height: 10em;
+	}
+
+	.options-sidebar {
+		:global(.mdc-select) {
+			width: 100%;
+		}
+	}
+</style>

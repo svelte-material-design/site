@@ -5,10 +5,10 @@
 </script>
 
 <svelte:head>
-	<title>Slider - Svelte Material Design</title>
+	<title>Checkbox - Svelte Material Design</title>
 </svelte:head>
 
 <Configurator />
-<ApiTitle>Slider</ApiTitle>
+<ApiTitle>CheckboxGroup</ApiTitle>
 <Props />
 <Events />
