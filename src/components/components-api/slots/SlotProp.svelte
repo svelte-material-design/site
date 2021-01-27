@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { Table, Row } from "../common/table";
+	import { Row } from "../common/table";
+	import { getSlotsContext } from "./SlotsContext";
+
+	export let indentation: number = getSlotsContext() ? 1 : 0;
 </script>
 
-<Row indentation={2}>
+<Row {indentation}>
 	<slot />
 </Row>

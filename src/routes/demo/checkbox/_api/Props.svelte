@@ -10,6 +10,7 @@
 	import {
 		Ripple,
 		AccessibleTouch,
+		Disabled,
 	} from "src/components/components-api/props/common";
 	import {
 		BaseComponentProps,
@@ -46,13 +47,7 @@
 			>If <code>false</code> the checkbox can be indeterminate.</Description
 		>
 	</Prop>
-	<Prop>
-		<Name>disabled</Name>
-		<Signature keyword="boolean">
-			<Default value={true} />
-		</Signature>
-		<Description>If <code>false</code> the component is disabled.</Description>
-	</Prop>
+	<Disabled />
 	<Prop>
 		<Name>readonly</Name>
 		<Signature keyword="boolean">

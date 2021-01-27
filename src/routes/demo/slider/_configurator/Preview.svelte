@@ -3,11 +3,7 @@
 <script lang="ts">
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { FormField, Label } from "@svelte-material-design/core/form-field";
-	import {
-		ContinuousSlider,
-		Range,
-		Thumb,
-	} from "@svelte-material-design/core/slider";
+	import { Slider, Range, Thumb } from "@svelte-material-design/core/slider";
 	import type { RangeConfigurations } from "./types";
 
 	export let rangeStart: RangeConfigurations = {} as RangeConfigurations;
@@ -31,7 +27,7 @@
 	{#if label}
 		<Label>{label}</Label>
 	{/if}
-	<ContinuousSlider {disabled}>
+	<Slider {disabled}>
 		<Range
 			bind:value={valueStart}
 			min={rangeStart.min}
@@ -50,5 +46,5 @@
 				<Thumb />
 			</Range>
 		{/if}
-	</ContinuousSlider>
+	</Slider>
 </FormField>

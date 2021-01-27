@@ -46,7 +46,7 @@ function getSliderCode(props: DiscreteSliderConfigurations) {
 	const { disabled, rangeStart, rangeEnd, step, tickMarks } = props;
 
 	const code = generateSvelteTagCode({
-		tag: "Slider",
+		tag: "SlidDiscreteSlider",
 		props: [
 			[disabled, "disabled"],
 			[step > 1, `step={${step}}`],

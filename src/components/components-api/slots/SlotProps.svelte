@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { Table } from "../common/table";
+	import { setSlotsContext } from "./SlotsContext";
+
+	setSlotsContext();
 </script>
 
 <div class="props">

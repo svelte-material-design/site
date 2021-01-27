@@ -8,21 +8,6 @@
 	export let instances: string[] = undefined;
 </script>
 
-<style>
-	.keyword {
-		color: #ab0d90;
-	}
-
-	.instance {
-		color: #1a1aa8;
-	}
-
-	.default {
-		padding-left: 0.2em;
-		color: gray;
-	}
-</style>
-
 <Cell>
 	<div>
 		<code>
@@ -45,7 +30,21 @@
 		</code>
 	</div>
 	<div class="default">
-		{#if $$slots.default}Default:{/if}
 		<slot />
 	</div>
 </Cell>
+
+<style>
+	.keyword {
+		color: #ab0d90;
+	}
+
+	.instance {
+		color: #1a1aa8;
+	}
+
+	.default {
+		padding-left: 0.2em;
+		color: gray;
+	}
+</style>

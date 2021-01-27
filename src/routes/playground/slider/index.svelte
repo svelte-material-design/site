@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { FormField, Label } from "@svelte-material-design/core/form-field";
-	import { ContinuousSlider, Range } from "@svelte-material-design/core/slider";
+	import { Slider, Range } from "@svelte-material-design/core/slider";
 
 	let value: number;
 
@@ -12,9 +12,9 @@
 
 <FormField vertical>
 	<Label>Slider</Label>
-	<ContinuousSlider>
+	<Slider>
 		<Range min={10} max={20} bind:value />
-	</ContinuousSlider>
+	</Slider>
 </FormField>
 
 <input type="range" bind:value placeholder="value" min={0} />
@@ -22,10 +22,10 @@
 
 <FormField vertical>
 	<Label>Slider Range</Label>
-	<ContinuousSlider>
+	<Slider>
 		<Range min={0} max={20} bind:value={start} />
 		<Range min={0} max={20} bind:value={end} />
-	</ContinuousSlider>
+	</Slider>
 </FormField>
 
 {value}

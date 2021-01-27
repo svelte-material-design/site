@@ -7,38 +7,29 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
-	import {
-		Ripple,
-		AccessibleTouch,
-	} from "src/components/components-api/props/common";
-	import {
-		BaseComponentProps,
-		Dom,
-	} from "src/components/components-api/props/common";
+	import { CommonSliderProps } from "../../_api";
 </script>
 
-<Props noNotes>
+<Props>
 	<Prop>
-		<Name readwrite>value</Name>
-		<Signature keyword="string[]">
-			<Default value={[]} />
+		<Name>step</Name>
+		<Signature keyword="number">
+			<Default value={1} />
 		</Signature>
-		<Description>The values of the checked checkboxes.</Description>
-	</Prop>
-	<Prop>
-		<Name>group</Name>
-		<Signature keyword="SelectionGroupBinding" />
 		<Description
-			>This prop is useful when you want to redirect all related checkboxes to
-			another <code>{"<CheckboxGroup />"}</code> or another
-			<code>{"<SelectionGroup />"}</code> component.</Description
+			>The size of the <code>{`<Thumb />`}</code> steps. Mirrors the native
+			<code>{`<input type="slider" />`}</code>
+			<code>step</code> attribute.</Description
 		>
 	</Prop>
 	<Prop>
-		<Name>allowIndeterminated</Name>
-		<Signature keyword="boolean" />
+		<Name>tickMarks</Name>
+		<Signature keyword="boolean">
+			<Default value={false} />
+		</Signature>
 		<Description
-			>If <code>false</code> the checkbox can be indeterminate.</Description
+			>If <code>true</code>, a tick mark will be shown for each step.</Description
 		>
 	</Prop>
+	<CommonSliderProps />
 </Props>

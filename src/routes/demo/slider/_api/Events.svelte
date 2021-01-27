@@ -1,23 +1,12 @@
 <script lang="ts">
+	import { Events } from "src/components/components-api/events";
 	import {
-		Events,
-		Event,
-		Name,
-		Description,
-		Signature,
-	} from "src/components/components-api/events";
-	import { CommonButtonForwardedEvents } from "src/components/components-api/events/common/button";
+		OnInput,
+		OnChange,
+	} from "src/components/components-api/events/common";
 </script>
 
 <Events>
-	<Event>
-		<Name>change</Name>
-		<Signature keyword="type" name="OnCheckboxChangeEvent" />
-		<Description>
-			Event fired when the
-			<code>checked</code>
-			value change following a user click.
-		</Description>
-	</Event>
+	<OnInput name="OnSliderInputEvent" />
+	<OnChange name="OnSliderChangeEvent" />
 </Events>
-<CommonButtonForwardedEvents />

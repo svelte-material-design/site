@@ -6,3 +6,4 @@ export { default as SlotPropName } from "./SlotPropName.svelte";
 export { default as SlotProps } from "./SlotProps.svelte";
 export { default as SlotElements } from "./SlotElements.svelte";
 export { Description } from "../common/particles";
+export { Signature } from "../common/particles";
