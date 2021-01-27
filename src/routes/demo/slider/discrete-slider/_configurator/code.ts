@@ -1,4 +1,7 @@
-import { RangeConfigurations, SliderConfigurations } from "./types";
+import {
+	DiscreteSliderRangeConfigurations,
+	DiscreteSliderConfigurations,
+} from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
@@ -6,12 +9,12 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 
-export function script(props: SliderConfigurations) {
+export function script(props: DiscreteSliderConfigurations) {
 	const { rangeEnd } = props;
 
 	const code = source`
 		<script>
-			${getImportCode(["Slider"], "slider")}
+			${getImportCode(["DiscreteSlider"], "slider")}
 			${getImportCode(["FormField", "Label"], "form-field")}
 
 			${removeEmptyLines(source`
@@ -24,7 +27,7 @@ export function script(props: SliderConfigurations) {
 	return code;
 }
 
-export function template(props: SliderConfigurations) {
+export function template(props: DiscreteSliderConfigurations) {
 	const { label } = props;
 
 	const code = generateSvelteTagCode({
@@ -39,12 +42,16 @@ export function template(props: SliderConfigurations) {
 	return removeEmptyLines(code);
 }
 
-function getSliderCode(props: SliderConfigurations) {
-	const { disabled, rangeStart, rangeEnd } = props;
+function getSliderCode(props: DiscreteSliderConfigurations) {
+	const { disabled, rangeStart, rangeEnd, step, tickMarks } = props;
 
 	const code = generateSvelteTagCode({
 		tag: "Slider",
-		props: [[disabled, "disabled"]],
+		props: [
+			[disabled, "disabled"],
+			[step > 1, `step={${step}}`],
+			[tickMarks, "tickMarks"],
+		],
 		content: source`
 			${getRangeCode(rangeStart, rangeEnd ? "valueStart" : "value")}
 			${getRangeCode(rangeEnd, "valueEnd")}
@@ -54,10 +61,13 @@ function getSliderCode(props: SliderConfigurations) {
 	return removeEmptyLines(code);
 }
 
-function getRangeCode(props: RangeConfigurations, valueName: string) {
+function getRangeCode(
+	props: DiscreteSliderRangeConfigurations,
+	valueName: string
+) {
 	if (!props) return "";
 
-	const { min, max } = props;
+	const { min, max, valueIndicator } = props;
 
 	const code = generateSvelteTagCode({
 		tag: "Range",
@@ -65,8 +75,9 @@ function getRangeCode(props: RangeConfigurations, valueName: string) {
 			`bind:${valueName}`,
 			[min > 0, `min={${min}}`],
 			[max > 0, `max={${max}}`],
+			[valueIndicator, "let:value"],
 		],
-		content: "<Thumb />",
+		content: valueIndicator ? "<Thumb>{value}kg</Thumb>" : "<Thumb />",
 	});
 
 	return removeEmptyLines(code);

@@ -2,7 +2,7 @@
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
 
 	export let segment: string;
-	setLayoutPath(`${getLayoutPath()}/checkbox-group`);
+	setLayoutPath(`${getLayoutPath()}/discrete-slider`);
 </script>
 
 {#if segment === "iframe"}

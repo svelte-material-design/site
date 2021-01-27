@@ -4,18 +4,21 @@
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { FormField, Label } from "@svelte-material-design/core/form-field";
 	import {
-		ContinuousSlider,
+		DiscreteSlider,
 		Range,
 		Thumb,
 	} from "@svelte-material-design/core/slider";
-	import type { RangeConfigurations } from "./types";
+	import type { DiscreteSliderRangeConfigurations } from "./types";
 
-	export let rangeStart: RangeConfigurations = {} as RangeConfigurations;
-	export let rangeEnd: RangeConfigurations;
+	export let rangeStart: DiscreteSliderRangeConfigurations = {} as DiscreteSliderRangeConfigurations;
+	export let rangeEnd: DiscreteSliderRangeConfigurations;
 	export let disabled: boolean;
 	export let label: string;
 	export let valueStart: number;
 	export let valueEnd: number;
+
+	export let step: number;
+	export let tickMarks: boolean;
 
 	function handleRangeToggle(oldValue) {
 		if (!oldValue) {
@@ -31,14 +34,19 @@
 	{#if label}
 		<Label>{label}</Label>
 	{/if}
-	<ContinuousSlider {disabled}>
+	<DiscreteSlider {disabled} {step} {tickMarks}>
 		<Range
 			bind:value={valueStart}
 			min={rangeStart.min}
 			max={rangeStart.max}
 			let:value
+			aria-valuetext={valueStart}
 		>
-			<Thumb />
+			{#if rangeStart.valueIndicator}
+				<Thumb>{value}kg</Thumb>
+			{:else}
+				<Thumb />
+			{/if}
 		</Range>
 		{#if rangeEnd}
 			<Range
@@ -47,8 +55,12 @@
 				max={rangeEnd.max}
 				let:value
 			>
-				<Thumb />
+				{#if rangeEnd.valueIndicator}
+					<Thumb>{value}kg</Thumb>
+				{:else}
+					<Thumb />
+				{/if}
 			</Range>
 		{/if}
-	</ContinuousSlider>
+	</DiscreteSlider>
 </FormField>

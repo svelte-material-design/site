@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import LabelledRangeSlider from "src/components/LabelledRangeSlider.svelte";
+	import LabelledRangeSlider from "src/components/configurator/atoms/configurations/RangeSlider.svelte";
 
 	export let min: number = 0;
 	export let max: number = 20;

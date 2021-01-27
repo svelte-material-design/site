@@ -6,8 +6,8 @@
 	export let segment: string;
 	const layoutPath = setLayoutPath(`${getLayoutPath()}/slider`);
 
-	let currentTab: "slider" | "checkbox-group" =
-		segment === "checkbox-group" ? "checkbox-group" : "slider";
+	let currentTab: "slider" | "discrete-slider" =
+		segment === "discrete-slider" ? "discrete-slider" : "slider";
 </script>
 
 {#if segment === "iframe"}
@@ -20,9 +20,9 @@
 			tabs={[
 				{ key: "slider", label: "Slider", href: layoutPath },
 				{
-					key: "checkbox-group",
-					label: "Checkbox group",
-					href: `${layoutPath}/checkbox-group`,
+					key: "discrete-slider",
+					label: "Discrete slider",
+					href: `${layoutPath}/discrete-slider`,
 				},
 			]}
 		/>
