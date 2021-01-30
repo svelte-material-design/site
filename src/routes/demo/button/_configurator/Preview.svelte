@@ -2,47 +2,35 @@
 
 <script lang="ts">
 	import { Button, Label, Icon } from "@smui/core/button";
-	import type { ButtonColor, ButtonVariant } from "@smui/core/button";
 	import {
 		LeadingIcon,
 		TrailingIcon,
 	} from "src/components/configurator/smui-components/icons";
-	import type {
-		IconType,
-	} from "src/components/configurator/smui-components/icons";
 	import { getCustomStyleClass } from "./code";
 	import classes from "./button.module.scss";
+	import type { ButtonConfigurations } from "./types";
 
-	export let disabled: boolean = false;
-	export let ripple: boolean = true;
-	export let variant: ButtonVariant = "text";
-	export let link: boolean = false;
-	export let color: ButtonColor = "primary";
-	export let iconOnly: boolean = false;
-	export let leadingIcon: IconType = undefined;
-	export let trailingIcon: IconType = undefined;
-	export let customStyle: "mdc-mixins" | "custom-css" | "" = "";
-	export let accessibleTouch: boolean = false;
+	export let configurations: ButtonConfigurations;
 </script>
 
 <Button
-	style={iconOnly ? "padding: 0;" : undefined}
-	class={classes[getCustomStyleClass(customStyle)]}
-	{disabled}
-	{ripple}
-	{variant}
-	href={link ? "javascript:void(0)" : undefined}
-	target={link ? "_blank" : undefined}
-	{color}
-	{accessibleTouch}
+	style={configurations.iconOnly ? "padding: 0;" : undefined}
+	class={classes[getCustomStyleClass(configurations.customStyle)]}
+	disabled={configurations.disabled}
+	ripple={configurations.ripple}
+	variant={configurations.variant}
+	href={configurations.link ? "javascript:void(0)" : undefined}
+	target={configurations.link ? "_blank" : undefined}
+	color={configurations.color}
+	accessibleTouch={configurations.accessibleTouch}
 >
 	<LeadingIcon
 		component={Icon}
-		type={leadingIcon}
-		style={iconOnly ? "margin: 0;" : undefined}
+		type={configurations.leadingIcon}
+		style={configurations.iconOnly ? "margin: 0;" : undefined}
 	/>
-	{#if !iconOnly}
+	{#if !configurations.iconOnly}
 		<Label>Button</Label>
 	{/if}
-	<TrailingIcon component={Icon} type={trailingIcon} />
+	<TrailingIcon component={Icon} type={configurations.trailingIcon} />
 </Button>

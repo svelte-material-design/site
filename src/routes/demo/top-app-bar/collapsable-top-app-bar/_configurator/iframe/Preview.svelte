@@ -15,22 +15,22 @@
 		Label,
 		Toolbar,
 	} from "@smui/core/top-app-bar";
-	import type { TopAppBarColor } from "@smui/core/top-app-bar";
+	import type { CollapsableTopAppBarConfigurations } from "../types";
 
-	export let collapsed: boolean;
+	export let configurations: CollapsableTopAppBarConfigurations;
 
-	export let color: TopAppBarColor = "primary";
-	export let prominent: boolean = false;
-	export let dense: boolean = false;
-	export let alwaysCollapsed: boolean = false;
+	function handleChange() {
+		configurations = { ...configurations };
+	}
 </script>
 
 <CollapsableTopAppBar
-	bind:collapsed
-	{prominent}
-	{dense}
-	{color}
-	{alwaysCollapsed}
+	bind:collapsed={configurations.collapsed}
+	prominent={configurations.prominent}
+	dense={configurations.dense}
+	color={configurations.color}
+	alwaysCollapsed={configurations.alwaysCollapsed}
+	on:change={handleChange}
 >
 	<Section>
 		<NavigationIcon>
@@ -39,7 +39,7 @@
 		<Title>Title</Title>
 	</Section>
 	<Toolbar>
-		{#if !collapsed}
+		{#if !configurations.collapsed}
 			<ActionButton>
 				<Icon>event</Icon>
 				<Label>Button</Label>

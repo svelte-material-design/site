@@ -11,5 +11,5 @@
 	$: label = useLabel ? "Label" : undefined;
 </script>
 
-<Checkbox bind:checked={disabled} label="Disabled" />
-<Checkbox bind:checked={useLabel} label="Use Label" />
+<Checkbox bind:checked={disabled} label="Disabled" on:change />
+<Checkbox bind:checked={useLabel} label="Use Label" on:change />

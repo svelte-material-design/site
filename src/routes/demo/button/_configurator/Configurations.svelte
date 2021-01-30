@@ -1,36 +1,30 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import type { ButtonVariant, ButtonColor } from "@smui/core/button";
-	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
 	import {
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
+	import type { ButtonConfigurations } from "./types";
 
-	export let disabled: boolean = false;
-	export let ripple: boolean = true;
-	export let variant: ButtonVariant = "text";
-	export let link: boolean = false;
-	export let color: ButtonColor = "primary";
-	export let iconOnly: boolean = false;
-	export let leadingIcon: IconType = undefined;
-	export let trailingIcon: IconType = undefined;
-	export let customStyle: "mdc-mixins" | "custom-css" | "" = "";
-	export let accessibleTouch: boolean = false;
+	export let configurations: ButtonConfigurations;
 
 	function handleIconOnlyChange() {
-		if (iconOnly) {
-			trailingIcon = null;
+		if (configurations.iconOnly) {
+			configurations.trailingIcon = null;
 		}
+	}
+
+	function handleChange() {
+		configurations = { ...configurations };
 	}
 </script>
 
 <Section>
 	<Select
-		bind:value={variant}
+		bind:value={configurations.variant}
 		label="Variant"
 		options={[
 			{ value: "text", label: "Text" },
@@ -39,43 +33,64 @@
 			{ value: "outlined", label: "Outlined" },
 		]}
 		nullable={false}
+		on:change={handleChange}
 	/>
 	<Select
-		bind:value={color}
+		bind:value={configurations.color}
 		label="Color"
 		options={[
 			{ value: "primary", label: "Primary" },
 			{ value: "secondary", label: "Secondary" },
 		]}
 		nullable={false}
+		on:change={handleChange}
 	/>
 	<IconTypeOption
-		bind:value={leadingIcon}
-		allowEmpty={!iconOnly}
+		bind:value={configurations.leadingIcon}
+		allowEmpty={!configurations.iconOnly}
 		label="Leading icon"
+		on:change={handleChange}
 	/>
 	<IconTypeOption
-		bind:value={trailingIcon}
+		bind:value={configurations.trailingIcon}
 		allowEmpty
 		label="Trailing icon"
-		disabled={iconOnly}
+		disabled={configurations.iconOnly}
+		on:change={handleChange}
 	/>
 	<Select
-		bind:value={customStyle}
+		bind:value={configurations.customStyle}
 		label="Custom style"
 		options={[
 			{ value: "", label: "" },
 			{ value: "mdc-mixins", label: "MDC Mixins" },
 			{ value: "custom-css", label: "Custom CSS" },
 		]}
+		on:change={handleChange}
 	/>
-	<Checkbox bind:checked={disabled} label="Disabled" />
-	<Checkbox bind:checked={ripple} label="Ripple" />
-	<Checkbox bind:checked={link} label="Link" />
 	<Checkbox
-		bind:checked={iconOnly}
+		bind:checked={configurations.disabled}
+		label="Disabled"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={configurations.ripple}
+		label="Ripple"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={configurations.link}
+		label="Link"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={configurations.iconOnly}
 		label="Icon only"
 		on:change={handleIconOnlyChange}
+		on:change={handleChange}
 	/>
-	<Checkbox bind:checked={accessibleTouch} label="Accessible touch" />
+	<Checkbox
+		bind:checked={configurations.accessibleTouch}
+		label="Accessible touch"
+	/>
 </Section>

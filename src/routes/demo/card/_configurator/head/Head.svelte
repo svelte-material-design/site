@@ -2,10 +2,13 @@
 
 <script lang="ts">
 	import Content from "../Content.svelte";
+	import type { CardConfigurations } from "../types";
 
-	export let title: string = undefined;
-	export let subtitle: string = undefined;
-	export let text: string = undefined;
+	export let configurations: CardConfigurations;
 </script>
 
-<Content {title} {subtitle} {text} />
+<Content
+	title={configurations.title}
+	subtitle={configurations.subtitle}
+	text={configurations.text}
+/>

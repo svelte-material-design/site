@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { RadioConfigurationsItem } from "./types";
+	import type { RadioConfigurationsItem } from "./types";
 	import { Preview as Radio } from "../../_configurator";
 	import { RadioGroup } from "@svelte-material-design/core/radio";
 
@@ -22,7 +22,7 @@
 </script>
 
 <RadioGroup bind:value on:change={handleChange}>
-	{#each items as item, index}
+	{#each items as item}
 		<Radio bind:configurations={item} />
 	{/each}
 </RadioGroup>

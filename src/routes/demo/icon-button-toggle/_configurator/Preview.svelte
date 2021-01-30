@@ -2,27 +2,34 @@
 
 <script lang="typescript">
 	import {
-		IconButtonColor,
-	} from "@svelte-material-design/core/icon-button-toggle";
-	import {
 		IconButtonToggle,
 		IconOn,
 		IconOff,
 	} from "@svelte-material-design/core/icon-button-toggle";
 	import { Icon as IconPreview } from "src/components/configurator/smui-components/icons";
-	import type { IconType } from "src/components/configurator/smui-components/icons";
+	import type { IconButtonToggleConfigurations } from "./types";
 
-	export let disabled: boolean = false;
-	export let ripple: boolean = true;
-	export let iconType: IconType = "material-icon";
-	export let active: boolean = false;
-	export let color: IconButtonColor = "inherit";
+	export let configurations: IconButtonToggleConfigurations;
+
+	function handleChange() {
+		configurations = { ...configurations };
+	}
 </script>
 
-<IconButtonToggle bind:active {disabled} {ripple} {color}>
-	<IconPreview type={iconType} component={IconOn} iconContent="star" />
+<IconButtonToggle
+	bind:active={configurations.active}
+	disabled={configurations.disabled}
+	ripple={configurations.ripple}
+	color={configurations.color}
+	on:change={handleChange}
+>
 	<IconPreview
-		type={iconType}
+		type={configurations.iconType}
+		component={IconOn}
+		iconContent="star"
+	/>
+	<IconPreview
+		type={configurations.iconType}
 		component={IconOff}
 		iconContent="star_border"
 		src="/icons/emojis/grinning-face.png"

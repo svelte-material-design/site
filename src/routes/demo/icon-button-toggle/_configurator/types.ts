@@ -6,4 +6,5 @@ export interface IconButtonToggleConfigurations {
 	ripple: boolean;
 	color: IconButtonColor;
 	iconType: IconType;
+	active: boolean;
 }

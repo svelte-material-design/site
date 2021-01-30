@@ -6,13 +6,6 @@
 	import type { RadioConfigurations } from "./types";
 
 	export let configurations: RadioConfigurations;
-	$: {
-		configurations = {
-			label: "label",
-			ripple: true,
-			accessibleTouch: true,
-		} as RadioConfigurations;
-	}
 
 	function handleChange() {
 		configurations = { ...configurations };

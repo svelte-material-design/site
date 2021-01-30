@@ -13,33 +13,33 @@
 		ActionButton,
 		Label,
 	} from "@smui/core/card";
-	import type { ActionsLayout } from "../types";
+	import type { CardConfigurations } from "../types";
 
-	export let actionsLayout: ActionsLayout = undefined;
+	export let configurations: CardConfigurations;
 </script>
 
-{#if actionsLayout}
-	<Actions fullBleed={actionsLayout === "full-bleed"}>
-		{#if actionsLayout === "full-bleed"}
+{#if configurations.actionsLayout}
+	<Actions fullBleed={configurations.actionsLayout === "full-bleed"}>
+		{#if configurations.actionsLayout === "full-bleed"}
 			<ActionButton>
 				<Label>Action</Label>
 				<Icon>arrow_forward</Icon>
 			</ActionButton>
 		{:else}
-			{#if actionsLayout === "single" || actionsLayout === "multi" || actionsLayout === "all"}
+			{#if configurations.actionsLayout === "single" || configurations.actionsLayout === "multi" || configurations.actionsLayout === "all"}
 				<ActionButtons>
 					<ActionButton>
 						<Label>Action</Label>
 						<Icon>refresh</Icon>
 					</ActionButton>
-					{#if actionsLayout === "multi" || actionsLayout === "all"}
+					{#if configurations.actionsLayout === "multi" || configurations.actionsLayout === "all"}
 						<ActionButton>
 							<Label>Another</Label>
 						</ActionButton>
 					{/if}
 				</ActionButtons>
 			{/if}
-			{#if actionsLayout === "icons" || actionsLayout === "all"}
+			{#if configurations.actionsLayout === "icons" || configurations.actionsLayout === "all"}
 				<ActionIcons>
 					<ActionIconToggle title="Add to favorites">
 						<IconOn>favorite</IconOn>

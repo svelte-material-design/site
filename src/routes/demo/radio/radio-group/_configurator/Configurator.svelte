@@ -5,11 +5,11 @@
 	import { Values } from "src/components/configurator/atoms";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
-	import { CheckboxConfigurationsItem } from "./types";
+	import type { RadioConfigurationsItem } from "./types";
 	import Preview from "./Preview.svelte";
 
-	let items: CheckboxConfigurationsItem[];
-	let value: string[];
+	let items: RadioConfigurationsItem[];
+	let value: string;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;

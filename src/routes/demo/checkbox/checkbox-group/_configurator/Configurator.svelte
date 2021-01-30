@@ -5,7 +5,7 @@
 	import { Values } from "src/components/configurator/atoms";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
-	import { CheckboxConfigurationsItem } from "./types";
+	import type { CheckboxConfigurationsItem } from "./types";
 	import Preview from "./Preview.svelte";
 
 	let items: CheckboxConfigurationsItem[];

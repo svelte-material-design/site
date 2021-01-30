@@ -8,26 +8,30 @@
 
 	let iframeContent: IFrameContent;
 
-	let props = {} as TopAppBarConfigurations;
+	let configurations = {} as TopAppBarConfigurations;
 	let propsState: UseState;
 
 	function handlePropsUpdate(newProps) {
-		props = newProps;
-		propsState.setValue(props);
+		configurations = newProps;
+		propsState.setValue(configurations);
 	}
 
 	function updateIFrame() {
 		iframeContent.setProps({
-			...props,
+			...configurations,
 		});
 	}
 </script>
 
-<UseState bind:this={propsState} value={props} onUpdate={updateIFrame} />
+<UseState
+	bind:this={propsState}
+	value={configurations}
+	onUpdate={updateIFrame}
+/>
 
 <IFrameContent
 	bind:this={iframeContent}
 	on:update={(event) => handlePropsUpdate(event.detail.props)}
 >
-	<Preview {...props} />
+	<Preview {configurations} />
 </IFrameContent>

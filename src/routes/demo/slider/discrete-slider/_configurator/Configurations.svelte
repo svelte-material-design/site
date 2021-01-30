@@ -11,77 +11,71 @@
 		CommonRangeConfigurationsComponent,
 		CommonSliderOptions,
 	} from "../../_configurator/common";
-	import type { DiscreteSliderRangeConfigurations } from "./types";
+	import type {
+		DiscreteSliderConfigurations,
+		DiscreteSliderRangeConfigurations,
+	} from "./types";
 
-	export let rangeStart: DiscreteSliderRangeConfigurations = {
-		min: 0,
-		max: 20,
-		valueIndicator: false,
-	} as DiscreteSliderRangeConfigurations;
-	export let rangeEnd: DiscreteSliderRangeConfigurations;
+	export let configurations: DiscreteSliderConfigurations;
 
-	export let tickMarks: boolean;
-	export let step: number;
-	export let disabled: boolean;
-	export let label: string;
-
-	function handleRangeStartInput() {
-		rangeStart = { ...rangeStart };
-	}
-
-	function handleRangeEndInput() {
-		rangeEnd = { ...rangeEnd };
+	function handleChange() {
+		configurations = { ...configurations };
 	}
 
 	async function toggleRangeSlider(toggle: boolean) {
 		if (toggle) {
-			rangeEnd = {
+			configurations.rangeEnd = {
 				min: 0,
 				max: 20,
-				valueIndicator: false,
 			} as DiscreteSliderRangeConfigurations;
 		} else {
-			rangeEnd = undefined;
+			configurations.rangeEnd = undefined;
 		}
+
+		handleChange();
 	}
 </script>
 
 <Section>
-	<CommonSliderOptions bind:disabled bind:label />
-	<Slider bind:value={step} min={1} max={3} label="Step" />
-	<Checkbox label="Tick marks" bind:checked={tickMarks} />
+	<CommonSliderOptions
+		bind:disabled={configurations.disabled}
+		bind:label={configurations.label}
+		on:change={handleChange}
+	/>
+	<Slider bind:value={configurations.step} min={1} max={3} label="Step" />
+	<Checkbox label="Tick marks" bind:checked={configurations.tickMarks} />
 </Section>
 <Typography>Range start</Typography>
 <Section>
 	<CommonRangeConfigurationsComponent
-		bind:min={rangeStart.min}
-		bind:max={rangeStart.max}
-		on:input={handleRangeStartInput}
-		on:change={handleRangeStartInput}
+		bind:min={configurations.rangeStart.min}
+		bind:max={configurations.rangeStart.max}
+		on:input={handleChange}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		label="Value indicator"
-		bind:checked={rangeStart.valueIndicator}
-		on:change={handleRangeStartInput}
+		bind:checked={configurations.rangeStart.valueIndicator}
+		on:change={handleChange}
 	/>
 </Section>
 <Checkbox
 	label="Range slider"
 	on:change={(e) => toggleRangeSlider(e.detail.checked)}
 />
-{#if rangeEnd}
+{#if configurations.rangeEnd}
 	<Typography>Range end</Typography>
 	<Section>
 		<CommonRangeConfigurationsComponent
-			bind:min={rangeEnd.min}
-			bind:max={rangeEnd.max}
-			on:input={handleRangeEndInput}
-			on:change={handleRangeEndInput}
+			bind:min={configurations.rangeEnd.min}
+			bind:max={configurations.rangeEnd.max}
+			on:input={handleChange}
+			on:change={handleChange}
 		/>
 		<Checkbox
 			label="Value indicator"
-			bind:checked={rangeEnd.valueIndicator}
-			on:change={handleRangeEndInput}
+			bind:checked={configurations.rangeEnd.valueIndicator}
+			on:change={handleChange}
 		/>
 	</Section>
 {/if}

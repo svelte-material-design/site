@@ -9,18 +9,18 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
+	import type { FabConfigurations } from "./types";
 
-	export let show: boolean = true;
-	export let color: FabColor = "secondary";
-	export let variant: FabVariant = "regular";
-	export let ripple: boolean = true;
-	export let iconType: IconType = "material-icon";
-	export let accessibleTouch: boolean = false;
+	export let configurations: FabConfigurations;
+
+	function handleChange() {
+		configurations = { ...configurations };
+	}
 </script>
 
 <Section>
 	<Select
-		bind:value={variant}
+		bind:value={configurations.variant}
 		label="Variant"
 		options={[
 			{ value: "regular", label: "Regular" },
@@ -28,18 +28,36 @@
 			{ value: "mini", label: "Mini" },
 		]}
 		nullable={false}
+		on:change={handleChange}
 	/>
 	<Select
-		bind:value={color}
+		bind:value={configurations.color}
 		label="Color"
 		options={[
 			{ value: "secondary", label: "Secondary" },
 			{ value: "primary", label: "Primary" },
 		]}
 		nullable={false}
+		on:change={handleChange}
 	/>
-	<IconTypeOption bind:value={iconType} label="Icon" />
-	<Checkbox bind:checked={show} label="Show" />
-	<Checkbox bind:checked={ripple} label="Ripple" />
-	<Checkbox bind:checked={accessibleTouch} label="Accessible touch" />
+	<IconTypeOption
+		bind:value={configurations.iconType}
+		label="Icon"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={configurations.show}
+		label="Show"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={configurations.ripple}
+		label="Ripple"
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={configurations.accessibleTouch}
+		label="Accessible touch"
+		on:change={handleChange}
+	/>
 </Section>

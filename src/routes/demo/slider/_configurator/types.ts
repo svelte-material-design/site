@@ -3,6 +3,8 @@ export interface SliderConfigurations {
 	label: string;
 	rangeStart: RangeConfigurations;
 	rangeEnd?: RangeConfigurations;
+	valueStart: number;
+	valueEnd?: number;
 }
 
 export interface RangeConfigurations {

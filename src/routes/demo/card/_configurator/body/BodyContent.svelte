@@ -3,23 +3,32 @@
 <script lang="ts">
 	import Content from "../Content.svelte";
 	import Media from "../Media.svelte";
-	import type { AspectRatio } from "@svelte-material-design/core/card";
 	import { HorizontalLayout } from "@svelte-material-design/core/card";
+	import type { CardConfigurations } from "../types";
 
-	export let bodyTitle: string = undefined;
-	export let bodySubtitle: string = undefined;
-	export let bodyText: string = undefined;
-	export let media: AspectRatio = undefined;
-	export let mediaContent: string = undefined;
-	export let horizontalLayout: boolean = false;
+	export let configurations: CardConfigurations;
 </script>
 
-{#if horizontalLayout}
+{#if configurations.horizontalLayout}
 	<HorizontalLayout>
-		<Media aspectRatio={media} {mediaContent} />
-		<Content title={bodyTitle} subtitle={bodySubtitle} text={bodyText} />
+		<Media
+			aspectRatio={configurations.media}
+			mediaContent={configurations.mediaContent}
+		/>
+		<Content
+			title={configurations.bodyTitle}
+			subtitle={configurations.bodySubtitle}
+			text={configurations.bodyText}
+		/>
 	</HorizontalLayout>
 {:else}
-	<Media aspectRatio={media} {mediaContent} />
-	<Content title={bodyTitle} subtitle={bodySubtitle} text={bodyText} />
+	<Media
+		aspectRatio={configurations.media}
+		mediaContent={configurations.mediaContent}
+	/>
+	<Content
+		title={configurations.bodyTitle}
+		subtitle={configurations.bodySubtitle}
+		text={configurations.bodyText}
+	/>
 {/if}

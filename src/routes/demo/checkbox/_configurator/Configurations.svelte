@@ -5,16 +5,11 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
-	import { createEventDispatcher } from "svelte";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { Section } from "src/components/configurator/molecules/configurations";
+	import type { CheckboxConfigurations } from "./types";
 
-	export let checked: boolean;
-	export let ripple: boolean;
-	export let accessibleTouch: boolean;
-	export let allowIndeterminated: boolean;
-	export let disabled: boolean;
-	export let readonly: boolean;
+	export let configurations: CheckboxConfigurations;
 
 	let checkedState: UseState;
 	let checkedStateValue: "checked" | "unchecked" | "indeterminate";
@@ -22,17 +17,13 @@
 
 	handleCheckedChange();
 
-	const dispatch = createEventDispatcher<{
-		change: void;
-	}>();
-
 	$: {
 		checkedOptions = [
 			{ value: "unchecked", label: "Unchecked" },
 			{ value: "checked", label: "Checked" },
 		];
 
-		if (allowIndeterminated) {
+		if (configurations.allowIndeterminated) {
 			checkedOptions.push({ value: "indeterminate", label: "Indeterminate" });
 			checkedOptions = [...checkedOptions];
 		}
@@ -40,59 +31,77 @@
 
 	function handleCheckedSelectChange(_value: string) {
 		const value = _value as "checked" | "unchecked" | "indeterminate";
-		if (value === "checked" && checked !== true) {
-			checked = true;
-		} else if (value === "unchecked" && checked !== false) {
-			checked = false;
-		} else if (value === "indeterminate" && checked != null) {
-			checked = null;
+		if (value === "checked" && configurations.checked !== true) {
+			configurations.checked = true;
+		} else if (value === "unchecked" && configurations.checked !== false) {
+			configurations.checked = false;
+		} else if (value === "indeterminate" && configurations.checked != null) {
+			configurations.checked = null;
 		}
 
-		checkedState.setValue(checked);
+		checkedState.setValue(configurations.checked);
 
 		handleChange();
 	}
 
 	function handleCheckedChange() {
-		checkedStateValue = checked
+		checkedStateValue = configurations.checked
 			? "checked"
-			: checked === null
+			: configurations.checked === null
 			? "indeterminate"
 			: "unchecked";
 	}
 
 	function handleChange() {
-		dispatch("change");
+		configurations = { ...configurations };
 	}
 </script>
 
 <UseState
 	bind:this={checkedState}
-	value={checked}
+	value={configurations.checked}
 	onUpdate={handleCheckedChange}
 />
 
 <Section>
 	<Select
 		value={checkedStateValue}
-		on:change={(event) => handleCheckedSelectChange(event.detail.value)}
 		label="Checked value"
 		options={checkedOptions}
 		nullable={false}
+		on:change={(event) => handleCheckedSelectChange(event.detail.value)}
+		on:change
 	/>
 </Section>
 <Section>
-	<Checkbox bind:checked={ripple} label="Ripple" on:change={handleChange} />
 	<Checkbox
-		bind:checked={accessibleTouch}
+		bind:checked={configurations.ripple}
+		label="Ripple"
+		on:change={handleChange}
+		on:change
+	/>
+	<Checkbox
+		bind:checked={configurations.accessibleTouch}
 		label="Accessible touch"
 		on:change={handleChange}
+		on:change
 	/>
 	<Checkbox
-		bind:checked={allowIndeterminated}
+		bind:checked={configurations.allowIndeterminated}
 		label="Allow indeterminate"
 		on:change={handleChange}
+		on:change
 	/>
-	<Checkbox bind:checked={disabled} label="Disabled" on:change={handleChange} />
-	<Checkbox bind:checked={readonly} label="Readonly" on:change={handleChange} />
+	<Checkbox
+		bind:checked={configurations.disabled}
+		label="Disabled"
+		on:change={handleChange}
+		on:change
+	/>
+	<Checkbox
+		bind:checked={configurations.readonly}
+		label="Readonly"
+		on:change={handleChange}
+		on:change
+	/>
 </Section>

@@ -1,47 +1,25 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import type { IconButtonColor } from "@smui/core/icon-button";
 	import { Configurator } from "src/components/configurator";
-	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { Configurations, Preview } from ".";
-	import { IconButtonConfigurations } from "./types";
 	import { template, script } from "./code";
+	import type { IconButtonConfigurations } from "./types";
 
-	let disabled: boolean = false;
-	let ripple: boolean = true;
-	let color: IconButtonColor = "inherit";
-	let link: boolean = false;
-	let accessibleTouch: boolean = false;
-	let iconType: IconType = "material-icon";
+	let configurations = {} as IconButtonConfigurations;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
 
-	let iconButtonConfigurations: IconButtonConfigurations;
-	$: iconButtonConfigurations = {
-		disabled,
-		ripple,
-		color,
-		link,
-		iconType,
-	};
-
 	$: svelteScriptCode = script();
-	$: svelteCode = template(iconButtonConfigurations);
+	$: svelteCode = template(configurations);
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<Preview {color} {disabled} {ripple} {accessibleTouch} {link} {iconType} />
+		<Preview bind:configurations />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
-		<Configurations
-			bind:color
-			bind:disabled
-			bind:ripple
-			bind:link
-			bind:iconType
-		/>
+		<Configurations bind:configurations />
 	</svelte-fragment>
 </Configurator>

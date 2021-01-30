@@ -7,7 +7,7 @@
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
 	import { Configurations as RadioConfigurations } from "../../_configurator";
-	import { RadioConfigurationsItem } from "./types";
+	import type { RadioConfigurationsItem } from "./types";
 
 	export let multipleItemsConfigurations: MultipleItemsConfigurations;
 

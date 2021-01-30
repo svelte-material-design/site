@@ -9,57 +9,53 @@
 		CommonSliderOptions,
 	} from "./common";
 	import type { RangeConfigurations } from ".";
+	import type { SliderConfigurations } from "./types";
 
-	export let rangeStart: RangeConfigurations = {
-		min: 0,
-		max: 20,
-	} as RangeConfigurations;
-	export let rangeEnd: RangeConfigurations;
+	export let configurations: SliderConfigurations;
 
-	export let disabled: boolean;
-	export let label: string;
-
-	function handleRangeStartInput() {
-		rangeStart = { ...rangeStart };
-	}
-
-	function handleRangeEndInput() {
-		rangeEnd = { ...rangeEnd };
+	function handleChange() {
+		configurations = { ...configurations };
 	}
 
 	async function toggleRangeSlider(toggle: boolean) {
 		if (toggle) {
-			rangeEnd = { min: 0, max: 20 } as RangeConfigurations;
+			configurations.rangeEnd = { min: 0, max: 20 } as RangeConfigurations;
 		} else {
-			rangeEnd = undefined;
+			configurations.rangeEnd = undefined;
 		}
+
+		handleChange();
 	}
 </script>
 
 <Section>
-	<CommonSliderOptions bind:disabled bind:label />
+	<CommonSliderOptions
+		bind:disabled={configurations.disabled}
+		bind:label={configurations.label}
+		on:change={handleChange}
+	/>
 </Section>
 <Typography>Range start</Typography>
 <Section>
 	<CommonRangeConfigurationsComponent
-		bind:min={rangeStart.min}
-		bind:max={rangeStart.max}
-		on:input={handleRangeStartInput}
-		on:change={handleRangeStartInput}
+		bind:min={configurations.rangeStart.min}
+		bind:max={configurations.rangeStart.max}
+		on:input={handleChange}
+		on:change={handleChange}
 	/>
 </Section>
 <Checkbox
 	label="Range slider"
 	on:change={(e) => toggleRangeSlider(e.detail.checked)}
 />
-{#if rangeEnd}
+{#if configurations.rangeEnd}
 	<Typography>Range end</Typography>
 	<Section>
 		<CommonRangeConfigurationsComponent
-			bind:min={rangeEnd.min}
-			bind:max={rangeEnd.max}
-			on:input={handleRangeEndInput}
-			on:change={handleRangeEndInput}
+			bind:min={configurations.rangeEnd.min}
+			bind:max={configurations.rangeEnd.max}
+			on:input={handleChange}
+			on:change={handleChange}
 		/>
 	</Section>
 {/if}

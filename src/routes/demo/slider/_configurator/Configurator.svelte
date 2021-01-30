@@ -5,26 +5,16 @@
 	import { Values } from "src/components/configurator/atoms";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
-	import type { RangeConfigurations, SliderConfigurations } from "./types";
 	import Preview from "./Preview.svelte";
+	import type { SliderConfigurations } from "./types";
 
-	let rangeStart = { min: 0, max: 20 } as RangeConfigurations;
-	let rangeEnd: RangeConfigurations;
-	let disabled: boolean;
-	let label: string;
-	let valueStart: number;
-	let valueEnd: number;
+	let configurations = {
+		valueStart: 0,
+		rangeStart: { min: 0, max: 20 },
+	} as SliderConfigurations;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
-
-	let configurations: SliderConfigurations;
-	$: configurations = {
-		rangeEnd,
-		rangeStart,
-		disabled,
-		label,
-	};
 
 	$: svelteScriptCode = script(configurations);
 	$: svelteCode = template(configurations);
@@ -32,23 +22,18 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview" class="preview">
-		<Preview
-			bind:valueStart
-			bind:valueEnd
-			{rangeStart}
-			{rangeEnd}
-			{disabled}
-			{label}
-		/>
+		<Preview bind:configurations />
 	</div>
 	<div slot="values">
-		{#if rangeEnd}valueStart{:else}value{/if}: <Values value={valueStart} />
-		{#if rangeEnd}
-			valueEnd: <Values value={valueEnd} />
+		{#if configurations.rangeEnd}valueStart{:else}value{/if}: <Values
+			value={configurations.valueStart}
+		/>
+		{#if configurations.rangeEnd}
+			valueEnd: <Values value={configurations.valueEnd} />
 		{/if}
 	</div>
 	<svelte-fragment slot="optionsSidebar">
-		<Configurations bind:rangeStart bind:rangeEnd bind:disabled bind:label />
+		<Configurations bind:configurations />
 	</svelte-fragment>
 </Configurator>
 

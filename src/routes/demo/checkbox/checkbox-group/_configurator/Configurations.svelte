@@ -7,8 +7,7 @@
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
 	import { Configurations as CheckboxConfigurations } from "../../_configurator";
-	import { Section } from "src/components/configurator/molecules/configurations";
-	import { CheckboxConfigurationsItem } from "./types";
+	import type { CheckboxConfigurationsItem } from "./types";
 
 	export let multipleItemsConfigurations: MultipleItemsConfigurations;
 
@@ -47,12 +46,7 @@
 		{multipleItemsConfigurations}
 	/>
 	<CheckboxConfigurations
-		bind:checked={selectedItem.checked}
-		bind:ripple={selectedItem.ripple}
-		bind:allowIndeterminated={selectedItem.allowIndeterminated}
-		bind:disabled={selectedItem.disabled}
-		bind:readonly={selectedItem.readonly}
-		bind:accessibleTouch={selectedItem.accessibleTouch}
+		bind:configurations={selectedItem}
 		on:change={handleChange}
 	/>
 	<MultipleItemControls

@@ -15,18 +15,17 @@
 		Label,
 		Toolbar,
 	} from "@smui/core/top-app-bar";
-	import type {
-		TopAppBarVariant,
-		TopAppBarColor,
-	} from "@smui/core/top-app-bar";
+	import type { TopAppBarConfigurations } from "../types";
 
-	export let variant: TopAppBarVariant = "standard";
-	export let color: TopAppBarColor = "primary";
-	export let prominent: boolean = false;
-	export let dense: boolean = false;
+	export let configurations: TopAppBarConfigurations;
 </script>
 
-<TopAppBar {variant} {prominent} {dense} {color}>
+<TopAppBar
+	variant={configurations.variant}
+	prominent={configurations.prominent}
+	dense={configurations.dense}
+	color={configurations.color}
+>
 	<Section>
 		<NavigationIcon>
 			<Icon>menu</Icon>

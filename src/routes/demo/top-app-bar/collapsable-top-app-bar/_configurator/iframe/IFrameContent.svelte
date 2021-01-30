@@ -8,30 +8,30 @@
 
 	let iframeContent: IFrameContent;
 
-	let props = {} as CollapsableTopAppBarConfigurations;
-	let collapsed: boolean;
+	let configurations = {} as CollapsableTopAppBarConfigurations;
 	let propsState: UseState;
 
 	function handlePropsUpdate(newProps) {
-		props = newProps;
-		propsState.setValue(props);
+		configurations = newProps;
+		propsState.setValue(configurations);
 	}
 
 	function updateIFrame(...deps) {
 		iframeContent.setProps({
-			...props,
-			collapsed,
+			...configurations,
 		});
 	}
-
-	$: if (iframeContent) updateIFrame(collapsed);
 </script>
 
-<UseState bind:this={propsState} value={props} onUpdate={updateIFrame} />
+<UseState
+	bind:this={propsState}
+	value={configurations}
+	onUpdate={updateIFrame}
+/>
 
 <IFrameContent
 	bind:this={iframeContent}
 	on:update={(event) => handlePropsUpdate(event.detail.props)}
 >
-	<Preview {...props} bind:collapsed />
+	<Preview bind:configurations />
 </IFrameContent>

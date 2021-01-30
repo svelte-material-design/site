@@ -1,22 +1,22 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import type { FabVariant, FabColor } from "@smui/core/fab";
 	import { Fab, Icon, Label } from "@smui/core/fab";
-	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { LeadingIcon } from "src/components/configurator/smui-components/icons";
+	import type { FabConfigurations } from "./types";
 
-	export let show: boolean = true;
-	export let color: FabColor = "secondary";
-	export let variant: FabVariant = "regular";
-	export let ripple: boolean = true;
-	export let iconType: IconType = "material-icon";
-	export let accessibleTouch: boolean = false;
+	export let configurations: FabConfigurations;
 </script>
 
-<Fab {color} {variant} {show} {ripple} {accessibleTouch}>
-	<LeadingIcon type={iconType} component={Icon} />
-	{#if variant === "extended"}
+<Fab
+	color={configurations.color}
+	variant={configurations.variant}
+	show={configurations.show}
+	ripple={configurations.ripple}
+	accessibleTouch={configurations.accessibleTouch}
+>
+	<LeadingIcon type={configurations.iconType} component={Icon} />
+	{#if configurations.variant === "extended"}
 		<Label>Label</Label>
 	{/if}
 </Fab>

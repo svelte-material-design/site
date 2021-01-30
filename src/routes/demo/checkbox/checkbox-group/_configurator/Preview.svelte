@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { CheckboxConfigurationsItem } from "./types";
+	import type { CheckboxConfigurationsItem } from "./types";
 	import { Preview as Checkbox } from "../../_configurator";
 	import { CheckboxGroup } from "@svelte-material-design/core/checkbox";
 
@@ -9,16 +9,20 @@
 	export let value: string[];
 
 	async function handleChange() {
-		items = [...items];
+		items = items.map((item) => {
+			if (value.includes(item.value)) {
+				item.checked = true;
+			} else {
+				item.checked = false;
+			}
+
+			return { ...item };
+		});
 	}
 </script>
 
 <CheckboxGroup bind:value>
-	{#each items as item, index}
-		<Checkbox
-			{...item}
-			bind:checked={items[index].checked}
-			on:change={handleChange}
-		/>
+	{#each items as item}
+		<Checkbox {...item} bind:configurations={item} on:change={handleChange} />
 	{/each}
 </CheckboxGroup>

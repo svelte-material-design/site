@@ -8,54 +8,56 @@
 		Range,
 		Thumb,
 	} from "@svelte-material-design/core/slider";
-	import type { DiscreteSliderRangeConfigurations } from "./types";
+	import type { DiscreteSliderConfigurations } from "./types";
 
-	export let rangeStart: DiscreteSliderRangeConfigurations = {} as DiscreteSliderRangeConfigurations;
-	export let rangeEnd: DiscreteSliderRangeConfigurations;
-	export let disabled: boolean;
-	export let label: string;
-	export let valueStart: number;
-	export let valueEnd: number;
-
-	export let step: number;
-	export let tickMarks: boolean;
+	export let configurations: DiscreteSliderConfigurations;
 
 	function handleRangeToggle(oldValue) {
 		if (!oldValue) {
-			valueStart = 0;
-			valueEnd = 20;
+			configurations.valueStart = 0;
+			configurations.valueEnd = 20;
 		}
+
+		handleChange();
+	}
+
+	function handleChange() {
+		configurations = { ...configurations };
 	}
 </script>
 
-<UseState value={rangeEnd} onUpdate={handleRangeToggle} />
+<UseState value={configurations.rangeEnd} onUpdate={handleRangeToggle} />
 
 <FormField vertical>
-	{#if label}
-		<Label>{label}</Label>
+	{#if configurations.label}
+		<Label>{configurations.label}</Label>
 	{/if}
-	<DiscreteSlider {disabled} {step} {tickMarks}>
+	<DiscreteSlider
+		disabled={configurations.disabled}
+		step={configurations.step}
+		tickMarks={configurations.tickMarks}
+	>
 		<Range
-			bind:value={valueStart}
-			min={rangeStart.min}
-			max={rangeStart.max}
+			bind:value={configurations.valueStart}
+			min={configurations.rangeStart.min}
+			max={configurations.rangeStart.max}
+			on:input={handleChange}
 			let:value
-			aria-valuetext={valueStart}
 		>
-			{#if rangeStart.valueIndicator}
+			{#if configurations.rangeStart.valueIndicator}
 				<Thumb>{value}kg</Thumb>
 			{:else}
 				<Thumb />
 			{/if}
 		</Range>
-		{#if rangeEnd}
+		{#if configurations.rangeEnd}
 			<Range
-				bind:value={valueEnd}
-				min={rangeEnd.min}
-				max={rangeEnd.max}
+				bind:value={configurations.valueEnd}
+				min={configurations.rangeEnd.min}
+				max={configurations.rangeEnd.max}
 				let:value
 			>
-				{#if rangeEnd.valueIndicator}
+				{#if configurations.rangeEnd.valueIndicator}
 					<Thumb>{value}kg</Thumb>
 				{:else}
 					<Thumb />

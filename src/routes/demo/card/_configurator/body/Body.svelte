@@ -2,39 +2,18 @@
 
 <script lang="ts">
 	import { PrimaryAction } from "@svelte-material-design/core/card";
-	import type { AspectRatio } from "@svelte-material-design/core/card";
 	import BodyContent from "./BodyContent.svelte";
+	import type { CardConfigurations } from "../types";
 
-	export let bodyTitle: string = undefined;
-	export let bodySubtitle: string = undefined;
-	export let bodyText: string = undefined;
-	export let media: AspectRatio = undefined;
-	export let mediaContent: string = undefined;
-	export let horizontalLayout: boolean = false;
-	export let clickableBody: boolean = false;
-	export let primaryActionRipple: boolean = false;
+	export let configurations: CardConfigurations;
 </script>
 
-{#if bodyTitle || bodySubtitle || bodyText || media || mediaContent}
-	{#if !clickableBody}
-		<BodyContent
-			{bodyTitle}
-			{bodySubtitle}
-			{bodyText}
-			{media}
-			{mediaContent}
-			{horizontalLayout}
-		/>
+{#if configurations.bodyTitle || configurations.bodySubtitle || configurations.bodyText || configurations.media || configurations.mediaContent}
+	{#if !configurations.clickableBody}
+		<BodyContent {configurations} />
 	{:else}
-		<PrimaryAction ripple={primaryActionRipple}>
-			<BodyContent
-				{bodyTitle}
-				{bodySubtitle}
-				{bodyText}
-				{media}
-				{mediaContent}
-				{horizontalLayout}
-			/>
+		<PrimaryAction ripple={configurations.primaryActionRipple}>
+			<BodyContent {configurations} />
 		</PrimaryAction>
 	{/if}
 {/if}
