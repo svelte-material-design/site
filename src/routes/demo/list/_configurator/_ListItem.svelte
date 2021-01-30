@@ -10,7 +10,7 @@
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
-	import { IconType } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
 	export let value: string = undefined;

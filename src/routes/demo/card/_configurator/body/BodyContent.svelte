@@ -1,10 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import Content from "../Content.svelte";
 	import Media from "../Media.svelte";
-	import {
-		AspectRatio,
-		HorizontalLayout,
-	} from "@svelte-material-design/core/card";
+	import type { AspectRatio } from "@svelte-material-design/core/card";
+	import { HorizontalLayout } from "@svelte-material-design/core/card";
 
 	export let bodyTitle: string = undefined;
 	export let bodySubtitle: string = undefined;

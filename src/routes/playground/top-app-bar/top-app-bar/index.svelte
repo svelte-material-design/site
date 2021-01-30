@@ -1,12 +1,22 @@
 <script lang="ts">
 	import {
 		TopAppBar,
-		Row,
 		Section,
-		Navigation,
+		NavigationIcon,
 		Icon,
-	} from "@smui/core/top-app-bar";
+	} from "@svelte-material-design/core/top-app-bar";
 </script>
+
+<TopAppBar>
+	<Section>
+		<NavigationIcon>
+			<Icon>menu</Icon>
+		</NavigationIcon>
+	</Section>
+	<div slot="contenFt">
+		<div class="content">Content</div>
+	</div>
+</TopAppBar>
 
 <style>
 	.content {
@@ -14,16 +24,3 @@
 		height: 200vh;
 	}
 </style>
-
-<TopAppBar>
-	<Row>
-		<Section>
-			<Navigation>
-				<Icon>menu</Icon>
-			</Navigation>
-		</Section>
-	</Row>
-	<div slot="content">
-		<div class="content">Content</div>
-	</div>
-</TopAppBar>

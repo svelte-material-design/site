@@ -8,9 +8,11 @@
 		Icon as SnackbarIcon,
 		Dismiss,
 	} from "@smui/core/snackbar";
+	import type {
+		IconType,
+	} from "src/components/configurator/smui-components/icons";
 	import {
 		Icon,
-		IconType,
 	} from "src/components/configurator/smui-components/icons";
 
 	export let open: boolean = false;

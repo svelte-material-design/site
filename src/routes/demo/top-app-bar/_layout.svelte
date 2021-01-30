@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
 	import { Title } from "src/components/components-api";
@@ -10,7 +12,7 @@
 	export let segment: string;
 
 	const { page } = stores();
-	setLayoutPath(`${getLayoutPath()}/top-app-bar`);
+	const layoutPath = setLayoutPath(`${getLayoutPath()}/top-app-bar`);
 	const currentPath = getLayoutPath();
 
 	configurator =
@@ -33,7 +35,7 @@
 				{
 					key: "collapsable",
 					label: "Collapsable Top App Bar",
-					href: `${segment}/collapsable-top-app-bar`,
+					href: `${layoutPath}/collapsable-top-app-bar`,
 				},
 			]}
 		/>
@@ -46,9 +48,3 @@
 		{/if}
 	</section>
 {/if}
-
-<style>
-	a {
-		display: contents;
-	}
-</style>

@@ -4,7 +4,7 @@
 	import { ListRole, ListType } from "@smui/core/list";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { createEventDispatcher, tick } from "svelte";
-	import { Select } from "src/components/configurator/common-options/base";
+	import { Select } from "src/components/configurator/atoms/configurations";
 
 	export let role: ListRole;
 	export let type: ListType;

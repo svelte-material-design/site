@@ -3,7 +3,7 @@
 		FullWidthTextField,
 		FullWidthTextFieldType,
 	} from "@smui/core/textfield";
-	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import HelperText from "./_HelperText.svelte";
 	import TrailingIcon from "./_TrailingIcon.svelte";
 	import LeadingIcon from "./_LeadingIcon.svelte";

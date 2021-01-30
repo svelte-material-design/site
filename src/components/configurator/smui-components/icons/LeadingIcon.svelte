@@ -1,5 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { IconType, Icon } from ".";
+	import type { IconType } from ".";
+	import { Icon } from ".";
 
 	export let type: IconType;
 	export let component: any;

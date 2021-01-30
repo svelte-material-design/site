@@ -12,6 +12,8 @@
 	import { getIconCode } from "src/components/configurator/smui-components/icons";
 	import {
 		IconTypeOption,
+	} from "src/components/configurator/smui-components/icons";
+	import type {
 		IconType,
 	} from "src/components/configurator/smui-components/icons";
 	import ShapeRadiusOption from "src/components/configurator/common-options/ShapeRadiusOption.svelte";

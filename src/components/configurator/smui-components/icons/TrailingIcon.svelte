@@ -1,5 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { IconType, Icon } from ".";
+	import type { IconType } from ".";
+	import { Icon } from ".";
 
 	export let type: IconType;
 	export let component: any;
@@ -11,8 +14,9 @@
 	{type}
 	{component}
 	{button}
-	src={type === 'img' ? '/icons/emojis/grinning-face.png' : undefined}
-	alt={type === 'img' ? 'Grinning face' : undefined}
-	iconContent={button ? 'clear' : 'alarm'}>
+	src={type === "img" ? "/icons/emojis/grinning-face.png" : undefined}
+	alt={type === "img" ? "Grinning face" : undefined}
+	iconContent={button ? "clear" : "alarm"}
+>
 	<polygon points="0,24 12,0 24,24" />
 </Icon>

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { IFrameContent } from "src/components/configurator";
@@ -21,12 +23,11 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <UseState bind:this={propsState} value={props} onUpdate={updateIFrame} />
 
 <IFrameContent
 	bind:this={iframeContent}
-	on:update={(event) => handlePropsUpdate(event.detail.props)}>
+	on:update={(event) => handlePropsUpdate(event.detail.props)}
+>
 	<Preview {...props} />
 </IFrameContent>

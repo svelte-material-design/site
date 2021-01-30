@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Configurator, IFrame } from "src/components/configurator";
 	import Configurations from "./Configurations.svelte";
@@ -22,29 +24,22 @@
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
-	let scssCode: string;
 
 	$: svelteCode = template(cardConfigurations);
 	$: svelteScriptCode = script(cardConfigurations);
-	// $: scssCode = scss(cardConfigurations);
 
 	function handleUpdate(props: CollapsableTopAppBarConfigurations) {
 		collapsed = props.collapsed;
 	}
 </script>
 
-<style lang="scss">
-	.options-sidebar {
-		gap: 0 !important;
-	}
-</style>
-
-<Configurator {svelteScriptCode} {svelteCode} {scssCode}>
+<Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview" style="width: 100%; height: 15em;">
 		<IFrame
 			title="Collapsable Top App Bar preview"
 			props={cardConfigurations}
-			on:update={(e) => handleUpdate(e.detail.props)} />
+			on:update={(e) => handleUpdate(e.detail.props)}
+		/>
 	</div>
 	<div slot="values">Collapsed: {collapsed}</div>
 	<svelte-fragment slot="optionsSidebar">

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Content, Title, SubTitle } from "@svelte-material-design/core/card";
 
@@ -14,6 +16,6 @@
 		{#if subtitle}
 			<SubTitle>{subtitle}</SubTitle>
 		{/if}
-		{text ? text : ''}
+		{text ? text : ""}
 	</Content>
 {/if}

@@ -1,11 +1,10 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Use, UseState } from "@raythurnevoid/svelte-hooks";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { tick } from "svelte";
 	import type { Item } from "./types";
 
-	export let itemFactory: (index: number) => Item;
 	export let items: Item[];
 	export let selectedItem: Item = {} as Item;
 

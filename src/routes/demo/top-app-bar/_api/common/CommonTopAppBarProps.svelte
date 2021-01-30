@@ -13,7 +13,8 @@
 	<Signature
 		keyword="type"
 		name="ButtonColor"
-		allowedValues={['primary', 'secondary']}>
+		allowedValues={["primary", "secondary"]}
+	>
 		<Default value="primary" />
 	</Signature>
 </Color>

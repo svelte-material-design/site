@@ -30,7 +30,7 @@
 		SecondaryText,
 		Icon,
 	} from "@smui/core/menu";
-	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
 	export let value: string = undefined;

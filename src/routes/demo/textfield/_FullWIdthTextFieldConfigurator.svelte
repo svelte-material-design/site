@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { FullWidthTextFieldType } from "@smui/core/textfield";
-	import { FormField, Label } from "@smui/core/form-field";
+	import { FormField } from "@smui/core/form-field";
 	import {
 		Configurator,
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { Checkbox } from "@smui/core/checkbox";
+	import type {
+		IconType,
+	} from "src/components/configurator/smui-components/icons";
 	import {
 		IconTypeOption,
-		IconType,
 	} from "src/components/configurator/smui-components/icons";
 	import { getHelperTextCode } from "src/components/configurator/snippets";
 	import { getIconCode } from "src/components/configurator/smui-components/icons";

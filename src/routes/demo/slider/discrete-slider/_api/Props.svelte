@@ -7,7 +7,7 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
-	import { CommonSliderProps } from "../../_api";
+	import { CommonSliderProps } from "../../_api/common";
 </script>
 
 <Props>

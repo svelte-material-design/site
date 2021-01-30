@@ -31,7 +31,7 @@
 		getImgPlaceholderSrc,
 		ImgPlaceholderParams,
 	} from "src/functions/imgPlacehoder";
-	import { IconType } from "./icons";
+	import type { IconType } from "./icons";
 
 	export let component: any;
 	export let contentComponent: any;

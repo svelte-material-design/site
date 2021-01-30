@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Content,
@@ -8,10 +10,10 @@
 	} from "@smui/core/list";
 	import { NavItem } from "@smui/core/list/nav-list";
 	import {
-		IconType,
 		LeadingIcon,
 		TrailingIcon,
 	} from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import {
 		getImgPlaceholderSrc,
 		ImgPlaceholderParams,
@@ -66,17 +68,16 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <NavItem {activated} {disabled} {ripple} {ariaLabel} {title} {href}>
 	<svelte-fragment slot="leading">
-		{#if listType === 'image' || listType === 'avatar' || listType === 'thumbnail' || listType === 'video'}
+		{#if listType === "image" || listType === "avatar" || listType === "thumbnail" || listType === "video"}
 			<img alt={imageTxt} src={imageSrc} />
-		{:else if listType === 'icon'}
+		{:else if listType === "icon"}
 			<LeadingIcon
 				type={leadingIcon}
 				component={Icon}
-				button={clickableLeadingIcon} />
+				button={clickableLeadingIcon}
+			/>
 		{/if}
 	</svelte-fragment>
 	{#if label}
@@ -97,7 +98,8 @@
 			<TrailingIcon
 				type={trailingIcon}
 				component={Icon}
-				button={clickableTrailingIcon} />
+				button={clickableTrailingIcon}
+			/>
 		{/if}
 	</svelte-fragment>
 </NavItem>

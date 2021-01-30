@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import Configurator from "./_configurator/Configurator.svelte";
 	import { SubComponents } from "./_api";

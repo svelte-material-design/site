@@ -11,7 +11,8 @@
 	<Dom
 		keyword="type"
 		name="IconDOM"
-		instances={['HTMLSpanElement', 'HTMLSVGElement', 'HTMLImageElement']}>
+		instances={["HTMLSpanElement", "HTMLSVGElement", "HTMLImageElement"]}
+	>
 		Type depends on the
 		<code>type</code>
 		prop:

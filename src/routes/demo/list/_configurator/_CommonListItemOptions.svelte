@@ -6,7 +6,7 @@
 	import { ListType } from "@smui/core/list";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { tick } from "svelte";
-	import { Checkbox } from "src/components/configurator/common-options/base";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
 
 	export let ripple: boolean = true;
 	export let disabled: boolean;

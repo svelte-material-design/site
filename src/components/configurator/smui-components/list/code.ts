@@ -1,6 +1,6 @@
 import { ListRole, ListOrientation, ListType } from "@smui/core/list";
 import type { StringListToFilter } from "@smui/core/common/functions";
-import { IconType } from "../icons";
+import type { IconType } from "../icons";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 import { generateSvelteTagCode, TagCodeGenerationProps } from "../../code";
 

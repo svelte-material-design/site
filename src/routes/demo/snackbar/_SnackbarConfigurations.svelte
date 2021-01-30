@@ -1,8 +1,12 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Checkbox } from "src/components/configurator/common-options/base";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import {
-		IconType,
 		IconTypeOption,
+	} from "src/components/configurator/smui-components/icons";
+	import type {
+		IconType,
 	} from "src/components/configurator/smui-components/icons";
 	import { TimeoutMs } from "./_configurations";
 
@@ -19,8 +23,6 @@
 	export let showDismiss: boolean = undefined;
 	export let dismissRipple: boolean = undefined;
 </script>
-
-<svelte:options immutable={true} />
 
 <Checkbox bind:checked={open} label="Open" />
 <TimeoutMs bind:value={timeoutMs} />

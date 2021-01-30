@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
+	import { SubComponents } from "./_api";
+	import Configurator from "./_configurator/Configurator.svelte";
 
-	export let segment: string;
 	setLayoutPath(`${getLayoutPath()}/discrete-slider`);
 </script>
 
-{#if segment === "iframe"}
-	<slot />
-{:else}
-	<slot />
-{/if}
+<Configurator />
+<SubComponents />
+<slot />

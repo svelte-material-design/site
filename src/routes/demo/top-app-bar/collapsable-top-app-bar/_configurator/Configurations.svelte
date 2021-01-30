@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { TopAppBarColor } from "@smui/core/top-app-bar";
-	import { CommonTopAppBarConfigurations } from "../../_configurator";
-	import { Checkbox } from "src/components/configurator/common-options/base";
+	import { CommonTopAppBarConfigurations } from "../../_configurator/common";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
+	import { Section } from "src/components/configurator/molecules/configurations";
 
 	export let color: TopAppBarColor = "primary";
 	export let alwaysCollapsed: boolean = false;
@@ -9,5 +10,7 @@
 	export let dense: boolean = false;
 </script>
 
-<CommonTopAppBarConfigurations bind:color bind:prominent bind:dense />
-<Checkbox bind:checked={alwaysCollapsed} label="Always collapsed" />
+<Section>
+	<CommonTopAppBarConfigurations bind:color bind:prominent bind:dense />
+	<Checkbox bind:checked={alwaysCollapsed} label="Always collapsed" />
+</Section>

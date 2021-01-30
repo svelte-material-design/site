@@ -2,14 +2,13 @@
 
 <script lang="ts">
 	import type { ButtonVariant, ButtonColor } from "@smui/core/button";
-	import {
-		IconTypeOption,
-		IconType,
-	} from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
+	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
 	import {
 		Checkbox,
 		Select,
-	} from "src/components/configurator/common-options/base";
+	} from "src/components/configurator/atoms/configurations";
+	import { Section } from "src/components/configurator/molecules/configurations";
 
 	export let disabled: boolean = false;
 	export let ripple: boolean = true;
@@ -29,52 +28,54 @@
 	}
 </script>
 
-<Select
-	bind:value={variant}
-	label="Variant"
-	options={[
-		{ value: "text", label: "Text" },
-		{ value: "raised", label: "Raised" },
-		{ value: "unelevated", label: "Unelevated" },
-		{ value: "outlined", label: "Outlined" },
-	]}
-	nullable={false}
-/>
-<Select
-	bind:value={color}
-	label="Color"
-	options={[
-		{ value: "primary", label: "Primary" },
-		{ value: "secondary", label: "Secondary" },
-	]}
-	nullable={false}
-/>
-<IconTypeOption
-	bind:value={leadingIcon}
-	allowEmpty={!iconOnly}
-	label="Leading icon"
-/>
-<IconTypeOption
-	bind:value={trailingIcon}
-	allowEmpty
-	label="Trailing icon"
-	disabled={iconOnly}
-/>
-<Select
-	bind:value={customStyle}
-	label="Custom style"
-	options={[
-		{ value: "", label: "" },
-		{ value: "mdc-mixins", label: "MDC Mixins" },
-		{ value: "custom-css", label: "Custom CSS" },
-	]}
-/>
-<Checkbox bind:checked={disabled} label="Disabled" />
-<Checkbox bind:checked={ripple} label="Ripple" />
-<Checkbox bind:checked={link} label="Link" />
-<Checkbox
-	bind:checked={iconOnly}
-	label="Icon only"
-	on:change={handleIconOnlyChange}
-/>
-<Checkbox bind:checked={accessibleTouch} label="Accessible touch" />
+<Section>
+	<Select
+		bind:value={variant}
+		label="Variant"
+		options={[
+			{ value: "text", label: "Text" },
+			{ value: "raised", label: "Raised" },
+			{ value: "unelevated", label: "Unelevated" },
+			{ value: "outlined", label: "Outlined" },
+		]}
+		nullable={false}
+	/>
+	<Select
+		bind:value={color}
+		label="Color"
+		options={[
+			{ value: "primary", label: "Primary" },
+			{ value: "secondary", label: "Secondary" },
+		]}
+		nullable={false}
+	/>
+	<IconTypeOption
+		bind:value={leadingIcon}
+		allowEmpty={!iconOnly}
+		label="Leading icon"
+	/>
+	<IconTypeOption
+		bind:value={trailingIcon}
+		allowEmpty
+		label="Trailing icon"
+		disabled={iconOnly}
+	/>
+	<Select
+		bind:value={customStyle}
+		label="Custom style"
+		options={[
+			{ value: "", label: "" },
+			{ value: "mdc-mixins", label: "MDC Mixins" },
+			{ value: "custom-css", label: "Custom CSS" },
+		]}
+	/>
+	<Checkbox bind:checked={disabled} label="Disabled" />
+	<Checkbox bind:checked={ripple} label="Ripple" />
+	<Checkbox bind:checked={link} label="Link" />
+	<Checkbox
+		bind:checked={iconOnly}
+		label="Icon only"
+		on:change={handleIconOnlyChange}
+	/>
+	<Checkbox bind:checked={accessibleTouch} label="Accessible touch" />
+</Section>

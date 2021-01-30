@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Button, Label, Icon } from "@smui/core/button";
 	import { Checkbox } from "@smui/core/checkbox";
@@ -15,9 +17,9 @@
 		generateSvelteCode,
 		indentCode,
 	} from "src/components/configurator";
-	import IconTypeOption, {
-		IconType,
-	} from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
+
 	import { tick } from "svelte";
 
 	let variant: ChipSetVariant;
@@ -126,8 +128,6 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
 		<ChipSet {variant} {entryAnimation} bind:value>
@@ -136,14 +136,15 @@
 					{...chip}
 					bind:this={chip.instance}
 					on:remove={(event) => handleChipRemove(event.detail)}
-					on:selected={(event) => handleChipSelect(chip, event.detail.selected)} />
+					on:selected={(event) => handleChipSelect(chip, event.detail.selected)}
+				/>
 			{/each}
 		</ChipSet>
 	</div>
 	<div slot="values">
 		{#if variant}
 			value:
-			{Array.isArray(value) ? `[${value.join(', ')}]` : `"${value}"`}
+			{Array.isArray(value) ? `[${value.join(", ")}]` : `"${value}"`}
 		{/if}
 	</div>
 	<div slot="optionsSidebar" class="options-sidebar">
@@ -182,7 +183,9 @@
 			<FormField>
 				<Checkbox
 					checked={selectedChip && selectedChip.ripple}
-					on:change={(event) => setSelectedChipValue('ripple', event.detail.checked)} />
+					on:change={(event) =>
+						setSelectedChipValue("ripple", event.detail.checked)}
+				/>
 				<span slot="label">Ripple</span>
 			</FormField>
 		</div>
@@ -190,7 +193,9 @@
 			<FormField>
 				<Checkbox
 					checked={selectedChip && selectedChip.useCheckmark}
-					on:change={(event) => setSelectedChipValue('useCheckmark', event.detail.checked)} />
+					on:change={(event) =>
+						setSelectedChipValue("useCheckmark", event.detail.checked)}
+				/>
 				<span slot="label">Use Checkmark</span>
 			</FormField>
 		</div>
@@ -198,21 +203,27 @@
 			<IconTypeOption
 				allowEmpty
 				value={selectedChip ? selectedChip.leadingIcon : null}
-				on:change={(event) => setSelectedChipValue('leadingIcon', event.detail.value)}
-				label="Leading icon" />
+				on:change={(event) =>
+					setSelectedChipValue("leadingIcon", event.detail.value)}
+				label="Leading icon"
+			/>
 		</div>
 		<div>
 			<IconTypeOption
 				allowEmpty
 				value={selectedChip ? selectedChip.trailingIcon : null}
-				on:change={(event) => setSelectedChipValue('trailingIcon', event.detail.value)}
-				label="Trailing icon" />
+				on:change={(event) =>
+					setSelectedChipValue("trailingIcon", event.detail.value)}
+				label="Trailing icon"
+			/>
 		</div>
 		<div>
 			<FormField>
 				<Checkbox
 					checked={selectedChip ? selectedChip.selected : null}
-					on:change={(event) => setSelectedChipValue('selected', event.detail.checked)} />
+					on:change={(event) =>
+						setSelectedChipValue("selected", event.detail.checked)}
+				/>
 				<span slot="label">Selected</span>
 			</FormField>
 		</div>
@@ -220,7 +231,12 @@
 			<FormField>
 				<Checkbox
 					checked={selectedChip ? selectedChip.removeOnTrailingIconClick : null}
-					on:change={(event) => setSelectedChipValue('removeOnTrailingIconClick', event.detail.checked)} />
+					on:change={(event) =>
+						setSelectedChipValue(
+							"removeOnTrailingIconClick",
+							event.detail.checked
+						)}
+				/>
 				<span slot="label">Remove on trailing icon click</span>
 			</FormField>
 		</div>

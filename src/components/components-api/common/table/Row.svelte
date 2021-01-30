@@ -1,6 +1,15 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	export let indentation: number;
+	export let indentation: number = undefined;
 </script>
+
+<div
+	class="row"
+	style={indentation ? `--row-indent: ${indentation}em` : undefined}
+>
+	<slot />
+</div>
 
 <style lang="scss">
 	.row {
@@ -11,9 +20,3 @@
 		}
 	}
 </style>
-
-<div
-	class="row"
-	style={indentation ? `--row-indent: ${indentation}em` : undefined}>
-	<slot />
-</div>

@@ -1,6 +1,9 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { IconTypeOption, IconType } from ".";
-	import { Checkbox } from "src/components/configurator/common-options/base";
+	import type { IconType } from ".";
+	import { IconTypeOption } from ".";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
 
 	export let leadingIcon: IconType = undefined;
 	export let leadingIconDisabled: boolean = false;
@@ -11,28 +14,30 @@
 	export let showClickableOptions: boolean = false;
 </script>
 
-<svelte:options immutable={true} />
-
 <IconTypeOption
 	bind:value={leadingIcon}
 	label="Leading icon"
 	allowEmpty
 	disabled={leadingIconDisabled}
-	on:change />
+	on:change
+/>
 <IconTypeOption
 	bind:value={trailingIcon}
 	label="Trailing icon"
 	allowEmpty
-	on:change />
+	on:change
+/>
 {#if showClickableOptions}
 	<Checkbox
 		bind:checked={clickableLeadingIcon}
 		label="Clickable leading icon"
 		disabled={!leadingIcon}
-		on:change />
+		on:change
+	/>
 	<Checkbox
 		bind:checked={clickableTrailingIcon}
 		label="Clickable trailing icon"
 		disabled={!trailingIcon}
-		on:change />
+		on:change
+	/>
 {/if}

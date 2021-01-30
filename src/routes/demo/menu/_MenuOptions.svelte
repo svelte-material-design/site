@@ -15,7 +15,7 @@
 	import CommonListItemOptions from "../list/_configurator/_CommonListItemOptions.svelte";
 	import CommonListOptions from "../list/_configurator/_CommonListOptions.svelte";
 	import { MenuSurfaceOptions } from "src/components/configurator/smui-components/menu-surface";
-	import { IconType } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import IconTypeOption from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
 
 	export let selectionType: SelectionType;

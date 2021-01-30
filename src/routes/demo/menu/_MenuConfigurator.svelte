@@ -20,7 +20,7 @@
 		SelectionGroupIcon,
 	} from "@smui/core/menu";
 	import MenuItem from "./_MenuItem.svelte";
-	import { IconType } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import {
 		getProps as getMenuSurfaceCodeProps,
 		CodeProps as MenuSurfaceCodeProps,

@@ -6,7 +6,7 @@ import {
 } from "src/components/configurator";
 import type { TopAppBarConfigurations } from "./types";
 
-export function script(configurations: TopAppBarConfigurations) {
+export function script(props: TopAppBarConfigurations) {
 	const code = source`
 		<script>
 			${getImportCode(["TopAppBar", ...commonTopAppBarImport()], "top-app-bar")}
@@ -32,8 +32,8 @@ export function commonTopAppBarImport() {
 	];
 }
 
-export function template(configurations: TopAppBarConfigurations) {
-	const { variant, prominent, dense, color } = configurations;
+export function template(props: TopAppBarConfigurations) {
+	const { variant, prominent, dense, color } = props;
 
 	const code = generateSvelteTagCode({
 		tag: "TopAppBar",
@@ -43,13 +43,13 @@ export function template(configurations: TopAppBarConfigurations) {
 			[prominent, `prominent`],
 			[dense, `dense`],
 		],
-		content: getContentCode(configurations),
+		content: getContentCode(props),
 	});
 
 	return removeEmptyLines(code);
 }
 
-function getContentCode(configurations: TopAppBarConfigurations) {
+function getContentCode(props: TopAppBarConfigurations) {
 	return source`
 		<Section>
 			<NavigationIcon>
@@ -80,5 +80,3 @@ export function contentCode() {
 		style="height: 200vh;">Content</div>
 	`;
 }
-
-export function scss(configurations: TopAppBarConfigurations) {}

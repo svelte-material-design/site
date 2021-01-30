@@ -3,7 +3,7 @@
 <script lang="ts">
 	import type { ListType } from "@smui/core/list";
 	import { createEventDispatcher, tick } from "svelte";
-	import { Slider } from "src/components/configurator/common-options/base";
+	import { Slider } from "src/components/configurator/atoms/configurations";
 	import {
 		Checkbox,
 		Select,

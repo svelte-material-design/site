@@ -1,17 +1,11 @@
+<svelte:options immutable={true} />
+
 <script lang="typescript">
-	import {
-		IconButtonToggle,
-		IconOn,
-		IconOff,
-		IconButtonColor,
-	} from "@smui/core/icon-button-toggle";
+	import type { IconButtonColor } from "@svelte-material-design/core/icon-button-toggle";
 	import { Configurator } from "src/components/configurator";
-	import {
-		IconType,
-		Icon as IconPreview,
-	} from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { template, script } from "./code";
-	import Configurations from "./Configurations.svelte";
+	import { Configurations, Preview } from ".";
 	import type { IconButtonToggleConfigurations } from "./types";
 
 	let disabled: boolean = false;
@@ -35,31 +29,9 @@
 	$: svelteCode = template(iconButtonConfigurations);
 </script>
 
-<style lang="scss">
-	.options-sidebar {
-		grid-template: auto;
-	}
-</style>
-
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<IconButtonToggle bind:active {disabled} {ripple} {color}>
-			<IconPreview type={iconType} component={IconOn} iconContent="star" />
-			<IconPreview
-				type={iconType}
-				component={IconOff}
-				iconContent="star_border"
-				src="/icons/emojis/grinning-face.png"
-				alt="Grinning face">
-				<circle
-					cx="12"
-					cy="12"
-					r="10"
-					fill="transparent"
-					stroke-width="2"
-					stroke="black" />
-			</IconPreview>
-		</IconButtonToggle>
+		<Preview bind:active {disabled} {ripple} {color} {iconType} />
 	</div>
 	<div slot="values">active: {active}</div>
 	<svelte-fragment slot="optionsSidebar" class="options-sidebar">

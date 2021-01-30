@@ -31,7 +31,7 @@
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
-	<div slot="preview">
+	<div slot="preview" class="preview">
 		<Preview
 			bind:valueStart
 			bind:valueEnd
@@ -51,3 +51,9 @@
 		<Configurations bind:rangeStart bind:rangeEnd bind:disabled bind:label />
 	</svelte-fragment>
 </Configurator>
+
+<style>
+	.preview {
+		padding: 1em;
+	}
+</style>

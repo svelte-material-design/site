@@ -1,15 +1,14 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import type { AspectRatio } from "@smui/core/card";
-	import { Typography } from "@smui/core/typography";
-	import {
-		Configuration,
-		ConfigurationsGrid,
-	} from "src/components/configurator/atoms";
+	import type { AspectRatio } from "@svelte-material-design/core/card";
+	import { Typography } from "@svelte-material-design/core/typography";
 	import {
 		Checkbox,
 		Select,
-	} from "src/components/configurator/common-options/base";
-	import { ActionsLayout } from "./types";
+	} from "src/components/configurator/atoms/configurations";
+	import type { ActionsLayout } from "./types";
+	import { Section } from "src/components/configurator/molecules/configurations";
 
 	export let outlined: boolean = false;
 
@@ -69,57 +68,59 @@
 	];
 </script>
 
-<div style="grid-column: 1 / -1">
+<Section>
 	<Checkbox bind:checked={outlined} label="Outlined" />
-	<Typography>Head</Typography>
-	<ConfigurationsGrid>
-		<Checkbox bind:checked={showTitle} label="Title" />
-		<Checkbox bind:checked={showSubtitle} label="Subtitle" />
-		<Checkbox
-			bind:checked={showText}
-			disabled={isHeadTextDisabled}
-			label="Text"
-		/>
-	</ConfigurationsGrid>
-	<Typography>Body</Typography>
-	<ConfigurationsGrid>
-		<Select
-			bind:value={media}
-			options={[
-				{ value: "", label: "" },
-				{ value: "16x9", label: "16x9" },
-				{ value: "square", label: "Square" },
-			]}
-			label="Media"
-		/>
-		<Checkbox
-			bind:checked={showMediaContent}
-			disabled={!media}
-			label="Media content"
-		/>
-		<Checkbox bind:checked={showBodyTitle} label="Title" />
-		<Checkbox bind:checked={showBodySubtitle} label="Subtitle" />
-		<Checkbox bind:checked={showBodyText} label="Text" />
-		<Checkbox
-			bind:checked={clickableBody}
-			disabled={isClickableBodyDisabled}
-			label="Clickable"
-		/>
-		<Checkbox
-			bind:checked={primaryActionRipple}
-			disabled={!clickableBody}
-			label="Clickable"
-		/>
-		<Checkbox
-			bind:checked={horizontalLayout}
-			disabled={isHorizontalLayoutDisabled}
-			label="Horizontal layout"
-		/>
-	</ConfigurationsGrid>
-	<Typography>Actions</Typography>
+</Section>
+<Typography>Head</Typography>
+<Section>
+	<Checkbox bind:checked={showTitle} label="Title" />
+	<Checkbox bind:checked={showSubtitle} label="Subtitle" />
+	<Checkbox
+		bind:checked={showText}
+		disabled={isHeadTextDisabled}
+		label="Text"
+	/>
+</Section>
+<Typography>Body</Typography>
+<Section>
+	<Select
+		bind:value={media}
+		options={[
+			{ value: "", label: "" },
+			{ value: "16x9", label: "16x9" },
+			{ value: "square", label: "Square" },
+		]}
+		label="Media"
+	/>
+	<Checkbox
+		bind:checked={showMediaContent}
+		disabled={!media}
+		label="Media content"
+	/>
+	<Checkbox bind:checked={showBodyTitle} label="Title" />
+	<Checkbox bind:checked={showBodySubtitle} label="Subtitle" />
+	<Checkbox bind:checked={showBodyText} label="Text" />
+	<Checkbox
+		bind:checked={clickableBody}
+		disabled={isClickableBodyDisabled}
+		label="Clickable"
+	/>
+	<Checkbox
+		bind:checked={primaryActionRipple}
+		disabled={!clickableBody}
+		label="Clickable"
+	/>
+	<Checkbox
+		bind:checked={horizontalLayout}
+		disabled={isHorizontalLayoutDisabled}
+		label="Horizontal layout"
+	/>
+</Section>
+<Typography>Actions</Typography>
+<Section>
 	<Select
 		bind:value={actionsLayout}
 		options={actionsLayoutOptions}
 		label="Actions layout"
 	/>
-</div>
+</Section>

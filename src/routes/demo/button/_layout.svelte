@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import Configurator from "./_configurator/Configurator.svelte";
 	import { SubComponents } from "./_api";
@@ -13,7 +15,7 @@
 	<title>Button - Svelte Material Design</title>
 </svelte:head>
 
-{#if segment === 'iframe'}
+{#if segment === "iframe"}
 	<slot />
 {:else}
 	<section>

@@ -11,7 +11,7 @@ export function script(props: SliderConfigurations) {
 
 	const code = source`
 		<script>
-			${getImportCode(["Slider"], "slider")}
+			${getImportCode(["Slider", "Range", "Thumb"], "slider")}
 			${getImportCode(["FormField", "Label"], "form-field")}
 
 			${removeEmptyLines(source`

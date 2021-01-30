@@ -2,7 +2,7 @@
 	import { Configurator, IFrame } from "src/components/configurator";
 	import SnackbarConfigurations from "./_SnackbarConfigurations.svelte";
 	import { script, template } from "./code";
-	import { IconType } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 
 	//#region configurations
 	export let open: boolean = undefined;

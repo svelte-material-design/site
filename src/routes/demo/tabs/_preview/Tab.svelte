@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Tab,
@@ -6,8 +8,8 @@
 		TabIndicator,
 		Icon as TabIcon,
 	} from "@smui/core/tab-bar";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import {
-		IconType,
 		Icon,
 		LeadingIcon,
 		TrailingIcon,
@@ -27,8 +29,6 @@
 	export let label: string;
 </script>
 
-<svelte:options immutable={true} />
-
 <Tab bind:active {key} {ripple} {stacked} {useMinWidth} on:selected>
 	<Content>
 		{#if leadingIcon}
@@ -38,11 +38,11 @@
 		{#if trailingIcon}
 			<TrailingIcon type={trailingIcon} component={TabIcon} />
 		{/if}
-		{#if tabIndicatorPosition === 'label'}
+		{#if tabIndicatorPosition === "label"}
 			<TabIndicator />
 		{/if}
 	</Content>
-	{#if tabIndicatorPosition === 'tab'}
+	{#if tabIndicatorPosition === "tab"}
 		<TabIndicator />
 	{/if}
 </Tab>

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
 	import { SubComponents } from "./_api";
@@ -8,7 +10,7 @@
 	setLayoutPath(`${getLayoutPath()}/collapsable-top-app-bar`);
 </script>
 
-{#if $page.path.endsWith('iframe')}
+{#if $page.path.endsWith("iframe")}
 	<slot />
 {:else}
 	<Configurator />

@@ -1,16 +1,14 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Button, Label, Icon } from "@smui/core/button";
 	import type { ButtonColor, ButtonVariant } from "@smui/core/button";
 	import { Configurator } from "src/components/configurator";
-	import {
+	import type {
 		IconType,
-		LeadingIcon,
-		TrailingIcon,
 	} from "src/components/configurator/smui-components/icons";
-	import { scss, template, getCustomStyleClass, script } from "./code";
-	import classes from "./button.module.scss";
-	import { ButtonConfigurations } from "./types";
-	import Configurations from "./Configurations.svelte";
+	import { scss, template, script } from "./code";
+	import type { ButtonConfigurations } from "./types";
+	import { Configurations, Preview } from ".";
 
 	let disabled: boolean = false;
 	let ripple: boolean = true;
@@ -46,29 +44,19 @@
 	$: scssCode = scss(buttonConfigurations);
 </script>
 
-<svelte:options immutable={true} />
-
 <Configurator {svelteScriptCode} {svelteCode} {scssCode}>
 	<div slot="preview">
-		<Button
-			style={iconOnly ? 'padding: 0;' : undefined}
-			class={classes[getCustomStyleClass(customStyle)]}
+		<Preview
+			{iconOnly}
 			{disabled}
 			{ripple}
 			{variant}
-			href={link ? 'javascript:void(0)' : undefined}
-			target={link ? '_blank' : undefined}
+			{link}
 			{color}
-			{accessibleTouch}>
-			<LeadingIcon
-				component={Icon}
-				type={leadingIcon}
-				style={iconOnly ? 'margin: 0;' : undefined} />
-			{#if !iconOnly}
-				<Label>Button</Label>
-			{/if}
-			<TrailingIcon component={Icon} type={trailingIcon} />
-		</Button>
+			{accessibleTouch}
+			{leadingIcon}
+			{trailingIcon}
+		/>
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations
@@ -81,6 +69,7 @@
 			bind:leadingIcon
 			bind:trailingIcon
 			bind:customStyle
-			bind:accessibleTouch />
+			bind:accessibleTouch
+		/>
 	</svelte-fragment>
 </Configurator>

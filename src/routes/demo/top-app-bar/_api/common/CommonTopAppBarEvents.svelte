@@ -12,8 +12,8 @@
 	<Signature keyword="type" name="OnTopAppBarNavClick" />
 	<Description>
 		Event fired when the user click on the
-		<code>{'<Navigationicon />'}</code>
+		<code>{"<Navigationicon />"}</code>
 		or the
-		<code>{'<NavigationButton />'}</code>.
+		<code>{"<NavigationButton />"}</code>.
 	</Description>
 </Event>

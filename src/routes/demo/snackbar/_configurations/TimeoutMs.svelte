@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Slider } from "src/components/configurator/common-options/base";
+	import { Slider } from "src/components/configurator/atoms/configurations";
 
 	export let value: number = 0;
 
@@ -28,4 +28,5 @@
 	step={1}
 	valueText={timeoutValueText}
 	on:change={(e) => handleTimeoutChange(e.detail.value)}
-	label="Timeout" />
+	label="Timeout"
+/>

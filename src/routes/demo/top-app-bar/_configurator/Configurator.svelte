@@ -2,7 +2,7 @@
 	import { Configurator, IFrame } from "src/components/configurator";
 	import Configurations from "./Configurations.svelte";
 	import type { TopAppBarConfigurations } from "./types";
-	import { script, template, scss } from "./code";
+	import { script, template } from "./code";
 	import type {
 		TopAppBarVariant,
 		TopAppBarColor,
@@ -23,29 +23,14 @@
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
-	let scssCode: string;
 
 	$: svelteCode = template(cardConfigurations);
 	$: svelteScriptCode = script(cardConfigurations);
-	// $: scssCode = scss(cardConfigurations);
-
-	function handleUpdate(props: TopAppBarConfigurations) {
-		// open = props.open;
-	}
 </script>
 
-<style lang="scss">
-	.options-sidebar {
-		gap: 0 !important;
-	}
-</style>
-
-<Configurator {svelteScriptCode} {svelteCode} {scssCode}>
+<Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview" style="width: 100%;">
-		<IFrame
-			title="Top App Bar preview"
-			props={cardConfigurations}
-			on:update={(e) => handleUpdate(e.detail.props)} />
+		<IFrame title="Top App Bar preview" props={cardConfigurations} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations bind:variant bind:prominent bind:dense bind:color />

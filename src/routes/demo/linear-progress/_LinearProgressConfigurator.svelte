@@ -6,7 +6,7 @@
 		generateSvelteCode,
 	} from "src/components/configurator";
 	import { LinearProgress } from "@smui/core/linear-progress";
-	import { Slider } from "src/components/configurator/common-options/base";
+	import { Slider } from "src/components/configurator/atoms/configurations";
 	import CommonProgressOptions from "./_CommonProgressOptions.svelte";
 
 	let reversed: boolean;

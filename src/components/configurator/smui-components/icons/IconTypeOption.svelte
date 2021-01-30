@@ -1,6 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { IconType } from ".";
-	import { Select } from "../../common-options/base";
+	import type { IconType } from ".";
+	import { Select } from "src/components/configurator/atoms/configurations";
 
 	export let value: IconType = undefined;
 	export let allowEmpty: boolean = false;
@@ -42,4 +44,5 @@
 	on:change
 	nullable={allowEmpty}
 	{label}
-	{options} />
+	{options}
+/>

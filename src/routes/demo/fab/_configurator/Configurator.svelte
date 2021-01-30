@@ -1,9 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Fab, Icon, Label, FabVariant, FabColor } from "@smui/core/fab";
+	import type { FabVariant, FabColor } from "@smui/core/fab";
 	import { Configurator } from "src/components/configurator";
 	import type { IconType } from "src/components/configurator/smui-components/icons";
-	import { LeadingIcon } from "src/components/configurator/smui-components/icons";
-	import Configurations from "./Configurations.svelte";
+	import { Configurations, Preview } from ".";
 	import { script, template } from "./code";
 	import type { FabConfigurations } from "../types";
 
@@ -33,12 +34,7 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<Fab {color} {variant} {show} {ripple} {accessibleTouch}>
-			<LeadingIcon type={iconType} component={Icon} />
-			{#if variant === 'extended'}
-				<Label>Label</Label>
-			{/if}
-		</Fab>
+		<Preview {color} {variant} {show} {ripple} {accessibleTouch} {iconType} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations
@@ -47,6 +43,7 @@
 			bind:show
 			bind:color
 			bind:variant
-			bind:iconType />
+			bind:iconType
+		/>
 	</svelte-fragment>
 </Configurator>

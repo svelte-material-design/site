@@ -1,8 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import {
-		PrimaryAction,
-		AspectRatio,
-	} from "@svelte-material-design/core/card";
+	import { PrimaryAction } from "@svelte-material-design/core/card";
+	import type { AspectRatio } from "@svelte-material-design/core/card";
 	import BodyContent from "./BodyContent.svelte";
 
 	export let bodyTitle: string = undefined;
@@ -23,7 +23,8 @@
 			{bodyText}
 			{media}
 			{mediaContent}
-			{horizontalLayout} />
+			{horizontalLayout}
+		/>
 	{:else}
 		<PrimaryAction ripple={primaryActionRipple}>
 			<BodyContent
@@ -32,7 +33,8 @@
 				{bodyText}
 				{media}
 				{mediaContent}
-				{horizontalLayout} />
+				{horizontalLayout}
+			/>
 		</PrimaryAction>
 	{/if}
 {/if}

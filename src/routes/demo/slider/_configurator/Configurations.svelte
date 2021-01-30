@@ -4,7 +4,10 @@
 	import { Typography } from "@svelte-material-design/core/typography";
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
-	import { CommonRangeConfigurationsComponent, CommonSliderOptions } from ".";
+	import {
+		CommonRangeConfigurationsComponent,
+		CommonSliderOptions,
+	} from "./common";
 	import type { RangeConfigurations } from ".";
 
 	export let rangeStart: RangeConfigurations = {

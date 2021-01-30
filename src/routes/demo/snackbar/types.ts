@@ -1,4 +1,4 @@
-import { IconType } from "src/components/configurator/smui-components/icons";
+import type { IconType } from "src/components/configurator/smui-components/icons";
 
 export interface SnackbarConfigurations {
 	open: boolean;

@@ -29,18 +29,18 @@
 		<Tag href="navigation-icon">NavigationIcon</Tag>
 		<Description>
 			An
-			<code>{'<IconButton />'}</code>
+			<code>{"<IconButton />"}</code>
 			meant to open a navigation menu (eg: a
-			<code>{'<Drawer />'}</code>). Only 1 must be used.
+			<code>{"<Drawer />"}</code>). Only 1 must be used.
 		</Description>
 	</SubComponent>
 	<SubComponent>
 		<Tag href="navigation-button">NavigationButton</Tag>
 		<Description>
 			A
-			<code>{'<Button />'}</code>
+			<code>{"<Button />"}</code>
 			meant to open a navigation menu (eg: a
-			<code>{'<Drawer />'}</code>).
+			<code>{"<Drawer />"}</code>).
 
 			<slot name="navigationButtonNote" />
 			Only 1 must be used.

@@ -5,7 +5,7 @@
 		InputFieldType,
 	} from "@smui/core/textfield";
 	import HelperText from "./_HelperText.svelte";
-	import { IconType } from "src/components/configurator/smui-components/icons/IconTypeOption.svelte";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import LeadingIcon from "./_LeadingIcon.svelte";
 	import TrailingIcon from "./_TrailingIcon.svelte";
 

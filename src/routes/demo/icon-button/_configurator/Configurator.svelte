@@ -1,11 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { IconButton, IconButtonColor, Icon } from "@smui/core/icon-button";
+	import type { IconButtonColor } from "@smui/core/icon-button";
 	import { Configurator } from "src/components/configurator";
-	import {
-		IconType,
-		Icon as IconPreview,
-	} from "src/components/configurator/smui-components/icons";
-	import Configurations from "./Configurations.svelte";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
+	import { Configurations, Preview } from ".";
 	import { IconButtonConfigurations } from "./types";
 	import { template, script } from "./code";
 
@@ -34,15 +33,7 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<IconButton
-			title="button"
-			{color}
-			{disabled}
-			{ripple}
-			{accessibleTouch}
-			href={link ? 'javascript:void(0)' : undefined}>
-			<IconPreview component={Icon} type={iconType} />
-		</IconButton>
+		<Preview {color} {disabled} {ripple} {accessibleTouch} {link} {iconType} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations
@@ -50,6 +41,7 @@
 			bind:disabled
 			bind:ripple
 			bind:link
-			bind:iconType />
+			bind:iconType
+		/>
 	</svelte-fragment>
 </Configurator>
