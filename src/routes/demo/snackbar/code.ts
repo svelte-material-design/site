@@ -4,7 +4,7 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
-import { SnackbarConfigurations } from "./types";
+import type { SnackbarConfigurations } from "./types";
 
 export const script = `
 <script>

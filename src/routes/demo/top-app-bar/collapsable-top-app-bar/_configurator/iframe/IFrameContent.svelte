@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { IFrameContent } from "src/components/configurator";
-	import { CollapsableTopAppBarConfigurations } from "../types";
+	import type { CollapsableTopAppBarConfigurations } from "../types";
 	import Preview from "./Preview.svelte";
 
 	let iframeContent: IFrameContent;

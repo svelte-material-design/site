@@ -5,7 +5,7 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { template as checkboxTemplate } from "../../_configurator/code";
-import { CheckboxConfigurationsItem } from "./types";
+import type { CheckboxConfigurationsItem } from "./types";
 
 export function script() {
 	const code = source`

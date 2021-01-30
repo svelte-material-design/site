@@ -1,4 +1,4 @@
-import { RangeConfigurations, SliderConfigurations } from "./types";
+import type { RangeConfigurations, SliderConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,

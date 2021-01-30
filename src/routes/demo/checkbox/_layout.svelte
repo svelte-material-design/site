@@ -1,31 +1,33 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
-	import { Title } from "src/components/components-api";
-	import { TabBar } from "src/components/configurator/tab-bar";
+	import { Configurator } from "./_configurator";
+	import { ModuleLayout, Page } from "src/components/layout/module-layout";
 
 	export let segment: string;
-	const layoutPath = setLayoutPath(`${getLayoutPath()}/checkbox`);
 
-	let currentTab: "checkbox" | "checkbox-group" =
-		segment === "checkbox-group" ? "checkbox-group" : "checkbox";
+	setLayoutPath(`${getLayoutPath()}/checkbox`);
 </script>
 
-{#if segment === "iframe"}
+<ModuleLayout module="checkbox" title="Checkbox">
 	<slot />
-{:else}
-	<section>
-		<Title module="checkbox">Checkbox</Title>
-		<TabBar
-			bind:active={currentTab}
-			tabs={[
-				{ key: "checkbox", label: "Checkbox", href: layoutPath },
+	<div slot="page">
+		<Page
+			{segment}
+			options={[
+				{ label: "Checkbox" },
 				{
-					key: "checkbox-group",
-					label: "Checkbox group",
-					href: `${layoutPath}/checkbox-group`,
+					label: "Checkbox Group",
+					folder: "checkbox-group",
 				},
 			]}
-		/>
-		<slot />
-	</section>
-{/if}
+		>
+			<div slot="main">
+				<Configurator />
+				<slot />
+			</div>
+			<slot />
+		</Page>
+	</div>
+</ModuleLayout>

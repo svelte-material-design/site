@@ -2,40 +2,34 @@
 
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
-	import { Title } from "src/components/components-api";
-	import { TabBar } from "src/components/configurator/tab-bar";
 	import { SubComponents } from "./_api";
 	import { Configurator } from "./_configurator";
+	import { ModuleLayout, Page } from "src/components/layout/module-layout";
 
 	export let segment: string;
-	const layoutPath = setLayoutPath(`${getLayoutPath()}/slider`);
 
-	let currentTab: "slider" | "discrete-slider" =
-		segment === "discrete-slider" ? "discrete-slider" : "slider";
+	setLayoutPath(`${getLayoutPath()}/slider`);
 </script>
 
-<svelte:head>
-	<title>Slider - Svelte Material Design</title>
-</svelte:head>
-
-<section>
-	<Title module="slider">Slider</Title>
-	<TabBar
-		bind:active={currentTab}
-		tabs={[
-			{ key: "slider", label: "Slider", href: layoutPath },
-			{
-				key: "discrete-slider",
-				label: "Discrete slider",
-				href: `${layoutPath}/discrete-slider`,
-			},
-		]}
-	/>
-	{#if segment === "discrete-slider"}
-		<slot />
-	{:else}
-		<Configurator />
-		<SubComponents />
-		<slot />
-	{/if}
-</section>
+<ModuleLayout module="slider" title="Slider">
+	<slot />
+	<div slot="page">
+		<Page
+			{segment}
+			options={[
+				{ label: "Slider" },
+				{
+					label: "Discrete Slider",
+					folder: "discrete-slider",
+				},
+			]}
+		>
+			<div slot="main">
+				<Configurator />
+				<SubComponents />
+				<slot />
+			</div>
+			<slot />
+		</Page>
+	</div>
+</ModuleLayout>

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		TabBar,
@@ -11,10 +13,6 @@
 	export let tabs: Option[];
 	export let active: string = tabs?.[0].key;
 </script>
-
-<svelte:head>
-	<title>Top App Bar - Svelte Material Design</title>
-</svelte:head>
 
 <TabBar bind:active>
 	{#each tabs as tab}

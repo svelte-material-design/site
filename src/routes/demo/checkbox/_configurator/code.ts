@@ -1,4 +1,4 @@
-import { CheckboxConfigurations } from "./types";
+import type { CheckboxConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,

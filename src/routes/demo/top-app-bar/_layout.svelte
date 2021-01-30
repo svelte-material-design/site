@@ -2,49 +2,37 @@
 
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
-	import { Title } from "src/components/components-api";
-	import { stores } from "@sapper/app";
 	import { SubComponents } from "./_api";
 	import { Configurator } from "./_configurator";
-	import { TabBar } from "src/components/configurator/tab-bar";
+	import {
+		ModuleLayout,
+		Page,
+	} from "src/components/layout/module-layout";
 
-	export let configurator: "standard" | "collapsable" = "standard";
 	export let segment: string;
 
-	const { page } = stores();
-	const layoutPath = setLayoutPath(`${getLayoutPath()}/top-app-bar`);
-	const currentPath = getLayoutPath();
-
-	configurator =
-		segment === "collapsable-top-app-bar" ? "collapsable" : "standard";
+	setLayoutPath(`${getLayoutPath()}/top-app-bar`);
 </script>
 
-<svelte:head>
-	<title>Top App Bar - Svelte Material Design</title>
-</svelte:head>
-
-{#if $page.path.endsWith("iframe")}
+<ModuleLayout module="top-app-bar" title="Top App Bar">
 	<slot />
-{:else}
-	<section>
-		<Title module="top-app-bar">Top App Bar</Title>
-		<TabBar
-			bind:active={configurator}
-			tabs={[
-				{ key: "standard", label: "Top App Bar", href: currentPath },
+	<div slot="page">
+		<Page
+			{segment}
+			options={[
+				{ label: "Top App Bar" },
 				{
-					key: "collapsable",
 					label: "Collapsable Top App Bar",
-					href: `${layoutPath}/collapsable-top-app-bar`,
+					folder: "collapsable-top-app-bar",
 				},
 			]}
-		/>
-		{#if segment === "collapsable-top-app-bar"}
+		>
+			<div slot="main">
+				<Configurator />
+				<SubComponents />
+				<slot />
+			</div>
 			<slot />
-		{:else}
-			<Configurator />
-			<SubComponents />
-			<slot />
-		{/if}
-	</section>
-{/if}
+		</Page>
+	</div>
+</ModuleLayout>

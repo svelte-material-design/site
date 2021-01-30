@@ -1,27 +1,29 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import Configurator from "./_configurator/Configurator.svelte";
-	import { SubComponents } from "./_api";
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
-	import { Title } from "src/components/components-api";
-
-	setLayoutPath(`${getLayoutPath()}/button`);
+	import { SubComponents } from "./_api";
+	import { Configurator } from "./_configurator";
+	import {
+		ModuleLayout,
+		Page,
+	} from "src/components/layout/module-layout";
 
 	export let segment: string;
+
+	setLayoutPath(`${getLayoutPath()}/button`);
 </script>
 
-<svelte:head>
-	<title>Button - Svelte Material Design</title>
-</svelte:head>
-
-{#if segment === "iframe"}
+<ModuleLayout module="button" title="Button">
 	<slot />
-{:else}
-	<section>
-		<Title module="button">Button</Title>
-		<Configurator />
-		<SubComponents />
-		<slot />
-	</section>
-{/if}
+	<div slot="page">
+		<Page {segment}>
+			<div slot="main">
+				<Configurator />
+				<SubComponents />
+				<slot />
+			</div>
+			<slot />
+		</Page>
+	</div>
+</ModuleLayout>

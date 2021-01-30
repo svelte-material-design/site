@@ -3,11 +3,7 @@
 <script lang="ts">
 	import { Configurator } from "src/components/configurator";
 	import type { AspectRatio } from "@svelte-material-design/core/card";
-	import { Card } from "@svelte-material-design/core/card";
-	import Body from "./body/Body.svelte";
-	import Actions from "./actions/Actions.svelte";
-	import Configurations from "./Configurations.svelte";
-	import Head from "./head/Head.svelte";
+	import { Configurations, Preview } from ".";
 	import type { ActionsLayout, CardConfigurations } from "./types";
 	import { script, template, scss } from "./code";
 
@@ -56,14 +52,7 @@
 
 <Configurator {svelteScriptCode} {svelteCode} {scssCode}>
 	<div slot="preview">
-		<Card
-			variant={outlined ? "outlined" : undefined}
-			style="min-width: {!horizontalLayout ? 350 : 550}px"
-		>
-			<Head {...cardConfigurations} />
-			<Body {...cardConfigurations} />
-			<Actions {actionsLayout} />
-		</Card>
+		<Preview {cardConfigurations} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations

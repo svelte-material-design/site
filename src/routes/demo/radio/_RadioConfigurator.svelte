@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { FormField, Label } from "@smui/core/form-field";
 	import {
@@ -144,8 +146,6 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview" style="flex-direction: column;">
 		<RadioGroup bind:value on:change={handleRadioChange}>
@@ -160,7 +160,8 @@
 						density={item.density}
 						disabled={item.disabled}
 						readonly={item.readonly}
-						required={item.required} />
+						required={item.required}
+					/>
 					<Label>{item.label}</Label>
 				</FormField>
 			{/each}
@@ -173,7 +174,8 @@
 				<Select
 					nullable={false}
 					bind:value={selectedRadioId}
-					on:change={multipleItemsControls.updateSelectedInstance}>
+					on:change={multipleItemsControls.updateSelectedInstance}
+				>
 					<span slot="label">Selected radio</span>
 					<div slot="options">
 						{#each radios as item (item.value)}
@@ -187,13 +189,15 @@
 			<DensityOption
 				bind:density={selectedRadio.density}
 				on:change={multipleItemsControls.updateItemsInstance}
-				max={3} />
+				max={3}
+			/>
 		</div>
 		<div>
 			<FormField>
 				<Checkbox
 					bind:checked={selectedRadio.checked}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsControls.updateItemsInstance}
+				/>
 				<Label>Checked</Label>
 			</FormField>
 		</div>
@@ -201,7 +205,8 @@
 			<FormField>
 				<Checkbox
 					bind:checked={selectedRadio.ripple}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsControls.updateItemsInstance}
+				/>
 				<Label>Ripple</Label>
 			</FormField>
 		</div>
@@ -209,7 +214,8 @@
 			<FormField>
 				<Checkbox
 					bind:checked={selectedRadio.expandedTouchTarget}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsControls.updateItemsInstance}
+				/>
 				<Label>Expanded touch target</Label>
 			</FormField>
 		</div>
@@ -217,7 +223,8 @@
 			<FormField>
 				<Checkbox
 					bind:checked={selectedRadio.disabled}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsControls.updateItemsInstance}
+				/>
 				<Label>Disabled</Label>
 			</FormField>
 		</div>
@@ -225,7 +232,8 @@
 			<FormField>
 				<Checkbox
 					bind:checked={selectedRadio.readonly}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsControls.updateItemsInstance}
+				/>
 				<Label>Readonly</Label>
 			</FormField>
 		</div>
@@ -233,7 +241,8 @@
 			<FormField>
 				<Checkbox
 					bind:checked={selectedRadio.required}
-					on:change={multipleItemsControls.updateItemsInstance} />
+					on:change={multipleItemsControls.updateItemsInstance}
+				/>
 				<Label>Required</Label>
 			</FormField>
 		</div>
@@ -242,6 +251,7 @@
 			bind:items={radios}
 			bind:selectedItem={selectedRadio}
 			bind:selectedItemId={selectedRadioId}
-			itemFactory={radioFactory} />
+			itemFactory={radioFactory}
+		/>
 	</div>
 </Configurator>

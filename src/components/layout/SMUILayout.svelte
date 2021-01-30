@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import * as appClasses from "./app.module.scss";
 	import { TopAppBar, Section, Title } from "@smui/core/top-app-bar";
@@ -59,8 +61,7 @@
 			{#if miniWindow}
 				<IconButton
 					class="material-icons"
-					on:click={() => (drawerOpen = !drawerOpen)}
-				>menu</IconButton
+					on:click={() => (drawerOpen = !drawerOpen)}>menu</IconButton
 				>
 			{/if}
 			<Title
@@ -68,8 +69,7 @@
 				href="/"
 				on:click={() => (activeSection = null)}
 				class="mdc-theme--primary"
-				style={miniWindow ? "padding-left: 0;" : ""}
-			>Svelte Material UI</Title
+				style={miniWindow ? "padding-left: 0;" : ""}>Svelte Material UI</Title
 			>
 		</Section>
 		<Section align="end" toolbar>

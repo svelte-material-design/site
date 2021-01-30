@@ -1,15 +1,8 @@
 <script lang="ts">
-	import { Typography } from "@smui/core/typography";
-
-	import RadioConfigurator from "./_RadioConfigurator.svelte";
+	import { Props, Events } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Radio - SMUI</title>
-</svelte:head>
-
-<section>
-	<Typography variant="headline2">Radio</Typography>
-
-	<RadioConfigurator />
-</section>
+<ApiTitle>Radio</ApiTitle>
+<Props />
+<Events />

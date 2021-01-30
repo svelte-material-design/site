@@ -10,7 +10,7 @@
 	import {
 		CommonRangeConfigurationsComponent,
 		CommonSliderOptions,
-	} from "../../_configurator";
+	} from "../../_configurator/common";
 	import type { DiscreteSliderRangeConfigurations } from "./types";
 
 	export let rangeStart: DiscreteSliderRangeConfigurations = {

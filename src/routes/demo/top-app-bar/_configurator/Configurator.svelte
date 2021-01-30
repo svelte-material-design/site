@@ -29,7 +29,7 @@
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
-	<div slot="preview" style="width: 100%;">
+	<div slot="preview" style="width: 100%; height: 15em;">
 		<IFrame title="Top App Bar preview" props={cardConfigurations} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">

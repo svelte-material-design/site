@@ -1,4 +1,4 @@
-import { ListItemConfigurations } from "./types";
+import type { ListItemConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSCSSCode,

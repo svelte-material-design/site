@@ -1,21 +1,26 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import Configurator from "./_configurator/Configurator.svelte";
-	import { SubComponents } from "./_api";
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
-	import { Title } from "src/components/components-api";
+	import { SubComponents } from "./_api";
+	import { Configurator } from "./_configurator";
+	import { ModuleLayout, Page } from "src/components/layout/module-layout";
+
+	export let segment: string;
 
 	setLayoutPath(`${getLayoutPath()}/card`);
 </script>
 
-<svelte:head>
-	<title>Card - Svelte Material Design</title>
-</svelte:head>
-
-<section>
-	<Title module="card">Card</Title>
-	<Configurator />
-	<SubComponents />
+<ModuleLayout module="card" title="Card">
 	<slot />
-</section>
+	<div slot="page">
+		<Page {segment}>
+			<div slot="main">
+				<Configurator />
+				<SubComponents />
+				<slot />
+			</div>
+			<slot />
+		</Page>
+	</div>
+</ModuleLayout>
