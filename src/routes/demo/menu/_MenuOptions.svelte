@@ -1,6 +1,4 @@
-<svelte:options immutable={true} />
-
-<script lang="ts">
+<!-- <svelte:options immutable={true} /><script lang="ts">
 	import {
 		MenuAnchorCorner,
 		MenuVariant,
@@ -61,9 +59,7 @@
 	export let useAriaLabel: boolean;
 	export let useTitle: boolean;
 	//#endregion
-</script>
-
-<div>
+</script><div>
 	<Select bind:value={selectionType}>
 		<span slot="label">Selection Type</span>
 		<div slot="options">
@@ -120,4 +116,4 @@
 	bind:trailingIcon
 	bind:clickableLeadingIcon
 	bind:clickableTrailingIcon
-/>
+/> -->

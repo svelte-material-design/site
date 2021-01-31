@@ -1,19 +1,35 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import Configurator from "./_configurator/Configurator.svelte";
-	import { SubComponents } from "./_api";
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
-	import { Title } from "src/components/components-api";
+	import { SubComponents } from "./_api";
+	import { Configurator } from "./_configurator";
+	import { ModuleLayout, Page } from "src/components/layout/module-layout";
+
+	export let segment: string;
 
 	setLayoutPath(`${getLayoutPath()}/list`);
 </script>
 
-<svelte:head>
-	<title>List - Svelte Material Design</title>
-</svelte:head>
-
-<section>
-	<Title module="button">List</Title>
-	<Configurator />
-	<SubComponents />
+<ModuleLayout module="list" title="List">
 	<slot />
-</section>
+	<div slot="page">
+		<Page
+			{segment}
+			options={[
+				{ label: "List" },
+				{
+					label: "List Box",
+					folder: "list-box",
+				},
+			]}
+		>
+			<div slot="main">
+				<Configurator />
+				<SubComponents />
+				<slot />
+			</div>
+			<slot />
+		</Page>
+	</div>
+</ModuleLayout>

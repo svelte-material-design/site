@@ -1,6 +1,4 @@
-<svelte:options immutable={true} />
-
-<script lang="ts">
+<!-- <svelte:options immutable={true} /><script lang="ts">
 	import { Typography } from "@smui/core/typography";
 	import ListConfigurator from "./_ListConfigurator.svelte";
 	import ListBoxConfigurator from "./_ListBoxConfigurator.svelte";
@@ -12,9 +10,7 @@
 	const currentPath = getLayoutPath();
 
 	let currentTab: "list" | "listbox" | "navlist" = "list";
-</script>
-
-<svelte:head>
+</script><svelte:head>
 	<title>Switch - SMUI</title>
 </svelte:head>
 
@@ -37,4 +33,4 @@
 	{:else if currentTab === "navlist"}
 		<NavListConfigurator />
 	{/if}
-</section>
+</section> -->

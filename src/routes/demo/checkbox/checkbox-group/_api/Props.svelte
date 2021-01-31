@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Props,
@@ -7,14 +9,6 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
-	import {
-		Ripple,
-		AccessibleTouch,
-	} from "src/components/components-api/props/common";
-	import {
-		BaseComponentProps,
-		Dom,
-	} from "src/components/components-api/props/common";
 </script>
 
 <Props noNotes>
@@ -32,13 +26,6 @@
 			>This prop is useful when you want to redirect all related checkboxes to
 			another <code>{"<CheckboxGroup />"}</code> or another
 			<code>{"<SelectionGroup />"}</code> component.</Description
-		>
-	</Prop>
-	<Prop>
-		<Name>allowIndeterminated</Name>
-		<Signature keyword="boolean" />
-		<Description
-			>If <code>false</code> the checkbox can be indeterminate.</Description
 		>
 	</Prop>
 </Props>

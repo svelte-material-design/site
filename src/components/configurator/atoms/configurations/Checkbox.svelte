@@ -3,9 +3,9 @@
 	import { FormField, Label } from "@svelte-material-design/core/form-field";
 	import { Configuration } from "src/components/configurator/atoms/configurations";
 
-	export let checked: boolean;
+	export let checked: boolean = false;
 	export let disabled: boolean = undefined;
-	export let label: string;
+	export let label: string = "";
 </script>
 
 <Configuration>

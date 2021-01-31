@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Events,
@@ -12,7 +14,7 @@
 <Events>
 	<Event>
 		<Name>change</Name>
-		<Signature keyword="type" name="OnCheckboxChangeEvent" />
+		<Signature keyword="type" name="OnRadioChangeEvent" />
 		<Description>
 			Event fired when the
 			<code>checked</code>

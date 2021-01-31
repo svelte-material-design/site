@@ -2,11 +2,15 @@
 
 <script lang="ts">
 	import { UseState } from "@raythurnevoid/svelte-hooks";
-	import { tick } from "svelte";
+	import { createEventDispatcher, tick } from "svelte";
 	import type { Item } from "./types";
 
 	export let items: Item[];
 	export let selectedItem: Item = {} as Item;
+
+	const dispatch = createEventDispatcher<{
+		itemsChange: void;
+	}>();
 
 	let selectedItemId: string;
 	let selectedItemIdState: UseState;
@@ -25,9 +29,13 @@
 		await tick();
 	}
 
-	export function setItems(newValue: Item[]) {
+	export async function setItems(newValue: Item[]) {
 		items = [...newValue];
 		updateSelectedInstance();
+
+		await tick();
+
+		dispatch("itemsChange");
 	}
 
 	export function getItems(): Item[] {

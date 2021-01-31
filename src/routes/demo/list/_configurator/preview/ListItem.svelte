@@ -1,0 +1,51 @@
+<svelte:options immutable={true} />
+
+<script lang="ts">
+	import {
+		Content,
+		Item,
+		ListRole,
+		ListType,
+		Icon,
+		PrimaryText,
+		SecondaryText,
+	} from "@smui/core/list";
+	import { ListItemConfigurations } from "../types";
+	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
+
+	export let configurations: ListItemConfigurations;
+	export let listRole: ListRole;
+	export let listType: ListType;
+	export let listItemsRows: number;
+
+	function handleChange() {
+		configurations = { ...configurations };
+	}
+</script>
+
+<ListItem
+	component={Item}
+	contentComponent={Content}
+	primaryTextComponent={PrimaryText}
+	secondaryTextComponent={SecondaryText}
+	iconComponent={Icon}
+	bind:selected={configurations.selected}
+	value={configurations.value}
+	disabled={configurations.disabled}
+	ripple={configurations.ripple}
+	ariaLabel={configurations.ariaLabel}
+	title={configurations.title}
+	label={configurations.label}
+	labelRow2={configurations.labelRow2}
+	labelRow3={configurations.labelRow3}
+	leadingIcon={configurations.leadingIcon}
+	trailingIcon={configurations.trailingIcon}
+	clickableLeadingIcon={configurations.clickableLeadingIcon}
+	clickableTrailingIcon={configurations.clickableTrailingIcon}
+	{listRole}
+	{listType}
+	{listItemsRows}
+	let:selected
+	on:change={handleChange}
+	on:change
+/>

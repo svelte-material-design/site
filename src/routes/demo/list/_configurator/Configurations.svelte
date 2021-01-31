@@ -6,47 +6,36 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
-	import ListItemOptions from "./_ListItemOptions.svelte";
-	import ListOptions from "./_ListOptions.svelte";
-	import CommonListOptions from "./_CommonListOptions.svelte";
-	import CommonListItemOptions from "./_CommonListItemOptions.svelte";
-	import type { ListRole, ListOrientation, ListType } from "@smui/core/list";
-	import type { ListItemConfigurations } from "./types";
+	import {
+		ListConfigurations as ListConfigurationsComponent,
+		CommonListConfigurations,
+		CommonListItemConfigurations,
+		ListItemConfigurations as ListItemConfigurationsComponent,
+	} from "./configurations";
 	import { tick } from "svelte";
+	import type { ListConfigurations, ListItemConfigurations } from "./types";
+	import { Section } from "src/components/configurator/molecules/configurations";
 
-	export let value: string;
-	export let role: ListRole;
-	export let wrapFocus: boolean = true;
-	export let dense: boolean;
-	export let density: number;
-	export let orientation: ListOrientation;
-	export let type: ListType;
-	export let itemsRows: number;
-	export let separator: boolean;
-	export let separatorInsetPadding: boolean;
-	export let separatorInsetLeading: boolean;
-	export let separatorInsetTrailing: boolean;
-
+	export let configurations: ListConfigurations;
 	export let multipleItemsConfigurations: MultipleItemsConfigurations;
 
-	export let items: ListItemConfigurations[] = [];
 	let selectedItem: ListItemConfigurations = {} as any;
 
-	async function handleOptionsChange() {
-		const oldValue = value;
-
+	async function handleChange() {
 		multipleItemsConfigurations.updateSelectedInstance();
 
 		await tick();
 
-		if (oldValue !== value) {
-			multipleItemsConfigurations.updateSelectedInstance();
-		}
+		handleItemsChange();
+	}
+
+	function handleItemsChange() {
+		configurations = { ...configurations };
 	}
 
 	function createListItem(index) {
 		const value = `item:${index}`;
-		return {
+		return ({
 			id: value,
 			value,
 			ripple: true,
@@ -61,56 +50,39 @@
 			clickableLeadingIcon: false,
 			clickableTrailingIcon: false,
 			leadingIcon: undefined,
-		} as ListItemConfigurations;
+		} as Partial<ListItemConfigurations>) as ListItemConfigurations;
 	}
 </script>
 
 <MultipleItemsConfigurations
 	bind:this={multipleItemsConfigurations}
-	bind:items
+	bind:items={configurations.items}
 	bind:selectedItem
+	on:itemsChange={handleItemsChange}
 >
-	<ListOptions bind:role {type} on:change={handleOptionsChange} />
-	<CommonListOptions
-		bind:wrapFocus
-		bind:dense
-		bind:density
-		bind:orientation
-		bind:type
-		bind:itemsRows
-		bind:separator
-		bind:separatorInsetPadding
-		bind:separatorInsetLeading
-		bind:separatorInsetTrailing
-		on:change={handleOptionsChange}
-	/>
+	<Section>
+		<ListConfigurationsComponent bind:configurations on:change={handleChange} />
+		<CommonListConfigurations bind:configurations on:change={handleChange} />
+	</Section>
 	<MultipleItemSelector
-		{items}
+		items={configurations.items}
 		label="Edit tab"
 		{selectedItem}
 		{multipleItemsConfigurations}
 	/>
-	<ListItemOptions
-		listRole={role}
-		bind:selected={selectedItem.selected}
-		on:change={handleOptionsChange}
-	/>
-	<CommonListItemOptions
-		listType={type}
-		bind:ripple={selectedItem.ripple}
-		bind:disabled={selectedItem.disabled}
-		bind:title={selectedItem.title}
-		bind:label={selectedItem.label}
-		bind:ariaLabel={selectedItem.ariaLabel}
-		bind:leadingIcon={selectedItem.leadingIcon}
-		bind:trailingIcon={selectedItem.trailingIcon}
-		bind:clickableLeadingIcon={selectedItem.clickableLeadingIcon}
-		bind:clickableTrailingIcon={selectedItem.clickableTrailingIcon}
-		labelFn={() => `Item ${items.indexOf(selectedItem)}`}
-		ariaLabelFn={() => `Item ${items.indexOf(selectedItem)}`}
-		titleFn={() => `Title ${items.indexOf(selectedItem)}`}
-		on:change={handleOptionsChange}
-	/>
+	<Section>
+		<ListItemConfigurationsComponent
+			listRole={configurations.role}
+			bind:configurations={selectedItem}
+			on:change={handleChange}
+		/>
+		<CommonListItemConfigurations
+			listType={configurations.type}
+			bind:configurations={selectedItem}
+			labelFn={() => `Item ${configurations.items.indexOf(selectedItem)}`}
+			on:change={handleChange}
+		/>
+	</Section>
 	<MultipleItemControls
 		itemFactory={createListItem}
 		{multipleItemsConfigurations}

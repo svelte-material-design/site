@@ -1,14 +1,41 @@
 <script lang="ts">
-	import { DiscreteSlider, Range, Thumb } from "@smui/core/slider";
-	import { typography } from "@smui/core/typography";
-	import { FormField, Label } from "@smui/core/form-field";
+	import {
+		DiscreteSlider,
+		Range,
+		Thumb,
+	} from "@svelte-material-design/core/slider";
+	import type { SliderValue } from "@svelte-material-design/core/slider";
+	import { typography } from "@svelte-material-design/core/typography";
+	import { FormField, Label } from "@svelte-material-design/core/form-field";
+	import { createEventDispatcher } from "svelte";
 
 	export let value: number;
 	export let min: number;
 	export let max: number;
 	export let step: number;
-
 	export let label: string;
+	export let disabled: boolean;
+
+	const dispatch = createEventDispatcher<{
+		change: {
+			value: number;
+		};
+		input: {
+			value: number;
+		};
+	}>();
+
+	function handleInput(value: SliderValue) {
+		dispatch("input", {
+			value: value[0],
+		});
+	}
+
+	function handleChange(value: SliderValue) {
+		dispatch("change", {
+			value: value[0],
+		});
+	}
 </script>
 
 <div class="labelled-range-slider">
@@ -22,8 +49,9 @@
 				class="labelled-range-slider__slider"
 				gap={1}
 				hideValueIndicator
-				on:input
-				on:change
+				{disabled}
+				on:input={(event) => handleInput(event.detail.value)}
+				on:change={(event) => handleChange(event.detail.value)}
 				><Range {min} {max} bind:value {step} let:value>
 					<Thumb>{value}</Thumb>
 				</Range></DiscreteSlider
