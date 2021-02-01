@@ -6,25 +6,37 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
-	import type { ListConfigurations } from "../types";
+	import type { CommonListConfigurations } from "../types";
+	import { createEventDispatcher, tick } from "svelte";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
+	export let configurations: CommonListConfigurations;
 
-	export let configurations: ListConfigurations;
+	const dispatch = createEventDispatcher<{
+		change: void;
+	}>();
 
-	$: if (!configurations.separator) {
-		configurations.separatorInsetPadding = false;
-		configurations.separatorInsetLeading = false;
-		configurations.separatorInsetTrailing = false;
-		handleChange();
+	handleSeparatorUpdate(undefined);
+	function handleSeparatorUpdate(oldValue: boolean) {
+		if (!configurations.separator && configurations.separator !== oldValue) {
+			configurations.separatorInsetPadding = false;
+			configurations.separatorInsetLeading = false;
+			configurations.separatorInsetTrailing = false;
+			handleChange();
+		}
 	}
 
 	async function handleOrientationChange(checked: boolean) {
 		configurations.orientation = checked ? "horizontal" : undefined;
 	}
 
-	function handleChange() {
-		configurations = { ...configurations };
+	async function handleChange() {
+		await tick();
+
+		dispatch("change");
 	}
 </script>
+
+<UseState value={configurations.separator} onUpdate={handleSeparatorUpdate} />
 
 <Select
 	bind:value={configurations.type}

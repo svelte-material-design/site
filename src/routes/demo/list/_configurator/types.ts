@@ -2,9 +2,12 @@ import type { ItemCodeProps } from "src/components/configurator/smui-components/
 import type { Item } from "src/components/configurator/common-options/multiple-items";
 import type { ListRole, ListOrientation, ListType } from "@smui/core/list";
 
-export interface ListConfigurations {
-	value: string;
+export interface ListConfigurations extends CommonListConfigurations {
 	role: ListRole;
+}
+
+export interface CommonListConfigurations {
+	value: string | string[];
 	wrapFocus: boolean;
 	dense: boolean;
 	density: number;

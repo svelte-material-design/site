@@ -1,12 +1,12 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { List, Separator } from "@smui/core/list";
-	import { ListConfigurations } from "./types";
+	import { ListBox, Separator } from "@smui/core/list";
+	import { ListBoxConfigurations } from "./types";
 	import { ListItem } from "./preview";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 
-	export let configurations: ListConfigurations;
+	export let configurations: ListBoxConfigurations;
 	let value: string | string[];
 
 	function handleChange() {
@@ -17,9 +17,9 @@
 
 <UseState {value} onUpdate={handleChange} />
 
-<List
+<ListBox
 	bind:value
-	role={configurations.role}
+	multiSelection={configurations.multiSelection}
 	orientation={configurations.orientation}
 	type={configurations.type}
 	itemsRows={configurations.itemsRows}
@@ -30,7 +30,6 @@
 	{#each configurations.items as item, index}
 		<ListItem
 			bind:configurations={item}
-			listRole={configurations.role}
 			listType={configurations.type}
 			listItemsRows={configurations.itemsRows}
 			on:change={handleChange}
@@ -43,4 +42,4 @@
 			/>
 		{/if}
 	{/each}
-</List>
+</ListBox>

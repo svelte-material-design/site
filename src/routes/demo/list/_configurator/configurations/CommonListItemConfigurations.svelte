@@ -3,14 +3,19 @@
 <script lang="ts">
 	import { IconsOptions } from "src/components/configurator/smui-components/icons";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
-	import { onMount, tick } from "svelte";
+	import { createEventDispatcher, tick } from "svelte";
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import type { ListItemConfigurations } from "../types";
 	import type { ListType } from "@svelte-material-ui-test/core/packages/list";
+	import { Section } from "src/components/configurator/molecules/configurations";
 
 	export let configurations: ListItemConfigurations;
 	export let listType: ListType;
 	export let labelFn: () => string = undefined;
+
+	const dispatch = createEventDispatcher<{
+		change: void;
+	}>();
 
 	let useLabel: boolean = true;
 	$: {
@@ -35,8 +40,8 @@
 		}
 	}
 
-	function handleChange() {
-		configurations = { ...configurations };
+	async function handleChange() {
+		dispatch("change");
 	}
 </script>
 
@@ -46,27 +51,21 @@
 	bind:checked={configurations.ripple}
 	label="Ripple"
 	on:change={handleChange}
-	on:change
 />
-<Checkbox
-	bind:checked={useLabel}
-	label="Label"
-	on:change={handleChange}
-	on:change
-/>
+<Checkbox bind:checked={useLabel} label="Label" on:change={handleChange} />
 <Checkbox
 	bind:checked={configurations.disabled}
 	label="Disabled"
 	on:change={handleChange}
-	on:change
 />
-<IconsOptions
-	showClickableOptions
-	bind:leadingIcon={configurations.leadingIcon}
-	leadingIconDisabled={listType !== "icon" && listType !== "textual"}
-	bind:trailingIcon={configurations.trailingIcon}
-	bind:clickableLeadingIcon={configurations.clickableLeadingIcon}
-	bind:clickableTrailingIcon={configurations.clickableTrailingIcon}
-	on:change={handleChange}
-	on:change
-/>
+<Section>
+	<IconsOptions
+		showClickableOptions
+		bind:leadingIcon={configurations.leadingIcon}
+		leadingIconDisabled={listType !== "icon" && listType !== "textual"}
+		bind:trailingIcon={configurations.trailingIcon}
+		bind:clickableLeadingIcon={configurations.clickableLeadingIcon}
+		bind:clickableTrailingIcon={configurations.clickableTrailingIcon}
+		on:change={handleChange}
+	/>
+</Section>

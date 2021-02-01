@@ -4,7 +4,6 @@
 	import {
 		Content,
 		Item,
-		ListRole,
 		ListType,
 		Icon,
 		PrimaryText,
@@ -14,9 +13,10 @@
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
 	export let configurations: ListItemConfigurations;
-	export let listRole: ListRole;
 	export let listType: ListType;
 	export let listItemsRows: number;
+
+	const listRole = "listbox";
 
 	function handleChange() {
 		configurations = { ...configurations };
@@ -42,7 +42,6 @@
 	trailingIcon={configurations.trailingIcon}
 	clickableLeadingIcon={configurations.clickableLeadingIcon}
 	clickableTrailingIcon={configurations.clickableTrailingIcon}
-	href={configurations.href}
 	{listRole}
 	{listType}
 	{listItemsRows}

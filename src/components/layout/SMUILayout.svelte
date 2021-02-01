@@ -123,24 +123,26 @@
 					: ''} {contentClass}"
 			>
 				<Content>
-					<NavList>
-						{#each sections as section (section.name)}
-							<NavItem
-								bind:this={section.component}
-								style={section.indent
-									? "margin-left: " + section.indent * 25 + "px;"
-									: ""}
-								on:click={() => pickSection(section)}
-								activated={"route" in section && section.route === $page.path}
-								href={section.route || section.shortcut}
-								props={{ title: section.name }}
-							>
-								<ListItemContent class="mdc-theme--on-secondary">
-									{section.name}
-								</ListItemContent>
-							</NavItem>
-						{/each}
-					</NavList>
+					<nav>
+						<NavList>
+							{#each sections as section (section.name)}
+								<NavItem
+									bind:this={section.component}
+									style={section.indent
+										? "margin-left: " + section.indent * 25 + "px;"
+										: ""}
+									on:click={() => pickSection(section)}
+									activated={"route" in section && section.route === $page.path}
+									href={section.route || section.shortcut}
+									props={{ title: section.name }}
+								>
+									<ListItemContent class="mdc-theme--on-secondary">
+										{section.name}
+									</ListItemContent>
+								</NavItem>
+							{/each}
+						</NavList>
+					</nav>
 				</Content>
 			</Drawer>
 			<AppContent class={contentClass}>

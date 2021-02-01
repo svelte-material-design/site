@@ -4,11 +4,11 @@
 	import { Configurator } from "src/components/configurator";
 	import { Values } from "src/components/configurator/atoms";
 	import { Configurations, Preview } from ".";
-	import { ListConfigurations } from "./types";
+	import { ListBoxConfigurations } from "./types";
 
 	let configurations = {
 		items: [],
-	} as ListConfigurations;
+	} as ListBoxConfigurations;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
@@ -36,9 +36,7 @@
 		<Preview bind:configurations />
 	</div>
 	<div slot="values">
-		{#if configurations.role !== "list"}
-			value: <Values value={configurations.value} />
-		{/if}
+		value: <Values value={configurations.value} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations bind:configurations />

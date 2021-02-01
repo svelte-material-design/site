@@ -16,4 +16,8 @@
 	.configurations-section:not(:first-child) {
 		margin-top: 1em;
 	}
+
+	.configurations-section {
+		grid-column: 1/-1;
+	}
 </style>

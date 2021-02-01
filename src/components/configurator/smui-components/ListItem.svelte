@@ -3,19 +3,15 @@
 <script lang="ts" context="module">
 	export interface ListItemProps {
 		id: string;
-		name: string;
 		value: string;
 		wrapFocus: boolean;
 		ripple: boolean;
 		disabled: boolean;
-		readonly: boolean;
 		selected: boolean;
 		href: string;
 		label: string;
 		labelRow2: string;
 		labelRow3: string;
-		title: string;
-		ariaLabel: string;
 		leadingIcon: IconType;
 		trailingIcon: IconType;
 		clickableLeadingIcon: boolean;
@@ -43,8 +39,6 @@
 	export let disabled: boolean;
 	export let ripple: boolean;
 	export let selected: boolean = undefined;
-	export let ariaLabel: string;
-	export let title: string;
 	export let label: string;
 	export let labelRow2: string;
 	export let labelRow3: string;
@@ -94,8 +88,7 @@
 	{value}
 	{disabled}
 	{ripple}
-	{ariaLabel}
-	{title}
+	{...$$restProps}
 	on:change
 	let:leadingClassName
 	let:trailingClassName

@@ -2,22 +2,26 @@
 
 <script lang="ts">
 	import { UseState } from "@raythurnevoid/svelte-hooks";
-	import { tick } from "svelte";
+	import { createEventDispatcher, tick } from "svelte";
 	import { Select } from "src/components/configurator/atoms/configurations";
 	import type { ListConfigurations } from "../types";
 
 	export let configurations: ListConfigurations;
 
+	const dispatch = createEventDispatcher<{
+		change: void;
+	}>();
+
 	async function handleTypeUpdate() {
 		configurations.role = "list";
 
 		handleChange();
-
-		await tick();
 	}
 
 	async function handleChange() {
-		configurations = { ...configurations };
+		await tick();
+
+		dispatch("change");
 	}
 </script>
 
@@ -43,5 +47,4 @@
 		},
 	]}
 	on:change={handleChange}
-	on:change
 />
