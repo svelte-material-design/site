@@ -64,8 +64,6 @@
 		bind:leadingIcon={configurations.leadingIcon}
 		leadingIconDisabled={listType !== "icon" && listType !== "textual"}
 		bind:trailingIcon={configurations.trailingIcon}
-		bind:clickableLeadingIcon={configurations.clickableLeadingIcon}
-		bind:clickableTrailingIcon={configurations.clickableTrailingIcon}
 		on:change={handleChange}
 	/>
 </Section>

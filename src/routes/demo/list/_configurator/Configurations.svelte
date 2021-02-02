@@ -50,8 +50,6 @@
 			labelRow2: `Secondary text`,
 			labelRow3: `Third line`,
 			trailingIcon: undefined,
-			clickableLeadingIcon: false,
-			clickableTrailingIcon: false,
 			leadingIcon: undefined,
 		} as Partial<ListItemConfigurations>) as ListItemConfigurations;
 	}

@@ -6,7 +6,7 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 
-export function script(props: RadioConfigurations) {
+export function script(configurations: RadioConfigurations) {
 	const code = source`
 		<script>
 			${getImportCode(["Radio"], "radio")}
@@ -19,14 +19,14 @@ export function script(props: RadioConfigurations) {
 	return code;
 }
 
-export function template(props: RadioConfigurations) {
-	const { label } = props;
+export function template(configurations: RadioConfigurations) {
+	const { label } = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "FormField",
 		props: [],
 		content: source`
-			${getRadioCode(props)}
+			${getRadioCode(configurations)}
 			<Label>${label}</Label>
 		`,
 	});
@@ -34,8 +34,15 @@ export function template(props: RadioConfigurations) {
 	return removeEmptyLines(code);
 }
 
-function getRadioCode(props: RadioConfigurations) {
-	const { ripple, accessibleTouch, checked, disabled, readonly, value } = props;
+function getRadioCode(configurations: RadioConfigurations) {
+	const {
+		ripple,
+		accessibleTouch,
+		checked,
+		disabled,
+		readonly,
+		value,
+	} = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "Radio",

@@ -13,10 +13,10 @@
 	{...$$restProps}
 	{type}
 	{component}
-	{button}
 	src={type === "img" ? "/icons/emojis/grinning-face.png" : undefined}
 	alt={type === "img" ? "Grinning face" : undefined}
 	iconContent={button ? "clear" : "alarm"}
+	{button}
 >
 	<polygon points="0,24 12,0 24,24" />
 </Icon>

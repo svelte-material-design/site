@@ -40,8 +40,6 @@
 	labelRow3={configurations.labelRow3}
 	leadingIcon={configurations.leadingIcon}
 	trailingIcon={configurations.trailingIcon}
-	clickableLeadingIcon={configurations.clickableLeadingIcon}
-	clickableTrailingIcon={configurations.clickableTrailingIcon}
 	{listRole}
 	{listType}
 	{listItemsRows}

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts" context="module">
 	export interface ListItemProps {
 		id: string;
@@ -62,8 +64,6 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <ListItem
 	bind:this={listItem}
 	component={Item}
@@ -82,9 +82,8 @@
 	{labelRow3}
 	{leadingIcon}
 	{trailingIcon}
-	{clickableLeadingIcon}
-	{clickableTrailingIcon}
 	{listItemsRows}
 	{listType}
 	let:selected
-	on:change />
+	on:change
+/>

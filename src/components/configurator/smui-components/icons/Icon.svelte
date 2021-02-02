@@ -14,6 +14,7 @@
 		this={component}
 		{...$$restProps}
 		role={button ? "button" : undefined}
+		tabindex={button ? 0 : undefined}
 	>
 		{#if iconContent}{iconContent}{:else}refresh{/if}
 	</svelte:component>
@@ -21,9 +22,10 @@
 	<svelte:component
 		this={component}
 		{...$$restProps}
-		role={button ? "button" : undefined}
 		type="svg"
 		viewBox="0 0 24 24"
+		role={button ? "button" : undefined}
+		tabindex={button ? 0 : undefined}
 	>
 		{#if $$slots.default}
 			<slot />
@@ -35,9 +37,10 @@
 	<svelte:component
 		this={component}
 		{...$$restProps}
-		role={button ? "button" : undefined}
 		type="img"
 		src={$$restProps.src || "/icons/emojis/upside-down-face.png"}
 		alt={$$restProps.alt || "Upside down face"}
+		role={button ? "button" : undefined}
+		tabindex={button ? 0 : undefined}
 	/>
 {/if}

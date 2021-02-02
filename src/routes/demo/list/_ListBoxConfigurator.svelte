@@ -74,12 +74,10 @@
 					selected: item.selected,
 					listItemsRows: itemsRows,
 					listType: type,
-					clickableLeadingIcon: item.clickableLeadingIcon,
 					leadingIcon: item.leadingIcon,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
 					imageTxt: itemsInstance[index]?.getImageTxt(),
 					trailingIcon: item.trailingIcon,
-					clickableTrailingIcon: item.clickableTrailingIcon,
 				});
 
 				if (index === 0 && separator) {
@@ -124,8 +122,6 @@
 			labelRow3: `Third line`,
 			leadingIcon: undefined,
 			trailingIcon: undefined,
-			clickableLeadingIcon: false,
-			clickableTrailingIcon: false,
 		} as ListItemProps;
 	}
 </script>

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Configurator,
@@ -72,8 +74,6 @@
 	let disabled: boolean;
 	let leadingIcon: IconType;
 	let trailingIcon: IconType;
-	let clickableLeadingIcon: boolean;
-	let clickableTrailingIcon: boolean;
 	let useLabel: boolean = true;
 	let useAriaLabel: boolean;
 	let useTitle: boolean;
@@ -131,8 +131,6 @@
 						disabled,
 						leadingIcon,
 						trailingIcon,
-						clickableLeadingIcon,
-						clickableTrailingIcon,
 						label: useLabel ? "Item" : undefined,
 						ariaLabel: useAriaLabel ? "Item" : undefined,
 						title: useTitle ? "Item" : undefined,
@@ -216,29 +214,6 @@
 	}
 </script>
 
-<style lang="scss">
-	.configurator {
-		.preview {
-			min-height: 10em;
-			width: 80%;
-			justify-content: flex-start;
-		}
-
-		.surface {
-			margin: 1em;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-end;
-		}
-
-		.anchor {
-			width: 16em;
-		}
-	}
-</style>
-
-<svelte:options immutable={true} />
-
 <div class="configurator">
 	<Configurator {svelteCode} {scssCode}>
 		<svelte-fragment slot="preview" let:class={baseClass}>
@@ -259,7 +234,8 @@
 						{density}
 						{orientation}
 						{type}
-						{itemsRows}>
+						{itemsRows}
+					>
 						<MenuItem
 							value="1"
 							{ripple}
@@ -268,18 +244,20 @@
 							{trailingIcon}
 							{clickableLeadingIcon}
 							{clickableTrailingIcon}
-							label={useLabel ? 'Item 1' : ''}
+							label={useLabel ? "Item 1" : ""}
 							labelRow2="Label row 2"
 							labelRow3="Label row 3"
-							ariaLabel={useAriaLabel ? 'Item 1' : ''}
-							title={useTitle ? 'Item 1' : ''}
+							ariaLabel={useAriaLabel ? "Item 1" : ""}
+							title={useTitle ? "Item 1" : ""}
 							listItemsRows={itemsRows}
-							listType={type} />
+							listType={type}
+						/>
 						{#if separator}
 							<Separator
 								insetPadding={separatorInsetPadding}
 								insetLeading={separatorInsetLeading}
-								insetTrailing={separatorInsetTrailing} />
+								insetTrailing={separatorInsetTrailing}
+							/>
 						{/if}
 						<Item value="2">Item 2</Item>
 						<Item value="3">Item 3</Item>
@@ -289,7 +267,8 @@
 									<svelte-fragment slot="leading">
 										<LeadingIcon
 											component={SelectionGroupIcon}
-											type={selectionGroupIcon} />
+											type={selectionGroupIcon}
+										/>
 									</svelte-fragment>
 									Item 4
 								</Item>
@@ -325,12 +304,32 @@
 				bind:disabled
 				bind:leadingIcon
 				bind:trailingIcon
-				bind:clickableLeadingIcon
-				bind:clickableTrailingIcon
 				bind:useLabel
 				bind:useAriaLabel
 				bind:useTitle
-				bind:selectionType />
+				bind:selectionType
+			/>
 		</div>
 	</Configurator>
 </div>
+
+<style lang="scss">
+	.configurator {
+		.preview {
+			min-height: 10em;
+			width: 80%;
+			justify-content: flex-start;
+		}
+
+		.surface {
+			margin: 1em;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+		}
+
+		.anchor {
+			width: 16em;
+		}
+	}
+</style>

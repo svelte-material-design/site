@@ -4,12 +4,11 @@
 	import {
 		Content,
 		Item,
-		ListRole,
-		ListType,
 		Icon,
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
+	import type { ListRole, ListType } from "@smui/core/list";
 	import { ListItemConfigurations } from "../types";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
@@ -40,13 +39,10 @@
 	labelRow3={configurations.labelRow3}
 	leadingIcon={configurations.leadingIcon}
 	trailingIcon={configurations.trailingIcon}
-	clickableLeadingIcon={configurations.clickableLeadingIcon}
-	clickableTrailingIcon={configurations.clickableTrailingIcon}
 	href={configurations.href}
 	{listRole}
 	{listType}
 	{listItemsRows}
-	let:selected
 	on:change={handleChange}
 	on:change
 />

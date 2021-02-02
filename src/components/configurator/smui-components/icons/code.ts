@@ -10,7 +10,7 @@ export function getIconCode(
 	iconProps: IconConfigurations
 ) {
 	const { tag, content, props } = options;
-	const { type, clickable, additionalProps = [] } = iconProps;
+	const { type, additionalProps = [] } = iconProps;
 	const graphicType = getGraphicType(type);
 
 	if (type) {
@@ -18,7 +18,6 @@ export function getIconCode(
 			tag: tag ?? "Icon",
 			props: [
 				[graphicType !== "icon", `type="${graphicType}"`],
-				[clickable, `role="button"`],
 				...(props ? props : getDefaultIconProps(iconProps)),
 				...additionalProps,
 			],
@@ -44,7 +43,7 @@ function getDefaultIconProps(iconProps: IconConfigurations) {
 }
 
 function getDefaultIconContent(iconProps: IconConfigurations) {
-	const { type, position, clickable } = iconProps;
+	const { type, position } = iconProps;
 
 	const graphicType = getGraphicType(type);
 	switch (graphicType) {
@@ -59,9 +58,7 @@ function getDefaultIconContent(iconProps: IconConfigurations) {
 			return position === "leading"
 				? "favorite"
 				: position === "trailing"
-				? clickable
-					? "clear"
-					: "alarm"
+				? "alarm"
 				: "refresh";
 	}
 }
@@ -77,6 +74,5 @@ export function getGraphicType(iconType: IconType): GraphicType {
 interface IconConfigurations {
 	type: IconType;
 	position?: Position;
-	clickable?: boolean;
 	additionalProps?: StringListToFilter;
 }

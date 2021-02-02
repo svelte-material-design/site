@@ -1,4 +1,4 @@
-import type { ListItemConfigurations } from "./types";
+import type { ListItemConfigurations, ListConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSCSSCode,
@@ -7,50 +7,62 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
+import {
+	createItemCode,
+	createListCode,
+} from "src/components/configurator/smui-components/list";
 
-export function script(props: ListItemConfigurations) {
-	// const { iconOnly, leadingIcon, trailingIcon } = props;
-	// const code = source`
-	// 	<script>
-	// 		${getImportCode(
-	// 			["Button", [!iconOnly, "Label"], [leadingIcon || trailingIcon, "Icon"]],
-	// 			"button"
-	// 		)}
-	// 	</script>
-	// `;
-	// return removeEmptyLines(code);
+export function script(configurations: ListConfigurations) {
+	const { separator, role, itemsRows } = configurations;
+
+	const icon = configurations.items.some(
+		(item) => item.leadingIcon || item.trailingIcon
+	);
+
+	const imports = removeEmptyLines(
+		getImportCode(
+			[
+				"List",
+				[separator, "Separator"],
+				"Content",
+				"Item",
+				[icon, "Icon"],
+				[itemsRows > 1, "PrimaryText"],
+				[itemsRows > 1, "SecondaryText"],
+				[role === "radiogroup", "Radio"],
+				[role === "group", "Checkbox"],
+			],
+			"list"
+		)
+	);
+
+	const code =
+		role !== "list"
+			? source`
+		<script>
+			${imports}
+
+			let value;
+		</script>
+	`
+			: source`
+		<script>
+			${imports}
+		</script>
+	`;
+
+	return code;
 }
 
-export function template(props: ListItemConfigurations) {
-	// const {
-	// 	iconOnly,
-	// 	customStyle,
-	// 	disabled,
-	// 	ripple,
-	// 	variant,
-	// 	link,
-	// 	color,
-	// 	accessibleTouch,
-	// } = props;
-	// const code = generateSvelteTagCode({
-	// 	tag: "Button",
-	// 	props: [
-	// 		[variant !== "text", `variant="${variant}"`],
-	// 		[color !== "primary", `color="${color}"`],
-	// 		[iconOnly, `style="padding: 0;"`],
-	// 		[customStyle, `class="${getCustomStyleClass(customStyle)}"`],
-	// 		[disabled, `disabled`],
-	// 		[accessibleTouch, `accessibleTouch`],
-	// 		[!ripple, `ripple={false}`],
-	// 		[link, `href="javascript:void(0)"`],
-	// 	],
-	// 	content: source`
-	// 		${getLeadingIconCode(props)}
-	// 		${iconOnly ? "" : `<Label>Button</Label>`}
-	// 		${getTrailingIconCode(props)}
-	// 	`,
-	// });
-	// return removeEmptyLines(code);
+export function template(configurations: ListConfigurations) {
+	const code = createListCode(
+		{
+			tag: "List",
+		},
+		configurations
+	);
+
+	return code;
 }
 
 function getTrailingIconCode(props: ListItemConfigurations): string {

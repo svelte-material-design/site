@@ -1,16 +1,15 @@
 import { generateSvelteTagCode } from "src/components/configurator";
 import {
-	ItemCodeProps,
 	getItemProps,
 	createItemContentCode,
 } from "src/components/configurator/smui-components/list";
 import type { Item } from "src/components/configurator/common-options/multiple-items";
 
-export function createItemCode(tag: "Item" | "NavItem", props: ItemCodeProps) {
+export function createItemCode(tag: "Item" | "NavItem", props: any) {
 	return generateSvelteTagCode({
 		tag,
-		props: getItemProps(props),
-		content: createItemContentCode(props),
+		props: getItemProps(props, {} as any),
+		content: createItemContentCode(props, {} as any),
 	});
 }
 
@@ -35,4 +34,4 @@ interface SeparatorCodeProps {
 	insetTrailing: boolean;
 }
 
-export interface ListItemProps extends ItemCodeProps, Item {}
+export interface ListItemProps extends Item {}

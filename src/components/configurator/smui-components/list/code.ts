@@ -2,80 +2,90 @@ import { ListRole, ListOrientation, ListType } from "@smui/core/list";
 import type { StringListToFilter } from "@smui/core/common/functions";
 import type { IconType } from "../icons";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
-import { generateSvelteTagCode, TagCodeGenerationProps } from "../../code";
+import {
+	generateSvelteTagCode,
+	removeEmptyLines,
+	TagCodeGenerationProps,
+} from "../../code";
+import { source } from "common-tags";
+import {
+	getImgPlaceholderSrc,
+	ImgPlaceholderParams,
+} from "src/functions/imgPlacehoder";
 
-export function getProps(props: CodeProps): StringListToFilter {
+export function getProps(
+	configurations: ListConfigurations
+): StringListToFilter {
 	const {
 		role,
 		orientation,
 		type,
-		density,
 		dense,
 		itemsRows,
 		wrapFocus,
-	} = props;
+	} = configurations;
 
 	return [
-		"bind:value",
-		[role, `role="${role}"`],
-		[orientation, `orientation="${orientation}"`],
-		[type, `type="${type}"`],
-		[density, `density={${density}}`],
+		[role !== "list", `bind:value`],
+		[role !== "list", `role="${role}"`],
+		[type !== "textual", `type="${type}"`],
+		[wrapFocus, `wrapFocus`],
 		[dense, `dense`],
+		[orientation && orientation !== "vertical", `orientation="${orientation}"`],
 		[itemsRows > 1, `itemsRows={${itemsRows}}`],
-		[!wrapFocus, `wrapFocus={false}`],
 	];
 }
 
-export function getItemProps(props: ItemCodeProps): StringListToFilter {
+export function getItemProps(
+	listConfigurations: ListConfigurations,
+	configurations: ListItemConfigurations
+): StringListToFilter {
 	const {
-		ariaLabel,
 		disabled,
-		title,
 		value,
 		ripple,
 		selected,
 		activated,
 		href,
-		listRole,
-	} = props;
+		leadingIcon,
+		trailingIcon,
+	} = configurations;
+	const { role, type } = listConfigurations;
 
 	return [
-		`value="${value}"`,
+		[role !== "list", `value="${value}"`],
 		[!ripple, "ripple={false}"],
 		[disabled, "disabled"],
 		[selected, "selected"],
 		[activated, "activated"],
-		[ariaLabel, `ariaLabel="${ariaLabel}"`],
-		[title, `title="${title}"`],
 		[href, `href="${href}"`],
-		[listRole === "group" || listRole === "radiogroup", "let:selected"],
+		[role === "group" || role === "radiogroup", "let:selected"],
+		[leadingIcon || type !== "textual", "let:leadingClassName"],
+		[trailingIcon, "let:trailingClassName"],
 	];
 }
 
-export function createItemLeadingContentCode(props: ItemCodeProps) {
-	const {
-		leadingIcon,
-		imageTxt,
-		imageSrc,
-		clickableLeadingIcon,
-		listRole,
-		listType,
-		leadingIconTag,
-	} = props;
+export function createItemLeadingContentCode(
+	listConfigurations: ListConfigurations,
+	configurations: ListItemConfigurations
+) {
+	const { leadingIcon, leadingIconTag } = configurations;
+	const { role, type } = listConfigurations;
+	const { imageTxt, imageSrc } = getImageData(type) ?? {};
 
 	const tag = leadingIconTag ?? "Icon";
 
+	let code: string;
+
 	if (
-		listType === "image" ||
-		listType === "avatar" ||
-		listType === "thumbnail" ||
-		listType === "video"
+		type === "image" ||
+		type === "avatar" ||
+		type === "thumbnail" ||
+		type === "video"
 	) {
-		return `<img slot="leading" alt="${imageTxt}" src="${imageSrc}" />`;
-	} else if ((!listType || listType === "icon") && leadingIcon) {
-		return `
-		<svelte-fragment slot="leading">
+		code = `<img class={leadingClassName} alt="${imageTxt}" src="${imageSrc}" />`;
+	} else if ((!type || type === "textual" || type === "icon") && leadingIcon) {
+		code = `
 			${getIconCode(
 				{
 					tag,
@@ -83,95 +93,198 @@ export function createItemLeadingContentCode(props: ItemCodeProps) {
 				},
 				{
 					type: leadingIcon,
-					clickable: clickableLeadingIcon,
 					position: "leading",
+					additionalProps: ["class={leadingClassName}"],
 				}
 			)}
-		</svelte-fragment>
 		`;
-	} else if (listRole === "radiogroup") {
-		return `
-		<span slot="leading">
-			<Radio checked={selected} />
-		</span>
+	} else if (role === "radiogroup") {
+		code = `
+			<Radio class={leadingClassName} checked={selected} />
 		`;
-	} else if (listRole === "group") {
-		return `
-		<span slot="leading">
-			<Radio checked={selected} />
-		</span>
+	} else if (role === "group") {
+		code = `
+			<Radio class={leadingClassName} checked={selected} />
 		`;
 	} else {
-		return "";
+		code = "";
 	}
+
+	return source(code);
 }
 
-export function createItemTrailingContentCode(props: ItemCodeProps) {
-	const { trailingIcon, clickableTrailingIcon } = props;
+export function createItemTrailingContentCode(
+	configurations: ListItemConfigurations
+) {
+	const { trailingIcon } = configurations;
+
+	let code: string;
 
 	if (trailingIcon) {
-		return `
-		<svelte-fragment slot="leading">
+		code = `
 			${getIconCode(
 				{
 					content: trailingIcon === "material-icon" ? "event" : undefined,
 				},
 				{
 					type: trailingIcon,
-					clickable: clickableTrailingIcon,
 					position: "trailing",
+					additionalProps: ["class={trailingClassName}"],
 				}
 			)}
-		</svelte-fragment>
 		`;
 	} else {
-		return "";
+		code = "";
 	}
+
+	return source(code);
 }
 
-export function createItemContentCode(props: ItemCodeProps) {
-	const { label, labelRow2, labelRow3, listItemsRows } = props;
+export function createItemContentCode(
+	listConfigurations: ListConfigurations,
+	configurations: ListItemConfigurations
+) {
+	const { label, labelRow2, labelRow3 } = configurations;
+	const { itemsRows } = listConfigurations;
 
-	return `
-		${createItemLeadingContentCode(props)}
+	return source`
+		${createItemLeadingContentCode(listConfigurations, configurations)}
 		<Content>
-			${listItemsRows === 1 ? label : ""}
+			${itemsRows === 1 ? label : ""}
 			${
-				listItemsRows > 1
+				itemsRows > 1
 					? `
-			<PrimaryText>${label}</PrimaryText>
-			<SecondaryText>${labelRow2}</SecondaryText>
-			`
+						<PrimaryText>${label}</PrimaryText>
+						<SecondaryText>${labelRow2}</SecondaryText>
+					`
 					: ""
 			}
-			${listItemsRows === 3 ? `<SecondaryText>${labelRow3}</SecondaryText>` : ""}
+			${itemsRows === 3 ? `<SecondaryText>${labelRow3}</SecondaryText>` : ""}
 		</Content>
-		${createItemTrailingContentCode(props)}
+		${createItemTrailingContentCode(configurations)}
 	`;
 }
 
 export function createItemCode(
 	options: TagCodeGenerationProps,
-	props: ItemCodeProps
+	listConfigurations: ListConfigurations,
+	configurations: ListItemConfigurations
 ) {
-	return generateSvelteTagCode({
+	const code = generateSvelteTagCode({
 		...options,
-		props: getItemProps(props),
-		content: createItemContentCode(props),
+		props: getItemProps(listConfigurations, configurations),
+		content: createItemContentCode(listConfigurations, configurations),
 	});
+
+	return source(code);
 }
 
-export interface CodeProps {
+export function createSeparatorCode(configurations: ListConfigurations) {
+	const {
+		separatorInsetLeading,
+		separatorInsetPadding,
+		separatorInsetTrailing,
+	} = configurations;
+
+	const code = generateSvelteTagCode({
+		tag: "Separator",
+		props: [
+			[separatorInsetLeading, "separatorInsetLeading"],
+			[separatorInsetPadding, "separatorInsetPadding"],
+			[separatorInsetTrailing, "separatorInsetTrailing"],
+		],
+	});
+
+	return code;
+}
+
+export function createListContentCode(configurations: ListConfigurations) {
+	const { items } = configurations;
+
+	let itemsCode = items.map((item) => {
+		return createItemCode(
+			{
+				tag: "Item",
+			},
+			configurations,
+			item
+		);
+	});
+
+	if (configurations.separator && itemsCode.length > 1) {
+		itemsCode = [
+			itemsCode[0],
+			createSeparatorCode(configurations),
+			...itemsCode.slice(1),
+		];
+	}
+
+	const code = itemsCode.join("\n");
+
+	return code;
+}
+
+export function createListCode(
+	options: TagCodeGenerationProps,
+	configurations: ListConfigurations
+) {
+	const code = generateSvelteTagCode({
+		...options,
+		props: getProps(configurations),
+		content: createListContentCode(configurations),
+	});
+
+	return removeEmptyLines(code);
+}
+
+export function getImageData(listType: ListType) {
+	let imageRes: ImgPlaceholderParams;
+	switch (listType) {
+		case "image":
+			imageRes = { width: 56, height: 56 };
+			break;
+		case "avatar":
+			imageRes = { width: 40, height: 40 };
+			break;
+		case "thumbnail":
+			imageRes = { width: 40, height: 40 };
+			break;
+		case "video":
+			imageRes = { width: 100, height: 56 };
+			break;
+		default:
+			return null;
+	}
+
+	let imageTxt: string;
+	if (imageRes) imageTxt = `${imageRes.width}x${imageRes.height}`;
+	let imageSrc: string;
+	if (imageRes)
+		imageSrc = getImgPlaceholderSrc({ ...imageRes, text: imageTxt });
+
+	return {
+		imageRes,
+		imageSrc,
+		imageTxt,
+	};
+}
+
+export interface ListConfigurations {
 	role?: ListRole;
+	wrapFocus: boolean;
+	dense: boolean;
+	density: number;
 	orientation: ListOrientation;
 	type: ListType;
-	density: number;
-	dense: boolean;
 	itemsRows: number;
-	wrapFocus: boolean;
+	separator: boolean;
+	separatorInsetPadding: boolean;
+	separatorInsetLeading: boolean;
+	separatorInsetTrailing: boolean;
+	items: ListItemConfigurations[];
 }
 
-export interface ItemCodeProps {
+export interface ListItemConfigurations {
 	value?: string;
 	ripple?: boolean;
 	disabled?: boolean;
@@ -180,18 +293,10 @@ export interface ItemCodeProps {
 	label: string;
 	labelRow2?: string;
 	labelRow3?: string;
-	title?: string;
 	ariaLabel?: string;
 	activated?: boolean;
-	listRole?: ListRole;
-	listItemsRows?: number;
-	listType?: ListType;
-	clickableLeadingIcon?: boolean;
 	leadingIcon?: IconType;
-	imageTxt?: string;
-	imageSrc?: string;
 	trailingIcon?: IconType;
-	clickableTrailingIcon?: boolean;
 	leadingIconTag?: string;
 }
 
@@ -213,6 +318,4 @@ export interface ItemCodeProps {
 // 	ariaLabel: string;
 // 	leadingIcon: IconType;
 // 	trailingIcon: IconType;
-// 	clickableLeadingIcon: boolean;
-// 	clickableTrailingIcon: boolean;
 // }

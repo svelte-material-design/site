@@ -53,8 +53,6 @@
 	export let disabled: boolean;
 	export let leadingIcon: IconType;
 	export let trailingIcon: IconType;
-	export let clickableLeadingIcon: boolean;
-	export let clickableTrailingIcon: boolean;
 	export let useLabel: boolean;
 	export let useAriaLabel: boolean;
 	export let useTitle: boolean;
@@ -114,6 +112,4 @@
 	bind:useAriaLabel
 	bind:leadingIcon
 	bind:trailingIcon
-	bind:clickableLeadingIcon
-	bind:clickableTrailingIcon
 /> -->

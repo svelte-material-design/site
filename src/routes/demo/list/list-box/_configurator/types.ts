@@ -1,4 +1,4 @@
-import type { CommonListConfigurations } from "../../_configurator/types";
+import { ListConfigurations as CommonListConfigurations } from "../../_configurator/types";
 
 export interface ListBoxConfigurations extends CommonListConfigurations {
 	multiSelection: boolean;

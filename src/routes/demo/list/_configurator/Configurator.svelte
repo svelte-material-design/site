@@ -5,6 +5,7 @@
 	import { Values } from "src/components/configurator/atoms";
 	import { Configurations, Preview } from ".";
 	import { ListConfigurations } from "./types";
+	import { script, template } from "./code";
 
 	let configurations = {
 		items: [],
@@ -13,22 +14,8 @@
 	let svelteScriptCode: string;
 	let svelteCode: string;
 
-	// let buttonConfigurations: ButtonConfigurations;
-	// $: buttonConfigurations = {
-	// 	disabled,
-	// 	ripple,
-	// 	variant,
-	// 	link,
-	// 	color,
-	// 	iconOnly,
-	// 	leadingIcon,
-	// 	trailingIcon,
-	// 	customStyle,
-	// 	accessibleTouch,
-	// };
-
-	// $: svelteScriptCode = script(buttonConfigurations);
-	// $: svelteCode = template(buttonConfigurations);
+	$: svelteScriptCode = script(configurations);
+	$: svelteCode = template(configurations);
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>

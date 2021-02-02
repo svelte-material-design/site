@@ -1,33 +1,12 @@
 <svelte:options immutable={true} />
 
-<script lang="ts" context="module">
-	export interface ListItemProps {
-		id: string;
-		value: string;
-		wrapFocus: boolean;
-		ripple: boolean;
-		disabled: boolean;
-		selected: boolean;
-		href: string;
-		label: string;
-		labelRow2: string;
-		labelRow3: string;
-		leadingIcon: IconType;
-		trailingIcon: IconType;
-		clickableLeadingIcon: boolean;
-		clickableTrailingIcon: boolean;
-	}
-</script>
-
 <script lang="ts">
 	import { ListRole, ListType, Radio, Checkbox } from "@smui/core/list";
+	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
 	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
-	import {
-		getImgPlaceholderSrc,
-		ImgPlaceholderParams,
-	} from "src/functions/imgPlacehoder";
 	import type { IconType } from "./icons";
+	import { getImageData } from "./list";
 
 	export let component: any;
 	export let contentComponent: any;
@@ -45,41 +24,14 @@
 
 	export let leadingIcon: IconType;
 	export let trailingIcon: IconType;
-	export let clickableLeadingIcon: boolean;
-	export let clickableTrailingIcon: boolean;
 
 	export let listRole: ListRole | "listbox" = undefined;
 	export let listType: ListType;
 	export let listItemsRows: number;
 
-	let imageRes: ImgPlaceholderParams;
-	$: switch (listType) {
-		case "image":
-			imageRes = { width: 56, height: 56 };
-			break;
-		case "avatar":
-			imageRes = { width: 40, height: 40 };
-			break;
-		case "thumbnail":
-			imageRes = { width: 40, height: 40 };
-			break;
-		case "video":
-			imageRes = { width: 100, height: 56 };
-			break;
-	}
-	let imageTxt: string;
-	$: if (imageRes) imageTxt = `${imageRes.width}x${imageRes.height}`;
-	let imageSrc: string;
-	$: if (imageRes)
-		imageSrc = getImgPlaceholderSrc({ ...imageRes, text: imageTxt });
+	export let showCloseBtn: boolean;
 
-	export function getImageSrc() {
-		return imageSrc;
-	}
-
-	export function getImageTxt() {
-		return imageTxt;
-	}
+	$: imageData = getImageData(listType);
 </script>
 
 <svelte:component
@@ -99,13 +51,16 @@
 		<Checkbox class={leadingClassName} />
 	{/if}
 	{#if listType === "image" || listType === "avatar" || listType === "thumbnail" || listType === "video"}
-		<img class={leadingClassName} alt={imageTxt} src={imageSrc} />
+		<img
+			class={leadingClassName}
+			alt={imageData.imageTxt}
+			src={imageData.imageSrc}
+		/>
 	{:else if listType === "icon" || listType === "textual"}
 		<LeadingIcon
 			class={leadingClassName}
 			type={leadingIcon}
 			component={iconComponent}
-			button={clickableLeadingIcon}
 		/>
 	{/if}
 	{#if label}
@@ -130,7 +85,9 @@
 			class={trailingClassName}
 			type={trailingIcon}
 			component={iconComponent}
-			button={clickableTrailingIcon}
 		/>
+	{/if}
+	{#if showCloseBtn}
+		<IconButton class={trailingClassName}><Icon>close</Icon></IconButton>
 	{/if}
 </svelte:component>
