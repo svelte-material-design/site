@@ -1,19 +1,17 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { MultipleItemsConfigurations } from ".";
 	import { Select } from "../../atoms/configurations";
 	import { Section } from "../../molecules/configurations";
-	import { Item } from "./types";
+	import type { MultipleItemsHandler } from "./MultipleItemsHandler";
 
 	export let label: string;
-	export let items: Item[];
-	export let selectedItem: Item;
+	export let multipleItemsHandler: MultipleItemsHandler;
 
-	export let multipleItemsConfigurations: MultipleItemsConfigurations;
+	const { items$, selectedItem$ } = multipleItemsHandler;
 
 	function handleSelection(id: string) {
-		multipleItemsConfigurations.setSelectedItem(id);
+		multipleItemsHandler.setSelectedItem(id);
 	}
 </script>
 
@@ -21,8 +19,8 @@
 	<Select
 		{label}
 		nullable={false}
-		value={selectedItem && selectedItem.id}
-		options={items.map((item) => ({
+		value={$selectedItem$ && $selectedItem$.id}
+		options={$items$.map((item) => ({
 			value: item.id,
 			label: item.label,
 		}))}

@@ -42,7 +42,7 @@
 		{items}
 		label="Edit checkbox"
 		{selectedItem}
-		{multipleItemsConfigurations}
+		multipleItemsHandler{multipleItemsConfigurations}
 	/>
 	<RadioConfigurations
 		bind:configurations={selectedItem}
@@ -50,6 +50,6 @@
 	/>
 	<MultipleItemControls
 		itemFactory={createItem}
-		{multipleItemsConfigurations}
+		multipleItemsHandler{multipleItemsConfigurations}
 	/>
 </MultipleItemsConfigurations>

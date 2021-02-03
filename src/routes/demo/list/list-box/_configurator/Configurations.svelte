@@ -78,7 +78,7 @@
 		items={configurations.items}
 		label="Edit tab"
 		{selectedItem}
-		{multipleItemsConfigurations}
+		multipleItemsHandler{multipleItemsConfigurations}
 	/>
 	<Section>
 		<ListItemConfigurationsComponent
@@ -95,6 +95,6 @@
 	</Section>
 	<MultipleItemControls
 		itemFactory={createListItem}
-		{multipleItemsConfigurations}
+		multipleItemsHandler{multipleItemsConfigurations}
 	/>
 </MultipleItemsConfigurations>

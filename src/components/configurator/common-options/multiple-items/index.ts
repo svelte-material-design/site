@@ -8,3 +8,4 @@ export {
 	MultipleItemsConfigurations,
 };
 export * from "./types";
+export * from "./MultipleItemsHandler";

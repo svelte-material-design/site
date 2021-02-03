@@ -3,59 +3,17 @@
 <script lang="ts">
 	import { Button } from "@smui/core/button";
 	import { onMount, tick } from "svelte";
-	import { MultipleItemsConfigurations } from ".";
 	import { Section } from "../../molecules/configurations";
-	import { Item } from "./types";
+	import type { MultipleItemsHandler } from "./MultipleItemsHandler";
 
-	export let itemFactory: (index: number) => Item;
-	export let multipleItemsConfigurations: MultipleItemsConfigurations;
+	export let multipleItemsHandler: MultipleItemsHandler;
+
+	const { addItem, removeCurrentItem, reset } = multipleItemsHandler;
 
 	onMount(async () => {
 		await tick();
 		reset();
 	});
-
-	function createItem(index: number) {
-		return { ...itemFactory(index), id: "" + index };
-	}
-
-	function addItem() {
-		let items = multipleItemsConfigurations.getItems();
-		const index = Number(
-			items[items.length - 1]?.id.split(":").slice(-1)[0] ?? -1
-		);
-		items.push(createItem(index + 1));
-
-		multipleItemsConfigurations.setItems(items);
-	}
-
-	function removeCurrentItem() {
-		let items = multipleItemsConfigurations.getItems();
-		const selectedItem = multipleItemsConfigurations.getSelectedItem();
-
-		const index = items.indexOf(selectedItem);
-		items = items.slice(0, index).concat(items.slice(index + 1, items.length));
-
-		multipleItemsConfigurations.setItems(items);
-	}
-
-	async function reset() {
-		multipleItemsConfigurations.setItems([]);
-
-		await tick();
-
-		const items = ([] = Array(3)
-			.fill("")
-			.map((_, index) => {
-				return createItem(index);
-			}));
-
-		multipleItemsConfigurations.setItems(items);
-
-		await tick();
-
-		multipleItemsConfigurations.setSelectedItem(items[0].id);
-	}
 </script>
 
 <Section>

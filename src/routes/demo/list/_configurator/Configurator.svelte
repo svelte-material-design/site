@@ -6,28 +6,35 @@
 	import { Configurations, Preview } from ".";
 	import { ListConfigurations } from "./types";
 	import { script, template } from "./code";
+	import {
+		createConfiguratorStore,
+		setConfiguratorContext,
+	} from "./ConfiguratorContext";
 
-	let configurations = {
+	const context$ = createConfiguratorStore({
 		items: [],
-	} as ListConfigurations;
+	} as ListConfigurations);
+	setConfiguratorContext(context$);
+
+	const { configurations$ } = context$;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
 
-	$: svelteScriptCode = script(configurations);
-	$: svelteCode = template(configurations);
+	$: svelteScriptCode = script($configurations$);
+	$: svelteCode = template($configurations$);
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<Preview bind:configurations />
+		<Preview />
 	</div>
 	<div slot="values">
-		{#if configurations.role !== "list"}
-			value: <Values value={configurations.value} />
+		{#if $configurations$.role !== "list"}
+			value: <Values value={$configurations$.value} />
 		{/if}
 	</div>
 	<svelte-fragment slot="optionsSidebar">
-		<Configurations bind:configurations />
+		<Configurations />
 	</svelte-fragment>
 </Configurator>
