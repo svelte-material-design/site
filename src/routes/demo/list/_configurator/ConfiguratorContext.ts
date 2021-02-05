@@ -3,9 +3,12 @@ import { createMultipleItemsHandler } from "src/components/configurator/common-o
 import { writable } from "svelte/store";
 import type { ListConfigurations, ListItemConfigurations } from "./types";
 
-export function createConfiguratorStore(
-	initialConfigurations: ListConfigurations
-) {
+export function createConfiguratorStore() {
+	const initialConfigurations = {
+		role: "list",
+		type: "textual",
+	} as ListConfigurations;
+
 	const configurations$ = writable<ListConfigurations>(initialConfigurations);
 
 	function itemFactory(index) {

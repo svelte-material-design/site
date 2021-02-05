@@ -1,31 +1,20 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { UseState } from "@raythurnevoid/svelte-hooks";
-	import { createEventDispatcher, tick } from "svelte";
 	import { Select } from "src/components/configurator/atoms/configurations";
-	import type { ListConfigurations } from "../types";
+	import { onMount } from "svelte";
+	import { ListConfigurations } from "../types";
 
 	export let configurations: ListConfigurations;
 
-	const dispatch = createEventDispatcher<{
-		change: void;
-	}>();
+	onMount(() => {
+		updateInstance();
+	});
 
-	async function handleTypeUpdate() {
-		configurations.role = "list";
-
-		handleChange();
-	}
-
-	async function handleChange() {
-		await tick();
-
-		dispatch("change");
+	function updateInstance() {
+		configurations = { ...configurations };
 	}
 </script>
-
-<UseState value={configurations.type} onUpdate={handleTypeUpdate} />
 
 <Select
 	bind:value={configurations.role}
@@ -46,5 +35,5 @@
 			value: "group",
 		},
 	]}
-	on:change={handleChange}
+	on:change={updateInstance}
 />

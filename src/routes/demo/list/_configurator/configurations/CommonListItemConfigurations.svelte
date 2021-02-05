@@ -2,68 +2,76 @@
 
 <script lang="ts">
 	import { IconsOptions } from "src/components/configurator/smui-components/icons";
-	import { UseState } from "@raythurnevoid/svelte-hooks";
-	import { createEventDispatcher, tick } from "svelte";
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
-	import type { ListItemConfigurations } from "../types";
-	import type { ListType } from "@svelte-material-ui-test/core/packages/list";
 	import { Section } from "src/components/configurator/molecules/configurations";
+	import { BaseListItemConfigurations, BaseListConfigurations } from "../types";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
+	import { onMount } from "svelte";
 
-	export let configurations: ListItemConfigurations;
-	export let listType: ListType;
 	export let labelFn: () => string = undefined;
-
-	const dispatch = createEventDispatcher<{
-		change: void;
-	}>();
+	export let listConfigurations: BaseListConfigurations;
+	export let configurations: BaseListItemConfigurations;
 
 	let useLabel: boolean = true;
-	$: {
+
+	onMount(() => {
+		handleListTypeUpdate();
+		handleLabelChange();
+		updateInstance();
+	});
+
+	function handleListTypeUpdate() {
+		if (
+			listConfigurations.type !== "icon" &&
+			listConfigurations.type !== "textual"
+		) {
+			configurations.leadingIcon = null;
+		} else if (
+			listConfigurations.type === "icon" &&
+			!configurations.leadingIcon
+		) {
+			configurations.leadingIcon = "material-icon";
+		}
+	}
+
+	function handleLabelChange() {
 		configurations.label = useLabel
 			? labelFn
 				? labelFn()
 				: "Label"
 			: undefined;
-
-		configurations.labelRow2 = "Secondary text";
-		configurations.labelRow3 = "Third line";
-
-		handleChange();
 	}
 
-	async function handleListTypeUpdate() {
-		await tick();
-		if (listType !== "icon" && listType !== "textual") {
-			configurations.leadingIcon = null;
-		} else if (listType === "icon" && !configurations.leadingIcon) {
-			configurations.leadingIcon = "material-icon";
-		}
-	}
-
-	async function handleChange() {
-		dispatch("change");
+	function updateInstance() {
+		configurations = { ...configurations };
 	}
 </script>
 
-<UseState value={listType} onUpdate={handleListTypeUpdate} />
+<UseState
+	value={listConfigurations.type}
+	onUpdate={() => {
+		handleListTypeUpdate();
+		updateInstance();
+	}}
+/>
 
 <Checkbox
 	bind:checked={configurations.ripple}
 	label="Ripple"
-	on:change={handleChange}
+	on:change={updateInstance}
 />
-<Checkbox bind:checked={useLabel} label="Label" on:change={handleChange} />
+<Checkbox bind:checked={useLabel} label="Label" on:change={handleLabelChange} />
 <Checkbox
 	bind:checked={configurations.disabled}
 	label="Disabled"
-	on:change={handleChange}
+	on:change={updateInstance}
 />
 <Section>
 	<IconsOptions
-		showClickableOptions
 		bind:leadingIcon={configurations.leadingIcon}
-		leadingIconDisabled={listType !== "icon" && listType !== "textual"}
+		leadingIconDisabled={listConfigurations.type !== "icon" &&
+			listConfigurations.type !== "textual"}
 		bind:trailingIcon={configurations.trailingIcon}
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 </Section>

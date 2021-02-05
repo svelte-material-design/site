@@ -6,42 +6,42 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
-	import type { CommonListConfigurations } from "../types";
-	import { createEventDispatcher, tick } from "svelte";
-	import { UseState } from "@raythurnevoid/svelte-hooks";
-	export let configurations: CommonListConfigurations;
+	import { onMount } from "svelte";
+	import { BaseListConfigurations } from "../types";
 
-	const dispatch = createEventDispatcher<{
-		change: void;
-	}>();
+	export let configurations: BaseListConfigurations;
 
-	handleSeparatorUpdate(undefined);
-	function handleSeparatorUpdate(oldValue: boolean) {
-		if (!configurations.separator && configurations.separator !== oldValue) {
+	let horizontal: boolean;
+
+	onMount(() => {
+		handleSeparatorUpdate();
+		handleOrientationChange();
+		updateInstance();
+	});
+
+	function handleSeparatorUpdate() {
+		if (!configurations.separator) {
 			configurations.separatorInsetPadding = false;
 			configurations.separatorInsetLeading = false;
 			configurations.separatorInsetTrailing = false;
-			handleChange();
 		}
 	}
 
-	async function handleOrientationChange(checked: boolean) {
-		configurations.orientation = checked ? "horizontal" : undefined;
+	async function handleOrientationChange() {
+		configurations.orientation = horizontal ? "horizontal" : undefined;
 	}
 
-	async function handleChange() {
-		await tick();
-
-		dispatch("change");
+	function updateInstance() {
+		configurations = { ...configurations };
 	}
 </script>
-
-<UseState value={configurations.separator} onUpdate={handleSeparatorUpdate} />
 
 <Select
 	bind:value={configurations.type}
 	label="Type"
 	nullable={false}
+	disabled={configurations.role === "group" ||
+		configurations.role === "radiogroup"}
 	options={[
 		{ label: "Textual list", value: "textual" },
 		{ label: "Image list", value: "image" },
@@ -50,8 +50,7 @@
 		{ label: "Thumbnail list", value: "thumbnail" },
 		{ label: "Video list", value: "video" },
 	]}
-	on:change={handleChange}
-	on:change
+	on:change={updateInstance}
 />
 <Slider
 	bind:value={configurations.itemsRows}
@@ -59,46 +58,40 @@
 	max={3}
 	step={1}
 	label="Items rows"
-	on:input={handleChange}
-	on:input
-	on:change
+	on:input={updateInstance}
 />
 <Checkbox
 	label="Wrap focus"
 	bind:checked={configurations.wrapFocus}
-	on:change={handleChange}
-	on:change
+	on:change={updateInstance}
 />
 <Checkbox
 	label="Dense"
 	bind:checked={configurations.dense}
-	on:change={handleChange}
-	on:change
+	on:change={updateInstance}
 />
 <Checkbox
+	bind:checked={horizontal}
 	label="Horizontal"
-	on:change={(event) => handleOrientationChange(event.detail.checked)}
-	on:change
+	on:change={handleOrientationChange}
 />
 <Checkbox
 	label="Separator"
 	bind:checked={configurations.separator}
-	on:change={handleChange}
-	on:change
+	on:change={handleSeparatorUpdate}
+	on:change={updateInstance}
 />
 <Checkbox
 	label="Separator inset leading"
 	disabled={!configurations.separator}
 	bind:checked={configurations.separatorInsetLeading}
-	on:change={handleChange}
-	on:change
+	on:change={updateInstance}
 />
 <Checkbox
 	label="Separator inset trailing"
 	disabled={!configurations.separator}
 	bind:checked={configurations.separatorInsetTrailing}
-	on:change={handleChange}
-	on:change
+	on:change={updateInstance}
 />
 <Checkbox
 	label="Separator inset padding"
@@ -106,6 +99,5 @@
 	disabled={!configurations.separator ||
 		!configurations.separatorInsetLeading ||
 		!configurations.separatorInsetTrailing}
-	on:change={handleChange}
-	on:change
+	on:change={updateInstance}
 />

@@ -21,6 +21,19 @@ export function createMultipleItemsHandler<
 		}
 	);
 
+	selectedItem$.subscribe(($selectedItem$) => {
+		// Keep selectedItem instance and correspondent item instance synchronized
+		const index = findIndexById($selectedItem$.id);
+		if (!~index) return;
+
+		const $items$ = get(items$);
+
+		const newInstance = { ...$selectedItem$ };
+		$items$[index] = newInstance;
+		items$.set([...$items$]);
+		return $items$[index];
+	});
+
 	function createItem(index: number) {
 		return { ...itemFactory(index), id: "" + index };
 	}
@@ -69,10 +82,10 @@ export function createMultipleItemsHandler<
 	}
 
 	function updateSelectedInstance() {
-		selectedItem$.update((selectedItem) => {
+		selectedItem$.update(($selectedItem$) => {
 			const $items$ = get(items$);
-			const index = findIndexById(selectedItem.id);
-			if (!~index) return selectedItem;
+			const index = findIndexById($selectedItem$.id);
+			if (!~index) return $selectedItem$;
 			const newInstance = { ...$items$[index] };
 			$items$[index] = newInstance;
 			items$.set([...$items$]);
@@ -94,11 +107,9 @@ export function createMultipleItemsHandler<
 		return $items$.findIndex((item) => item.id === id);
 	}
 
-	const d = derived(items$, ($items$) => $items$);
-
 	return {
 		items$: derived(items$, ($items$) => $items$),
-		selectedItem$: derived(selectedItem$, ($selectedItem$) => $selectedItem$),
+		selectedItem$,
 		derivedConfigurations$,
 		addItem,
 		removeCurrentItem,

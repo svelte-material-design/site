@@ -3,27 +3,17 @@
 <script lang="ts">
 	import { List, Separator } from "@smui/core/list";
 	import { ListItem } from "./preview";
-	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	const { configurations$ } = getConfiguratorContext();
-
-	let value: string | string[];
+	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 
 	function handleChange() {
-		configurations$.update((configurations) => {
-			return {
-				...configurations,
-				value,
-			};
-		});
+		multipleItemsHandler.updateSelectedInstance();
 	}
 </script>
 
-<UseState {value} onUpdate={handleChange} />
-
 <List
-	bind:value
+	bind:value={$configurations$.value}
 	role={$configurations$.role}
 	orientation={$configurations$.orientation}
 	type={$configurations$.type}

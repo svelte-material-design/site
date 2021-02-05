@@ -1,52 +1,58 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { ListRole } from "@svelte-material-design/core/list";
+	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
-	import { createEventDispatcher, tick } from "svelte";
-	import type { ListItemConfigurations } from "../types";
+	import { onMount } from "svelte";
+	import type {
+		BaseListConfigurations,
+		ListItemConfigurations,
+	} from "../types";
 
+	export let listConfigurations: BaseListConfigurations;
 	export let configurations: ListItemConfigurations;
-	export let listRole: ListRole | "listbox";
-
-	const dispatch = createEventDispatcher<{
-		change: void;
-	}>();
 
 	let useHref: boolean = false;
 
-	$: {
-		if (listRole === "list") {
+	onMount(() => {
+		handleListRoleUpdate();
+		handleLinkChange();
+		updateInstance();
+	});
+
+	function handleListRoleUpdate() {
+		if (listConfigurations.role === "list") {
 			configurations.selected = false;
 		} else {
 			useHref = false;
 		}
+	}
 
+	function handleLinkChange() {
 		if (useHref) {
 			configurations.href = "javascript:void(0);";
 		} else {
 			configurations.href = undefined;
 		}
-
-		handleChange();
 	}
 
-	async function handleChange() {
-		await tick();
-
-		dispatch("change");
+	function updateInstance() {
+		configurations = { ...configurations };
 	}
 </script>
+
+<UseState value={listConfigurations.role} onUpdate={handleListRoleUpdate} />
 
 <Checkbox
 	bind:checked={configurations.selected}
 	label="Selected"
-	disabled={listRole === "list"}
-	on:change={handleChange}
+	disabled={listConfigurations.role === "list"}
+	on:change={updateInstance}
 />
 <Checkbox
 	bind:checked={useHref}
 	label="Href"
-	disabled={listRole !== "list"}
-	on:change={handleChange}
+	disabled={listConfigurations.role !== "list"}
+	on:change={handleLinkChange}
+	on:change={updateInstance}
 />

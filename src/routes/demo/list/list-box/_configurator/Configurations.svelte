@@ -88,7 +88,7 @@
 		/>
 		<CommonListItemConfigurations
 			listType={configurations.type}
-			bind:configurations={selectedItem}
+			bind:listConfigurations={selectedItem}
 			labelFn={() => `Item ${configurations.items.indexOf(selectedItem)}`}
 			on:change={handleChange}
 		/>

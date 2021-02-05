@@ -16,10 +16,6 @@
 	export let listRole: ListRole;
 	export let listType: ListType;
 	export let listItemsRows: number;
-
-	function handleChange() {
-		configurations = { ...configurations };
-	}
 </script>
 
 <ListItem
@@ -43,6 +39,5 @@
 	{listRole}
 	{listType}
 	{listItemsRows}
-	on:change={handleChange}
 	on:change
 />

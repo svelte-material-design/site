@@ -4,16 +4,13 @@
 	import { Configurator } from "src/components/configurator";
 	import { Values } from "src/components/configurator/atoms";
 	import { Configurations, Preview } from ".";
-	import { ListConfigurations } from "./types";
 	import { script, template } from "./code";
 	import {
 		createConfiguratorStore,
 		setConfiguratorContext,
 	} from "./ConfiguratorContext";
 
-	const context$ = createConfiguratorStore({
-		items: [],
-	} as ListConfigurations);
+	const context$ = createConfiguratorStore();
 	setConfiguratorContext(context$);
 
 	const { configurations$ } = context$;
