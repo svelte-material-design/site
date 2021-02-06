@@ -12,24 +12,30 @@
 	export let listConfigurations: BaseListConfigurations;
 	export let configurations: BaseListItemConfigurations;
 
+	$: listRole = listConfigurations.role;
+	$: listType = listConfigurations.type;
+
 	let useLabel: boolean = true;
+	let leadingIconDisabled: boolean = false;
 
 	onMount(() => {
-		handleListTypeUpdate();
+		handleListTypeRoleUpdate();
 		handleLabelChange();
 		updateInstance();
 	});
 
-	function handleListTypeUpdate() {
+	function handleListTypeRoleUpdate() {
 		if (
-			listConfigurations.type !== "icon" &&
-			listConfigurations.type !== "textual"
+			!["icon", "textual"].includes(listConfigurations.type) ||
+			["group", "radiogroup"].includes(listConfigurations.role)
 		) {
+			leadingIconDisabled = true;
 			configurations.leadingIcon = null;
-		} else if (
-			listConfigurations.type === "icon" &&
-			!configurations.leadingIcon
-		) {
+		} else {
+			leadingIconDisabled = false;
+		}
+
+		if (listConfigurations.type === "icon" && !configurations.leadingIcon) {
 			configurations.leadingIcon = "material-icon";
 		}
 	}
@@ -48,9 +54,9 @@
 </script>
 
 <UseState
-	value={listConfigurations.type}
+	value={[listType, listRole]}
 	onUpdate={() => {
-		handleListTypeUpdate();
+		handleListTypeRoleUpdate();
 		updateInstance();
 	}}
 />
@@ -60,7 +66,12 @@
 	label="Ripple"
 	on:change={updateInstance}
 />
-<Checkbox bind:checked={useLabel} label="Label" on:change={handleLabelChange} />
+<Checkbox
+	bind:checked={useLabel}
+	label="Label"
+	on:change={handleLabelChange}
+	on:change={updateInstance}
+/>
 <Checkbox
 	bind:checked={configurations.disabled}
 	label="Disabled"
@@ -69,8 +80,7 @@
 <Section>
 	<IconsOptions
 		bind:leadingIcon={configurations.leadingIcon}
-		leadingIconDisabled={listConfigurations.type !== "icon" &&
-			listConfigurations.type !== "textual"}
+		{leadingIconDisabled}
 		bind:trailingIcon={configurations.trailingIcon}
 		on:change={updateInstance}
 	/>

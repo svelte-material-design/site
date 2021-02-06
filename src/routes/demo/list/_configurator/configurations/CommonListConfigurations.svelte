@@ -74,6 +74,7 @@
 	bind:checked={horizontal}
 	label="Horizontal"
 	on:change={handleOrientationChange}
+	on:change={updateInstance}
 />
 <Checkbox
 	label="Separator"

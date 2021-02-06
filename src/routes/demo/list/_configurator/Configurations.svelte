@@ -33,7 +33,10 @@
 		<CommonListItemConfigurations
 			bind:configurations={$selectedItem$}
 			listConfigurations={$configurations$}
-			labelFn={() => `Item ${$configurations$.items.indexOf($selectedItem$)}`}
+			labelFn={() =>
+				`Item ${$configurations$.items.findIndex(
+					(item) => item.id === $selectedItem$.id
+				)}`}
 		/>
 	</Section>
 	<MultipleItemControls {multipleItemsHandler} />
