@@ -4,11 +4,40 @@
 	import { List, Separator } from "@smui/core/list";
 	import { ListItem } from "./preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
+	import { tick } from "svelte";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
+	const { items$ } = multipleItemsHandler;
 
 	function handleChange() {
 		multipleItemsHandler.updateSelectedInstance();
+	}
+
+	configurations$.subscribe(($configurations$) => {
+		if (typeof window != "undefined") {
+			console.log(
+				"configurations$ subscribition: ",
+				window.z === $configurations$,
+				window.y === $configurations$.items,
+				window.x === $configurations$.items[0]
+			);
+		}
+	});
+
+	$: {
+		if (typeof window != "undefined") {
+			console.log(
+				"parent:",
+				window.z === $configurations$,
+				window.y === $configurations$.items,
+				window.x === $configurations$.items[0]
+			);
+			window.z = $configurations$;
+			window.y = $configurations$.items;
+			window.x = $configurations$.items[0];
+
+			tick().then(() => console.log("tick"));
+		}
 	}
 </script>
 
@@ -23,6 +52,7 @@
 	on:change={handleChange}
 >
 	{#each $configurations$.items as item, index}
+		{item.leadingIcon}
 		<ListItem
 			bind:configurations={item}
 			listRole={$configurations$.role}
