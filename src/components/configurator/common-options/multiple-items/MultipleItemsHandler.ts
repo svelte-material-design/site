@@ -14,7 +14,6 @@ export function createMultipleItemsHandler<
 	const derivedConfigurations$ = derived(
 		[configurations$, items$],
 		([$configurations$, $items$]) => {
-			console.log("configurations$ derived");
 			return {
 				...$configurations$,
 				items: $items$,
@@ -24,7 +23,6 @@ export function createMultipleItemsHandler<
 
 	selectedItem$.subscribe(($selectedItem$) => {
 		// Keep selectedItem instance and correspondent item instance synchronized
-		console.log("selectedItem$ update");
 		const index = findIndexById($selectedItem$.id);
 		if (!~index) return;
 
