@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { ListRole, ListType, Radio, Checkbox } from "@smui/core/list";
+	import { ListRole, ListItemsStyle, Radio, Checkbox } from "@smui/core/list";
 	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
 	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
@@ -26,12 +26,12 @@
 	export let trailingIcon: IconType;
 
 	export let listRole: ListRole | "listbox" = undefined;
-	export let listType: ListType;
+	export let listItemsStyle: ListItemsStyle;
 	export let listItemsRows: number;
 
 	export let showCloseBtn: boolean;
 
-	$: imageData = getImageData(listType);
+	$: imageData = getImageData(listItemsStyle);
 </script>
 
 <svelte:component
@@ -50,13 +50,13 @@
 	{:else if listRole === "group"}
 		<Checkbox class={leadingClassName} />
 	{/if}
-	{#if listType === "image" || listType === "avatar" || listType === "thumbnail" || listType === "video"}
+	{#if listItemsStyle === "image" || listItemsStyle === "avatar" || listItemsStyle === "thumbnail" || listItemsStyle === "video"}
 		<img
 			class={leadingClassName}
 			alt={imageData.imageTxt}
 			src={imageData.imageSrc}
 		/>
-	{:else if listType === "icon" || listType === "textual"}
+	{:else if listItemsStyle === "icon" || listItemsStyle === "textual"}
 		<LeadingIcon
 			class={leadingClassName}
 			type={leadingIcon}

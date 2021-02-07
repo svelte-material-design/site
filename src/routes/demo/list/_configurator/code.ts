@@ -1,16 +1,8 @@
 import type { ListItemConfigurations, ListConfigurations } from "./types";
 import { source } from "common-tags";
-import {
-	generateSCSSCode,
-	generateSvelteTagCode,
-	getImportCode,
-	removeEmptyLines,
-} from "src/components/configurator";
+import { getImportCode, removeEmptyLines } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
-import {
-	createItemCode,
-	createListCode,
-} from "src/components/configurator/smui-components/list";
+import { createListCode } from "src/components/configurator/smui-components/list";
 
 export function script(configurations: ListConfigurations) {
 	const { separator, role, itemsRows } = configurations;
@@ -63,21 +55,4 @@ export function template(configurations: ListConfigurations) {
 	);
 
 	return code;
-}
-
-function getTrailingIconCode(props: ListItemConfigurations): string {
-	const { iconOnly, trailingIcon } = props;
-
-	if (iconOnly) {
-		return "";
-	} else {
-		return getIconCode(
-			{},
-			{
-				type: trailingIcon,
-				position: "trailing",
-				additionalProps: [[iconOnly, `style="margin: 0;"`]],
-			}
-		);
-	}
 }

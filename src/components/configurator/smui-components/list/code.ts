@@ -1,4 +1,4 @@
-import { ListRole, ListOrientation, ListType } from "@smui/core/list";
+import { ListRole, ListOrientation, ListItemsStyle } from "@smui/core/list";
 import type { StringListToFilter } from "@smui/core/common/functions";
 import type { IconType } from "../icons";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
@@ -13,13 +13,36 @@ import {
 	ImgPlaceholderParams,
 } from "src/functions/imgPlacehoder";
 
-export function getProps(
+export function getListBoxProps(
+	configurations: ListBoxConfigurations
+): StringListToFilter {
+	const {
+		multiSelection,
+		orientation,
+		itemsStyle,
+		dense,
+		itemsRows,
+		wrapFocus,
+	} = configurations;
+
+	return [
+		`bind:value`,
+		[multiSelection, `multiSelection`],
+		[itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
+		[wrapFocus, `wrapFocus`],
+		[dense, `dense`],
+		[orientation && orientation !== "vertical", `orientation="${orientation}"`],
+		[itemsRows > 1, `itemsRows={${itemsRows}}`],
+	];
+}
+
+export function getListProps(
 	configurations: ListConfigurations
 ): StringListToFilter {
 	const {
 		role,
 		orientation,
-		type,
+		itemsStyle,
 		dense,
 		itemsRows,
 		wrapFocus,
@@ -28,7 +51,7 @@ export function getProps(
 	return [
 		[role !== "list", `bind:value`],
 		[role !== "list", `role="${role}"`],
-		[type !== "textual", `type="${type}"`],
+		[itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
 		[wrapFocus, `wrapFocus`],
 		[dense, `dense`],
 		[orientation && orientation !== "vertical", `orientation="${orientation}"`],
@@ -50,7 +73,7 @@ export function getItemProps(
 		leadingIcon,
 		trailingIcon,
 	} = configurations;
-	const { role, type } = listConfigurations;
+	const { role, itemsStyle: type } = listConfigurations;
 
 	return [
 		[role !== "list", `value="${value}"`],
@@ -70,21 +93,24 @@ export function createItemLeadingContentCode(
 	configurations: ListItemConfigurations
 ) {
 	const { leadingIcon, leadingIconTag } = configurations;
-	const { role, type } = listConfigurations;
-	const { imageTxt, imageSrc } = getImageData(type) ?? {};
+	const { role, itemsStyle } = listConfigurations;
+	const { imageTxt, imageSrc } = getImageData(itemsStyle) ?? {};
 
 	const tag = leadingIconTag ?? "Icon";
 
 	let code: string;
 
 	if (
-		type === "image" ||
-		type === "avatar" ||
-		type === "thumbnail" ||
-		type === "video"
+		itemsStyle === "image" ||
+		itemsStyle === "avatar" ||
+		itemsStyle === "thumbnail" ||
+		itemsStyle === "video"
 	) {
 		code = `<img class={leadingClassName} alt="${imageTxt}" src="${imageSrc}" />`;
-	} else if ((!type || type === "textual" || type === "icon") && leadingIcon) {
+	} else if (
+		(!itemsStyle || itemsStyle === "textual" || itemsStyle === "icon") &&
+		leadingIcon
+	) {
 		code = `
 			${getIconCode(
 				{
@@ -225,21 +251,31 @@ export function createListContentCode(configurations: ListConfigurations) {
 }
 
 export function createListCode(
-	options: TagCodeGenerationProps,
+	options: Pick<TagCodeGenerationProps, "tag">,
 	configurations: ListConfigurations
 ) {
 	const code = generateSvelteTagCode({
 		...options,
-		props: getProps(configurations),
+		props: getListProps(configurations),
 		content: createListContentCode(configurations),
 	});
 
 	return removeEmptyLines(code);
 }
 
-export function getImageData(listType: ListType) {
+export function createListBoxCode(configurations: ListBoxConfigurations) {
+	const code = generateSvelteTagCode({
+		tag: "ListBox",
+		props: getListBoxProps(configurations),
+		content: createListContentCode(configurations),
+	});
+
+	return removeEmptyLines(code);
+}
+
+export function getImageData(listItemsStyle: ListItemsStyle) {
 	let imageRes: ImgPlaceholderParams;
-	switch (listType) {
+	switch (listItemsStyle) {
 		case "image":
 			imageRes = { width: 56, height: 56 };
 			break;
@@ -269,19 +305,26 @@ export function getImageData(listType: ListType) {
 	};
 }
 
-export interface ListConfigurations {
-	role?: ListRole;
+export interface CommonListConfigurations {
 	wrapFocus: boolean;
 	dense: boolean;
 	density: number;
 	orientation: ListOrientation;
-	type: ListType;
+	itemsStyle: ListItemsStyle;
 	itemsRows: number;
 	separator: boolean;
 	separatorInsetPadding: boolean;
 	separatorInsetLeading: boolean;
 	separatorInsetTrailing: boolean;
 	items: ListItemConfigurations[];
+}
+
+export interface ListConfigurations extends CommonListConfigurations {
+	role?: ListRole;
+}
+
+export interface ListBoxConfigurations extends CommonListConfigurations {
+	multiSelection: boolean;
 }
 
 export interface ListItemConfigurations {

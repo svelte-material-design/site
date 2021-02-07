@@ -4,7 +4,7 @@
 	import {
 		Content,
 		Icon,
-		ListType,
+		ListItemsStyle,
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
@@ -33,13 +33,13 @@
 	export let clickableLeadingIcon: boolean;
 	export let clickableTrailingIcon: boolean;
 
-	export let listType: ListType;
+	export let listItemsStyle: ListItemsStyle;
 	export let listItemsRows: number;
 
 	export let href: string = undefined;
 
 	let imageRes: ImgPlaceholderParams;
-	$: switch (listType) {
+	$: switch (listItemsStyle) {
 		case "image":
 			imageRes = { width: 56, height: 56 };
 			break;
@@ -70,9 +70,9 @@
 
 <NavItem {activated} {disabled} {ripple} {ariaLabel} {title} {href}>
 	<svelte-fragment slot="leading">
-		{#if listType === "image" || listType === "avatar" || listType === "thumbnail" || listType === "video"}
+		{#if listItemsStyle === "image" || listItemsStyle === "avatar" || listItemsStyle === "thumbnail" || listItemsStyle === "video"}
 			<img alt={imageTxt} src={imageSrc} />
-		{:else if listType === "icon"}
+		{:else if listItemsStyle === "icon"}
 			<LeadingIcon
 				type={leadingIcon}
 				component={Icon}

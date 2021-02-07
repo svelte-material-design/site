@@ -10,7 +10,7 @@
 		ListRole,
 		ListOrientation,
 		Separator,
-		ListType,
+		ListItemsStyle,
 		Item,
 	} from "@smui/core/list";
 	import {
@@ -41,7 +41,7 @@
 	let density: number;
 
 	let orientation: ListOrientation;
-	let type: ListType;
+	let listItemsStyle: ListItemsStyle;
 	let itemsRows: number;
 
 	let separator: boolean;
@@ -57,7 +57,7 @@
 		props: getListCodeProps({
 			role,
 			orientation,
-			type,
+			type: listItemsStyle,
 			density,
 			dense,
 			itemsRows,
@@ -77,7 +77,7 @@
 					selected: item.selected,
 					listItemsRows: itemsRows,
 					listRole: role,
-					listType: type,
+					listType: listItemsStyle,
 					clickableLeadingIcon: item.clickableLeadingIcon,
 					leadingIcon: item.leadingIcon,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
@@ -139,7 +139,7 @@
 			bind:value
 			{role}
 			{orientation}
-			{type}
+			{listItemsStyle}
 			{itemsRows}
 			{wrapFocus}
 			{dense}
@@ -162,7 +162,7 @@
 					clickableLeadingIcon={item.clickableLeadingIcon}
 					clickableTrailingIcon={item.clickableTrailingIcon}
 					listRole={role}
-					listType={type}
+					listType={listItemsStyle}
 					listItemsRows={itemsRows}
 					on:change={multipleItemsConfigurations &&
 						multipleItemsConfigurations.updateSelectedInstance}
@@ -191,13 +191,13 @@
 			bind:items
 			bind:selectedItem
 		>
-			<ListOptions bind:role {type} on:change={handleOptionsChange} />
+			<ListOptions bind:role {listItemsStyle} on:change={handleOptionsChange} />
 			<CommonListOptions
 				bind:wrapFocus
 				bind:dense
 				bind:density
 				bind:orientation
-				bind:type
+				bind:listItemsStyle
 				bind:itemsRows
 				bind:separator
 				bind:separatorInsetPadding
@@ -217,7 +217,7 @@
 				on:change={handleOptionsChange}
 			/>
 			<CommonListItemOptions
-				listType={type}
+				listType={listItemsStyle}
 				bind:ripple={selectedItem.ripple}
 				bind:disabled={selectedItem.disabled}
 				bind:title={selectedItem.title}

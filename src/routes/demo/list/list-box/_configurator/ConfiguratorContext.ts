@@ -5,7 +5,7 @@ import type { ListBoxConfigurations, ListItemConfigurations } from "./types";
 
 export function createConfiguratorStore() {
 	const initialConfigurations = {
-		type: "textual",
+		itemsStyle: "textual",
 	} as ListBoxConfigurations;
 
 	const configurations$ = writable<ListBoxConfigurations>(

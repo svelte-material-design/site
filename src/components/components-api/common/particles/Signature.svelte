@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Value, Pipe } from ".";
+	import { Pipe } from ".";
+	import { Value } from "./atoms";
 	import { Cell } from "../table";
 
 	export let keyword: string;

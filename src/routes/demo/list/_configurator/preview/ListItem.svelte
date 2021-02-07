@@ -8,13 +8,13 @@
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
-	import type { ListRole, ListType } from "@smui/core/list";
+	import type { ListRole, ListItemsStyle } from "@smui/core/list";
 	import { ListItemConfigurations } from "../types";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
 	export let configurations: ListItemConfigurations;
 	export let listRole: ListRole;
-	export let listType: ListType;
+	export let listItemsStyle: ListItemsStyle;
 	export let listItemsRows: number;
 </script>
 
@@ -37,7 +37,7 @@
 	trailingIcon={configurations.trailingIcon}
 	href={configurations.href}
 	{listRole}
-	{listType}
+	{listItemsStyle}
 	{listItemsRows}
 	on:change
 />

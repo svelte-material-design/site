@@ -9,7 +9,7 @@
 		ListRole,
 		ListOrientation,
 		Separator,
-		ListType,
+		ListItemsStyle,
 	} from "@smui/core/list";
 	import { NavList } from "@smui/core/list/nav-list";
 	import MultipleItemControls from "src/components/configurator/common-options/multiple-items/MultipleItemControls.svelte";
@@ -36,7 +36,7 @@
 	let density: number;
 
 	let orientation: ListOrientation;
-	let type: ListType;
+	let listItemsStyle: ListItemsStyle;
 	let itemsRows: number;
 
 	let separator: boolean;
@@ -51,7 +51,7 @@
 		tag: "NavList",
 		props: [
 			[orientation, `orientation="${orientation}"`],
-			[type, `type="${type}"`],
+			[listItemsStyle, `type="${listItemsStyle}"`],
 			[density, `density={${density}}`],
 			[dense, `dense`],
 			[itemsRows > 1, `itemsRows={${itemsRows}}`],
@@ -71,7 +71,7 @@
 					selected: item.selected,
 					href: "javascript:void(0);",
 					listItemsRows: itemsRows,
-					listType: type,
+					listType: listItemsStyle,
 					clickableLeadingIcon: item.clickableLeadingIcon,
 					leadingIcon: item.leadingIcon,
 					imageSrc: itemsInstance[index]?.getImageSrc(),
@@ -129,7 +129,14 @@
 
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
-		<NavList {orientation} {type} {itemsRows} {wrapFocus} {dense} {density}>
+		<NavList
+			{orientation}
+			{listItemsStyle}
+			{itemsRows}
+			{wrapFocus}
+			{dense}
+			{density}
+		>
 			{#each items as item, index}
 				<NavListItem
 					bind:this={itemsInstance[index]}
@@ -145,7 +152,7 @@
 					trailingIcon={item.trailingIcon}
 					clickableLeadingIcon={item.clickableLeadingIcon}
 					clickableTrailingIcon={item.clickableTrailingIcon}
-					listType={type}
+					{listItemsStyle}
 					listItemsRows={itemsRows}
 					href="javascript:void(0)"
 				/>
@@ -165,7 +172,7 @@
 			bind:dense
 			bind:density
 			bind:orientation
-			bind:type
+			bind:listItemsStyle
 			bind:itemsRows
 			bind:separator
 			bind:separatorInsetPadding
@@ -179,7 +186,7 @@
 			on:change={handleOptionsChange}
 		/>
 		<CommonListItemOptions
-			listType={type}
+			listType={listItemsStyle}
 			bind:ripple={selectedItem.ripple}
 			bind:disabled={selectedItem.disabled}
 			bind:title={selectedItem.title}

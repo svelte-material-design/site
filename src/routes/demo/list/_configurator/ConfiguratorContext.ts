@@ -6,7 +6,7 @@ import type { ListConfigurations, ListItemConfigurations } from "./types";
 export function createConfiguratorStore() {
 	const initialConfigurations = {
 		role: "list",
-		type: "textual",
+		itemsStyle: "textual",
 	} as ListConfigurations;
 
 	const configurations$ = writable<ListConfigurations>(initialConfigurations);
