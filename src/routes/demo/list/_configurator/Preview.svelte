@@ -4,7 +4,6 @@
 	import { List, Separator } from "@smui/core/list";
 	import { ListItem } from "./preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import { tick } from "svelte";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { items$ } = multipleItemsHandler;

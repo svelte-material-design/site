@@ -12,89 +12,32 @@
 		CommonListItemConfigurations,
 		ListItemConfigurations as ListItemConfigurationsComponent,
 	} from "../../_configurator/configurations";
-	import { tick } from "svelte";
-	import type { ListBoxConfigurations, ListItemConfigurations } from "./types";
 	import { Section } from "src/components/configurator/molecules/configurations";
-	import { UseState } from "@raythurnevoid/svelte-hooks";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	export let configurations: ListBoxConfigurations;
-	export let multipleItemsConfigurations: MultipleItemsConfigurations;
-
-	let selectedItem: ListItemConfigurations = {} as any;
-	let configurationsState: UseState;
-
-	async function handleChange() {
-		multipleItemsConfigurations.updateSelectedInstance();
-
-		await tick();
-
-		handleItemsChange();
-	}
-
-	function handleItemsChange() {
-		configurations = { ...configurations };
-		configurationsState.setValue(configurations);
-	}
-
-	function createListItem(index) {
-		const value = `item:${index}`;
-		return ({
-			id: value,
-			value,
-			ripple: true,
-			disabled: false,
-			readonly: false,
-			selected: false,
-			href: undefined,
-			label: `Item ${index}`,
-			labelRow2: `Secondary text`,
-			labelRow3: `Third line`,
-			trailingIcon: undefined,
-			leadingIcon: undefined,
-		} as Partial<ListItemConfigurations>) as ListItemConfigurations;
-	}
+	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
+	const { selectedItem$ } = multipleItemsHandler;
 </script>
 
-<UseState
-	bind:this={configurationsState}
-	value={configurations}
-	onUpdate={() => multipleItemsConfigurations.updateSelectedInstance()}
-/>
-
-<MultipleItemsConfigurations
-	bind:this={multipleItemsConfigurations}
-	bind:items={configurations.items}
-	bind:selectedItem
-	on:itemsChange={handleItemsChange}
->
+<MultipleItemsConfigurations {multipleItemsHandler}>
 	<Section>
-		<ListBoxConfigurationsComponent
-			bind:configurations
-			on:change={handleChange}
-		/>
-		<CommonListConfigurations bind:configurations on:change={handleChange} />
+		<ListBoxConfigurationsComponent bind:configurations={$configurations$} />
+		<CommonListConfigurations bind:configurations={$configurations$} />
 	</Section>
-	<MultipleItemSelector
-		items={configurations.items}
-		label="Edit tab"
-		{selectedItem}
-		multipleItemsHandler{multipleItemsConfigurations}
-	/>
+	<MultipleItemSelector label="Edit tab" {multipleItemsHandler} />
 	<Section>
 		<ListItemConfigurationsComponent
-			listRole={"listbox"}
-			bind:configurations={selectedItem}
-			on:change={handleChange}
+			listConfigurations={$configurations$}
+			bind:configurations={$selectedItem$}
 		/>
 		<CommonListItemConfigurations
-			listType={configurations.type}
-			bind:listConfigurations={selectedItem}
-			labelFn={() => `Item ${configurations.items.indexOf(selectedItem)}`}
-			on:change={handleChange}
+			bind:configurations={$selectedItem$}
+			listConfigurations={$configurations$}
+			labelFn={() =>
+				`Item ${$configurations$.items.findIndex(
+					(item) => item.id === $selectedItem$.id
+				)}`}
 		/>
 	</Section>
-	<MultipleItemControls
-		itemFactory={createListItem}
-		multipleItemsHandler{multipleItemsConfigurations}
-	/>
+	<MultipleItemControls {multipleItemsHandler} />
 </MultipleItemsConfigurations>

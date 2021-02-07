@@ -2,43 +2,39 @@
 
 <script lang="ts">
 	import { ListBox, Separator } from "@smui/core/list";
-	import { ListBoxConfigurations } from "./types";
 	import { ListItem } from "./preview";
-	import { UseState } from "@raythurnevoid/svelte-hooks";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	export let configurations: ListBoxConfigurations;
-	let value: string | string[];
+	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
+	const { items$ } = multipleItemsHandler;
 
 	function handleChange() {
-		configurations.value = value;
-		configurations = { ...configurations };
+		multipleItemsHandler.updateSelectedInstance();
 	}
 </script>
 
-<UseState {value} onUpdate={handleChange} />
-
 <ListBox
-	bind:value
-	multiSelection={configurations.multiSelection}
-	orientation={configurations.orientation}
-	type={configurations.type}
-	itemsRows={configurations.itemsRows}
-	wrapFocus={configurations.wrapFocus}
-	dense={configurations.dense}
+	bind:value={$configurations$.value}
+	multiSelection={$configurations$.multiSelection}
+	orientation={$configurations$.orientation}
+	type={$configurations$.type}
+	itemsRows={$configurations$.itemsRows}
+	wrapFocus={$configurations$.wrapFocus}
+	dense={$configurations$.dense}
 	on:change={handleChange}
 >
-	{#each configurations.items as item, index}
+	{#each $items$ as item, index}
 		<ListItem
 			bind:configurations={item}
-			listType={configurations.type}
-			listItemsRows={configurations.itemsRows}
+			listType={$configurations$.type}
+			listItemsRows={$configurations$.itemsRows}
 			on:change={handleChange}
 		/>
-		{#if index === 0 && configurations.separator}
+		{#if index === 0 && $configurations$.separator}
 			<Separator
-				insetPadding={configurations.separatorInsetPadding}
-				insetLeading={configurations.separatorInsetLeading}
-				insetTrailing={configurations.separatorInsetTrailing}
+				insetPadding={$configurations$.separatorInsetPadding}
+				insetLeading={$configurations$.separatorInsetLeading}
+				insetTrailing={$configurations$.separatorInsetTrailing}
 			/>
 		{/if}
 	{/each}

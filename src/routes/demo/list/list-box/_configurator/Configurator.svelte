@@ -4,11 +4,15 @@
 	import { Configurator } from "src/components/configurator";
 	import { Values } from "src/components/configurator/atoms";
 	import { Configurations, Preview } from ".";
-	import { ListBoxConfigurations } from "./types";
+	import {
+		createConfiguratorStore,
+		setConfiguratorContext,
+	} from "./ConfiguratorContext";
 
-	let configurations = {
-		items: [],
-	} as ListBoxConfigurations;
+	const context$ = createConfiguratorStore();
+	setConfiguratorContext(context$);
+
+	const { configurations$ } = context$;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
@@ -33,12 +37,12 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<Preview bind:configurations />
+		<Preview />
 	</div>
 	<div slot="values">
-		value: <Values value={configurations.value} />
+		value: <Values value={$configurations$.value} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
-		<Configurations bind:configurations />
+		<Configurations />
 	</svelte-fragment>
 </Configurator>

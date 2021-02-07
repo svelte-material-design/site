@@ -4,11 +4,11 @@
 	import {
 		Content,
 		Item,
-		ListType,
 		Icon,
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
+	import type { ListType } from "@smui/core/list";
 	import { ListItemConfigurations } from "../types";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
@@ -17,10 +17,6 @@
 	export let listItemsRows: number;
 
 	const listRole = "listbox";
-
-	function handleChange() {
-		configurations = { ...configurations };
-	}
 </script>
 
 <ListItem
@@ -44,6 +40,5 @@
 	{listType}
 	{listItemsRows}
 	let:selected
-	on:change={handleChange}
 	on:change
 />
