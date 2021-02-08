@@ -3,6 +3,7 @@
 	import { Section } from "../common";
 
 	export let noNotes: boolean;
+	export let target: "root" | "main" = "root";
 </script>
 
 <div class="props">
@@ -17,14 +18,13 @@
 	<div class="note">
 		<Text>
 			<b>Note:</b>
-			<slot name="notes" />
-			{#if !$$slots.notes}
-				any other props are forwarded directly to the root
+			<slot name="notes">
+				any other props are forwarded directly to the {target}
 				<code>HTMLElement</code>
 				via
 				<code>$$restProps</code>
 				magical global.
-			{/if}
+			</slot>
 		</Text>
 	</div>
 {/if}
