@@ -6,5 +6,5 @@
 </script>
 
 <BaseComponentProps>
-	<Dom instances={['HTMLSpanElement']} />
+	<Dom instances={["HTMLSpanElement"]} />
 </BaseComponentProps>

@@ -20,7 +20,7 @@
 	bind:value={configurations.role}
 	label="Role"
 	nullable={false}
-	disabled={configurations.type !== "textual"}
+	disabled={configurations.itemsStyle !== "textual"}
 	options={[
 		{
 			label: "list",

@@ -7,5 +7,5 @@
 	<Signature keyword="boolean">
 		<Default value={true} />
 	</Signature>
-	<Description>If <code>false</code> the component is read-only.</Description>
+	<Description>If <code>true</code> the component is read-only.</Description>
 </Prop>
