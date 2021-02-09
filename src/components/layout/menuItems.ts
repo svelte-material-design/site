@@ -210,14 +210,6 @@ export const menuItems = [
 		],
 	},
 	{
-		name: "Lists Group",
-		route: "/demo/lists-group",
-		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/list",
-		],
-	},
-	{
 		name: "Menu Surface",
 		route: "/demo/menu-surface",
 		indent: 0,

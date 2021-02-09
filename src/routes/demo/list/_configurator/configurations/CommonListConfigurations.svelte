@@ -37,18 +37,18 @@
 </script>
 
 <Select
-	bind:value={configurations.type}
-	label="Type"
+	bind:value={configurations.itemsStyle}
+	label="Items style"
 	nullable={false}
 	disabled={configurations.role === "group" ||
 		configurations.role === "radiogroup"}
 	options={[
-		{ label: "Textual list", value: "textual" },
-		{ label: "Image list", value: "image" },
-		{ label: "Icons list", value: "icon" },
-		{ label: "Avatar list", value: "avatar" },
-		{ label: "Thumbnail list", value: "thumbnail" },
-		{ label: "Video list", value: "video" },
+		{ label: "Textual", value: "textual" },
+		{ label: "Image", value: "image" },
+		{ label: "Icons", value: "icon" },
+		{ label: "Avatar", value: "avatar" },
+		{ label: "Thumbnail", value: "thumbnail" },
+		{ label: "Video", value: "video" },
 	]}
 	on:change={updateInstance}
 />

@@ -13,7 +13,7 @@
 	export let configurations: BaseListItemConfigurations;
 
 	$: listRole = listConfigurations.role;
-	$: listType = listConfigurations.type;
+	$: listType = listConfigurations.itemsStyle;
 
 	let useLabel: boolean = true;
 	let leadingIconDisabled: boolean = false;
@@ -26,7 +26,7 @@
 
 	function handleListTypeRoleUpdate() {
 		if (
-			!["icon", "textual"].includes(listConfigurations.type) ||
+			!["icon", "textual"].includes(listConfigurations.itemsStyle) ||
 			["group", "radiogroup"].includes(listConfigurations.role)
 		) {
 			leadingIconDisabled = true;
@@ -35,7 +35,10 @@
 			leadingIconDisabled = false;
 		}
 
-		if (listConfigurations.type === "icon" && !configurations.leadingIcon) {
+		if (
+			listConfigurations.itemsStyle === "icon" &&
+			!configurations.leadingIcon
+		) {
 			configurations.leadingIcon = "material-icon";
 		}
 	}

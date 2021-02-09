@@ -22,6 +22,10 @@
 					label: "List Box",
 					folder: "list-box",
 				},
+				{
+					label: "List Group",
+					folder: "list-group",
+				},
 			]}
 		>
 			<div slot="main">
