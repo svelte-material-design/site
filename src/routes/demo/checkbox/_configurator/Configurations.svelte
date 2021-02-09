@@ -7,13 +7,19 @@
 	} from "src/components/configurator/atoms/configurations";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { Section } from "src/components/configurator/molecules/configurations";
-	import type { CheckboxConfigurations } from "./types";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
+	import { onMount } from "svelte";
 
-	export let configurations: CheckboxConfigurations;
+	const { configurations$ } = getConfiguratorContext();
 
 	let checkedState: UseState;
 	let checkedStateValue: "checked" | "unchecked" | "indeterminate";
 	let checkedOptions: { value: string; label: string }[];
+
+	onMount(() => {
+		handleCheckedChange();
+		updateInstance();
+	});
 
 	handleCheckedChange();
 
@@ -23,7 +29,7 @@
 			{ value: "checked", label: "Checked" },
 		];
 
-		if (configurations.allowIndeterminated) {
+		if ($configurations$.allowIndeterminated) {
 			checkedOptions.push({ value: "indeterminate", label: "Indeterminate" });
 			checkedOptions = [...checkedOptions];
 		}
@@ -31,35 +37,33 @@
 
 	function handleCheckedSelectChange(_value: string) {
 		const value = _value as "checked" | "unchecked" | "indeterminate";
-		if (value === "checked" && configurations.checked !== true) {
-			configurations.checked = true;
-		} else if (value === "unchecked" && configurations.checked !== false) {
-			configurations.checked = false;
-		} else if (value === "indeterminate" && configurations.checked != null) {
-			configurations.checked = null;
+		if (value === "checked" && $configurations$.checked !== true) {
+			$configurations$.checked = true;
+		} else if (value === "unchecked" && $configurations$.checked !== false) {
+			$configurations$.checked = false;
+		} else if (value === "indeterminate" && $configurations$.checked != null) {
+			$configurations$.checked = null;
 		}
 
-		checkedState.setValue(configurations.checked);
-
-		handleChange();
+		checkedState.setValue($configurations$.checked);
 	}
 
 	function handleCheckedChange() {
-		checkedStateValue = configurations.checked
+		checkedStateValue = $configurations$.checked
 			? "checked"
-			: configurations.checked === null
+			: $configurations$.checked === null
 			? "indeterminate"
 			: "unchecked";
 	}
 
-	function handleChange() {
-		configurations = { ...configurations };
+	function updateInstance() {
+		$configurations$ = { ...$configurations$ };
 	}
 </script>
 
 <UseState
 	bind:this={checkedState}
-	value={configurations.checked}
+	value={$configurations$.checked}
 	onUpdate={handleCheckedChange}
 />
 
@@ -70,38 +74,33 @@
 		options={checkedOptions}
 		nullable={false}
 		on:change={(event) => handleCheckedSelectChange(event.detail.value)}
-		on:change
+		on:change={updateInstance}
 	/>
 </Section>
 <Section>
 	<Checkbox
-		bind:checked={configurations.ripple}
+		bind:checked={$configurations$.ripple}
 		label="Ripple"
-		on:change={handleChange}
-		on:change
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.accessibleTouch}
+		bind:checked={$configurations$.accessibleTouch}
 		label="Accessible touch"
-		on:change={handleChange}
-		on:change
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.allowIndeterminated}
+		bind:checked={$configurations$.allowIndeterminated}
 		label="Allow indeterminate"
-		on:change={handleChange}
-		on:change
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.disabled}
+		bind:checked={$configurations$.disabled}
 		label="Disabled"
-		on:change={handleChange}
-		on:change
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.readonly}
+		bind:checked={$configurations$.readonly}
 		label="Readonly"
-		on:change={handleChange}
-		on:change
+		on:change={updateInstance}
 	/>
 </Section>
