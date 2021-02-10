@@ -6,51 +6,15 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
-	import { Configurations as CheckboxConfigurations } from "../../_configurator";
-	import type { CheckboxConfigurationsItem } from "./types";
+	import { CheckboxConfigurations } from "../../_configurator/configurations";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	export let multipleItemsConfigurations: MultipleItemsConfigurations;
-
-	export let items: CheckboxConfigurationsItem[] = [];
-	let selectedItem: CheckboxConfigurationsItem = {} as any;
-
-	function createItem(index) {
-		const value = `item:${index}`;
-		return {
-			id: value,
-			value,
-			label: `Checkbox ${index}`,
-			checked: false,
-			ripple: true,
-			accessibleTouch: true,
-			allowIndeterminated: false,
-			disabled: false,
-			readonly: false,
-		} as CheckboxConfigurationsItem;
-	}
-
-	async function handleChange() {
-		multipleItemsConfigurations.updateSelectedInstance();
-	}
+	const { multipleItemsHandler } = getConfiguratorContext();
+	const { selectedItem$ } = multipleItemsHandler;
 </script>
 
-<MultipleItemsConfigurations
-	bind:this={multipleItemsConfigurations}
-	bind:items
-	bind:selectedItem
->
-	<MultipleItemSelector
-		{items}
-		label="Edit checkbox"
-		{selectedItem}
-		multipleItemsHandler{multipleItemsConfigurations}
-	/>
-	<CheckboxConfigurations
-		bind:configurations={selectedItem}
-		on:change={handleChange}
-	/>
-	<MultipleItemControls
-		itemFactory={createItem}
-		multipleItemsHandler{multipleItemsConfigurations}
-	/>
+<MultipleItemsConfigurations {multipleItemsHandler}>
+	<MultipleItemSelector label="Edit checkbox" {multipleItemsHandler} />
+	<CheckboxConfigurations bind:configurations={$selectedItem$} />
+	<MultipleItemControls {multipleItemsHandler} />
 </MultipleItemsConfigurations>

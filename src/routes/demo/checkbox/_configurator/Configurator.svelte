@@ -10,12 +10,6 @@
 		setConfiguratorContext,
 	} from "./ConfiguratorContext";
 
-	// let configurations = {
-	// 	label: "label",
-	// 	ripple: true,
-	// 	accessibleTouch: true,
-	// } as CheckboxConfigurations;
-
 	const context$ = createConfiguratorStore();
 	setConfiguratorContext(context$);
 

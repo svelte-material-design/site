@@ -7,27 +7,20 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/events";
+	import { OnChange } from "..";
 
-	export let childrenTag: string = undefined;
+	export let childrenTag: string = "Item";
+	export let changeName: string = "OnMultiSelectionGroupChange";
+	export let optionsName: string = "OnSelectionGroupOptionsChangeEvent";
 </script>
 
-<Event>
-	<Name>change</Name>
-	<slot name="valueSignature">
-		<Signature keyword="type" name="OnMultiSelectionGroupChangeEvent" />
-	</slot>
-	<Description>
-		Event fired when the
-		<code>value</code>
-		change following a user input.
-	</Description>
-</Event>
+<OnChange name={changeName} />
 <Event>
 	<Name>optionsChange</Name>
-	<Signature keyword="type" name="OnSelectionGroupOptionsChangeEvent" />
+	<Signature keyword="interface" name={optionsName} />
 	<Description>
-		Event fired when a child {#if childrenTag}<code>{`<${childrenTag} />`}</code
-			>
+		Event fired when a child {#if childrenTag}
+			<code>{`<${childrenTag} />`}</code>
 		{/if}is added/removed or when the <code>value</code> of an existing child gets
 		updated.
 	</Description>

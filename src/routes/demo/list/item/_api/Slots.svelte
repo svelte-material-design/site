@@ -16,9 +16,7 @@
 <Slots>
 	<Slot>
 		<Name>default</Name>
-		<Description>
-			Content showed to indicate the value in a human-friendly format.
-		</Description>
+		<Description>Item's content.</Description>
 		<SlotProps>
 			<SlotProp>
 				<SlotPropName>leadingClassName</SlotPropName>

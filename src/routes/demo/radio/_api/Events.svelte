@@ -1,25 +1,12 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import {
-		Events,
-		Event,
-		Name,
-		Description,
-		Signature,
-	} from "src/components/components-api/events";
+	import { Events } from "src/components/components-api/events";
 	import { CommonButtonForwardedEvents } from "src/components/components-api/events/common/button";
+	import { OnChange } from "src/components/components-api/events/common";
 </script>
 
 <Events>
-	<Event>
-		<Name>change</Name>
-		<Signature keyword="type" name="OnRadioChangeEvent" />
-		<Description>
-			Event fired when the
-			<code>checked</code>
-			value change following a user click.
-		</Description>
-	</Event>
+	<OnChange prop="checked" name="OnRadioChangeEvent" native />
 </Events>
 <CommonButtonForwardedEvents />

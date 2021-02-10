@@ -5,27 +5,32 @@
 	import { Values } from "src/components/configurator/atoms";
 	import { template, script } from "./code";
 	import Configurations from "./Configurations.svelte";
-	import type { CheckboxConfigurationsItem } from "./types";
 	import Preview from "./Preview.svelte";
+	import {
+		createConfiguratorStore,
+		setConfiguratorContext,
+	} from "./ConfiguratorContext";
 
-	let items: CheckboxConfigurationsItem[];
-	let value: string[];
+	const context$ = createConfiguratorStore();
+	setConfiguratorContext(context$);
+
+	const { configurations$ } = context$;
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
 
-	$: svelteScriptCode = script();
-	$: svelteCode = template(items);
+	$: svelteScriptCode = script($configurations$);
+	$: svelteCode = template($configurations$);
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview">
-		<Preview bind:items bind:value />
+		<Preview />
 	</div>
 	<div slot="values">
-		value: <Values {value} />
+		value: <Values value={$configurations$.value} />
 	</div>
 	<div slot="optionsSidebar">
-		<Configurations bind:items />
+		<Configurations />
 	</div>
 </Configurator>

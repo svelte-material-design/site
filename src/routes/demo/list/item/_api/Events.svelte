@@ -2,12 +2,12 @@
 
 <script lang="ts">
 	import { Events } from "src/components/components-api/events";
-	import { ItemChange } from "src/components/components-api/events/common/groups";
 	import { ForwardedEvents } from "src/components/components-api/events";
+	import { OnChange } from "src/components/components-api/events/common";
 </script>
 
 <Events>
-	<ItemChange interfaceName="OnItemSelectedEvent" />
+	<OnChange prop="selected" name="OnItemChangeEvent" />
 </Events>
 <ForwardedEvents
 	events={[

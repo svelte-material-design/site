@@ -1,4 +1,11 @@
-import { RadioConfigurations } from "../../_configurator";
-import { Item } from "src/components/configurator/common-options/multiple-items";
+import type { RadioConfigurations } from "../../_configurator/types";
+import type {
+	Item,
+	Group,
+} from "src/components/configurator/common-options/multiple-items";
 
 export interface RadioConfigurationsItem extends RadioConfigurations, Item {}
+export interface RadioGroupConfigurations
+	extends Group<RadioConfigurationsItem> {
+	value: string;
+}

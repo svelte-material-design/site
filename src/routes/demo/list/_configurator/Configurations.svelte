@@ -24,7 +24,7 @@
 		<ListConfigurationsComponent bind:configurations={$configurations$} />
 		<CommonListConfigurations bind:configurations={$configurations$} />
 	</Section>
-	<MultipleItemSelector label="Edit tab" {multipleItemsHandler} />
+	<MultipleItemSelector label="Edit item" {multipleItemsHandler} />
 	<Section>
 		<ListItemConfigurationsComponent
 			listConfigurations={$configurations$}

@@ -17,7 +17,7 @@
 	bind:value={$configurations$.value}
 	role={$configurations$.role}
 	orientation={$configurations$.orientation}
-	type={$configurations$.type}
+	type={$configurations$.itemsStyle}
 	itemsRows={$configurations$.itemsRows}
 	wrapFocus={$configurations$.wrapFocus}
 	dense={$configurations$.dense}
@@ -27,7 +27,6 @@
 		<ListItem
 			bind:configurations={item}
 			listRole={$configurations$.role}
-			listType={$configurations$.type}
 			listItemsRows={$configurations$.itemsRows}
 			on:change={handleChange}
 		/>

@@ -13,7 +13,7 @@
 	</Signature>
 	<Description>
 		<slot>
-			When <code>true</code> the component is selected.
+			When <code>true</code> the component is {name}.
 		</slot>
 	</Description>
 </Prop>

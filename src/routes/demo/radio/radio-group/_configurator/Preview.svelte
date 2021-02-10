@@ -1,28 +1,20 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import type { RadioConfigurationsItem } from "./types";
-	import { Preview as Radio } from "../../_configurator";
+	import { Radio } from "../../_configurator/preview";
 	import { RadioGroup } from "@svelte-material-design/core/radio";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	export let items: RadioConfigurationsItem[] = [];
-	export let value: string;
+	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
+	const { items$ } = multipleItemsHandler;
 
-	async function handleChange() {
-		items = items.map((item) => {
-			if (item.value === value) {
-				item.checked = true;
-			} else {
-				item.checked = false;
-			}
-
-			return { ...item };
-		});
+	function handleChange() {
+		multipleItemsHandler.updateSelectedInstance();
 	}
 </script>
 
-<RadioGroup bind:value on:change={handleChange}>
-	{#each items as item}
+<RadioGroup bind:value={$configurations$.value} on:change={handleChange}>
+	{#each $items$ as item}
 		<Radio bind:configurations={item} />
 	{/each}
 </RadioGroup>

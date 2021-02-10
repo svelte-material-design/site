@@ -1,6 +1,13 @@
-import { CheckboxConfigurations as CheckboxConfigurationsProps } from "../../_configurator";
-import { Item } from "src/components/configurator/common-options/multiple-items";
+import type { CheckboxConfigurations } from "../../_configurator/types";
+import type {
+	Item,
+	Group,
+} from "src/components/configurator/common-options/multiple-items";
 
 export interface CheckboxConfigurationsItem
-	extends CheckboxConfigurationsProps,
+	extends CheckboxConfigurations,
 		Item {}
+export interface CheckboxGroupConfigurations
+	extends Group<CheckboxConfigurationsItem> {
+	value: string[];
+}

@@ -7,5 +7,5 @@
 	<Signature keyword="boolean">
 		<Default value={false} />
 	</Signature>
-	<Description>If <code>true</code>, the component is disabled.</Description>
+	<Description>When <code>true</code>, the component is disabled.</Description>
 </Prop>

@@ -5,9 +5,9 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { template as checkboxTemplate } from "../../_configurator/code";
-import type { RadioConfigurationsItem } from "./types";
+import type { RadioGroupConfigurations } from "./types";
 
-export function script() {
+export function script(configurations: RadioGroupConfigurations) {
 	const code = source`
 		<script>
 			${getImportCode(["Radio", "RadioGroup"], "checkbox")}
@@ -20,21 +20,21 @@ export function script() {
 	return removeEmptyLines(code);
 }
 
-export function template(items: RadioConfigurationsItem[]) {
+export function template(configurations: RadioGroupConfigurations) {
 	const code = generateSvelteTagCode({
 		tag: "RadioGroup",
 		props: [],
 		content: source`
-			${getRadiosCode(items)}
+			${getRadiosCode(configurations)}
 		`,
 	});
 
 	return removeEmptyLines(code);
 }
 
-function getRadiosCode(items: RadioConfigurationsItem[]) {
+function getRadiosCode(configurations: RadioGroupConfigurations) {
 	const code =
-		items
+		configurations.items
 			?.map((item) => {
 				return checkboxTemplate(item);
 			})

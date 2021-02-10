@@ -9,8 +9,8 @@ export function createMultipleItemsHandler<
 	itemFactory,
 }: MultipleItemsHandlerInput<Configurations, Items>) {
 	const initialItems = createInitialItems();
-	const items$ = writable<Item[]>(initialItems);
-	const selectedItem$ = writable<Item>(get(items$)[0]);
+	const items$ = writable<Configurations["items"]>(initialItems);
+	const selectedItem$ = writable<Configurations["items"][0]>(get(items$)[0]);
 	const derivedConfigurations$ = derived(
 		[configurations$, items$],
 		([$configurations$, $items$]) => {

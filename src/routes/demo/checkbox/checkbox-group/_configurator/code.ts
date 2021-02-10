@@ -5,9 +5,9 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { template as checkboxTemplate } from "../../_configurator/code";
-import type { CheckboxConfigurationsItem } from "./types";
+import type { CheckboxGroupConfigurations } from "./types";
 
-export function script() {
+export function script(configurations: CheckboxGroupConfigurations) {
 	const code = source`
 		<script>
 			${getImportCode(["Checkbox", "CheckboxGroup"], "checkbox")}
@@ -20,21 +20,21 @@ export function script() {
 	return removeEmptyLines(code);
 }
 
-export function template(items: CheckboxConfigurationsItem[]) {
+export function template(configurations: CheckboxGroupConfigurations) {
 	const code = generateSvelteTagCode({
 		tag: "CheckboxGroup",
 		props: [],
 		content: source`
-			${getCheckboxesCode(items)}
+			${getCheckboxesCode(configurations)}
 		`,
 	});
 
 	return removeEmptyLines(code);
 }
 
-function getCheckboxesCode(items: CheckboxConfigurationsItem[]) {
+function getCheckboxesCode(configurations: CheckboxGroupConfigurations) {
 	const code =
-		items
+		configurations.items
 			?.map((item) => {
 				return checkboxTemplate(item);
 			})
