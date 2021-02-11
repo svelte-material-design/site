@@ -1,7 +1,11 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { ListRole, ListItemsStyle, Radio, Checkbox } from "@smui/core/list";
+	import { Radio, Checkbox } from "@svelte-material-design/core/list";
+	import type {
+		ListRole,
+		ListItemsStyle,
+	} from "@svelte-material-design/core/list";
 	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
 	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";

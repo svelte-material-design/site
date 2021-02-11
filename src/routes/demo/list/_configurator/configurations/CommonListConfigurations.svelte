@@ -7,7 +7,7 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { onMount } from "svelte";
-	import { BaseListConfigurations } from "../types";
+	import type { BaseListConfigurations } from "../types";
 
 	export let configurations: BaseListConfigurations;
 

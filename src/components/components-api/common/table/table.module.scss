@@ -4,7 +4,7 @@
 	display: grid;
 	grid-auto-rows: minmax(data-table.$minimum-cell-height, auto);
 
-	> .row:not(:last-child) .cell {
+	.row .cell {
 		border-bottom-style: solid;
 		border-color: data-table.$divider-color;
 	}

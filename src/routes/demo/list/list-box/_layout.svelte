@@ -5,8 +5,6 @@
 	import { SubComponents } from "./_api";
 	import { Configurator } from "./_configurator";
 
-	export let segment: string;
-
 	setLayoutPath(`${getLayoutPath()}/list-box`);
 </script>
 

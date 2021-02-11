@@ -4,7 +4,10 @@
 	import { IconsOptions } from "src/components/configurator/smui-components/icons";
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
-	import { BaseListItemConfigurations, BaseListConfigurations } from "../types";
+	import type {
+		BaseListItemConfigurations,
+		BaseListConfigurations,
+	} from "../types";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { onMount } from "svelte";
 

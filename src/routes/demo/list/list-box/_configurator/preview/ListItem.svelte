@@ -9,7 +9,7 @@
 		SecondaryText,
 	} from "@smui/core/list";
 	import type { ListItemsStyle } from "@smui/core/list";
-	import { ListItemConfigurations } from "../types";
+	import type { ListItemConfigurations } from "../types";
 	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
 
 	export let configurations: ListItemConfigurations;

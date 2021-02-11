@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { Select } from "src/components/configurator/atoms/configurations";
 	import { onMount } from "svelte";
-	import { ListConfigurations } from "../types";
+	import type { ListConfigurations } from "../types";
 
 	export let configurations: ListConfigurations;
 
