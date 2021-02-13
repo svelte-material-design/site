@@ -1,18 +1,16 @@
-import {
-	MenuSurfaceAnchorCorner,
-	MenuSurfaceVariant,
-	MDCMenuDistance,
-} from "@smui/core/menu-surface";
 import { StringListToFilter } from "@smui/core/common/functions";
+import { MenuSurfaceConfigurations } from "./types";
 
-export function getProps(props: CodeProps): StringListToFilter {
+export function getMenuSurfaceCodeProps(
+	configurations: MenuSurfaceConfigurations
+): StringListToFilter {
 	const {
 		anchorCorner,
 		anchorFlipRtl,
 		anchorMargin,
 		quickOpen,
 		variant,
-	} = props;
+	} = configurations;
 
 	return [
 		"bind:open",
@@ -27,13 +25,4 @@ export function getProps(props: CodeProps): StringListToFilter {
 			}}`,
 		],
 	];
-}
-
-export interface CodeProps {
-	anchorCorner: MenuSurfaceAnchorCorner;
-	anchorFlipRtl: boolean;
-	quickOpen: boolean;
-	open: boolean;
-	variant: MenuSurfaceVariant;
-	anchorMargin: MDCMenuDistance;
 }

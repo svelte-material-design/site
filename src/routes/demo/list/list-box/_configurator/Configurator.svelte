@@ -23,7 +23,7 @@
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
-	<div slot="preview">
+	<div slot="preview" style="width: 50%">
 		<Preview />
 	</div>
 	<div slot="values">

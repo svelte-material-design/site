@@ -2,7 +2,6 @@
 
 <script lang="ts">
 	import { Configurator } from "src/components/configurator";
-	import { Values } from "src/components/configurator/atoms";
 	import { Configurations, Preview } from ".";
 	import { script, template } from "./code";
 	import {
@@ -23,13 +22,8 @@
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
-	<div slot="preview" style="width: 50%">
+	<div slot="preview">
 		<Preview />
-	</div>
-	<div slot="values">
-		{#if $configurations$.role !== "list"}
-			value: <Values value={$configurations$.value} />
-		{/if}
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations />

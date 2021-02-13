@@ -8,9 +8,7 @@ export function createConfiguratorStore() {
 		itemsStyle: "textual",
 	} as ListBoxConfigurations;
 
-	const configurations$ = writable<ListBoxConfigurations>(
-		initialConfigurations
-	);
+	const configurations$ = writable(initialConfigurations);
 
 	function itemFactory(index) {
 		const value = `item:${index}`;

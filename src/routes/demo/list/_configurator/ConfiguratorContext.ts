@@ -9,7 +9,7 @@ export function createConfiguratorStore() {
 		itemsStyle: "textual",
 	} as ListConfigurations;
 
-	const configurations$ = writable<ListConfigurations>(initialConfigurations);
+	const configurations$ = writable(initialConfigurations);
 
 	function itemFactory(index) {
 		const value = `item:${index}`;

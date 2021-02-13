@@ -1,5 +1,4 @@
-import AnchorMarginOption from "./AnchorMarginOption.svelte";
-import MenuSurfaceOptions from "./MenuSurfaceOptions.svelte";
-
-export { AnchorMarginOption, MenuSurfaceOptions };
+export { default as AnchorMarginOption } from "./AnchorMarginConfiguration.svelte";
+export { default as AnchorMarginConfiguration } from "./MenuSurfaceConfigurations.svelte";
 export * from "./code";
+export * from "./types";

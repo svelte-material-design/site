@@ -9,3 +9,4 @@ export { default as BaseComponentProps } from "./BaseComponentProps.svelte";
 export { default as Href } from "./Href.svelte";
 export { default as AccessibleTouch } from "./AccessibleTouch.svelte";
 export { default as ReadOnly } from "./ReadOnly.svelte";
+export { default as Variant } from "./Variant.svelte";

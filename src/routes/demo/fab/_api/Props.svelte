@@ -14,20 +14,11 @@
 	} from "src/components/components-api/props/common";
 	import { Dom } from "src/components/components-api/props/common";
 	import { BaseButtonProps } from "src/components/components-api/props/common/button";
+	import { Variant } from "src/components/components-api/props/common";
 </script>
 
 <Props>
-	<Prop>
-		<Name>variant</Name>
-		<Signature
-			keyword="type"
-			name="FabVariant"
-			allowedValues={["regular", "expanded", "mini"]}
-		>
-			<Default value="regular" />
-		</Signature>
-		<Description>The variant to use.</Description>
-	</Prop>
+	<Variant name="FabVariant" allowedValues={["regular", "expanded", "mini"]} />
 	<Color>
 		<Signature
 			keyword="type"

@@ -1,26 +1,17 @@
 <script lang="ts">
-	import {
-		Props,
-		Prop,
-		Name,
-		Description,
-		Signature,
-	} from "src/components/components-api/props";
+	import { Props } from "src/components/components-api/props";
 	import {
 		BaseComponentProps,
 		Dom,
+		Variant,
 	} from "src/components/components-api/props/common";
 	import { CommonTopAppBarProps } from "./common";
 </script>
 
 <Props>
-	<Prop>
-		<Name>variant</Name>
-		<Signature keyword="type" name="TopAppBarVariant" />
-		<Description>
-			The variant of the TopAppBar. Fixed TopAppBar won't hide on user scrolls.
-		</Description>
-	</Prop>
+	<Variant name="TopAppBarVariant" allowedValues={["fixed", "fullwidth"]}>
+		<slot>Fixed TopAppBar won't hide on user scrolls.</slot>
+	</Variant>
 	<CommonTopAppBarProps />
 	<BaseComponentProps>
 		<Dom instances={["HTMLDivElement"]} />
