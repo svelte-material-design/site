@@ -10,7 +10,7 @@
 	} from "@smui/core/list";
 	import type { ListRole, ListItemsStyle } from "@smui/core/list";
 	import type { ListItemConfigurations } from "../types";
-	import ListItem from "src/components/configurator/smui-components/ListItem.svelte";
+	import { ListItem } from "src/components/configurator/smui-components/list";
 
 	export let configurations: ListItemConfigurations;
 	export let listRole: ListRole;

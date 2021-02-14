@@ -9,8 +9,8 @@
 	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
 	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
-	import type { IconType } from "./icons";
-	import { getImageData } from "./list";
+	import type { IconType } from "../icons";
+	import { getImageData } from ".";
 
 	export let component: any;
 	export let contentComponent: any;

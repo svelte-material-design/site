@@ -7,24 +7,24 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
-	import type { ButtonConfigurations } from "./types";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	export let configurations: ButtonConfigurations;
+	const { configurations$ } = getConfiguratorContext();
 
 	function handleIconOnlyChange() {
-		if (configurations.iconOnly) {
-			configurations.trailingIcon = null;
+		if ($configurations$.iconOnly) {
+			$configurations$.trailingIcon = null;
 		}
 	}
 
-	function handleChange() {
-		configurations = { ...configurations };
+	function updateInstance() {
+		$configurations$ = { ...$configurations$ };
 	}
 </script>
 
 <Section>
 	<Select
-		bind:value={configurations.variant}
+		bind:value={$configurations$.variant}
 		label="Variant"
 		options={[
 			{ value: "text", label: "Text" },
@@ -33,64 +33,64 @@
 			{ value: "outlined", label: "Outlined" },
 		]}
 		nullable={false}
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<Select
-		bind:value={configurations.color}
+		bind:value={$configurations$.color}
 		label="Color"
 		options={[
 			{ value: "primary", label: "Primary" },
 			{ value: "secondary", label: "Secondary" },
 		]}
 		nullable={false}
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<IconTypeOption
-		bind:value={configurations.leadingIcon}
-		allowEmpty={!configurations.iconOnly}
+		bind:value={$configurations$.leadingIcon}
+		allowEmpty={!$configurations$.iconOnly}
 		label="Leading icon"
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<IconTypeOption
-		bind:value={configurations.trailingIcon}
+		bind:value={$configurations$.trailingIcon}
 		allowEmpty
 		label="Trailing icon"
-		disabled={configurations.iconOnly}
-		on:change={handleChange}
+		disabled={$configurations$.iconOnly}
+		on:change={updateInstance}
 	/>
 	<Select
-		bind:value={configurations.customStyle}
+		bind:value={$configurations$.customStyle}
 		label="Custom style"
 		options={[
 			{ value: "", label: "" },
 			{ value: "mdc-mixins", label: "MDC Mixins" },
 			{ value: "custom-css", label: "Custom CSS" },
 		]}
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.disabled}
+		bind:checked={$configurations$.disabled}
 		label="Disabled"
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.ripple}
+		bind:checked={$configurations$.ripple}
 		label="Ripple"
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.link}
+		bind:checked={$configurations$.link}
 		label="Link"
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.iconOnly}
+		bind:checked={$configurations$.iconOnly}
 		label="Icon only"
 		on:change={handleIconOnlyChange}
-		on:change={handleChange}
+		on:change={updateInstance}
 	/>
 	<Checkbox
-		bind:checked={configurations.accessibleTouch}
+		bind:checked={$configurations$.accessibleTouch}
 		label="Accessible touch"
 	/>
 </Section>

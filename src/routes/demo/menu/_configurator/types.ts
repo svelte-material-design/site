@@ -6,16 +6,20 @@ import type {
 	Item,
 	Group,
 } from "src/components/configurator/common-options/multiple-items";
+import type { MenuSurfaceConfigurations } from "src/components/configurator/smui-components/menu-surface/types";
+import type { SelectionType } from "@svelte-material-design/core/menu";
 
 export { BaseListConfigurations, BaseListItemConfigurations };
 
-export interface ListConfigurations
+export interface MenuConfigurations
 	extends BaseListConfigurations,
-		Group<ListItemConfigurations> {
+		MenuSurfaceConfigurations,
+		Group<MenuItemConfigurations> {
+	selectionType: SelectionType;
 	value: string | string[];
-	items: ListItemConfigurations[];
+	items: MenuItemConfigurations[];
 }
 
-export interface ListItemConfigurations
+export interface MenuItemConfigurations
 	extends BaseListItemConfigurations,
 		Item {}

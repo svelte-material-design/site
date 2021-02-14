@@ -1,6 +1,5 @@
-import { ListRole, ListOrientation, ListItemsStyle } from "@smui/core/list";
+import type { ListItemsStyle } from "@smui/core/list";
 import type { StringListToFilter } from "@smui/core/common/functions";
-import type { IconType } from "../icons";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 import {
 	generateSvelteTagCode,
@@ -12,6 +11,11 @@ import {
 	getImgPlaceholderSrc,
 	ImgPlaceholderParams,
 } from "src/functions/imgPlacehoder";
+import type {
+	ListBoxConfigurations,
+	ListConfigurations,
+	ListItemConfigurations,
+} from "./types";
 
 export function getListBoxProps(
 	configurations: ListBoxConfigurations
@@ -304,61 +308,3 @@ export function getImageData(listItemsStyle: ListItemsStyle) {
 		imageTxt,
 	};
 }
-
-export interface CommonListConfigurations {
-	wrapFocus: boolean;
-	dense: boolean;
-	density: number;
-	orientation: ListOrientation;
-	itemsStyle: ListItemsStyle;
-	itemsRows: number;
-	separator: boolean;
-	separatorInsetPadding: boolean;
-	separatorInsetLeading: boolean;
-	separatorInsetTrailing: boolean;
-	items: ListItemConfigurations[];
-}
-
-export interface ListConfigurations extends CommonListConfigurations {
-	role?: ListRole;
-}
-
-export interface ListBoxConfigurations extends CommonListConfigurations {
-	multiSelection: boolean;
-}
-
-export interface ListItemConfigurations {
-	value?: string;
-	ripple?: boolean;
-	disabled?: boolean;
-	selected?: boolean;
-	href?: string;
-	label: string;
-	labelRow2?: string;
-	labelRow3?: string;
-	ariaLabel?: string;
-	activated?: boolean;
-	leadingIcon?: IconType;
-	trailingIcon?: IconType;
-	leadingIconTag?: string;
-}
-
-// export interface ListItemProps {
-// 	id: string;
-// 	name: string;
-// 	value: string;
-// 	wrapFocus: boolean;
-// 	ripple: boolean;
-// 	highlightSelected: boolean;
-// 	disabled: boolean;
-// 	readonly: boolean;
-// 	selected: boolean;
-// 	href: string;
-// 	label: string;
-// 	labelRow2: string;
-// 	labelRow3: string;
-// 	title: string;
-// 	ariaLabel: string;
-// 	leadingIcon: IconType;
-// 	trailingIcon: IconType;
-// }

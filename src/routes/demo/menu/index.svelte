@@ -1,14 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Typography } from "@smui/core/typography";
-	import MenuConfigurator from "./_MenuConfigurator.svelte";
+	import { Props, Events } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Menu - SMUI</title>
-</svelte:head>
-
-<section>
-	<Typography variant="headline2">Menu</Typography>
-
-	<MenuConfigurator />
-</section>
+<ApiTitle>Menu</ApiTitle>
+<Props />
+<Events />

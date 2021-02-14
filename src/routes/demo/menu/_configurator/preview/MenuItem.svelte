@@ -26,45 +26,45 @@
 <script lang="ts">
 	import {
 		Item,
-		MenuListType,
 		Content,
 		PrimaryText,
 		SecondaryText,
 		Icon,
 	} from "@smui/core/menu";
+	import type { MenuItemsStyle } from "@smui/core/menu";
 	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { ListItem } from "src/components/configurator/smui-components/list";
+	import type { MenuItemConfigurations } from "../types";
 
-	export let value: string = undefined;
-	export let disabled: boolean;
-	export let ripple: boolean;
-	export let selected: boolean;
-	export let ariaLabel: string;
-	export let title: string;
-	export let label: string;
-	export let labelRow2: string;
-	export let labelRow3: string;
-
-	export let leadingIcon: IconType;
-	export let trailingIcon: IconType;
-	export let clickableLeadingIcon: boolean;
-	export let clickableTrailingIcon: boolean;
-
-	export let listType: MenuListType;
+	export let configurations: MenuItemConfigurations;
+	export let listItemsStyle: MenuItemsStyle;
 	export let listItemsRows: number;
-
-	let listItem: ListItem;
-
-	export function getImageSrc() {
-		return listItem.getImageSrc();
-	}
-
-	export function getImageTxt() {
-		return listItem.getImageTxt();
-	}
 </script>
 
 <ListItem
+	component={Item}
+	contentComponent={Content}
+	primaryTextComponent={PrimaryText}
+	secondaryTextComponent={SecondaryText}
+	iconComponent={Icon}
+	bind:selected={configurations.selected}
+	value={configurations.value}
+	disabled={configurations.disabled}
+	ripple={configurations.ripple}
+	ariaLabel={configurations.ariaLabel}
+	title={configurations.title}
+	label={configurations.label}
+	labelRow2={configurations.labelRow2}
+	labelRow3={configurations.labelRow3}
+	leadingIcon={configurations.leadingIcon}
+	trailingIcon={configurations.trailingIcon}
+	href={configurations.href}
+	{listItemsStyle}
+	{listItemsRows}
+	on:change
+/>
+
+<!-- <ListItem
 	bind:this={listItem}
 	component={Item}
 	contentComponent={Content}
@@ -86,4 +86,4 @@
 	{listType}
 	let:selected
 	on:change
-/>
+/> -->

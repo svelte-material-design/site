@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { Section } from "src/components/configurator/molecules/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import MenuSurfaceConfigurations from "src/components/configurator/smui-components/menu-surface/MenuSurfaceConfigurations.svelte";
+	import { MenuSurfaceConfigurations } from "src/components/configurator/smui-components/menu-surface";
 
 	const { configurations$ } = getConfiguratorContext();
 </script>

@@ -2,8 +2,9 @@
 
 <script lang="ts">
 	import { Configurator } from "src/components/configurator";
-	import { scss, template, script } from "./code";
+	import { Values } from "src/components/configurator/atoms";
 	import { Configurations, Preview } from ".";
+	import { script, template } from "./code";
 	import {
 		createConfiguratorStore,
 		setConfiguratorContext,
@@ -16,16 +17,17 @@
 
 	let svelteScriptCode: string;
 	let svelteCode: string;
-	let scssCode: string;
 
 	$: svelteScriptCode = script($configurations$);
 	$: svelteCode = template($configurations$);
-	$: scssCode = scss($configurations$);
 </script>
 
-<Configurator {svelteScriptCode} {svelteCode} {scssCode}>
-	<div slot="preview">
+<Configurator {svelteScriptCode} {svelteCode}>
+	<div slot="preview" style="min-height: 10em;">
 		<Preview />
+	</div>
+	<div slot="values">
+		value: <Values value={$configurations$.value} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations />

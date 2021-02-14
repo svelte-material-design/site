@@ -6,12 +6,14 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import type { MenuSurfaceConfigurations } from "./types";
 
 	export let configurations: MenuSurfaceConfigurations;
 
-	onMount(() => {
+	onMount(async () => {
+		await tick();
+
 		updateInstance();
 	});
 
@@ -37,6 +39,7 @@
 	label="Variant"
 	nullable={false}
 	options={[
+		{ label: "", value: "" },
 		{ label: "Fixed", value: "fixed" },
 		{ label: "Full width", value: "fullwidth" },
 	]}
