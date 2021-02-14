@@ -6,12 +6,33 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getMenuSurfaceCodeProps } from "src/components/configurator/smui-components/menu-surface";
+import {
+	createListContentCode,
+	getListProps,
+} from "src/components/configurator/smui-components/list";
 
 export function script(configurations: MenuConfigurations) {
-	// const { separator, role, itemsRows } = configurations;
+	const { separator, role, itemsRows } = configurations;
+
+	const icon = configurations.items.some(
+		(item) => item.leadingIcon || item.trailingIcon
+	);
 
 	const imports = removeEmptyLines(source`
-		${getImportCode(["MenuSurface"], "menu-surface")}
+		${getImportCode(
+			[
+				"Menu",
+				[separator, "Separator"],
+				"Content",
+				"Item",
+				[icon, "Icon"],
+				[itemsRows > 1, "PrimaryText"],
+				[itemsRows > 1, "SecondaryText"],
+				[role === "radiogroup", "Radio"],
+				[role === "group", "Checkbox"],
+			],
+			"menu"
+		)}
 		${getImportCode(["Button"], "button")}
 	`);
 
@@ -20,13 +41,10 @@ export function script(configurations: MenuConfigurations) {
 			${imports}
 
 			let open;
+			let value;
 
-			function openMenuSurface() {
+			function openMenu() {
 				open = true;
-			}
-		
-			function closeMenuSurface() {
-				open = false;
 			}
 		</script>
 	`;
@@ -38,21 +56,24 @@ export function template(configurations: MenuConfigurations) {
 	const code = generateSvelteTagCode({
 		tag: "div",
 		content: source`
-			<Button on:click={openMenuSurface}>Open Surface</Button>
-			${getMenuSurfaceCode(configurations)}
+			<Button on:click={openMenu}>Open Menu</Button>
+			${getMenuCode(configurations)}
 		`,
 	});
 
 	return code;
 }
 
-function getMenuSurfaceCode(configurations: MenuConfigurations) {
-	return generateSvelteTagCode({
-		tag: "MenuSurface",
-		props: getMenuSurfaceCodeProps(configurations),
-		content: source`
-			<div>Menu surface content</div>
-			<Button on:click={closeMenuSurface}>Close Surface</Button>
-		`,
+function getMenuCode(configurations: MenuConfigurations) {
+	const code = generateSvelteTagCode({
+		tag: "Menu",
+		props: [
+			"bind:value",
+			...getMenuSurfaceCodeProps(configurations),
+			...getListProps(configurations),
+		],
+		content: createListContentCode(configurations),
 	});
+
+	return removeEmptyLines(code);
 }

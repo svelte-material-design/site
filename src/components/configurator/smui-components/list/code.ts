@@ -177,7 +177,7 @@ export function createItemContentCode(
 	const { label, labelRow2, labelRow3 } = configurations;
 	const { itemsRows } = listConfigurations;
 
-	return source`
+	const code = source`
 		${createItemLeadingContentCode(listConfigurations, configurations)}
 		<Content>
 			${itemsRows === 1 ? label : ""}
@@ -193,6 +193,8 @@ export function createItemContentCode(
 		</Content>
 		${createItemTrailingContentCode(configurations)}
 	`;
+
+	return code;
 }
 
 export function createItemCode(

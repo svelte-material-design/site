@@ -7,6 +7,7 @@ export function createConfiguratorStore() {
 	const initialConfigurations = {
 		role: "list",
 		itemsStyle: "textual",
+		anchorFlipRtl: true,
 	} as MenuConfigurations;
 
 	const configurations$ = writable(initialConfigurations);

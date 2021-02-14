@@ -18,11 +18,6 @@
 		updateInstance();
 	}
 
-	function closeMenu() {
-		$configurations$.open = false;
-		updateInstance();
-	}
-
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };
 	}
