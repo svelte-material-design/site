@@ -1,5 +1,7 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { CommonButtonEvents } from "src/components/components-api/events/common/button";
+	import { Events } from "../../_api";
 </script>
 
-<CommonButtonEvents />
+<Events />

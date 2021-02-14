@@ -9,7 +9,11 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
-	import { CommonListProps } from "src/components/components-api/props/common/list";
+	import {
+		CommonListProps,
+		BaseListComponentProps,
+		CommonListGroupProps,
+	} from "src/components/components-api/props/common/list";
 </script>
 
 <Props>
@@ -27,4 +31,6 @@
 		>
 	</Prop>
 	<CommonListProps />
+	<CommonListGroupProps />
+	<BaseListComponentProps />
 </Props>

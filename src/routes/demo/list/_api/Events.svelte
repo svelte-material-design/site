@@ -2,25 +2,13 @@
 
 <script lang="ts">
 	import { Events } from "src/components/components-api/events";
-	import { CommonGroupsEvents } from "src/components/components-api/events/common/groups";
-	import { ForwardedEvents } from "src/components/components-api/events";
+	import {
+		CommonListForwardedEvents,
+		CommonListEvents,
+	} from "src/components/components-api/events/common/list";
 </script>
 
 <Events>
-	<CommonGroupsEvents
-		childrenTag="Item"
-		changeName="OnListChangeEvent"
-		optionsName="OnListChildrenChangeEvent"
-	/>
+	<CommonListEvents />
 </Events>
-<ForwardedEvents
-	events={[
-		"click",
-		"mousedown",
-		"mouseup",
-		"keydown",
-		"keyup",
-		"focusin",
-		"focusout",
-	]}
-/>
+<CommonListForwardedEvents />

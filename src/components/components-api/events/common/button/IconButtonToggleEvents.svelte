@@ -6,7 +6,7 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/events";
-	import { CommonButtonForwardedEvents } from "src/components/components-api/events/common/button";
+	import { CommonFocusableForwardedEvents } from "src/components/components-api/events/common";
 </script>
 
 <Events>
@@ -20,4 +20,4 @@
 		</Description>
 	</Event>
 </Events>
-<CommonButtonForwardedEvents />
+<CommonFocusableForwardedEvents />

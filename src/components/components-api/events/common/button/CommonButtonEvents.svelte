@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CommonButtonForwardedEvents } from "src/components/components-api/events/common/button";
+	import { CommonFocusableForwardedEvents } from "src/components/components-api/events/common";
 </script>
 
-<CommonButtonForwardedEvents />
+<CommonFocusableForwardedEvents />
