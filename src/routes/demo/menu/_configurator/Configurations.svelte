@@ -14,12 +14,23 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
+	import { Select } from "src/components/configurator/atoms/configurations";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { selectedItem$ } = multipleItemsHandler;
 </script>
 
 <MultipleItemsConfigurations {multipleItemsHandler}>
+	<Select
+		bind:value={$configurations$.selectionType}
+		label="Selection Type"
+		options={[
+			{ label: "", value: "" },
+			{ label: "Multi", value: "multi" },
+			{ label: "Single", value: "single" },
+		]}
+		nullable={false}
+	/>
 	<Typography variant="body2">List configurations</Typography>
 	<Section>
 		<CommonListConfigurations bind:configurations={$configurations$} />

@@ -16,4 +16,5 @@
 	bind:configurations
 	{labelFn}
 	{listConfigurations}
+	listRole={listConfigurations.role}
 />

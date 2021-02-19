@@ -5,17 +5,18 @@
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
 	import type {
-		BaseListItemConfigurations,
-		BaseListConfigurations,
-	} from "../types";
+		ListItemConfigurations,
+		CommonListConfigurations,
+	} from "./types";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { onMount } from "svelte";
+	import type { ListRole } from "@svelte-material-design/core/list";
 
 	export let labelFn: () => string = undefined;
-	export let listConfigurations: BaseListConfigurations;
-	export let configurations: BaseListItemConfigurations;
+	export let listConfigurations: CommonListConfigurations;
+	export let configurations: ListItemConfigurations;
+	export let listRole: ListRole;
 
-	$: listRole = listConfigurations.role;
 	$: listType = listConfigurations.itemsStyle;
 
 	let useLabel: boolean = true;
@@ -30,7 +31,7 @@
 	function handleListTypeRoleUpdate() {
 		if (
 			!["icon", "textual"].includes(listConfigurations.itemsStyle) ||
-			["group", "radiogroup"].includes(listConfigurations.role)
+			["group", "radiogroup"].includes(listRole)
 		) {
 			leadingIconDisabled = true;
 			configurations.leadingIcon = null;
