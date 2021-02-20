@@ -9,9 +9,11 @@
 		Signature,
 	} from "src/components/components-api/props";
 	import { CommonGroupsProps } from "../groups";
+
+	export let tag: string = "List";
 </script>
 
-<CommonGroupsProps configurable groupComponent="List" multi>
+<CommonGroupsProps configurable groupComponent={tag} multi>
 	<svelte-fragment slot="valueSignature">
 		<Signature
 			keyword="type"
@@ -74,4 +76,11 @@
 		>Sets the list to allow the up arrow on the first element to focus the last
 		element of the list and vice versa.</Description
 	>
+</Prop>
+<Prop>
+	<Name>typeahead</Name>
+	<Signature keyword="boolean">
+		<Default value={false} />
+	</Signature>
+	<Description>When <code>true</code> typeahead is enabled.</Description>
 </Prop>

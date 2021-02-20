@@ -30,7 +30,9 @@
 		</Prop>
 		<Prop>
 			<Name>nullable</Name>
-			<Signature keyword="boolean" />
+			<Signature keyword="boolean">
+				<Default value={true} />
+			</Signature>
 			<Description>
 				When <code>false</code> the <code>{`<${groupComponent} />`}</code> will force
 				at least 1 item selected.

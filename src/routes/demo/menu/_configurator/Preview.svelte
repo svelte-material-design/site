@@ -36,6 +36,7 @@
 		variant={$configurations$.variant}
 		anchorMargin={$configurations$.anchorMargin}
 		wrapFocus={$configurations$.wrapFocus}
+		typeahead={$configurations$.typeahead}
 		dense={$configurations$.dense}
 		density={$configurations$.density}
 		orientation={$configurations$.orientation}

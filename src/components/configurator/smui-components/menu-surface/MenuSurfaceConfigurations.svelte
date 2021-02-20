@@ -60,6 +60,11 @@
 	bind:checked={configurations.quickOpen}
 	on:change={updateInstance}
 />
+<Checkbox
+	label="Hoisted"
+	bind:checked={configurations.hoisted}
+	on:change={updateInstance}
+/>
 <AnchorMarginConfiguration
 	bind:value={configurations.anchorMargin}
 	on:change={updateInstance}

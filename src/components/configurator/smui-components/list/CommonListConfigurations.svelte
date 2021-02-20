@@ -102,3 +102,8 @@
 		!configurations.separatorInsetTrailing}
 	on:change={updateInstance}
 />
+<Checkbox
+	label="Use typeahead"
+	bind:checked={configurations.typeahead}
+	on:change={updateInstance}
+/>

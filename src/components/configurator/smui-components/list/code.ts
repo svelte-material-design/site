@@ -28,16 +28,22 @@ export function getListProps(
 		dense,
 		itemsRows,
 		wrapFocus,
+		selectionType,
+		nullable,
+		typeahead,
 	} = configurations;
 
 	return [
 		[role, `bind:value`],
+		[selectionType, `selectionType="${selectionType}"`],
 		[role, `role="${role}"`],
 		[itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
 		[wrapFocus, `wrapFocus`],
 		[dense, `dense`],
 		[orientation && orientation !== "vertical", `orientation="${orientation}"`],
 		[itemsRows > 1, `itemsRows={${itemsRows}}`],
+		[!nullable, `nullable={${nullable}}`],
+		[typeahead, `typeahead`],
 	];
 }
 

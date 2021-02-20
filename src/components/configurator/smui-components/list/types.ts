@@ -16,6 +16,7 @@ export interface CommonListConfigurations {
 	separatorInsetPadding: boolean;
 	separatorInsetLeading: boolean;
 	separatorInsetTrailing: boolean;
+	typeahead: boolean;
 	items: ListItemConfigurations[];
 }
 

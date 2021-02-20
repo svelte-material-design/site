@@ -11,4 +11,5 @@ export interface MenuSurfaceConfigurations {
 	quickOpen: boolean;
 	variant: MenuSurfaceVariant;
 	anchorMargin: MenuSurfaceAnchorMargin;
+	hoisted: boolean;
 }

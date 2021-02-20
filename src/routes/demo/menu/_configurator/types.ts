@@ -22,7 +22,6 @@ export interface MenuConfigurations
 	nullable: boolean;
 	selectionType: MenuSelectionType;
 	value: MenuValue;
-	hoisted: boolean;
 }
 
 export interface MenuItemConfigurations

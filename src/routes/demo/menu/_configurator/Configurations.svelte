@@ -14,10 +14,6 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
-	import {
-		Select,
-		Checkbox,
-	} from "src/components/configurator/atoms/configurations";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { selectedItem$ } = multipleItemsHandler;
@@ -30,7 +26,7 @@
 			bind:configurations={$configurations$}
 		/>
 	</Section>
-	<Typography variant="body2">Menu configurations</Typography>
+	<Typography variant="body2">Menu surface configurations</Typography>
 	<Section>
 		<MenuSurfaceConfigurations bind:configurations={$configurations$} />
 	</Section>

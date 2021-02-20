@@ -12,8 +12,8 @@
 </script>
 
 <Props>
-	<CommonMenuSurfaceProps tag="MenuSurface" />
-	<CommonListProps />
+	<CommonMenuSurfaceProps tag="Menu" />
+	<CommonListProps tag="Menu" />
 	<CommonGroupsProps>
 		<svelte-fragment slot="valueSignature">
 			<Signature keyword="string" />

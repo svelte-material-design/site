@@ -23,6 +23,7 @@
 	wrapFocus={$configurations$.wrapFocus}
 	dense={$configurations$.dense}
 	role={$configurations$.role}
+	typeahead={$configurations$.typeahead}
 	on:change={handleChange}
 >
 	{#each $items$ as item, index}
