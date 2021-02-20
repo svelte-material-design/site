@@ -15,7 +15,8 @@
 
 <List
 	bind:value={$configurations$.value}
-	role={$configurations$.role}
+	selectionType={$configurations$.selectionType}
+	nullable={$configurations$.nullable}
 	orientation={$configurations$.orientation}
 	type={$configurations$.itemsStyle}
 	itemsRows={$configurations$.itemsRows}

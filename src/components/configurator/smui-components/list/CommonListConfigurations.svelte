@@ -103,3 +103,8 @@
 		!configurations.separatorInsetTrailing}
 	on:change={updateInstance}
 />
+<Checkbox
+	label="Nullable"
+	bind:checked={configurations.nullable}
+	on:change={updateInstance}
+/>

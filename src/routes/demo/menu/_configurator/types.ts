@@ -8,7 +8,7 @@ import type {
 } from "src/components/configurator/common-options/multiple-items";
 import type { MenuSurfaceConfigurations } from "src/components/configurator/smui-components/menu-surface/types";
 import type {
-	SelectionType,
+	MenuSelectionType,
 	MenuValue,
 } from "@svelte-material-design/core/menu";
 
@@ -18,9 +18,11 @@ export interface MenuConfigurations
 	extends BaseListConfigurations,
 		MenuSurfaceConfigurations,
 		Group<MenuItemConfigurations> {
-	selectionType: SelectionType;
-	value: MenuValue;
 	items: MenuItemConfigurations[];
+	nullable: boolean;
+	selectionType: MenuSelectionType;
+	value: MenuValue;
+	hoisted: boolean;
 }
 
 export interface MenuItemConfigurations

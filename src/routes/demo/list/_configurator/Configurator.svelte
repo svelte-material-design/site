@@ -27,7 +27,7 @@
 		<Preview />
 	</div>
 	<div slot="values">
-		{#if $configurations$.role !== "list"}
+		{#if $configurations$.selectionType}
 			value: <Values value={$configurations$.value} />
 		{/if}
 	</div>

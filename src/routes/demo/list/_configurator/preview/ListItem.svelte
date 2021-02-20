@@ -8,9 +8,10 @@
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
-	import type { ListRole, ListItemsStyle } from "@smui/core/list";
+	import type { ListItemsStyle } from "@smui/core/list";
 	import type { ListItemConfigurations } from "../types";
 	import { ListItem } from "src/components/configurator/smui-components/list";
+	import type { ListRole } from "src/components/configurator/smui-components/list/types";
 
 	export let configurations: ListItemConfigurations;
 	export let listRole: ListRole;

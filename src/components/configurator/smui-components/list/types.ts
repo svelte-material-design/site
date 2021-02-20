@@ -1,8 +1,8 @@
 import type {
-	ListRole,
+	ListSelectionType,
 	ListOrientation,
 	ListItemsStyle,
-} from "@smui/core/list";
+} from "@svelte-material-design/core/list";
 import type { IconType } from "../icons";
 
 export interface CommonListConfigurations {
@@ -16,11 +16,13 @@ export interface CommonListConfigurations {
 	separatorInsetPadding: boolean;
 	separatorInsetLeading: boolean;
 	separatorInsetTrailing: boolean;
+	nullable: boolean;
 	items: ListItemConfigurations[];
 }
 
 export interface ListConfigurations extends CommonListConfigurations {
-	role?: ListRole;
+	selectionType?: ListSelectionType;
+	role: ListRole;
 }
 
 export interface ListBoxConfigurations extends CommonListConfigurations {
@@ -42,3 +44,5 @@ export interface ListItemConfigurations {
 	trailingIcon?: IconType;
 	leadingIconTag?: string;
 }
+
+export type ListRole = "listbox" | "radiogroup" | "group";

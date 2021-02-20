@@ -29,6 +29,7 @@
 		bind:open={$configurations$.open}
 		bind:value={$configurations$.value}
 		selectionType={$configurations$.selectionType}
+		nullable={$configurations$.nullable}
 		anchorCorner={$configurations$.anchorCorner}
 		anchorFlipRtl={$configurations$.anchorFlipRtl}
 		quickOpen={$configurations$.quickOpen}
@@ -40,6 +41,7 @@
 		orientation={$configurations$.orientation}
 		itemsRows={$configurations$.itemsRows}
 		itemsStyle={$configurations$.itemsStyle}
+		hoisted={$configurations$.hoisted}
 	>
 		{#each $items$ as item, index}
 			<MenuItem

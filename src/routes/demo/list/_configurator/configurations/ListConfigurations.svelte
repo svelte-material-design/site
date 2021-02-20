@@ -23,8 +23,12 @@
 	disabled={configurations.itemsStyle !== "textual"}
 	options={[
 		{
-			label: "list",
-			value: "list",
+			label: "",
+			value: "",
+		},
+		{
+			label: "listbox",
+			value: "listbox",
 		},
 		{
 			label: "radiogroup",
@@ -33,6 +37,27 @@
 		{
 			label: "group",
 			value: "group",
+		},
+	]}
+	on:change={updateInstance}
+/>
+<Select
+	bind:value={configurations.selectionType}
+	label="Selection type"
+	nullable={false}
+	disabled={!configurations.role}
+	options={[
+		{
+			label: "",
+			value: "",
+		},
+		{
+			label: "Single",
+			value: "single",
+		},
+		{
+			label: "Multi",
+			value: "multi",
 		},
 	]}
 	on:change={updateInstance}
