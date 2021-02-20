@@ -5,7 +5,6 @@ import type { MenuConfigurations, MenuItemConfigurations } from "./types";
 
 export function createConfiguratorStore() {
 	const initialConfigurations = {
-		role: "list",
 		itemsStyle: "textual",
 		anchorFlipRtl: true,
 		nullable: true,

@@ -12,13 +12,37 @@
 	export let multi: boolean = false;
 	export let prop: string = "selected";
 	export let groupComponent: string = undefined;
+	export let configurable: boolean = false;
 </script>
 
 <Prop>
+	{#if configurable}
+		<Prop>
+			<Name>selectionType</Name>
+			<Signature
+				keyword="type"
+				name="ListSelectionType"
+				allowedValues={multi ? ["single", "multi"] : ["single"]}
+			/>
+			<Description>
+				Define the <code>{`<${groupComponent} />`}</code> selection behaviour.
+			</Description>
+		</Prop>
+		<Prop>
+			<Name>nullable</Name>
+			<Signature keyword="boolean" />
+			<Description>
+				When <code>false</code> the <code>{`<${groupComponent} />`}</code> will force
+				at least 1 item selected.
+			</Description>
+		</Prop>
+	{/if}
 	<Name readwrite>value</Name>
 	<slot name="valueSignature">
-		<Signature keyword="string[]">
-			<Default value={[]} />
+		<Signature keyword={multi ? "string[]" : "string"}>
+			{#if multi}
+				<Default value={[]} />
+			{/if}
 		</Signature>
 	</slot>
 	<Description>

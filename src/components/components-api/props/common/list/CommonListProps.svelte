@@ -8,8 +8,23 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
+	import { CommonGroupsProps } from "../groups";
 </script>
 
+<CommonGroupsProps configurable groupComponent="List" multi>
+	<svelte-fragment slot="valueSignature">
+		<Signature
+			keyword="type"
+			name="ListValue"
+			instances={["string", "string[]"]}
+		>
+			<Default>
+				When <code>selectionType</code> is <code>multi</code> then
+				<code>[]</code>.
+			</Default>
+		</Signature>
+	</svelte-fragment>
+</CommonGroupsProps>
 <Prop>
 	<Name>itemsStyle</Name>
 	<Signature

@@ -14,6 +14,14 @@
 	function updateInstance() {
 		configurations = { ...configurations };
 	}
+
+	function handleRoleChange() {
+		if (configurations.role && !configurations.selectionType) {
+			configurations.selectionType = "single";
+		} else if (!configurations.role) {
+			configurations.selectionType = null;
+		}
+	}
 </script>
 
 <Select
@@ -39,26 +47,6 @@
 			value: "group",
 		},
 	]}
-	on:change={updateInstance}
-/>
-<Select
-	bind:value={configurations.selectionType}
-	label="Selection type"
-	nullable={false}
-	disabled={!configurations.role}
-	options={[
-		{
-			label: "",
-			value: "",
-		},
-		{
-			label: "Single",
-			value: "single",
-		},
-		{
-			label: "Multi",
-			value: "multi",
-		},
-	]}
+	on:change={handleRoleChange}
 	on:change={updateInstance}
 />

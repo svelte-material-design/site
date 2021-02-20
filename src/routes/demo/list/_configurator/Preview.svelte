@@ -22,6 +22,7 @@
 	itemsRows={$configurations$.itemsRows}
 	wrapFocus={$configurations$.wrapFocus}
 	dense={$configurations$.dense}
+	role={$configurations$.role}
 	on:change={handleChange}
 >
 	{#each $items$ as item, index}

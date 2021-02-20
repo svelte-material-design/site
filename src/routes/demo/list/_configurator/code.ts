@@ -28,16 +28,15 @@ export function script(configurations: ListConfigurations) {
 		)
 	);
 
-	const code =
-		role !== "list"
-			? source`
+	const code = role
+		? source`
 		<script>
 			${imports}
 
 			let value;
 		</script>
 	`
-			: source`
+		: source`
 		<script>
 			${imports}
 		</script>

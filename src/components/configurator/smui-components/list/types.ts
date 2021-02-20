@@ -16,17 +16,13 @@ export interface CommonListConfigurations {
 	separatorInsetPadding: boolean;
 	separatorInsetLeading: boolean;
 	separatorInsetTrailing: boolean;
-	nullable: boolean;
 	items: ListItemConfigurations[];
 }
 
 export interface ListConfigurations extends CommonListConfigurations {
 	selectionType?: ListSelectionType;
-	role: ListRole;
-}
-
-export interface ListBoxConfigurations extends CommonListConfigurations {
-	multiSelection: boolean;
+	role?: ListRole;
+	nullable?: boolean;
 }
 
 export interface ListItemConfigurations {
@@ -46,3 +42,4 @@ export interface ListItemConfigurations {
 }
 
 export type ListRole = "listbox" | "radiogroup" | "group";
+export type ListItemRole = "option" | "radio" | "checkbox";

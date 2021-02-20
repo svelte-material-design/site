@@ -7,8 +7,7 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { onMount } from "svelte";
-	import type { CommonListConfigurations } from "./types";
-	import type { ListRole } from "@svelte-material-design/core/list";
+	import type { CommonListConfigurations, ListRole } from "./types";
 
 	export let configurations: CommonListConfigurations;
 	export let listRole: ListRole;
@@ -101,10 +100,5 @@
 	disabled={!configurations.separator ||
 		!configurations.separatorInsetLeading ||
 		!configurations.separatorInsetTrailing}
-	on:change={updateInstance}
-/>
-<Checkbox
-	label="Nullable"
-	bind:checked={configurations.nullable}
 	on:change={updateInstance}
 />

@@ -48,7 +48,7 @@
 		"@mdi/js": "^5.9.55",
 		"@raythurnevoid/strings-filter": "^0.0.2",
 		"@raythurnevoid/svelte-context-enhanced": "^0.0.1",
-		"@raythurnevoid/svelte-group-components": "^0.0.19",
+		"@raythurnevoid/svelte-group-components": "^0.0.20",
 		"@raythurnevoid/svelte-hooks": "^0.0.5",
 		"@raythurnevoid/svelte-prism": "file:../svelte-prism",
 		"@svelte-material-design/space-modules": "file:../svelte-material-design-space-modules",

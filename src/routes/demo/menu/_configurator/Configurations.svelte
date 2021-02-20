@@ -6,7 +6,7 @@
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 	import { MenuSurfaceConfigurations } from "src/components/configurator/smui-components/menu-surface";
 	import {
-		CommonListConfigurations,
+		CommonSelectableListConfigurations,
 		CommonListItemConfigurations,
 	} from "src/components/configurator/smui-components/list";
 	import {
@@ -24,31 +24,15 @@
 </script>
 
 <MultipleItemsConfigurations {multipleItemsHandler}>
-	<Typography variant="body2">Menu configurations</Typography>
-	<Section>
-		<Select
-			bind:value={$configurations$.selectionType}
-			label="Selection Type"
-			options={[
-				{ label: "", value: "" },
-				{ label: "Multi", value: "multi" },
-				{ label: "Single", value: "single" },
-			]}
-			nullable={false}
-		/>
-		<Checkbox
-			bind:checked={$configurations$.nullable}
-			label="Nullable"
-			disabled={!$configurations$.selectionType}
-		/>
-		<Checkbox bind:checked={$configurations$.hoisted} label="Hoisted" />
-	</Section>
-	<Section>
-		<MenuSurfaceConfigurations bind:configurations={$configurations$} />
-	</Section>
 	<Typography variant="body2">List configurations</Typography>
 	<Section>
-		<CommonListConfigurations bind:configurations={$configurations$} />
+		<CommonSelectableListConfigurations
+			bind:configurations={$configurations$}
+		/>
+	</Section>
+	<Typography variant="body2">Menu configurations</Typography>
+	<Section>
+		<MenuSurfaceConfigurations bind:configurations={$configurations$} />
 	</Section>
 	<MultipleItemSelector label="Edit item" {multipleItemsHandler} />
 	<Section>

@@ -19,10 +19,6 @@
 			options={[
 				{ label: "List" },
 				{
-					label: "List Box",
-					folder: "list-box",
-				},
-				{
 					label: "List Group",
 					folder: "list-group",
 				},

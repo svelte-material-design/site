@@ -2,15 +2,14 @@
 
 <script lang="ts">
 	import { Radio, Checkbox } from "@svelte-material-design/core/list";
-	import type {
-		ListRole,
-		ListItemsStyle,
-	} from "@svelte-material-design/core/list";
+	import type { ListItemsStyle } from "@svelte-material-design/core/list";
 	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
 	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
 	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
 	import type { IconType } from "../icons";
 	import { getImageData } from ".";
+	import { listRoleToItemRole } from "./code";
+	import type { ListRole } from "./types";
 
 	export let component: any;
 	export let contentComponent: any;
@@ -29,11 +28,13 @@
 	export let leadingIcon: IconType;
 	export let trailingIcon: IconType;
 
-	export let listRole: ListRole | "listbox" = undefined;
+	export let listRole: ListRole = undefined;
 	export let listItemsStyle: ListItemsStyle;
 	export let listItemsRows: number;
 
 	export let showCloseBtn: boolean;
+
+	let role = listRoleToItemRole(listRole);
 
 	$: imageData = getImageData(listItemsStyle);
 </script>
@@ -44,6 +45,7 @@
 	{value}
 	{disabled}
 	{ripple}
+	{role}
 	{...$$restProps}
 	on:change
 	let:leadingClassName

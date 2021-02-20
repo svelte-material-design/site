@@ -7,10 +7,10 @@
 	import type {
 		ListItemConfigurations,
 		CommonListConfigurations,
+		ListRole,
 	} from "./types";
 	import { UseState } from "@raythurnevoid/svelte-hooks";
 	import { onMount } from "svelte";
-	import type { ListRole } from "@svelte-material-design/core/list";
 
 	export let labelFn: () => string = undefined;
 	export let listConfigurations: CommonListConfigurations;

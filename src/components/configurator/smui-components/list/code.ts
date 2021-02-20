@@ -12,33 +12,11 @@ import {
 	ImgPlaceholderParams,
 } from "src/functions/imgPlacehoder";
 import type {
-	ListBoxConfigurations,
 	ListConfigurations,
 	ListItemConfigurations,
+	ListItemRole,
+	ListRole,
 } from "./types";
-
-export function getListBoxProps(
-	configurations: ListBoxConfigurations
-): StringListToFilter {
-	const {
-		multiSelection,
-		orientation,
-		itemsStyle,
-		dense,
-		itemsRows,
-		wrapFocus,
-	} = configurations;
-
-	return [
-		`bind:value`,
-		[multiSelection, `multiSelection`],
-		[itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
-		[wrapFocus, `wrapFocus`],
-		[dense, `dense`],
-		[orientation && orientation !== "vertical", `orientation="${orientation}"`],
-		[itemsRows > 1, `itemsRows={${itemsRows}}`],
-	];
-}
 
 export function getListProps(
 	configurations: ListConfigurations
@@ -53,8 +31,8 @@ export function getListProps(
 	} = configurations;
 
 	return [
-		[role !== "list", `bind:value`],
-		[role !== "list", `role="${role}"`],
+		[role, `bind:value`],
+		[role, `role="${role}"`],
 		[itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
 		[wrapFocus, `wrapFocus`],
 		[dense, `dense`],
@@ -80,7 +58,8 @@ export function getItemProps(
 	const { role, itemsStyle: type } = listConfigurations;
 
 	return [
-		[role !== "list", `value="${value}"`],
+		[role, `role="${listRoleToItemRole(role)}"`],
+		[role, `value="${value}"`],
 		[!ripple, "ripple={false}"],
 		[disabled, "disabled"],
 		[selected, "selected"],
@@ -269,16 +248,6 @@ export function createListCode(
 	return removeEmptyLines(code);
 }
 
-export function createListBoxCode(configurations: ListBoxConfigurations) {
-	const code = generateSvelteTagCode({
-		tag: "ListBox",
-		props: getListBoxProps(configurations),
-		content: createListContentCode(configurations),
-	});
-
-	return removeEmptyLines(code);
-}
-
 export function getImageData(listItemsStyle: ListItemsStyle) {
 	let imageRes: ImgPlaceholderParams;
 	switch (listItemsStyle) {
@@ -309,4 +278,15 @@ export function getImageData(listItemsStyle: ListItemsStyle) {
 		imageSrc,
 		imageTxt,
 	};
+}
+
+export function listRoleToItemRole(role: ListRole): ListItemRole {
+	switch (role) {
+		case "group":
+			return "checkbox";
+		case "radiogroup":
+			return "radio";
+		case "listbox":
+			return "option";
+	}
 }
