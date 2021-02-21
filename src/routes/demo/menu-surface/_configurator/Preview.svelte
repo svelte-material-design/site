@@ -31,6 +31,8 @@
 		quickOpen={$configurations$.quickOpen}
 		variant={$configurations$.variant}
 		anchorMargin={$configurations$.anchorMargin}
+		hoisted={true}
+		anchor={{ x: 0, y: 0 }}
 	>
 		<div class="surface">
 			<div>Menu surface content</div>

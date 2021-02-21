@@ -13,6 +13,8 @@
 	<CommonListEvents
 		changeName="OnMenuChangeEvent"
 		optionsName="OnMenuChildrenChangeEvent"
+		selectEvent="select"
+		selectName="OnMenuSelect"
 	/>
 	<CommonMenuEvents />
 </Events>
