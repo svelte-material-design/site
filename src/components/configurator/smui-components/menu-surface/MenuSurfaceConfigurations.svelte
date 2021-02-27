@@ -1,13 +1,13 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import AnchorMarginConfiguration from "./AnchorMarginConfiguration.svelte";
 	import {
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { onMount, tick } from "svelte";
 	import type { MenuSurfaceConfigurations } from "./types";
+	import { AnchorMarginConfiguration, AbsolutePositionConfiguration } from ".";
 
 	export let configurations: MenuSurfaceConfigurations;
 
@@ -67,5 +67,9 @@
 />
 <AnchorMarginConfiguration
 	bind:value={configurations.anchorMargin}
+	on:change={updateInstance}
+/>
+<AbsolutePositionConfiguration
+	bind:value={configurations.anchor}
 	on:change={updateInstance}
 />

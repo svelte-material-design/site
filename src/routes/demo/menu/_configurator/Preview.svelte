@@ -35,6 +35,7 @@
 		quickOpen={$configurations$.quickOpen}
 		variant={$configurations$.variant}
 		anchorMargin={$configurations$.anchorMargin}
+		anchor={$configurations$.anchor}
 		wrapFocus={$configurations$.wrapFocus}
 		typeahead={$configurations$.typeahead}
 		dense={$configurations$.dense}

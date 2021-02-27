@@ -2,6 +2,7 @@ import type {
 	MenuSurfaceVariant,
 	MenuSurfaceAnchorCorner,
 	MenuSurfaceAnchorMargin,
+	AbsoluteMenuSurfacePosition,
 } from "@svelte-material-design/core/menu-surface";
 
 export interface MenuSurfaceConfigurations {
@@ -12,4 +13,5 @@ export interface MenuSurfaceConfigurations {
 	variant: MenuSurfaceVariant;
 	anchorMargin: MenuSurfaceAnchorMargin;
 	hoisted: boolean;
+	anchor: AbsoluteMenuSurfacePosition;
 }

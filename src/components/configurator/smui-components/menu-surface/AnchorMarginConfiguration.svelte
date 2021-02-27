@@ -2,9 +2,9 @@
 
 <script lang="ts">
 	import type { MenuSurfaceAnchorMargin } from "@svelte-material-design/core/menu-surface";
-	import { InputField } from "@svelte-material-design/core/textfield";
 	import { Typography } from "@svelte-material-design/core/typography";
 	import { onMount } from "svelte";
+	import { DoubleInput } from "../../atoms/configurations";
 
 	export let value: MenuSurfaceAnchorMargin;
 
@@ -23,45 +23,10 @@
 	}
 </script>
 
-<div class="anchor-margin-option">
-	<Typography variant="body2">Anchor margin (px)</Typography>
-	<div>
-		<InputField
-			bind:value={top}
-			class="anchor-margin-option__input"
-			variant="outlined"
-			type="number"
-			density={-4}
-			on:change={handleChange}
-			on:change
-		>
-			<span slot="label">Top</span>
-		</InputField>
-		<InputField
-			bind:value={left}
-			class="anchor-margin-option__input"
-			variant="outlined"
-			type="number"
-			density={-4}
-			on:change={handleChange}
-			on:change
-		>
-			<span slot="label">left</span>
-		</InputField>
-	</div>
-</div>
-
-<style lang="scss">
-	.anchor-margin-option {
-		grid-row: span 2;
-
-		> div {
-			display: flex;
-			gap: 1em;
-		}
-
-		:global(.anchor-margin-option__input) {
-			width: 5em;
-		}
-	}
-</style>
+<DoubleInput bind:value1={top} bind:value2={left} on:change={handleChange}>
+	<span slot="title">
+		<Typography variant="body2">Anchor margin (px)</Typography>
+	</span>
+	<span slot="label1"> Top </span>
+	<span slot="label2"> Left </span>
+</DoubleInput>

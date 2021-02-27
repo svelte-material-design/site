@@ -4,3 +4,4 @@ export { default as Checkbox } from "./Checkbox.svelte";
 export { default as Select } from "./Select.svelte";
 export { default as RangeSlider } from "./RangeSlider.svelte";
 export { default as Slider } from "./Slider.svelte";
+export { default as DoubleInput } from "./DoubleInput.svelte";
