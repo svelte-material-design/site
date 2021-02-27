@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class="anchor">
+<div style={$configurations$.anchor ? "position: relative;" : ""}>
 	<Button on:click={openMenuSurface}>Open Surface</Button>
 	<MenuSurface
 		bind:open={$configurations$.open}
@@ -31,8 +31,8 @@
 		quickOpen={$configurations$.quickOpen}
 		variant={$configurations$.variant}
 		anchorMargin={$configurations$.anchorMargin}
-		hoisted={true}
-		anchor={{ x: 0, y: 0 }}
+		hoisted={$configurations$.hoisted}
+		anchor={$configurations$.anchor}
 	>
 		<div class="surface">
 			<div>Menu surface content</div>

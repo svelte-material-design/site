@@ -10,6 +10,8 @@ export function getMenuSurfaceCodeProps(
 		anchorMargin,
 		quickOpen,
 		variant,
+		hoisted,
+		anchor,
 	} = configurations;
 
 	return [
@@ -24,5 +26,15 @@ export function getMenuSurfaceCodeProps(
 				anchorMargin && JSON.stringify(anchorMargin).replaceAll(`"`, "")
 			}}`,
 		],
+		[anchor, `anchor={{x: ${anchor?.x}, y: ${anchor?.y}}}`],
+		[hoisted, "hoisted"],
 	];
+}
+
+export function getMenuSurfaceParentProps(
+	configurations: MenuSurfaceConfigurations
+): StringListToFilter {
+	const { anchor } = configurations;
+
+	return [[anchor, `style="position: relative;"`]];
 }

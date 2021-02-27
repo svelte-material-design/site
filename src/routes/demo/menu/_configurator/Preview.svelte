@@ -23,7 +23,7 @@
 	}
 </script>
 
-<div class="anchor">
+<div style={$configurations$.anchor ? "position: relative;" : ""}>
 	<Button on:click={openMenu}>Open Menu</Button>
 	<Menu
 		bind:open={$configurations$.open}

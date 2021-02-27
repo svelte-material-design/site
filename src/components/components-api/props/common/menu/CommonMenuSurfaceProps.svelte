@@ -12,6 +12,10 @@
 	import { Variant } from "src/components/components-api/props/common";
 
 	export let tag: string;
+	export let anchorName: string = "MenuSurfaceAnchor";
+	export let anchorMarginName: string = "MenuSurfaceAnchorMargin";
+	export let variantName: string = "MenuSurfaceVariant";
+	export let anchorCornerName: string = "MenuSurfaceAnchorCorner";
 </script>
 
 <Open {tag} />
@@ -25,16 +29,20 @@
 </Prop>
 <Prop>
 	<Name>anchor</Name>
-	<Signature keyword="HTMLElement">
+	<Signature keyword="interface" name={anchorName}>
 		<Default>The root's <code>parentElement</code>.</Default>
 	</Signature>
-	<Description>The anchor element for the positioning logic.</Description>
+	<Description
+		>The anchor element for the positioning logic or in alternative an object
+		with the x and y values for absolute positioning. Absolute positioning is
+		relative to the closest <code>position: relative</code> parent.</Description
+	>
 </Prop>
 <Prop>
 	<Name>anchorCorner</Name>
 	<Signature
 		keyword="type"
-		name="MenuSurfaceAnchorCorner"
+		name={anchorCornerName}
 		allowedValues={["top-start", "top-end", "bottom-start", "bottom-end"]}
 	/>
 	<Description>
@@ -50,7 +58,7 @@
 </Prop>
 <Prop>
 	<Name>anchorMargin</Name>
-	<Signature keyword="interface" name="MenuSurfaceAnchorMargin" />
+	<Signature keyword="interface" name={anchorMarginName} />
 	<Description>
 		Sets the distance from the anchor point that the menu surface should be
 		shown.
@@ -58,11 +66,11 @@
 </Prop>
 <Prop>
 	<Name>hoisted</Name>
-	<Signature keyword="interface" name="MenuSurfaceAnchorMargin" />
+	<Signature keyword="boolean" />
 	<Description>
 		Sets whether the <code>{`<${tag} />`}</code> has been hoisted to the body so
 		that the offsets are calculated relative to the page and not the
 		<code>anchor</code>.
 	</Description>
 </Prop>
-<Variant name="MenuSurfaceVariant" allowedValues={["fixed", "fullwidth"]} />
+<Variant name={variantName} allowedValues={["fixed", "fullwidth"]} />

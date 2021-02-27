@@ -11,13 +11,16 @@
 	import { CommonGroupsProps } from "../groups";
 
 	export let tag: string = "List";
+	export let valueName: string = "ListValue";
+	export let itemsStyleName: string = "ListItemsStyle";
+	export let orientationName: string = "ListOrientation";
 </script>
 
 <CommonGroupsProps configurable groupComponent={tag} multi>
 	<svelte-fragment slot="valueSignature">
 		<Signature
 			keyword="type"
-			name="ListValue"
+			name={valueName}
 			instances={["string", "string[]"]}
 		>
 			<Default>
@@ -31,7 +34,7 @@
 	<Name>itemsStyle</Name>
 	<Signature
 		keyword="type"
-		name="ListItemsStyle"
+		name={itemsStyleName}
 		allowedValues={["textual", "avatar", "icon", "image", "thumbnail", "video"]}
 	>
 		<Default value="textual" />
@@ -42,7 +45,7 @@
 	<Name>orientation</Name>
 	<Signature
 		keyword="type"
-		name="ListOrientation"
+		name={orientationName}
 		allowedValues={["vertical", "horizontal"]}
 	>
 		<Default value="vertical" />
