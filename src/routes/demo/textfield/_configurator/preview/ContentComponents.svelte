@@ -1,12 +1,8 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import {
-		Input,
-		Prefix,
-		Suffix,
-	} from "@svelte-material-design/core/textfield";
-	import { LeadingIcon, TrailingIcon } from ".";
+	import { Prefix, Suffix } from "@svelte-material-design/core/textfield";
+	import { LeadingIcon, TrailingIcon, Input } from ".";
 	import { InputFieldConfigurations } from "../types";
 	import { createEventDispatcher } from "svelte";
 

@@ -3,7 +3,11 @@ import { writable } from "svelte/store";
 import type { InputFieldConfigurations } from "./types";
 
 export function createConfiguratorStore() {
-	const initialConfigurations = {} as InputFieldConfigurations;
+	const initialConfigurations = {
+		ripple: true,
+		lineRipple: true,
+		label: "Label",
+	} as InputFieldConfigurations;
 
 	const configurations$ = writable(initialConfigurations);
 

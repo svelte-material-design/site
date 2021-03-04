@@ -27,9 +27,15 @@
 		<Preview />
 	</div>
 	<div slot="values">
-		{#if $configurations$.selectionType}
+		<div>
 			value: <Values value={$configurations$.value} />
-		{/if}
+		</div>
+		<div>
+			dirty: <Values value={$configurations$.dirty} />
+		</div>
+		<div>
+			invalid: <Values value={$configurations$.invalid} />
+		</div>
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations />

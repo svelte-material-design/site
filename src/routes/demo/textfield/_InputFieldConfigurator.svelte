@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { InputFieldVariant, InputFieldType } from "@smui/core/textfield";
 	import InputField from "./_InputField.svelte";
@@ -9,12 +11,8 @@
 	} from "src/components/configurator";
 	import { Select, Option } from "@smui/core/select";
 	import { Checkbox } from "@smui/core/checkbox";
-	import {
-		IconTypeOption,
-	} from "src/components/configurator/smui-components/icons";
-	import type {
-		IconType,
-	} from "src/components/configurator/smui-components/icons";
+	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
+	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { DiscreteSlider } from "@smui/core/slider";
 	import { getHelperTextCode } from "src/components/configurator/snippets";
 	import { getIconCode } from "src/components/configurator/smui-components/icons";
@@ -276,8 +274,6 @@
 	}
 </script>
 
-<svelte:options immutable={true} />
-
 <Configurator {svelteCode} {scssCode}>
 	<div slot="preview">
 		<InputField
@@ -313,12 +309,13 @@
 			{leadingIcon}
 			{trailingIcon}
 			{clearOnTrailingIconClick}
-			{density} />
+			{density}
+		/>
 	</div>
 	<div slot="values">
 		<div>
 			value:
-			{#if value != null && typeof value === 'string'}
+			{#if value != null && typeof value === "string"}
 				"{value}"
 			{:else}{value}{/if}
 		</div>
@@ -372,7 +369,7 @@
 			<FormField vertical>
 				<Label>
 					Density:
-					{densitySlider ? `-${densitySlider}` : 'default'}
+					{densitySlider ? `-${densitySlider}` : "default"}
 				</Label>
 				<DiscreteSlider bind:value={densitySlider} max={4} step={1} />
 			</FormField>
@@ -443,13 +440,15 @@
 			<IconTypeOption
 				allowEmpty={true}
 				bind:value={leadingIcon}
-				label="Leading icon" />
+				label="Leading icon"
+			/>
 		</div>
 		<div>
 			<IconTypeOption
 				allowEmpty={true}
 				bind:value={trailingIcon}
-				label="Trailing icon" />
+				label="Trailing icon"
+			/>
 		</div>
 		<div>
 			<FormField>
@@ -461,7 +460,8 @@
 			<FormField>
 				<Checkbox
 					bind:checked={clearOnTrailingIconClick}
-					disabled={!trailingIcon} />
+					disabled={!trailingIcon}
+				/>
 				<span slot="label">Clear on trailing icon click</span>
 			</FormField>
 		</div>

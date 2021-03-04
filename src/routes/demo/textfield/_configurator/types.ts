@@ -31,4 +31,7 @@ export interface InputFieldConfigurations {
 	helperTextAsValidationMsg: boolean;
 	persistentHelperText: boolean;
 	label: string;
+	value: any;
+	dirty: boolean;
+	invalid: boolean;
 }

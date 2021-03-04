@@ -1,20 +1,17 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { InputField, Content } from "@svelte-material-design/core/textfield";
-	import { HelperText } from "./preview";
+	import { InputField } from "@svelte-material-design/core/textfield";
+	import { HelperText, Content } from "./preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { configurations$ } = getConfiguratorContext();
-	let value: any;
-	let dirty: boolean;
-	let invalid: boolean;
 </script>
 
 <InputField
-	bind:value
-	bind:dirty
-	bind:invalid
+	bind:value={$configurations$.value}
+	bind:dirty={$configurations$.dirty}
+	bind:invalid={$configurations$.invalid}
 	ripple={$configurations$.ripple}
 	lineRipple={$configurations$.lineRipple}
 	variant={$configurations$.variant}

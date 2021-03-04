@@ -9,8 +9,8 @@
 
 {#if configurations.useDatalist}
 	<Input
-		readonly={configurations.readonly}
-		formnovalidate={configurations.formnovalidate}
+		readonly={configurations.readonly ? true : undefined}
+		formnovalidate={configurations.formnovalidate ? true : undefined}
 		required={configurations.required}
 		title={configurations.title}
 		placeholder={configurations.placeholder}
@@ -23,6 +23,7 @@
 		min={configurations.min}
 		max={configurations.max}
 		type={configurations.type}
+		name="input-field"
 	>
 		<div slot="options">
 			<option value="Red Dead Redemption" />
@@ -32,8 +33,8 @@
 	</Input>
 {:else}
 	<Input
-		readonly={configurations.readonly}
-		formnovalidate={configurations.formnovalidate}
+		readonly={configurations.readonly ? true : undefined}
+		formnovalidate={configurations.formnovalidate ? true : undefined}
 		required={configurations.required}
 		title={configurations.title}
 		placeholder={configurations.placeholder}
@@ -46,5 +47,6 @@
 		min={configurations.min}
 		max={configurations.max}
 		type={configurations.type}
+		name="input-field"
 	/>
 {/if}
