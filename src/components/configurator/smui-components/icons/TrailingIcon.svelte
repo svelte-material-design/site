@@ -17,6 +17,7 @@
 	alt={type === "img" ? "Grinning face" : undefined}
 	iconContent={button ? "clear" : "alarm"}
 	{button}
+	on:click
 >
 	<polygon points="0,24 12,0 24,24" />
 </Icon>

@@ -10,12 +10,9 @@ export interface InputFieldConfigurations {
 	prefix: string;
 	useDatalist: boolean;
 	readonly: boolean;
-	formnovalidate: boolean;
-	required: boolean;
 	title: string;
 	placeholder: string;
 	size: number;
-	autocomplete: string;
 	pattern: string;
 	maxlength: number;
 	minlength: number;

@@ -1,36 +1,45 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Prefix, Suffix } from "@svelte-material-design/core/textfield";
-	import { LeadingIcon, TrailingIcon, Input } from ".";
+	import {
+		Prefix,
+		Suffix,
+		TrailingIcon as InputFieldTrailingIcon,
+		LeadingIcon as InputFieldLeadingIcon,
+	} from "@svelte-material-design/core/textfield";
+	import { Input } from ".";
 	import { InputFieldConfigurations } from "../types";
-	import { createEventDispatcher } from "svelte";
+	import {
+		LeadingIcon,
+		TrailingIcon,
+	} from "src/components/configurator/smui-components/icons";
 
 	export let configurations: InputFieldConfigurations;
 
-	const dispatch = createEventDispatcher<{
-		clear: void;
-	}>();
-
 	function clear() {
-		dispatch("clear");
+		configurations.value = "";
+		configurations = { ...configurations };
 	}
 </script>
 
 {#if configurations.leadingIcon}
-	<LeadingIcon type={configurations.leadingIcon} />
+	<LeadingIcon
+		type={configurations.leadingIcon}
+		component={InputFieldLeadingIcon}
+	/>
 {/if}
 {#if configurations.prefix}
-	<Prefix>Prefix</Prefix>
+	<Prefix>{configurations.prefix}</Prefix>
 {/if}
 <Input {configurations} />
 {#if configurations.suffix}
-	<Suffix>Suffix</Suffix>
+	<Suffix>{configurations.suffix}</Suffix>
 {/if}
 {#if configurations.trailingIcon}
 	<TrailingIcon
 		type={configurations.trailingIcon}
-		clearOnTrailingIconClick={configurations.clearOnTrailingIconClick}
+		component={InputFieldTrailingIcon}
+		button={configurations.clearOnTrailingIconClick}
 		on:click={clear}
 	/>
 {/if}

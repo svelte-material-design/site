@@ -40,11 +40,11 @@
 			{ label: "Search", value: "search" },
 			{ label: "Tel", value: "tel" },
 			{ label: "Url", value: "url" },
-			{ label: "Passwor", value: "password" },
+			{ label: "Password", value: "password" },
 			{ label: "Month", value: "month" },
 			{ label: "Week", value: "week" },
 			{ label: "Date", value: "date" },
-			{ label: "Datetim", value: "datetime-local" },
+			{ label: "Datetime", value: "datetime-local" },
 			{ label: "Time", value: "time" },
 		]}
 		on:change={updateInstance}
@@ -137,23 +137,12 @@
 		allowEmpty={true}
 		bind:value={$configurations$.leadingIcon}
 		label="Leading icon"
+		on:change={updateInstance}
 	/>
 	<IconTypeOption
 		allowEmpty={true}
 		bind:value={$configurations$.trailingIcon}
 		label="Trailing icon"
-	/>
-</Section>
-<Typography variant="body2">Input configurations</Typography>
-<Section>
-	<Checkbox
-		label="Read only"
-		bind:checked={$configurations$.readonly}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Use datalist"
-		bind:checked={$configurations$.useDatalist}
 		on:change={updateInstance}
 	/>
 	<Checkbox
@@ -161,10 +150,14 @@
 		bind:checked={$configurations$.clearOnTrailingIconClick}
 		on:change={updateInstance}
 	/>
+</Section>
+<Typography variant="body2">Input configurations</Typography>
+<Section>
 	<Checkbox
 		label="Max length"
 		checked={!!$configurations$.maxlength}
 		on:change={(e) => {
+			$configurations$.characterCounter = false;
 			$configurations$.maxlength = e.detail.checked ? 20 : undefined;
 			updateInstance();
 		}}
@@ -228,12 +221,14 @@
 		}}
 	/>
 	<Checkbox
-		label="Autocomplete"
-		checked={!!$configurations$.autocomplete}
-		on:change={(e) => {
-			$configurations$.autocomplete = e.detail.checked ? "email" : undefined;
-			updateInstance();
-		}}
+		label="Read only"
+		bind:checked={$configurations$.readonly}
+		on:change={updateInstance}
+	/>
+	<Checkbox
+		label="Use datalist"
+		bind:checked={$configurations$.useDatalist}
+		on:change={updateInstance}
 	/>
 	<Checkbox
 		label="Pattern"
@@ -242,15 +237,5 @@
 			$configurations$.pattern = e.detail.checked ? "[a-z]+" : undefined;
 			updateInstance();
 		}}
-	/>
-	<Checkbox
-		label="Required"
-		bind:checked={$configurations$.required}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Form no validate"
-		bind:checked={$configurations$.formnovalidate}
-		on:change={updateInstance}
 	/>
 </Section>

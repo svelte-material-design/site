@@ -11,10 +11,10 @@
 {#if configurations.label}
 	<Content>
 		<span slot="label">{configurations.label}</span>
-		<ContentComponents {configurations} on:clear />
+		<ContentComponents bind:configurations />
 	</Content>
 {:else}
 	<Content>
-		<ContentComponents {configurations} on:clear />
+		<ContentComponents bind:configurations />
 	</Content>
 {/if}

@@ -15,6 +15,7 @@
 		{...$$restProps}
 		role={button ? "button" : undefined}
 		tabindex={button ? 0 : undefined}
+		on:click
 	>
 		{#if iconContent}{iconContent}{:else}refresh{/if}
 	</svelte:component>
@@ -26,6 +27,7 @@
 		viewBox="0 0 24 24"
 		role={button ? "button" : undefined}
 		tabindex={button ? 0 : undefined}
+		on:click
 	>
 		{#if $$slots.default}
 			<slot />
@@ -42,5 +44,6 @@
 		alt={$$restProps.alt || "Upside down face"}
 		role={button ? "button" : undefined}
 		tabindex={button ? 0 : undefined}
+		on:click
 	/>
 {/if}

@@ -17,8 +17,8 @@
 	variant={$configurations$.variant}
 	disabled={$configurations$.disabled}
 >
-	<Content configurations={$configurations$} />
+	<Content bind:configurations={$configurations$} />
 	{#if $configurations$.helperText || $configurations$.characterCounter}
-		<HelperText configurations={$configurations$} />
+		<HelperText bind:configurations={$configurations$} />
 	{/if}
 </InputField>
