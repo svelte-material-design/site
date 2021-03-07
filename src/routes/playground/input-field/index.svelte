@@ -9,19 +9,22 @@
 		Prefix,
 		Suffix,
 		TrailingIcon,
+		Value,
 	} from "@svelte-material-design/core/textfield";
 
-	let value: any;
+	let value: Value;
+	let dirty: boolean;
+	let invalid: boolean;
 
 	function clear() {
 		value = "";
 	}
 </script>
 
-<InputField bind:value>
+<InputField bind:value bind:dirty bind:invalid>
 	<Content>
 		<Prefix>Prefix</Prefix>
-		<Input />
+		<Input pattern={"[a-z]"} />
 		<Suffix>Suffix</Suffix>
 		<TrailingIcon tabindex="0" on:click={clear}>close</TrailingIcon>
 	</Content>
@@ -29,4 +32,6 @@
 </InputField>
 <div>
 	{value}
+	{dirty}
+	{invalid}
 </div>

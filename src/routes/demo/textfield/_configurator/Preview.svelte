@@ -6,6 +6,10 @@
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { configurations$ } = getConfiguratorContext();
+
+	function updateInstance() {
+		$configurations$ = {...$configurations$}
+	}
 </script>
 
 <InputField
@@ -16,6 +20,7 @@
 	lineRipple={$configurations$.lineRipple}
 	variant={$configurations$.variant}
 	disabled={$configurations$.disabled}
+	on:input={updateInstance}
 >
 	<Content bind:configurations={$configurations$} />
 	{#if $configurations$.helperText || $configurations$.characterCounter}
