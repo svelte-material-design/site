@@ -8,7 +8,7 @@
 		Content,
 		Prefix,
 		Suffix,
-		TrailingIcon,
+		Icon,
 		Value,
 	} from "@svelte-material-design/core/textfield";
 
@@ -26,7 +26,7 @@
 		<Prefix>Prefix</Prefix>
 		<Input pattern={"[a-z]"} />
 		<Suffix>Suffix</Suffix>
-		<TrailingIcon tabindex="0" on:click={clear}>close</TrailingIcon>
+		<Icon tabindex="0" on:click={clear}>close</Icon>
 	</Content>
 	<HelperText>helper text</HelperText>
 </InputField>

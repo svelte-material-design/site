@@ -12,6 +12,7 @@
 	<Tag href="item">Item</Tag>
 	<Description>A list item.</Description>
 </SubComponent>
+<slot name="list" />
 <SubComponent indentation={1}>
 	<Tag href="content">Content</Tag>
 	<Description>The content of the list item.</Description>

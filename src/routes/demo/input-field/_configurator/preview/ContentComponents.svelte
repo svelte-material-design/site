@@ -1,12 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import {
-		Prefix,
-		Suffix,
-		TrailingIcon as InputFieldTrailingIcon,
-		LeadingIcon as InputFieldLeadingIcon,
-	} from "@svelte-material-design/core/textfield";
+	import { Prefix, Suffix, Icon } from "@svelte-material-design/core/textfield";
 	import { Input } from ".";
 	import { InputFieldConfigurations } from "../types";
 	import {
@@ -15,6 +10,8 @@
 	} from "src/components/configurator/smui-components/icons";
 
 	export let configurations: InputFieldConfigurations;
+	export let leadingClassName: string;
+	export let trailingClassName: string;
 
 	function clear() {
 		configurations.value = "";
@@ -24,8 +21,9 @@
 
 {#if configurations.leadingIcon}
 	<LeadingIcon
+		class={leadingClassName}
 		type={configurations.leadingIcon}
-		component={InputFieldLeadingIcon}
+		component={Icon}
 	/>
 {/if}
 {#if configurations.prefix}
@@ -37,8 +35,9 @@
 {/if}
 {#if configurations.trailingIcon}
 	<TrailingIcon
+		class={trailingClassName}
 		type={configurations.trailingIcon}
-		component={InputFieldTrailingIcon}
+		component={Icon}
 		button={configurations.clearOnTrailingIconClick}
 		on:click={clear}
 	/>

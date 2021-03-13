@@ -14,15 +14,18 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
+	import { MenuConfigurations } from "./configurations";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { selectedItem$ } = multipleItemsHandler;
 </script>
 
 <MultipleItemsConfigurations {multipleItemsHandler}>
+	<MenuConfigurations bind:configurations={$configurations$} />
 	<Typography variant="body2">List configurations</Typography>
 	<Section>
 		<CommonSelectableListConfigurations
+			onlySingleSelection
 			bind:configurations={$configurations$}
 		/>
 	</Section>

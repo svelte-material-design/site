@@ -6,15 +6,25 @@
 	import { ContentComponents } from ".";
 
 	export let configurations: InputFieldConfigurations;
+	export let leadingClassName: string;
+	export let trailingClassName: string;
 </script>
 
 {#if configurations.label}
 	<Content>
 		<span slot="label">{configurations.label}</span>
-		<ContentComponents bind:configurations />
+		<ContentComponents
+			bind:configurations
+			{leadingClassName}
+			{trailingClassName}
+		/>
 	</Content>
 {:else}
 	<Content>
-		<ContentComponents bind:configurations />
+		<ContentComponents
+			bind:configurations
+			{leadingClassName}
+			{trailingClassName}
+		/>
 	</Content>
 {/if}

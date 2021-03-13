@@ -30,8 +30,9 @@
 		PrimaryText,
 		SecondaryText,
 		Icon,
-	} from "@smui/core/menu";
-	import type { MenuItemsStyle } from "@smui/core/menu";
+	} from "@svelte-material-design/core/menu";
+	import type { MenuItemsStyle } from "@svelte-material-design/core/menu";
+	import { SelectionGroupIcon } from "@svelte-material-design/core/menu";
 	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import { ListItem } from "src/components/configurator/smui-components/list";
 	import type { MenuItemConfigurations } from "../types";
@@ -39,6 +40,7 @@
 	export let configurations: MenuItemConfigurations;
 	export let listItemsStyle: MenuItemsStyle;
 	export let listItemsRows: number;
+	export let showSelectionGroup: boolean;
 </script>
 
 <ListItem
@@ -62,28 +64,8 @@
 	{listItemsStyle}
 	{listItemsRows}
 	on:change
-/>
-
-<!-- <ListItem
-	bind:this={listItem}
-	component={Item}
-	contentComponent={Content}
-	primaryTextComponent={PrimaryText}
-	secondaryTextComponent={SecondaryText}
-	iconComponent={Icon}
-	bind:selected
-	{value}
-	{disabled}
-	{ripple}
-	{ariaLabel}
-	{title}
-	{label}
-	{labelRow2}
-	{labelRow3}
-	{leadingIcon}
-	{trailingIcon}
-	{listItemsRows}
-	{listType}
-	let:selected
-	on:change
-/> -->
+>
+	{#if showSelectionGroup}
+		<SelectionGroupIcon>done</SelectionGroupIcon>
+	{/if}
+</ListItem>

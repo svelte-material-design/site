@@ -2,6 +2,7 @@
 
 <script lang="ts">
 	import { setLayoutPath, getLayoutPath } from "src/contexts";
+	import { SubComponents } from "./_api";
 	import { Configurator } from "./_configurator";
 	import { ModuleLayout, Page } from "src/components/layout/module-layout";
 
@@ -16,6 +17,7 @@
 		<Page {segment}>
 			<div slot="main">
 				<Configurator />
+				<SubComponents />
 				<slot />
 			</div>
 			<slot />

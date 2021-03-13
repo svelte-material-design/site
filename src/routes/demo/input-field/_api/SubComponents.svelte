@@ -38,12 +38,8 @@
 		</Description>
 	</SubComponent>
 	<SubComponent indentation={1}>
-		<Tag href="leading-icon">LeadingIcon</Tag>
-		<Description>The leading icon. No more than 1 must be used.</Description>
-	</SubComponent>
-	<SubComponent indentation={1}>
-		<Tag href="trailing-icon">TrailingIcon</Tag>
-		<Description>The trailing icon. No more than 1 must be used.</Description>
+		<Tag href="icon">Icon</Tag>
+		<Description>Can be used as both leading or trailing icon.</Description>
 	</SubComponent>
 	<SubComponent>
 		<Tag href="helper-text">HelperText</Tag>

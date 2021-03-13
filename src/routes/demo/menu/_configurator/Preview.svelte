@@ -2,7 +2,11 @@
 
 <script lang="ts">
 	import { Button } from "@svelte-material-design/core/button";
-	import { Menu, Separator } from "@svelte-material-design/core/menu";
+	import {
+		Menu,
+		Separator,
+		SelectionGroup,
+	} from "@svelte-material-design/core/menu";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 	import { MenuItem } from "./preview";
 
@@ -45,20 +49,42 @@
 		itemsStyle={$configurations$.itemsStyle}
 		hoisted={$configurations$.hoisted}
 	>
-		{#each $items$ as item, index}
-			<MenuItem
-				bind:configurations={item}
-				listItemsRows={$configurations$.itemsRows}
-				listItemsStyle={$configurations$.itemsStyle}
-				on:change={handleChange}
-			/>
-			{#if index === 0 && $configurations$.separator}
-				<Separator
-					insetPadding={$configurations$.separatorInsetPadding}
-					insetLeading={$configurations$.separatorInsetLeading}
-					insetTrailing={$configurations$.separatorInsetTrailing}
+		{#if $configurations$.showSelectionGroup}
+			<SelectionGroup>
+				{#each $items$ as item, index}
+					<MenuItem
+						bind:configurations={item}
+						listItemsRows={$configurations$.itemsRows}
+						listItemsStyle={$configurations$.itemsStyle}
+						showSelectionGroup={$configurations$.showSelectionGroup}
+						on:change={handleChange}
+					/>
+					{#if index === 0 && $configurations$.separator}
+						<Separator
+							insetPadding={$configurations$.separatorInsetPadding}
+							insetLeading={$configurations$.separatorInsetLeading}
+							insetTrailing={$configurations$.separatorInsetTrailing}
+						/>
+					{/if}
+				{/each}
+			</SelectionGroup>
+		{:else}
+			{#each $items$ as item, index}
+				<MenuItem
+					bind:configurations={item}
+					listItemsRows={$configurations$.itemsRows}
+					listItemsStyle={$configurations$.itemsStyle}
+					showSelectionGroup={$configurations$.showSelectionGroup}
+					on:change={handleChange}
 				/>
-			{/if}
-		{/each}
+				{#if index === 0 && $configurations$.separator}
+					<Separator
+						insetPadding={$configurations$.separatorInsetPadding}
+						insetLeading={$configurations$.separatorInsetLeading}
+						insetTrailing={$configurations$.separatorInsetTrailing}
+					/>
+				{/if}
+			{/each}
+		{/if}
 	</Menu>
 </div>

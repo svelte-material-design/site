@@ -4,8 +4,10 @@
 	import { Radio, Checkbox } from "@svelte-material-design/core/list";
 	import type { ListItemsStyle } from "@svelte-material-design/core/list";
 	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
-	import LeadingIcon from "src/components/configurator/smui-components/icons/LeadingIcon.svelte";
-	import TrailingIcon from "src/components/configurator/smui-components/icons/TrailingIcon.svelte";
+	import {
+		LeadingIcon,
+		TrailingIcon,
+	} from "src/components/configurator/smui-components/icons";
 	import type { IconType } from "../icons";
 	import { getImageData } from ".";
 	import { listRoleToItemRole } from "./code";
@@ -69,6 +71,7 @@
 			component={iconComponent}
 		/>
 	{/if}
+	<slot />
 	{#if label}
 		<svelte:component this={contentComponent}>
 			{#if listItemsRows === 1}

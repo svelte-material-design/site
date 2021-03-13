@@ -11,6 +11,7 @@
 
 	export let configurations: ListConfigurations;
 	export let selectionTypeDisabled: boolean = false;
+	export let onlySingleSelection: boolean = false;
 
 	onMount(() => {
 		updateInstance();
@@ -31,10 +32,14 @@
 			label: "Single",
 			value: "single",
 		},
-		{
-			label: "Multi",
-			value: "multi",
-		},
+		...(!onlySingleSelection
+			? [
+					{
+						label: "Multi",
+						value: "multi",
+					},
+			  ]
+			: []),
 	]}
 	on:change={updateInstance}
 />

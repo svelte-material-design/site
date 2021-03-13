@@ -20,8 +20,14 @@
 	variant={$configurations$.variant}
 	disabled={$configurations$.disabled}
 	on:input={updateInstance}
+	let:leadingClassName
+	let:trailingClassName
 >
-	<Content bind:configurations={$configurations$} />
+	<Content
+		bind:configurations={$configurations$}
+		{leadingClassName}
+		{trailingClassName}
+	/>
 	{#if $configurations$.helperText || $configurations$.characterCounter}
 		<HelperText bind:configurations={$configurations$} />
 	{/if}

@@ -22,6 +22,7 @@ export interface MenuConfigurations
 	nullable: boolean;
 	selectionType: MenuSelectionType;
 	value: MenuValue;
+	showSelectionGroup: boolean;
 }
 
 export interface MenuItemConfigurations
