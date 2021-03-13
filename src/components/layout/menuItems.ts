@@ -94,7 +94,7 @@ export const menuItems = [
 	},
 	{
 		name: "Inputs and Controls",
-		shortcut: "/demo/textfield",
+		shortcut: "/demo/input-field",
 		indent: 0,
 	},
 	{
@@ -106,27 +106,12 @@ export const menuItems = [
 		],
 	},
 	{
-		name: "Floating Label",
-		shortcut: "/demo/textfield",
-		indent: 1,
-	},
-	{
 		name: "Form Fields",
 		route: "/demo/form-field",
 		indent: 1,
 		repos: [
 			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field",
 		],
-	},
-	{
-		name: "Line Ripple",
-		shortcut: "/demo/textfield",
-		indent: 1,
-	},
-	{
-		name: "Notched Outline",
-		shortcut: "/demo/textfield",
-		indent: 1,
 	},
 	{
 		name: "Radio Buttons",
@@ -172,26 +157,11 @@ export const menuItems = [
 	},
 	{
 		name: "Text Field",
-		route: "/demo/textfield",
+		route: "/demo/input-field",
 		indent: 1,
 		repos: [
 			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield",
 		],
-	},
-	{
-		name: "Text Field Character Count",
-		shortcut: "/demo/textfield",
-		indent: 2,
-	},
-	{
-		name: "Text Field Helper Text",
-		shortcut: "/demo/textfield",
-		indent: 2,
-	},
-	{
-		name: "Text Field Icon",
-		shortcut: "/demo/textfield",
-		indent: 2,
 	},
 	{
 		name: "Linear Progress",

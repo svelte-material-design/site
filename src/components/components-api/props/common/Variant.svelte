@@ -9,12 +9,15 @@
 
 	export let name: string;
 	export let allowedValues: string[];
+	export let defaultValue: any = undefined;
 </script>
 
 <Prop>
 	<Name>variant</Name>
 	<Signature keyword="type" {name} {allowedValues}>
-		<Default value="text" />
+		{#if defaultValue}
+			<Default value={defaultValue} />
+		{/if}
 	</Signature>
 	<Description>The variant to use.</Description>
 </Prop>

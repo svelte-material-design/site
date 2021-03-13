@@ -13,6 +13,8 @@
 		"mouseup",
 		"keydown",
 		"keyup",
+		"focusin",
+		"focusout",
 		...additionalEvents,
 	]}
 />
