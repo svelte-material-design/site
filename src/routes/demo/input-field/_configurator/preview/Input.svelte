@@ -10,12 +10,9 @@
 {#if configurations.useDatalist}
 	<Input
 		readonly={configurations.readonly ? true : undefined}
-		formnovalidate={configurations.formnovalidate ? true : undefined}
-		required={configurations.required}
 		title={configurations.title}
 		placeholder={configurations.placeholder}
 		size={configurations.size}
-		autocomplete={configurations.autocomplete}
 		pattern={configurations.pattern}
 		maxlength={configurations.maxlength}
 		minlength={configurations.minlength}
@@ -34,12 +31,9 @@
 {:else}
 	<Input
 		readonly={configurations.readonly ? true : undefined}
-		formnovalidate={configurations.formnovalidate ? true : undefined}
-		required={configurations.required}
 		title={configurations.title}
 		placeholder={configurations.placeholder}
 		size={configurations.size}
-		autocomplete={configurations.autocomplete}
 		pattern={configurations.pattern}
 		maxlength={configurations.maxlength}
 		minlength={configurations.minlength}

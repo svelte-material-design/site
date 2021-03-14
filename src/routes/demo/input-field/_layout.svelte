@@ -14,7 +14,16 @@
 <ModuleLayout module="input-field" title="InputField">
 	<slot />
 	<div slot="page">
-		<Page {segment}>
+		<Page
+			{segment}
+			options={[
+				{ label: "Input field" },
+				{
+					label: "Text area",
+					folder: "text-area",
+				},
+			]}
+		>
 			<div slot="main">
 				<Configurator />
 				<SubComponents />

@@ -8,8 +8,10 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
-	import { LABEL_TEXT } from "./constants";
-	import { Typography } from "@svelte-material-design/core/typography";
+	import {
+		BaseInputConfigurations,
+		BaseInputFieldConfigurations,
+	} from "src/components/configurator/smui-components/input";
 
 	const { configurations$ } = getConfiguratorContext();
 
@@ -49,23 +51,13 @@
 		]}
 		on:change={updateInstance}
 	/>
-	<Checkbox
-		label="Ripple"
-		bind:checked={$configurations$.ripple}
-		on:change={updateInstance}
-	/>
+</Section>
+<BaseInputFieldConfigurations bind:configurations={$configurations$} />
+<Section>
 	<Checkbox
 		label="Line Ripple"
 		bind:checked={$configurations$.lineRipple}
 		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Show label"
-		checked={!!$configurations$.label}
-		on:change={(e) => {
-			$configurations$.label = e.detail.checked ? LABEL_TEXT : undefined;
-			updateInstance();
-		}}
 	/>
 	<Checkbox
 		label="Prefix"
@@ -82,54 +74,6 @@
 			$configurations$.suffix = e.detail.checked ? ".00" : undefined;
 			updateInstance();
 		}}
-	/>
-	<Checkbox
-		label="Disabled"
-		bind:checked={$configurations$.disabled}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Invalid"
-		bind:checked={$configurations$.invalid}
-		on:change={updateInstance}
-	/>
-</Section>
-<Section>
-	<Checkbox
-		label="Helper text"
-		checked={!!$configurations$.helperText}
-		on:change={(e) => {
-			$configurations$.helperText = e.detail.checked
-				? "Helper text"
-				: undefined;
-			if (!e.detail.checked) {
-				$configurations$.helperTextAsValidationMsg = false;
-			}
-			updateInstance();
-		}}
-	/>
-	<Checkbox
-		label="Persistent helper text"
-		disabled={!$configurations$.helperText}
-		bind:checked={$configurations$.persistentHelperText}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Validation message"
-		disabled={!$configurations$.helperText}
-		bind:checked={$configurations$.helperTextAsValidationMsg}
-		on:change={(e) => {
-			$configurations$.helperText = e.detail.checked
-				? "Invalid"
-				: "Helper text";
-			updateInstance();
-		}}
-	/>
-	<Checkbox
-		label="Character Counter"
-		disabled={!$configurations$.maxlength}
-		bind:checked={$configurations$.characterCounter}
-		on:change={updateInstance}
 	/>
 </Section>
 <Section>
@@ -151,17 +95,8 @@
 		on:change={updateInstance}
 	/>
 </Section>
-<Typography variant="body2">Input configurations</Typography>
+<BaseInputConfigurations bind:configurations={$configurations$} />
 <Section>
-	<Checkbox
-		label="Max length"
-		checked={!!$configurations$.maxlength}
-		on:change={(e) => {
-			$configurations$.characterCounter = false;
-			$configurations$.maxlength = e.detail.checked ? 20 : undefined;
-			updateInstance();
-		}}
-	/>
 	<Checkbox
 		label="Min length"
 		checked={!!$configurations$.minlength}
@@ -195,35 +130,12 @@
 		}}
 	/>
 	<Checkbox
-		label="Placeholder"
-		checked={!!$configurations$.placeholder}
-		on:change={(e) => {
-			$configurations$.placeholder = e.detail.checked
-				? "Placeholder"
-				: undefined;
-			updateInstance();
-		}}
-	/>
-	<Checkbox
-		label="Title"
-		checked={!!$configurations$.title}
-		on:change={(e) => {
-			$configurations$.title = e.detail.checked ? "Title" : undefined;
-			updateInstance();
-		}}
-	/>
-	<Checkbox
 		label="Size"
 		checked={!!$configurations$.size}
 		on:change={(e) => {
 			$configurations$.size = e.detail.checked ? 10 : undefined;
 			updateInstance();
 		}}
-	/>
-	<Checkbox
-		label="Read only"
-		bind:checked={$configurations$.readonly}
-		on:change={updateInstance}
 	/>
 	<Checkbox
 		label="Use datalist"

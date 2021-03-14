@@ -1,20 +1,15 @@
 import type { InputFieldVariant } from "@svelte-material-design/core/textfield";
+import { BaseInputFieldConfigurations } from "src/components/configurator/smui-components/input/types";
 import { IconType } from "src/components/configurator/smui-components/icons";
 
-export interface InputFieldConfigurations {
-	ripple: boolean;
+export interface InputFieldConfigurations extends BaseInputFieldConfigurations {
 	lineRipple: boolean;
 	variant: InputFieldVariant;
 	type: string;
-	disabled: boolean;
 	prefix: string;
 	useDatalist: boolean;
-	readonly: boolean;
-	title: string;
-	placeholder: string;
 	size: number;
 	pattern: string;
-	maxlength: number;
 	minlength: number;
 	step: number;
 	min: number;
@@ -23,11 +18,4 @@ export interface InputFieldConfigurations {
 	leadingIcon: IconType;
 	trailingIcon: IconType;
 	clearOnTrailingIconClick: boolean;
-	characterCounter: boolean;
-	helperText: string;
-	helperTextAsValidationMsg: boolean;
-	persistentHelperText: boolean;
-	label: string;
-	value: any;
-	invalid: boolean;
 }
