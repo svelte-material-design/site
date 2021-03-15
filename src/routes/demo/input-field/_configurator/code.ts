@@ -6,6 +6,11 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
+import {
+	getBaseImports,
+	getBaseInputFieldProps,
+	getBaseInputProps,
+} from "src/components/configurator/smui-components/input/code";
 
 export function script(configurations: InputFieldConfigurations) {
 	const {
@@ -21,13 +26,12 @@ export function script(configurations: InputFieldConfigurations) {
 		${getImportCode(
 			[
 				"InputField",
-				"Content",
 				"Input",
 				[leadingIcon || trailingIcon, "Icon"],
 				[prefix, "Prefix"],
 				[suffix, "Suffix"],
-				[helperText, "HelperText"],
-				[characterCounter, "CharacterCounter"],
+				[helperText || characterCounter, "HelperText"],
+				...getBaseImports(configurations),
 			],
 			"input-field"
 		)}
@@ -48,25 +52,14 @@ export function script(configurations: InputFieldConfigurations) {
 }
 
 export function template(configurations: InputFieldConfigurations) {
-	const {
-		ripple,
-		variant,
-		lineRipple,
-		disabled,
-		helperText,
-		characterCounter,
-	} = configurations;
+	const { variant, lineRipple, helperText, characterCounter } = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "InputField",
 		props: [
-			"bind:value",
-			"bind:dirty",
-			"bind:invalid",
-			[ripple, "ripple"],
+			...getBaseInputFieldProps(configurations),
 			[lineRipple, "lineRipple"],
 			[variant !== "filled", `variant="${variant}"`],
-			[disabled, "disabled"],
 		],
 		content: source`
 			<Content>
@@ -131,12 +124,8 @@ function getContentCode(configurations: InputFieldConfigurations) {
 function getInputCode(configurations: InputFieldConfigurations) {
 	const {
 		useDatalist,
-		readonly,
-		title,
-		placeholder,
 		size,
 		pattern,
-		maxlength,
 		minlength,
 		step,
 		min,
@@ -147,17 +136,14 @@ function getInputCode(configurations: InputFieldConfigurations) {
 	const code = generateSvelteTagCode({
 		tag: "Input",
 		props: [
-			[readonly, "readonly"],
-			[title, `title="${title}"`],
-			[placeholder, `placeholder="${placeholder}"`],
-			[size, `size="${size}"`],
-			[pattern, `pattern="${pattern}"`],
-			[maxlength, `maxlength={${maxlength}}`],
+			...getBaseInputProps(configurations),
 			[minlength, `minlength={${minlength}}`],
 			[step, `step={${step}}`],
 			[min, `min={${min}}`],
 			[max, `max={${max}}`],
 			[type, `type="${type}"`],
+			[size, `size="${size}"`],
+			[pattern, `pattern="${pattern}"`],
 		],
 		content: useDatalist
 			? source`

@@ -2,10 +2,10 @@
 
 <script lang="ts">
 	import { Content } from "@svelte-material-design/core/textfield";
-	import { InputFieldConfigurations } from "../types";
+	import { TextAreaFieldConfigurations } from "../types";
 	import { ContentComponents } from ".";
 
-	export let configurations: InputFieldConfigurations;
+	export let configurations: TextAreaFieldConfigurations;
 	export let leadingClassName: string;
 	export let trailingClassName: string;
 </script>

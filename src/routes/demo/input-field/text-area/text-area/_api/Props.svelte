@@ -10,6 +10,6 @@
 
 <Props>
 	<BaseComponentProps>
-		<Dom instances={["HTMLSpanElement"]} />
+		<Dom instances={["HTMLTextAreaElement"]} />
 	</BaseComponentProps>
 </Props>

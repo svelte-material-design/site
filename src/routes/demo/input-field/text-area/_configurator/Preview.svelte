@@ -4,8 +4,15 @@
 	import { TextAreaField } from "@svelte-material-design/core/textfield";
 	import { HelperText, Content } from "./preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
+	import { onMount, tick } from "svelte";
 
 	const { configurations$ } = getConfiguratorContext();
+
+	onMount(async () => {
+		await tick();
+
+		updateInstance();
+	});
 
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };
@@ -26,7 +33,7 @@
 		{leadingClassName}
 		{trailingClassName}
 	/>
-	{#if $configurations$.helperText || $configurations$.characterCounter}
+	{#if $configurations$.helperText || ($configurations$.characterCounter && !$configurations$.useInternalCounter)}
 		<HelperText bind:configurations={$configurations$} />
 	{/if}
 </TextAreaField>

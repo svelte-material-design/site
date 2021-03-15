@@ -4,8 +4,15 @@
 	import { InputField } from "@svelte-material-design/core/textfield";
 	import { HelperText, Content } from "./preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
+	import { onMount, tick } from "svelte";
 
 	const { configurations$ } = getConfiguratorContext();
+
+	onMount(async () => {
+		await tick();
+
+		updateInstance();
+	});
 
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };

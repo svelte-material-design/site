@@ -1,33 +1,26 @@
-import type { InputFieldConfigurations } from "./types";
+import type { TextAreaFieldConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import { getIconCode } from "src/components/configurator/smui-components/icons";
+import {
+	getBaseInputProps,
+	getBaseInputFieldProps,
+	getBaseImports,
+} from "src/components/configurator/smui-components/input/code";
 
-export function script(configurations: InputFieldConfigurations) {
-	const {
-		leadingIcon,
-		trailingIcon,
-		prefix,
-		suffix,
-		helperText,
-		characterCounter,
-	} = configurations;
+export function script(configurations: TextAreaFieldConfigurations) {
+	const { helperText, characterCounter, useInternalCounter } = configurations;
 
 	const imports = removeEmptyLines(source`
 		${getImportCode(
 			[
-				"InputField",
-				"Content",
-				"Input",
-				[leadingIcon || trailingIcon, "Icon"],
-				[prefix, "Prefix"],
-				[suffix, "Suffix"],
-				[helperText, "HelperText"],
-				[characterCounter, "CharacterCounter"],
+				"TextAreaField",
+				"TextArea",
+				[helperText || (characterCounter && !useInternalCounter), "HelperText"],
+				...getBaseImports(configurations),
 			],
 			"input-field"
 		)}
@@ -47,138 +40,64 @@ export function script(configurations: InputFieldConfigurations) {
 	return code;
 }
 
-export function template(configurations: InputFieldConfigurations) {
-	const {
-		ripple,
-		variant,
-		lineRipple,
-		disabled,
-		helperText,
-		characterCounter,
-	} = configurations;
+export function template(configurations: TextAreaFieldConfigurations) {
+	const { helperText, characterCounter, useInternalCounter } = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "InputField",
-		props: [
-			"bind:value",
-			"bind:dirty",
-			"bind:invalid",
-			[ripple, "ripple"],
-			[lineRipple, "lineRipple"],
-			[variant !== "filled", `variant="${variant}"`],
-			[disabled, "disabled"],
-		],
+		props: [...getBaseInputFieldProps(configurations)],
 		content: source`
 			<Content>
 				${getContentCode(configurations)}
 			</Content>
-			${helperText || characterCounter ? getHelperTextCode(configurations) : ""}
+			${
+				helperText || (characterCounter && !useInternalCounter)
+					? getHelperTextCode(configurations)
+					: ""
+			}
 		`,
 	});
 
 	return code;
 }
 
-function getContentCode(configurations: InputFieldConfigurations) {
-	const { leadingIcon, trailingIcon, prefix, suffix, label } = configurations;
+function getContentCode(configurations: TextAreaFieldConfigurations) {
+	const { label, characterCounter, useInternalCounter } = configurations;
 
 	const labelCode = label ? `<span slot="label">${label}</span>` : "";
 
-	const leadingIconCode = leadingIcon
-		? getIconCode(
-				{},
-				{
-					type: leadingIcon,
-					position: "leading",
-				}
-		  )
-		: "";
-
-	const trailingIconCode = trailingIcon
-		? getIconCode(
-				{},
-				{
-					type: trailingIcon,
-					position: "trailing",
-				}
-		  )
-		: "";
-
-	const prefixCode = prefix
-		? source`
-		<Prefix>${prefix}</Prefix>
-	`
-		: "";
-
-	const suffixCode = suffix
-		? source`
-		<Suffix>${suffix}</Suffix>
-	`
-		: "";
-
 	const code = source`
 		${labelCode ? labelCode : ""}
-		${leadingIconCode ? leadingIconCode : ""}
-		${prefixCode ? prefixCode : ""}
 		${getInputCode(configurations)}
-		${suffixCode ? suffixCode : ""}
-		${trailingIconCode ? trailingIconCode : ""}
+		${characterCounter && useInternalCounter ? `<CharacterCounter />` : ""}
 	`;
 
 	return removeEmptyLines(code);
 }
 
-function getInputCode(configurations: InputFieldConfigurations) {
-	const {
-		useDatalist,
-		readonly,
-		title,
-		placeholder,
-		size,
-		pattern,
-		maxlength,
-		minlength,
-		step,
-		min,
-		max,
-		type,
-	} = configurations;
+function getInputCode(configurations: TextAreaFieldConfigurations) {
+	const { cols, rows, wrap } = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "Input",
 		props: [
-			[readonly, "readonly"],
-			[title, `title="${title}"`],
-			[placeholder, `placeholder="${placeholder}"`],
-			[size, `size="${size}"`],
-			[pattern, `pattern="${pattern}"`],
-			[maxlength, `maxlength={${maxlength}}`],
-			[minlength, `minlength={${minlength}}`],
-			[step, `step={${step}}`],
-			[min, `min={${min}}`],
-			[max, `max={${max}}`],
-			[type, `type="${type}"`],
+			...getBaseInputProps(configurations),
+			[wrap, `wrap="${wrap}"`],
+			[cols, `cols={${cols}}`],
+			[rows, `rows={${rows}}`],
 		],
-		content: useDatalist
-			? source`
-			<div slot="options">
-				<option value="Red Dead Redemption" />
-				<option value="Grand Theft Auto" />
-				<option value="Max Payne" />
-			</div>
-		`
-			: "",
 	});
 
 	return code;
 }
 
-function getHelperTextCode(configurations: InputFieldConfigurations) {
+function getHelperTextCode(configurations: TextAreaFieldConfigurations) {
 	const {
 		helperText,
 		characterCounter,
 		persistentHelperText,
 		helperTextAsValidationMsg,
+		useInternalCounter,
 	} = configurations;
 
 	const code = generateSvelteTagCode({
@@ -195,7 +114,7 @@ function getHelperTextCode(configurations: InputFieldConfigurations) {
 				`
 					: ""
 			}
-			${characterCounter ? `<CharacterCounter />` : ""}
+			${characterCounter && !useInternalCounter ? `<CharacterCounter />` : ""}
 		`,
 	});
 

@@ -2,9 +2,9 @@
 
 <script lang="ts">
 	import { TextArea } from "@svelte-material-design/core/textfield";
-	import { InputFieldConfigurations } from "../types";
+	import { TextAreaFieldConfigurations } from "../types";
 
-	export let configurations: InputFieldConfigurations;
+	export let configurations: TextAreaFieldConfigurations;
 </script>
 
 <TextArea

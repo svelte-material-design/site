@@ -1,7 +1,5 @@
-import {
-	StringListToFilter,
-	filterStringList,
-} from "@smui/core/common/functions";
+import type { StringList } from "@raythurnevoid/strings-filter";
+import { filterStrings } from "@raythurnevoid/strings-filter";
 import { source, stripIndent } from "common-tags";
 
 export function generateSvelteCode({
@@ -9,7 +7,7 @@ export function generateSvelteCode({
 	props = [],
 	content = "",
 }: TagCodeGenerationProps) {
-	const filteredProps = filterStringList(props) || [];
+	const filteredProps = filterStrings(props) || [];
 
 	const propsIntend = `
 			`.substr(1);
@@ -30,7 +28,7 @@ export function generateSvelteTagCode({
 	props = [],
 	content = "",
 }: TagCodeGenerationProps) {
-	const filteredProps = filterStringList(props) || [];
+	const filteredProps = filterStrings(props) || [];
 
 	let parsedProps = filteredProps.join(" ${escape}" + "\t");
 	if (parsedProps.length) parsedProps = " " + parsedProps;
@@ -101,8 +99,8 @@ export function getModulePath(name: string) {
 	return `@svelte-material-design/core/${name}`;
 }
 
-export function getImportCode(imports: StringListToFilter, moduleName: string) {
-	const importsCode = filterStringList(imports).join(",\n");
+export function getImportCode(imports: StringList, moduleName: string) {
+	const importsCode = filterStrings(imports).join(",\n");
 
 	return removeEmptyLines(source`
 		import {
@@ -113,6 +111,6 @@ export function getImportCode(imports: StringListToFilter, moduleName: string) {
 
 export interface TagCodeGenerationProps {
 	tag: string;
-	props?: StringListToFilter;
+	props?: StringList;
 	content?: string;
 }

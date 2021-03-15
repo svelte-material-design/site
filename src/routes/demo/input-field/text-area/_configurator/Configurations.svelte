@@ -17,6 +17,14 @@
 </script>
 
 <BaseInputFieldConfigurations bind:configurations={$configurations$} />
+<Section>
+	<Checkbox
+		label="Use internal counter"
+		bind:checked={$configurations$.useInternalCounter}
+		disabled={!$configurations$.characterCounter}
+		on:change={updateInstance}
+	/>
+</Section>
 <BaseInputConfigurations bind:configurations={$configurations$} />
 <Section>
 	<Checkbox

@@ -1,6 +1,3 @@
-import type { InputFieldVariant } from "@svelte-material-design/core/textfield";
-import { IconType } from "src/components/configurator/smui-components/icons";
-
 export interface BaseInputFieldConfigurations {
 	ripple: boolean;
 	disabled: boolean;
