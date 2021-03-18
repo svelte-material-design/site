@@ -130,16 +130,6 @@ export const menuItems = [
 		],
 	},
 	{
-		name: "Select Helper Text",
-		shortcut: "/demo/select",
-		indent: 2,
-	},
-	{
-		name: "Select Icon",
-		shortcut: "/demo/select",
-		indent: 2,
-	},
-	{
 		name: "Sliders",
 		route: "/demo/slider",
 		indent: 1,
