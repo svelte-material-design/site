@@ -5,6 +5,6 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>Select</ApiTitle>
+<ApiTitle>InputField</ApiTitle>
 <Props />
 <Events />

@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { Select, Option } from "@svelte-material-design/core/select";
+	import {
+		Select,
+		Option,
+		Options,
+		Content,
+		Input,
+		Icon,
+	} from "@svelte-material-design/core/select";
 	import { FormField } from "@svelte-material-design/core/form-field";
 	import { Configuration } from "src/components/configurator/atoms/configurations";
 
@@ -17,12 +24,15 @@
 	<div class="select-option">
 		<FormField>
 			<Select class="select" {nullable} {disabled} bind:value on:change>
-				<span slot="label">{label}</span>
-				<div slot="options">
-					{#each options as option (option.value)}
-						<Option value={option.value}>{option.label}</Option>
-					{/each}
-				</div>
+				<Content>
+					<span slot="label">{label}</span>
+					<Input />
+					<Options>
+						{#each options as option (option.value)}
+							<Option value={option.value}>{option.label}</Option>
+						{/each}
+					</Options>
+				</Content>
 			</Select>
 		</FormField>
 	</div>
