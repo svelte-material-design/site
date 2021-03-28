@@ -29,8 +29,7 @@
 	{#each $items$ as item, index}
 		<ListItem
 			bind:configurations={item}
-			listRole={$configurations$.role}
-			listItemsRows={$configurations$.itemsRows}
+			listConfigurations={$configurations$}
 			on:change={handleChange}
 		/>
 		{#if index === 0 && $configurations$.separator}

@@ -28,10 +28,11 @@
 	disabled={$configurations$.disabled}
 	nullable={$configurations$.nullable}
 	readonly={$configurations$.readonly}
+	title={$configurations$.title}
 	on:input={updateInstance}
 >
 	<Content bind:configurations={$configurations$} />
-	{#if $configurations$.helperText || $configurations$.characterCounter}
+	{#if $configurations$.helperText}
 		<HelperText bind:configurations={$configurations$} />
 	{/if}
 </Select>

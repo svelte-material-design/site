@@ -1,7 +1,16 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { InputField } from "@svelte-material-design/core/textfield";
+	import {
+		InputField,
+		HelperText,
+		Input,
+		Content,
+		Prefix,
+		Suffix,
+		Icon,
+		Value,
+	} from "@svelte-material-design/core/textfield";
 	import { Typography } from "@svelte-material-design/core/typography";
 
 	export let value1: number = 0;
@@ -18,23 +27,27 @@
 			bind:value={value1}
 			class="anchor-margin-option__input"
 			variant="outlined"
-			type="number"
 			density={-4}
 			{disabled}
 			on:change
 		>
-			<slot name="label1" slot="label">Top</slot>
+			<Content>
+				<slot name="label1" slot="label">Top</slot>
+				<Input type="number" />
+			</Content>
 		</InputField>
 		<InputField
 			bind:value={value2}
 			class="anchor-margin-option__input"
 			variant="outlined"
-			type="number"
 			density={-4}
 			{disabled}
 			on:change
 		>
-			<slot name="label2" slot="label">Left</slot>
+			<Content>
+				<slot name="label2" slot="label">Left</slot>
+				<Input type="number" />
+			</Content>
 		</InputField>
 	</div>
 </div>

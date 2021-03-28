@@ -4,12 +4,23 @@
 	import { Section } from "src/components/configurator/molecules/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 	import {
-		Checkbox,
-		Select,
-	} from "src/components/configurator/atoms/configurations";
-	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
+		MultipleItemsConfigurations,
+		MultipleItemControls,
+		MultipleItemSelector,
+	} from "src/components/configurator/common-options/multiple-items";
+	import {
+		CommonListItemConfigurations,
+		BaseListConfigurations,
+	} from "src/components/configurator/smui-components/list";
+	import {
+		SelectInputFieldConfigurations,
+		BaseInputConfigurations,
+	} from "src/components/configurator/smui-components/input";
+	import { Typography } from "@svelte-material-design/core/typography";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
 
-	const { configurations$ } = getConfiguratorContext();
+	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
+	const { selectedItem$ } = multipleItemsHandler;
 
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };
@@ -17,51 +28,40 @@
 </script>
 
 <Section>
-	<Select
-		bind:value={$configurations$.variant}
-		label="Variant"
-		nullable={false}
-		options={[
-			{ label: "Filled", value: "filled" },
-			{ label: "Outlined", value: "outlined" },
-		]}
-		on:change={updateInstance}
-	/>
+	<SelectInputFieldConfigurations bind:configurations={$configurations$}>
+		<svelte-fragment slot="additional">
+			<Checkbox
+				label="Show empty options"
+				bind:checked={$configurations$.showEmptyOption}
+				on:change={updateInstance}
+			/>
+			<Checkbox
+				label="Nullable"
+				bind:checked={$configurations$.nullable}
+				on:change={updateInstance}
+			/>
+			<BaseInputConfigurations bind:configurations={$configurations$} />
+		</svelte-fragment>
+	</SelectInputFieldConfigurations>
 </Section>
+<Typography variant="body2">List configurations</Typography>
 <Section>
-	<Checkbox
-		label="Ripple"
-		bind:checked={$configurations$.ripple}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Line Ripple"
-		bind:checked={$configurations$.lineRipple}
-		on:change={updateInstance}
-	/>
+	<BaseListConfigurations bind:configurations={$configurations$} />
 </Section>
-<Section>
-	<IconTypeOption
-		allowEmpty={true}
-		bind:value={$configurations$.leadingIcon}
-		label="Leading icon"
-		on:change={updateInstance}
-	/>
-</Section>
-<Section>
-	<Checkbox
-		label="Disabled"
-		bind:checked={$configurations$.disabled}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Readonly"
-		bind:checked={$configurations$.readonly}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Invalid"
-		bind:checked={$configurations$.invalid}
-		on:change={updateInstance}
-	/>
-</Section>
+<MultipleItemsConfigurations {multipleItemsHandler}>
+	<MultipleItemSelector label="Edit item" {multipleItemsHandler} />
+	<Section>
+		<CommonListItemConfigurations
+			bind:configurations={$selectedItem$}
+			listConfigurations={{
+				...$configurations$,
+				itemsStyle: "textual"
+			}}
+			labelFn={() =>
+				`Item ${$configurations$.items.findIndex(
+					(item) => item.id === $selectedItem$.id
+				)}`}
+		/>
+	</Section>
+	<MultipleItemControls {multipleItemsHandler} />
+</MultipleItemsConfigurations>

@@ -29,4 +29,8 @@
 		</svelte-fragment>
 		<ContentComponents bind:configurations />
 	</Content>
+{:else}
+	<Content>
+		<ContentComponents bind:configurations />
+	</Content>
 {/if}

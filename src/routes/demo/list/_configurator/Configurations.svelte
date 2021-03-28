@@ -8,10 +8,13 @@
 	} from "src/components/configurator/common-options/multiple-items";
 	import {
 		ListConfigurations as ListConfigurationsComponent,
-		CommonListConfigurations,
-		CommonListItemConfigurations,
 		ListItemConfigurations as ListItemConfigurationsComponent,
 	} from "./configurations";
+	import {
+		CommonListItemConfigurations,
+		BaseListConfigurations,
+		CommonSelectableListConfigurations,
+	} from "src/components/configurator/smui-components/list";
 	import { Section } from "src/components/configurator/molecules/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
@@ -22,7 +25,15 @@
 <MultipleItemsConfigurations {multipleItemsHandler}>
 	<Section>
 		<ListConfigurationsComponent bind:configurations={$configurations$} />
-		<CommonListConfigurations bind:configurations={$configurations$} />
+	</Section>
+	<Section>
+		<CommonSelectableListConfigurations
+			bind:configurations={$configurations$}
+			selectionTypeDisabled={!$configurations$.role}
+		/>
+	</Section>
+	<Section>
+		<BaseListConfigurations bind:configurations={$configurations$} />
 	</Section>
 	<MultipleItemSelector label="Edit item" {multipleItemsHandler} />
 	<Section>

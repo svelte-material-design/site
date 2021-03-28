@@ -7,11 +7,11 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
-	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
 	import {
+		SelectInputFieldConfigurations,
 		BaseInputConfigurations,
-		BaseInputFieldConfigurations,
 	} from "src/components/configurator/smui-components/input";
+	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
 
 	const { configurations$ } = getConfiguratorContext();
 
@@ -21,16 +21,6 @@
 </script>
 
 <Section>
-	<Select
-		bind:value={$configurations$.variant}
-		label="Variant"
-		nullable={false}
-		options={[
-			{ label: "Filled", value: "filled" },
-			{ label: "Outlined", value: "outlined" },
-		]}
-		on:change={updateInstance}
-	/>
 	<Select
 		bind:value={$configurations$.type}
 		label="Type"
@@ -52,50 +42,74 @@
 		on:change={updateInstance}
 	/>
 </Section>
-<BaseInputFieldConfigurations bind:configurations={$configurations$} />
 <Section>
-	<Checkbox
-		label="Line Ripple"
-		bind:checked={$configurations$.lineRipple}
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Prefix"
-		checked={!!$configurations$.prefix}
-		on:change={(e) => {
-			$configurations$.prefix = e.detail.checked ? "$" : undefined;
-			updateInstance();
-		}}
-	/>
-	<Checkbox
-		label="Suffix"
-		checked={!!$configurations$.suffix}
-		on:change={(e) => {
-			$configurations$.suffix = e.detail.checked ? ".00" : undefined;
-			updateInstance();
-		}}
-	/>
-</Section>
-<Section>
-	<IconTypeOption
-		allowEmpty={true}
-		bind:value={$configurations$.leadingIcon}
-		label="Leading icon"
-		on:change={updateInstance}
-	/>
-	<IconTypeOption
-		allowEmpty={true}
-		bind:value={$configurations$.trailingIcon}
-		label="Trailing icon"
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		label="Clear on trailing icon click"
-		bind:checked={$configurations$.clearOnTrailingIconClick}
+	<Select
+		bind:value={$configurations$.variant}
+		label="Variant"
+		nullable={false}
+		options={[
+			{ label: "Filled", value: "filled" },
+			{ label: "Outlined", value: "outlined" },
+		]}
 		on:change={updateInstance}
 	/>
 </Section>
-<BaseInputConfigurations bind:configurations={$configurations$} />
+<SelectInputFieldConfigurations bind:configurations={$configurations$}>
+	<svelte-fragment slot="helperText">
+		<Checkbox
+			label="Validation message"
+			disabled={!$configurations$.helperText}
+			bind:checked={$configurations$.helperTextAsValidationMsg}
+			on:change={(e) => {
+				$configurations$.helperText = e.detail.checked
+					? "Invalid"
+					: "Helper text";
+				updateInstance();
+			}}
+		/>
+		<Checkbox
+			label="Character Counter"
+			disabled={!$configurations$.maxlength}
+			bind:checked={$configurations$.characterCounter}
+			on:change={updateInstance}
+		/>
+	</svelte-fragment>
+	<svelte-fragment slot="additional">
+		<Checkbox
+			label="Max length"
+			checked={!!$configurations$.maxlength}
+			on:change={(e) => {
+				$configurations$.characterCounter = false;
+				$configurations$.maxlength = e.detail.checked ? 20 : undefined;
+				updateInstance();
+			}}
+		/>
+		<Checkbox
+			label="Placeholder"
+			checked={!!$configurations$.placeholder}
+			on:change={(e) => {
+				$configurations$.placeholder = e.detail.checked
+					? "Placeholder"
+					: undefined;
+				updateInstance();
+			}}
+		/>
+		<BaseInputConfigurations bind:configurations={$configurations$} />
+	</svelte-fragment>
+	<svelte-fragment slot="icons">
+		<IconTypeOption
+			allowEmpty={true}
+			bind:value={$configurations$.trailingIcon}
+			label="Trailing icon"
+			on:change={updateInstance}
+		/>
+		<Checkbox
+			label="Clear on trailing icon click"
+			bind:checked={$configurations$.clearOnTrailingIconClick}
+			on:change={updateInstance}
+		/>
+	</svelte-fragment>
+</SelectInputFieldConfigurations>
 <Section>
 	<Checkbox
 		label="Min length"
@@ -147,6 +161,24 @@
 		checked={!!$configurations$.pattern}
 		on:change={(e) => {
 			$configurations$.pattern = e.detail.checked ? "[a-z]+" : undefined;
+			updateInstance();
+		}}
+	/>
+</Section>
+<Section>
+	<Checkbox
+		label="Prefix"
+		checked={!!$configurations$.prefix}
+		on:change={(e) => {
+			$configurations$.prefix = e.detail.checked ? "$" : undefined;
+			updateInstance();
+		}}
+	/>
+	<Checkbox
+		label="Suffix"
+		checked={!!$configurations$.suffix}
+		on:change={(e) => {
+			$configurations$.suffix = e.detail.checked ? ".00" : undefined;
 			updateInstance();
 		}}
 	/>

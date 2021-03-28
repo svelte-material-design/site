@@ -4,8 +4,14 @@ import type {
 	ListItemsStyle,
 } from "@svelte-material-design/core/list";
 import type { IconType } from "../icons";
+import type {
+	Item,
+	Group,
+} from "src/components/configurator/common-options/multiple-items";
 
-export interface CommonListConfigurations {
+export interface CommonListConfigurations<
+	Item extends BaseListItemConfigurations = BaseListItemConfigurations
+> extends Group<Item> {
 	wrapFocus: boolean;
 	dense: boolean;
 	density: number;
@@ -17,22 +23,21 @@ export interface CommonListConfigurations {
 	separatorInsetLeading: boolean;
 	separatorInsetTrailing: boolean;
 	typeahead: boolean;
-	items: ListItemConfigurations[];
 }
 
-export interface ListConfigurations extends CommonListConfigurations {
+export interface ListConfigurations
+	extends CommonListConfigurations<ListItemConfigurations> {
 	selectionType?: ListSelectionType;
 	role?: ListRole;
 	nullable?: boolean;
 }
 
-export interface ListItemConfigurations {
+export interface BaseListItemConfigurations extends Item {
 	value?: string;
 	ripple?: boolean;
 	disabled?: boolean;
 	selected?: boolean;
 	href?: string;
-	label: string;
 	labelRow2?: string;
 	labelRow3?: string;
 	ariaLabel?: string;
@@ -40,6 +45,12 @@ export interface ListItemConfigurations {
 	leadingIcon?: IconType;
 	trailingIcon?: IconType;
 	leadingIconTag?: string;
+}
+
+export interface ListItemConfigurations extends BaseListItemConfigurations {
+	href?: string;
+	activated?: boolean;
+	showCloseBtn?: boolean;
 }
 
 export type ListRole = "listbox" | "radiogroup" | "group";

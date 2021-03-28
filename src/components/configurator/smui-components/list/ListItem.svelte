@@ -2,16 +2,14 @@
 
 <script lang="ts">
 	import { Radio, Checkbox } from "@svelte-material-design/core/list";
-	import type { ListItemsStyle } from "@svelte-material-design/core/list";
 	import { IconButton, Icon } from "@svelte-material-design/core/icon-button";
 	import {
 		LeadingIcon,
 		TrailingIcon,
 	} from "src/components/configurator/smui-components/icons";
-	import type { IconType } from "../icons";
 	import { getImageData } from ".";
 	import { listRoleToItemRole } from "./code";
-	import type { ListRole } from "./types";
+	import type { ListItemConfigurations, ListConfigurations } from "./types";
 
 	export let component: any;
 	export let contentComponent: any;
@@ -19,84 +17,77 @@
 	export let secondaryTextComponent: any;
 	export let iconComponent: any;
 
-	export let value: string = undefined;
-	export let disabled: boolean;
-	export let ripple: boolean;
-	export let selected: boolean = undefined;
-	export let label: string;
-	export let labelRow2: string;
-	export let labelRow3: string;
+	export let listConfigurations: ListConfigurations;
+	export let configurations: ListItemConfigurations;
 
-	export let leadingIcon: IconType;
-	export let trailingIcon: IconType;
+	let role = listRoleToItemRole(listConfigurations.role);
 
-	export let listRole: ListRole = undefined;
-	export let listItemsStyle: ListItemsStyle;
-	export let listItemsRows: number;
+	$: imageData = getImageData(listConfigurations.itemsStyle);
 
-	export let showCloseBtn: boolean;
-
-	let role = listRoleToItemRole(listRole);
-
-	$: imageData = getImageData(listItemsStyle);
+	function handleSelected() {
+		configurations = { ...configurations };
+	}
 </script>
 
 <svelte:component
 	this={component}
-	bind:selected
-	{value}
-	{disabled}
-	{ripple}
+	bind:selected={configurations.selected}
+	value={configurations.value}
+	disabled={configurations.disabled}
+	ripple={configurations.ripple}
 	{role}
 	{...$$restProps}
+	on:change={handleSelected}
 	on:change
 	let:leadingClassName
 	let:trailingClassName
 >
-	{#if listRole === "radiogroup"}
+	{#if listConfigurations.role === "radiogroup"}
 		<Radio class={leadingClassName} />
-	{:else if listRole === "group"}
+	{:else if listConfigurations.role === "group"}
 		<Checkbox class={leadingClassName} />
 	{/if}
-	{#if listItemsStyle === "image" || listItemsStyle === "avatar" || listItemsStyle === "thumbnail" || listItemsStyle === "video"}
+	{#if listConfigurations.itemsStyle === "image" || listConfigurations.itemsStyle === "avatar" || listConfigurations.itemsStyle === "thumbnail" || listConfigurations.itemsStyle === "video"}
 		<img
 			class={leadingClassName}
 			alt={imageData.imageTxt}
 			src={imageData.imageSrc}
 		/>
-	{:else if listItemsStyle === "icon" || listItemsStyle === "textual"}
+	{:else if listConfigurations.itemsStyle === "icon" || listConfigurations.itemsStyle === "textual"}
 		<LeadingIcon
-			class={leadingClassName}
-			type={leadingIcon}
+			class={configurations.leadingClassName}
+			type={configurations.leadingIcon}
 			component={iconComponent}
 		/>
 	{/if}
 	<slot />
-	{#if label}
+	{#if configurations.label}
 		<svelte:component this={contentComponent}>
-			{#if listItemsRows === 1}
-				{label}
-			{:else if listItemsRows > 1}
-				<svelte:component this={primaryTextComponent}>{label}</svelte:component>
+			{#if listConfigurations.itemsRows === 1}
+				{configurations.label}
+			{:else if listConfigurations.itemsRows > 1}
+				<svelte:component this={primaryTextComponent}
+					>{configurations.label}</svelte:component
+				>
 				<svelte:component this={secondaryTextComponent}>
-					{labelRow2}
+					{configurations.labelRow2}
 				</svelte:component>
 			{/if}
-			{#if listItemsRows === 3}
+			{#if listConfigurations.itemsRows === 3}
 				<svelte:component this={secondaryTextComponent}>
-					{labelRow3}
+					{configurations.labelRow3}
 				</svelte:component>
 			{/if}
 		</svelte:component>
 	{/if}
-	{#if trailingIcon}
+	{#if configurations.trailingIcon}
 		<TrailingIcon
-			class={trailingClassName}
-			type={trailingIcon}
+			class={configurations.trailingClassName}
+			type={configurations.trailingIcon}
 			component={iconComponent}
 		/>
 	{/if}
-	{#if showCloseBtn}
+	{#if configurations.showCloseBtn}
 		<IconButton class={trailingClassName}><Icon>close</Icon></IconButton>
 	{/if}
 </svelte:component>

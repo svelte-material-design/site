@@ -1,25 +1,14 @@
-import type { SelectVariant } from "@svelte-material-design/core/select";
-import { IconType } from "src/components/configurator/smui-components/icons";
+import type { SelectInputFieldConfigurations } from "src/components/configurator/smui-components/input/types";
 import type {
-	Item,
-	Group,
-} from "src/components/configurator/common-options/multiple-items";
+	CommonListConfigurations,
+	BaseListItemConfigurations,
+} from "src/components/configurator/smui-components/list/types";
 
-export interface SelectConfigurations extends Group<OptionConfigurations> {
-	ripple: boolean;
-	lineRipple: boolean;
-	variant: SelectVariant;
-	leadingIcon: IconType;
-	value: string;
+export interface SelectConfigurations
+	extends CommonListConfigurations<OptionConfigurations>,
+		SelectInputFieldConfigurations {
 	nullable: boolean;
-	disabled: boolean;
-	readonly: boolean;
-	invalid: boolean;
-	required: boolean;
-	label: string;
+	showEmptyOption: boolean;
 }
 
-export interface OptionConfigurations extends Item {
-	value: string;
-	disabled: boolean;
-}
+export interface OptionConfigurations extends BaseListItemConfigurations {}

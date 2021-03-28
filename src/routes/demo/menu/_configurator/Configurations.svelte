@@ -8,6 +8,7 @@
 	import {
 		CommonSelectableListConfigurations,
 		CommonListItemConfigurations,
+		BaseListConfigurations,
 	} from "src/components/configurator/smui-components/list";
 	import {
 		MultipleItemsConfigurations,
@@ -28,6 +29,9 @@
 			onlySingleSelection
 			bind:configurations={$configurations$}
 		/>
+	</Section>
+	<Section>
+		<BaseListConfigurations bind:configurations={$configurations$} />
 	</Section>
 	<Typography variant="body2">Menu surface configurations</Typography>
 	<Section>

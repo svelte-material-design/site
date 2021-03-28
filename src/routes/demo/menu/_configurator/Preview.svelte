@@ -54,9 +54,7 @@
 				{#each $items$ as item, index}
 					<MenuItem
 						bind:configurations={item}
-						listItemsRows={$configurations$.itemsRows}
-						listItemsStyle={$configurations$.itemsStyle}
-						showSelectionGroup={$configurations$.showSelectionGroup}
+						menuConfigurations={$configurations$}
 						on:change={handleChange}
 					/>
 					{#if index === 0 && $configurations$.separator}
@@ -72,9 +70,7 @@
 			{#each $items$ as item, index}
 				<MenuItem
 					bind:configurations={item}
-					listItemsRows={$configurations$.itemsRows}
-					listItemsStyle={$configurations$.itemsStyle}
-					showSelectionGroup={$configurations$.showSelectionGroup}
+					menuConfigurations={$configurations$}
 					on:change={handleChange}
 				/>
 				{#if index === 0 && $configurations$.separator}

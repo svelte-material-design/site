@@ -43,7 +43,7 @@
 	]}
 	on:change={updateInstance}
 />
-<CommonListConfigurations bind:configurations listRole={configurations.role} />
+<CommonListConfigurations bind:configurations />
 <Checkbox
 	label="Nullable"
 	bind:checked={configurations.nullable}

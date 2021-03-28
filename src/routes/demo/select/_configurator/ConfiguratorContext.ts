@@ -8,6 +8,7 @@ export function createConfiguratorStore() {
 		ripple: true,
 		lineRipple: true,
 		label: "Label",
+		showEmptyOption: true,
 	} as SelectConfigurations;
 
 	const configurations$ = writable(initialConfigurations);
@@ -17,8 +18,15 @@ export function createConfiguratorStore() {
 		return ({
 			id: value,
 			value,
+			ripple: true,
 			disabled: false,
+			readonly: false,
+			selected: false,
 			label: `Item ${index}`,
+			labelRow2: `Secondary text`,
+			labelRow3: `Third line`,
+			trailingIcon: undefined,
+			leadingIcon: undefined,
 		} as Partial<OptionConfigurations>) as OptionConfigurations;
 	}
 

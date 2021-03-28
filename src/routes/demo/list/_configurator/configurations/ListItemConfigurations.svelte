@@ -21,7 +21,7 @@
 	});
 
 	function handleListRoleUpdate() {
-		if (listConfigurations.role === "list") {
+		if (!listConfigurations.role) {
 			configurations.selected = false;
 		} else {
 			useHref = false;
@@ -46,13 +46,13 @@
 <Checkbox
 	bind:checked={configurations.selected}
 	label="Selected"
-	disabled={listConfigurations.role === "list"}
+	disabled={!listConfigurations.role}
 	on:change={updateInstance}
 />
 <Checkbox
 	bind:checked={useHref}
 	label="Href"
-	disabled={listConfigurations.role !== "list"}
+	disabled={!!listConfigurations.role}
 	on:change={handleLinkChange}
 	on:change={updateInstance}
 />
