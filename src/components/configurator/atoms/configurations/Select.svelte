@@ -5,7 +5,7 @@
 		Options,
 		Content,
 		Input,
-		Icon,
+		OptionContent,
 	} from "@svelte-material-design/core/select";
 	import { FormField } from "@svelte-material-design/core/form-field";
 	import { Configuration } from "src/components/configurator/atoms/configurations";
@@ -29,7 +29,11 @@
 					<Input />
 					<Options>
 						{#each options as option (option.value)}
-							<Option value={option.value}>{option.label}</Option>
+							<Option value={option.value}>
+								<OptionContent>
+									{option.label}
+								</OptionContent>
+							</Option>
 						{/each}
 					</Options>
 				</Content>

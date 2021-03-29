@@ -1,15 +1,17 @@
 import type { InputFieldVariant } from "@svelte-material-design/core/textfield";
-import { IconType } from "src/components/configurator/smui-components/icons";
+import type { IconType } from "src/components/configurator/smui-components/icons";
+import type { Group } from "src/components/configurator/common-options/multiple-items";
+import type {
+	BaseListItemConfigurations,
+	ListConfigurations,
+} from "src/components/configurator/smui-components/list/types";
+import type { MenuConfigurations } from "src/routes/demo/menu/_configurator/types";
 
 export interface BaseInputFieldConfigurations {
 	ripple: boolean;
 	disabled: boolean;
 	readonly: boolean;
 	title: string;
-	placeholder: string;
-	size: number;
-	maxlength: number;
-	characterCounter: boolean;
 	helperText: string;
 	helperTextAsValidationMsg: boolean;
 	persistentHelperText: boolean;
@@ -18,17 +20,7 @@ export interface BaseInputFieldConfigurations {
 	invalid: boolean;
 }
 
-export interface SelectInputFieldConfigurations
-	extends BaseInputFieldConfigurations {
-	lineRipple: boolean;
-	variant: InputFieldVariant;
-	leadingIcon: IconType;
-	trailingIcon: IconType;
-	clearOnTrailingIconClick: boolean;
-}
-
-export interface InputFieldConfigurations
-	extends SelectInputFieldConfigurations {
+export interface InputFieldConfigurations extends BaseInputFieldConfigurations {
 	type: string;
 	prefix: string;
 	useDatalist: boolean;
@@ -39,4 +31,50 @@ export interface InputFieldConfigurations
 	min: number;
 	max: number;
 	suffix: string;
+	trailingIcon: IconType;
+	placeholder: string;
+	maxlength: number;
+	characterCounter: boolean;
+	lineRipple: boolean;
+	variant: InputFieldVariant;
+	leadingIcon: IconType;
+	clearOnTrailingIconClick: boolean;
 }
+
+export interface TextAreaFieldConfigurations
+	extends BaseInputFieldConfigurations,
+		Pick<
+			InputFieldConfigurations,
+			"maxlength" | "characterCounter" | "placeholder"
+		> {
+	rows: number;
+	cols: number;
+	wrap: string;
+	resizable: boolean;
+	useInternalCounter: boolean;
+}
+
+export interface SelectConfigurations
+	extends BaseInputFieldConfigurations,
+		Pick<
+			InputFieldConfigurations,
+			"maxlength" | "lineRipple" | "variant" | "leadingIcon"
+		>,
+		Pick<
+			ListConfigurations,
+			| "nullable"
+			| "wrapFocus"
+			| "dense"
+			| "itemsStyle"
+			| "itemsRows"
+			| "separator"
+			| "separatorInsetPadding"
+			| "separatorInsetLeading"
+			| "separatorInsetTrailing"
+		>,
+		Group<OptionConfigurations> {
+	value: string;
+	showEmptyOption: boolean;
+}
+
+export interface OptionConfigurations extends BaseListItemConfigurations {}

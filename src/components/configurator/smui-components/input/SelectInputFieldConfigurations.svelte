@@ -8,9 +8,9 @@
 	} from "src/components/configurator/atoms/configurations";
 	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
 	import { BaseInputFieldConfigurations } from "src/components/configurator/smui-components/input";
-	import type { SelectInputFieldConfigurations } from "src/components/configurator/smui-components/input/types";
+	import type { SelectConfigurations } from "src/components/configurator/smui-components/input/types";
 
-	export let configurations: SelectInputFieldConfigurations;
+	export let configurations: SelectConfigurations;
 
 	function updateInstance() {
 		configurations = { ...configurations };

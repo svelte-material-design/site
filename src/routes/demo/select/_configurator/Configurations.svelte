@@ -31,7 +31,7 @@
 	<SelectInputFieldConfigurations bind:configurations={$configurations$}>
 		<svelte-fragment slot="additional">
 			<Checkbox
-				label="Show empty options"
+				label="Show empty option"
 				bind:checked={$configurations$.showEmptyOption}
 				on:change={updateInstance}
 			/>
@@ -55,7 +55,7 @@
 			bind:configurations={$selectedItem$}
 			listConfigurations={{
 				...$configurations$,
-				itemsStyle: "textual"
+				itemsStyle: "textual",
 			}}
 			labelFn={() =>
 				`Item ${$configurations$.items.findIndex(

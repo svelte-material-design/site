@@ -44,7 +44,6 @@ export interface BaseListItemConfigurations extends Item {
 	activated?: boolean;
 	leadingIcon?: IconType;
 	trailingIcon?: IconType;
-	leadingIconTag?: string;
 }
 
 export interface ListItemConfigurations extends BaseListItemConfigurations {

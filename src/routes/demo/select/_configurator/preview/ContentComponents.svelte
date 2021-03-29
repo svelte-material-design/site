@@ -8,7 +8,9 @@
 		OptionContent,
 		PrimaryText,
 		SecondaryText,
-		OptionIcon,
+		OptionLeadingIcon,
+		OptionTrailingIcon,
+		Separator,
 	} from "@svelte-material-design/core/select";
 	import { SelectConfigurations } from "../types";
 	import { ListItem } from "src/components/configurator/smui-components/list";
@@ -17,22 +19,30 @@
 </script>
 
 <Input />
-<Options>
+<Options itemsRows={configurations.itemsRows} dense={configurations.dense}>
 	{#if configurations.showEmptyOption}
 		<Option value="" />
 	{/if}
-	{#each configurations.items as item}
+	{#each configurations.items as item, index}
 		<ListItem
 			component={Option}
 			contentComponent={OptionContent}
 			primaryTextComponent={PrimaryText}
 			secondaryTextComponent={SecondaryText}
-			iconComponent={OptionIcon}
+			leadingIconComponent={OptionLeadingIcon}
+			trailingIconComponent={OptionTrailingIcon}
 			bind:configurations={item}
 			listConfigurations={{
 				...configurations,
 				itemsStyle: "textual",
 			}}
 		/>
+		{#if index === 0 && configurations.separator}
+			<Separator
+				insetPadding={configurations.separatorInsetPadding}
+				insetLeading={configurations.separatorInsetLeading}
+				insetTrailing={configurations.separatorInsetTrailing}
+			/>
+		{/if}
 	{/each}
 </Options>

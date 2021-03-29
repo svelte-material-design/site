@@ -1,9 +1,9 @@
 import { StringListToFilter } from "@smui/core/common/functions";
 import { MenuSurfaceConfigurations } from "./types";
 
-export function getMenuSurfaceCodeProps(
-	configurations: MenuSurfaceConfigurations
-): StringListToFilter {
+export function getMenuSurfacePropsMap(
+	configurations: Partial<MenuSurfaceConfigurations>
+) {
 	const {
 		anchorCorner,
 		anchorFlipRtl,
@@ -14,20 +14,42 @@ export function getMenuSurfaceCodeProps(
 		anchor,
 	} = configurations;
 
-	return [
-		"bind:open",
-		[anchorCorner !== "bottom-start", `anchorCorner="${anchorCorner}"`],
-		[anchorFlipRtl === false, "anchorFlipRtl={false}"],
-		[quickOpen, "quickOpen"],
-		[variant, `variant={${variant}}`],
-		[
+	const map = {
+		open: "bind:open",
+		anchorCorner: [
+			anchorCorner !== "bottom-start",
+			`anchorCorner="${anchorCorner}"`,
+		],
+		anchorFlipRtl: [anchorFlipRtl === false, "anchorFlipRtl={false}"],
+		quickOpen: [quickOpen, "quickOpen"],
+		variant: [variant, `variant={${variant}}`],
+		anchorMargin: [
 			anchorMargin,
 			`anchorMargin={${
 				anchorMargin && JSON.stringify(anchorMargin).replaceAll(`"`, "")
 			}}`,
 		],
-		[anchor, `anchor={{x: ${anchor?.x}, y: ${anchor?.y}}}`],
-		[hoisted, "hoisted"],
+		anchor: [anchor, `anchor={{x: ${anchor?.x}, y: ${anchor?.y}}}`],
+		hoisted: [hoisted, "hoisted"],
+	};
+
+	return map as {
+		[k in keyof typeof map]: StringListToFilter[0];
+	};
+}
+export function getMenuSurfaceCodeProps(
+	configurations: MenuSurfaceConfigurations
+): StringListToFilter {
+	const map = getMenuSurfacePropsMap(configurations);
+
+	return [
+		map.open,
+		map.anchorCorner,
+		map.anchorFlipRtl,
+		map.variant,
+		map.anchorMargin,
+		map.anchor,
+		map.hoisted,
 	];
 }
 

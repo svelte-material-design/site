@@ -7,9 +7,9 @@ import {
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 import {
-	getBaseImports,
-	getBaseInputFieldProps,
-	getBaseInputProps,
+	getInputFieldImports,
+	getHelperTextCode,
+	getInputFieldPropsMap,
 } from "src/components/configurator/smui-components/input/code";
 
 export function script(configurations: InputFieldConfigurations) {
@@ -31,7 +31,7 @@ export function script(configurations: InputFieldConfigurations) {
 				[prefix, "Prefix"],
 				[suffix, "Suffix"],
 				[helperText || characterCounter, "HelperText"],
-				...getBaseImports(configurations),
+				...getInputFieldImports(configurations),
 			],
 			"input-field"
 		)}
@@ -52,15 +52,13 @@ export function script(configurations: InputFieldConfigurations) {
 }
 
 export function template(configurations: InputFieldConfigurations) {
-	const { variant, lineRipple, helperText, characterCounter } = configurations;
+	const { helperText, characterCounter } = configurations;
+
+	const map = getInputFieldPropsMap(configurations);
 
 	const code = generateSvelteTagCode({
 		tag: "InputField",
-		props: [
-			...getBaseInputFieldProps(configurations),
-			[lineRipple, "lineRipple"],
-			[variant !== "filled", `variant="${variant}"`],
-		],
+		props: Object.values(map),
 		content: source`
 			<Content>
 				${getContentCode(configurations)}
@@ -122,29 +120,13 @@ function getContentCode(configurations: InputFieldConfigurations) {
 }
 
 function getInputCode(configurations: InputFieldConfigurations) {
-	const {
-		useDatalist,
-		size,
-		pattern,
-		minlength,
-		step,
-		min,
-		max,
-		type,
-	} = configurations;
+	const { useDatalist } = configurations;
+
+	const map = getInputFieldPropsMap(configurations);
 
 	const code = generateSvelteTagCode({
 		tag: "Input",
-		props: [
-			...getBaseInputProps(configurations),
-			[minlength, `minlength={${minlength}}`],
-			[step, `step={${step}}`],
-			[min, `min={${min}}`],
-			[max, `max={${max}}`],
-			[type, `type="${type}"`],
-			[size, `size="${size}"`],
-			[pattern, `pattern="${pattern}"`],
-		],
+		props: Object.values(map),
 		content: useDatalist
 			? source`
 			<div slot="options">
@@ -154,35 +136,6 @@ function getInputCode(configurations: InputFieldConfigurations) {
 			</div>
 		`
 			: "",
-	});
-
-	return code;
-}
-
-function getHelperTextCode(configurations: InputFieldConfigurations) {
-	const {
-		helperText,
-		characterCounter,
-		persistentHelperText,
-		helperTextAsValidationMsg,
-	} = configurations;
-
-	const code = generateSvelteTagCode({
-		tag: "HelperText",
-		props: [
-			[persistentHelperText, "persistent"],
-			[helperTextAsValidationMsg, "validationMsg"],
-		],
-		content: `
-			${
-				helperText
-					? source`
-					<span slot="label">${helperText}</span>
-				`
-					: ""
-			}
-			${characterCounter ? `<CharacterCounter />` : ""}
-		`,
 	});
 
 	return code;

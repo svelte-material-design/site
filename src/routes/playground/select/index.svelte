@@ -5,7 +5,7 @@
 		Options,
 		Content,
 		Input,
-		Icon,
+		LeadingIcon,
 	} from "@svelte-material-design/core/select";
 
 	export let value: string;
@@ -16,7 +16,7 @@
 		<span slot="label">Test</span>
 		<Input />
 		<svelte-fragment slot="leadingIcon">
-			<Icon>close</Icon>
+			<LeadingIcon>close</LeadingIcon>
 		</svelte-fragment>
 		<Options>
 			<Option value="" />

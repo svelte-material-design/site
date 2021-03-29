@@ -13,7 +13,7 @@
 	import { onMount } from "svelte";
 
 	export let labelFn: () => string = undefined;
-	export let listConfigurations: CommonListConfigurations;
+	export let listConfigurations: Partial<CommonListConfigurations>;
 	export let configurations: ListItemConfigurations;
 	export let listRole: ListRole;
 

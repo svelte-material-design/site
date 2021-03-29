@@ -6,7 +6,8 @@
 		Content,
 		PrimaryText,
 		SecondaryText,
-		Icon,
+		LeadingIcon,
+		TrailingIcon,
 	} from "@svelte-material-design/core/menu";
 	import { SelectionGroupIcon } from "@svelte-material-design/core/menu";
 	import { ListItem } from "src/components/configurator/smui-components/list";
@@ -21,7 +22,8 @@
 	contentComponent={Content}
 	primaryTextComponent={PrimaryText}
 	secondaryTextComponent={SecondaryText}
-	iconComponent={Icon}
+	leadingIconComponent={LeadingIcon}
+	trailingIconComponent={TrailingIcon}
 	bind:configurations
 	listConfigurations={menuConfigurations}
 	on:change

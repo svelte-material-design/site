@@ -6,8 +6,8 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { onMount } from "svelte";
-	import { CommonListConfigurations } from ".";
-	import type { ListConfigurations, ListRole } from "./types";
+	import { AdditionalListConfigurations } from ".";
+	import type { ListConfigurations } from "./types";
 
 	export let configurations: ListConfigurations;
 	export let selectionTypeDisabled: boolean = false;
@@ -43,7 +43,7 @@
 	]}
 	on:change={updateInstance}
 />
-<CommonListConfigurations bind:configurations />
+<AdditionalListConfigurations bind:configurations />
 <Checkbox
 	label="Nullable"
 	bind:checked={configurations.nullable}

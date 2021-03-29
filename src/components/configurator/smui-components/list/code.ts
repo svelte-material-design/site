@@ -18,9 +18,7 @@ import type {
 	ListRole,
 } from "./types";
 
-export function getListProps(
-	configurations: ListConfigurations
-): StringListToFilter {
+export function getListPropsMap(configurations: Partial<ListConfigurations>) {
 	const {
 		role,
 		orientation,
@@ -33,22 +31,48 @@ export function getListProps(
 		typeahead,
 	} = configurations;
 
+	const map = {
+		value: [role, `bind:value`],
+		selectionType: [selectionType, `selectionType="${selectionType}"`],
+		role: [role, `role="${role}"`],
+		itemsStyle: [itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
+		wrapFocus: [wrapFocus, `wrapFocus`],
+		dense: [dense, `dense`],
+		orientation: [
+			orientation && orientation !== "vertical",
+			`orientation="${orientation}"`,
+		],
+		itemsRows: [itemsRows > 1, `itemsRows={${itemsRows}}`],
+		nullable: [!nullable, `nullable={${nullable}}`],
+		typeahead: [typeahead, `typeahead`],
+	};
+
+	return map as {
+		[k in keyof typeof map]: StringListToFilter[0];
+	};
+}
+
+export function getListProps(
+	configurations: Partial<ListConfigurations>
+): StringListToFilter {
+	const map = getListPropsMap(configurations);
+
 	return [
-		[role, `bind:value`],
-		[selectionType, `selectionType="${selectionType}"`],
-		[role, `role="${role}"`],
-		[itemsStyle !== "textual", `itemsStyle="${itemsStyle}"`],
-		[wrapFocus, `wrapFocus`],
-		[dense, `dense`],
-		[orientation && orientation !== "vertical", `orientation="${orientation}"`],
-		[itemsRows > 1, `itemsRows={${itemsRows}}`],
-		[!nullable, `nullable={${nullable}}`],
-		[typeahead, `typeahead`],
+		map.value,
+		map.selectionType,
+		map.role,
+		map.itemsStyle,
+		map.wrapFocus,
+		map.dense,
+		map.orientation,
+		map.itemsRows,
+		map.nullable,
+		map.typeahead,
 	];
 }
 
 export function getItemProps(
-	listConfigurations: ListConfigurations,
+	listConfigurations: Partial<ListConfigurations>,
 	configurations: ListItemConfigurations
 ): StringListToFilter {
 	const {
@@ -72,20 +96,19 @@ export function getItemProps(
 		[activated, "activated"],
 		[href, `href="${href}"`],
 		[role === "group" || role === "radiogroup", "let:selected"],
-		[leadingIcon || type !== "textual", "let:leadingClassName"],
-		[trailingIcon, "let:trailingClassName"],
 	];
 }
 
 export function createItemLeadingContentCode(
-	listConfigurations: ListConfigurations,
-	configurations: ListItemConfigurations
+	listConfigurations: Partial<ListConfigurations>,
+	configurations: ListItemConfigurations,
+	options?: ItemCodeOptions
 ) {
-	const { leadingIcon, leadingIconTag } = configurations;
+	const { leadingIcon } = configurations;
 	const { role, itemsStyle } = listConfigurations;
 	const { imageTxt, imageSrc } = getImageData(itemsStyle) ?? {};
 
-	const tag = leadingIconTag ?? "Icon";
+	const tag = options?.leadingIconTag ?? "LeadingIcon";
 
 	let code: string;
 
@@ -109,7 +132,6 @@ export function createItemLeadingContentCode(
 				{
 					type: leadingIcon,
 					position: "leading",
-					additionalProps: ["class={leadingClassName}"],
 				}
 			)}
 		`;
@@ -129,9 +151,12 @@ export function createItemLeadingContentCode(
 }
 
 export function createItemTrailingContentCode(
-	configurations: ListItemConfigurations
+	configurations: ListItemConfigurations,
+	options?: ItemCodeOptions
 ) {
 	const { trailingIcon } = configurations;
+
+	const tag = options?.trailingIconTag ?? "TrailingIcon";
 
 	let code: string;
 
@@ -139,12 +164,12 @@ export function createItemTrailingContentCode(
 		code = `
 			${getIconCode(
 				{
+					tag,
 					content: trailingIcon === "material-icon" ? "event" : undefined,
 				},
 				{
 					type: trailingIcon,
 					position: "trailing",
-					additionalProps: ["class={trailingClassName}"],
 				}
 			)}
 		`;
@@ -156,15 +181,17 @@ export function createItemTrailingContentCode(
 }
 
 export function createItemContentCode(
-	listConfigurations: ListConfigurations,
-	configurations: ListItemConfigurations
+	listConfigurations: Partial<ListConfigurations>,
+	configurations: ListItemConfigurations,
+	options?: ItemCodeOptions
 ) {
 	const { label, labelRow2, labelRow3 } = configurations;
 	const { itemsRows } = listConfigurations;
 
+	const contentTag = options?.contentTag ?? "Content";
 	const code = source`
-		${createItemLeadingContentCode(listConfigurations, configurations)}
-		<Content>
+		${createItemLeadingContentCode(listConfigurations, configurations, options)}
+		<${contentTag}>
 			${itemsRows === 1 ? label : ""}
 			${
 				itemsRows > 1
@@ -175,28 +202,34 @@ export function createItemContentCode(
 					: ""
 			}
 			${itemsRows === 3 ? `<SecondaryText>${labelRow3}</SecondaryText>` : ""}
-		</Content>
-		${createItemTrailingContentCode(configurations)}
+		</${contentTag}>
+		${createItemTrailingContentCode(configurations, options)}
 	`;
 
 	return code;
 }
 
 export function createItemCode(
-	options: TagCodeGenerationProps,
-	listConfigurations: ListConfigurations,
-	configurations: ListItemConfigurations
+	listConfigurations: Partial<ListConfigurations>,
+	configurations: ListItemConfigurations,
+	options?: ItemCodeOptions
 ) {
 	const code = generateSvelteTagCode({
-		...options,
-		props: getItemProps(listConfigurations, configurations),
-		content: createItemContentCode(listConfigurations, configurations),
+		tag: options.tag ?? "Item",
+		props: configurations
+			? getItemProps(listConfigurations, configurations)
+			: undefined,
+		content: configurations
+			? createItemContentCode(listConfigurations, configurations, options)
+			: undefined,
 	});
 
 	return source(code);
 }
 
-export function createSeparatorCode(configurations: ListConfigurations) {
+export function createSeparatorCode(
+	configurations: Partial<ListConfigurations>
+) {
 	const {
 		separatorInsetLeading,
 		separatorInsetPadding,
@@ -215,17 +248,14 @@ export function createSeparatorCode(configurations: ListConfigurations) {
 	return code;
 }
 
-export function createListContentCode(configurations: ListConfigurations) {
+export function createListContentCode(
+	configurations: Partial<ListConfigurations>,
+	itemsOptions?: ItemCodeOptions
+) {
 	const { items } = configurations;
 
 	let itemsCode = items.map((item) => {
-		return createItemCode(
-			{
-				tag: "Item",
-			},
-			configurations,
-			item
-		);
+		return createItemCode(configurations, item, itemsOptions);
 	});
 
 	if (configurations.separator && itemsCode.length > 1) {
@@ -242,13 +272,13 @@ export function createListContentCode(configurations: ListConfigurations) {
 }
 
 export function createListCode(
-	options: Pick<TagCodeGenerationProps, "tag">,
-	configurations: ListConfigurations
+	configurations: Partial<ListConfigurations>,
+	options?: ListCodeOptions
 ) {
 	const code = generateSvelteTagCode({
-		...options,
-		props: getListProps(configurations),
-		content: createListContentCode(configurations),
+		tag: options?.tag ?? "List",
+		props: options?.props ?? getListProps(configurations),
+		content: createListContentCode(configurations, options?.itemsOptions),
 	});
 
 	return removeEmptyLines(code);
@@ -295,4 +325,15 @@ export function listRoleToItemRole(role: ListRole): ListItemRole {
 		case "listbox":
 			return "option";
 	}
+}
+
+interface ListCodeOptions
+	extends Pick<TagCodeGenerationProps, "tag" | "props"> {
+	itemsOptions: ItemCodeOptions;
+}
+
+interface ItemCodeOptions extends Pick<TagCodeGenerationProps, "tag"> {
+	contentTag: string;
+	leadingIconTag: string;
+	trailingIconTag: string;
 }

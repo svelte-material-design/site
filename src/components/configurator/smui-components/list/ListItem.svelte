@@ -15,7 +15,8 @@
 	export let contentComponent: any;
 	export let primaryTextComponent: any;
 	export let secondaryTextComponent: any;
-	export let iconComponent: any;
+	export let leadingIconComponent: any;
+	export let trailingIconComponent: any;
 
 	export let listConfigurations: ListConfigurations;
 	export let configurations: ListItemConfigurations;
@@ -57,7 +58,7 @@
 		<LeadingIcon
 			class={configurations.leadingClassName}
 			type={configurations.leadingIcon}
-			component={iconComponent}
+			component={leadingIconComponent}
 		/>
 	{/if}
 	<slot />
@@ -66,9 +67,9 @@
 			{#if listConfigurations.itemsRows === 1}
 				{configurations.label}
 			{:else if listConfigurations.itemsRows > 1}
-				<svelte:component this={primaryTextComponent}
-					>{configurations.label}</svelte:component
-				>
+				<svelte:component this={primaryTextComponent}>
+					{configurations.label}
+				</svelte:component>
 				<svelte:component this={secondaryTextComponent}>
 					{configurations.labelRow2}
 				</svelte:component>
@@ -84,7 +85,7 @@
 		<TrailingIcon
 			class={configurations.trailingClassName}
 			type={configurations.trailingIcon}
-			component={iconComponent}
+			component={trailingIconComponent}
 		/>
 	{/if}
 	{#if configurations.showCloseBtn}

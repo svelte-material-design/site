@@ -9,6 +9,7 @@ export function createConfiguratorStore() {
 		lineRipple: true,
 		label: "Label",
 		showEmptyOption: true,
+		nullable: true,
 	} as SelectConfigurations;
 
 	const configurations$ = writable(initialConfigurations);

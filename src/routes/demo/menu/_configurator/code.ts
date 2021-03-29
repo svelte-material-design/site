@@ -5,14 +5,9 @@ import {
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import {
-	getMenuSurfaceCodeProps,
-	getMenuSurfaceParentProps,
-} from "src/components/configurator/smui-components/menu-surface";
-import {
-	createListContentCode,
-	getListProps,
-} from "src/components/configurator/smui-components/list";
+import { getMenuSurfaceParentProps } from "src/components/configurator/smui-components/menu-surface";
+import { createListContentCode } from "src/components/configurator/smui-components/list";
+import { getMenuPropsMap } from "src/components/configurator/smui-components/menu/code";
 
 export function script(configurations: MenuConfigurations) {
 	const { separator, role, itemsRows, selectionType } = configurations;
@@ -71,13 +66,11 @@ export function template(configurations: MenuConfigurations) {
 }
 
 function getMenuCode(configurations: MenuConfigurations) {
+	const map = getMenuPropsMap(configurations);
+
 	const code = generateSvelteTagCode({
 		tag: "Menu",
-		props: [
-			"bind:value",
-			...getMenuSurfaceCodeProps(configurations),
-			...getListProps(configurations),
-		],
+		props: Object.values(map),
 		content: createListContentCode(configurations),
 	});
 

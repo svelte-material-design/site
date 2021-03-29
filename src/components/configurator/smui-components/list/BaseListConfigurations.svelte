@@ -6,14 +6,10 @@
 	import { onMount } from "svelte";
 	import type { CommonListConfigurations } from "./types";
 
-	export let configurations: CommonListConfigurations;
-
-	let horizontal: boolean;
+	export let configurations: Partial<CommonListConfigurations>;
 
 	onMount(() => {
 		handleSeparatorUpdate();
-		handleOrientationChange();
-		updateInstance();
 	});
 
 	function handleSeparatorUpdate() {
@@ -22,10 +18,6 @@
 			configurations.separatorInsetLeading = false;
 			configurations.separatorInsetTrailing = false;
 		}
-	}
-
-	async function handleOrientationChange() {
-		configurations.orientation = horizontal ? "horizontal" : undefined;
 	}
 
 	function updateInstance() {
@@ -42,19 +34,8 @@
 	on:input={updateInstance}
 />
 <Checkbox
-	label="Wrap focus"
-	bind:checked={configurations.wrapFocus}
-	on:change={updateInstance}
-/>
-<Checkbox
 	label="Dense"
 	bind:checked={configurations.dense}
-	on:change={updateInstance}
-/>
-<Checkbox
-	bind:checked={horizontal}
-	label="Horizontal"
-	on:change={handleOrientationChange}
 	on:change={updateInstance}
 />
 <Checkbox

@@ -4,7 +4,8 @@
 	import {
 		Content,
 		Item,
-		Icon,
+		LeadingIcon,
+		TrailingIcon,
 		PrimaryText,
 		SecondaryText,
 	} from "@smui/core/list";
@@ -20,7 +21,8 @@
 	contentComponent={Content}
 	primaryTextComponent={PrimaryText}
 	secondaryTextComponent={SecondaryText}
-	iconComponent={Icon}
+	leadingIconComponent={LeadingIcon}
+	trailingIconComponent={TrailingIcon}
 	bind:configurations
 	{listConfigurations}
 	on:change

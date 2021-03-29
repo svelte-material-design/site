@@ -6,9 +6,10 @@ import {
 	removeEmptyLines,
 } from "src/components/configurator";
 import {
-	getBaseInputProps,
-	getBaseInputFieldProps,
-	getBaseImports,
+	getInputFieldImports,
+	getHelperTextCode,
+	getSelectPropsMap,
+	getTextAreaPropsMap,
 } from "src/components/configurator/smui-components/input/code";
 
 export function script(configurations: TextAreaFieldConfigurations) {
@@ -20,7 +21,7 @@ export function script(configurations: TextAreaFieldConfigurations) {
 				"TextAreaField",
 				"TextArea",
 				[helperText || (characterCounter && !useInternalCounter), "HelperText"],
-				...getBaseImports(configurations),
+				...getInputFieldImports(configurations),
 			],
 			"input-field"
 		)}
@@ -43,9 +44,11 @@ export function script(configurations: TextAreaFieldConfigurations) {
 export function template(configurations: TextAreaFieldConfigurations) {
 	const { helperText, characterCounter, useInternalCounter } = configurations;
 
+	const map = getTextAreaPropsMap(configurations);
+
 	const code = generateSvelteTagCode({
 		tag: "InputField",
-		props: [...getBaseInputFieldProps(configurations)],
+		props: Object.values(map),
 		content: source`
 			<Content>
 				${getContentCode(configurations)}
@@ -76,46 +79,11 @@ function getContentCode(configurations: TextAreaFieldConfigurations) {
 }
 
 function getInputCode(configurations: TextAreaFieldConfigurations) {
-	const { cols, rows, wrap } = configurations;
+	const map = getSelectPropsMap(configurations);
 
 	const code = generateSvelteTagCode({
 		tag: "Input",
-		props: [
-			...getBaseInputProps(configurations),
-			[wrap, `wrap="${wrap}"`],
-			[cols, `cols={${cols}}`],
-			[rows, `rows={${rows}}`],
-		],
-	});
-
-	return code;
-}
-
-function getHelperTextCode(configurations: TextAreaFieldConfigurations) {
-	const {
-		helperText,
-		characterCounter,
-		persistentHelperText,
-		helperTextAsValidationMsg,
-		useInternalCounter,
-	} = configurations;
-
-	const code = generateSvelteTagCode({
-		tag: "HelperText",
-		props: [
-			[persistentHelperText, "persistent"],
-			[helperTextAsValidationMsg, "validationMsg"],
-		],
-		content: `
-			${
-				helperText
-					? source`
-					<span slot="label">${helperText}</span>
-				`
-					: ""
-			}
-			${characterCounter && !useInternalCounter ? `<CharacterCounter />` : ""}
-		`,
+		props: Object.values(map),
 	});
 
 	return code;
