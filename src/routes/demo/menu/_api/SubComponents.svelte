@@ -11,16 +11,14 @@
 </script>
 
 <SubComponents>
+	<SubComponent>
+		<Tag href="selection-group">SelectionGroup</Tag>
+		<Description>
+			Menus can contain a group of list items that can represent the selection
+			state of elements within the group.
+		</Description>
+	</SubComponent>
 	<CommonListSubComponents>
-		<svelte-fragment slot="list">
-			<SubComponent>
-				<Tag href="selection-group">SelectionGroup</Tag>
-				<Description>
-					Menus can contain a group of list items that can represent the
-					selection state of elements within the group.
-				</Description>
-			</SubComponent>
-		</svelte-fragment>
 		<svelte-fragment slot="item">
 			<SubComponent indentation={2}>
 				<Tag href="selection-group-icon">SelectionGroupIcon</Tag>

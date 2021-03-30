@@ -5,34 +5,32 @@
 		SubComponent,
 		Tag,
 		Description,
+		SubComponents,
 	} from "src/components/components-api/sub-components";
 	import { BaseInputFieldSubComponents } from "src/components/components-api/sub-components/common/input";
+	import { CommonListSubComponents } from "src/components/components-api/sub-components/common/lists";
 </script>
 
-<BaseInputFieldSubComponents
-	componentName="InputField"
-	inputComponentName="Input"
-	inputComponentHref="input"
-	inputElement="input"
->
-	<svelte-fragment slot="content">
-		<SubComponent indentation={1}>
-			<Tag href="prefix">Prefix</Tag>
-			<Description>
-				A content placed before the <code>Input</code> component. No more than 1
-				must be used.
-			</Description>
-		</SubComponent>
-		<SubComponent indentation={1}>
-			<Tag href="suffix">Suffix</Tag>
-			<Description>
-				A content placed after the <code>Input</code> component. No more than 1 must
-				be used.
-			</Description>
-		</SubComponent>
-		<SubComponent indentation={1}>
-			<Tag href="icon">Icon</Tag>
-			<Description>Can be used as both leading or trailing icon.</Description>
-		</SubComponent>
-	</svelte-fragment>
-</BaseInputFieldSubComponents>
+<SubComponents>
+	<BaseInputFieldSubComponents
+		componentName="Select"
+		inputComponentName="Input"
+		inputComponentHref="input"
+		inputElement="input"
+	>
+		<svelte-fragment slot="content">
+			<SubComponent indentation={2}>
+				<Tag href="selection-group">Options</Tag>
+				<Description>A list containing the select options.</Description>
+			</SubComponent>
+			<CommonListSubComponents
+				indentation={3}
+				componentItemName="Option"
+				contentComponentName="OptionContent"
+				leadingIconComponentName="OptionLeadingIcon"
+				trailingIconComponentName="OptionTrailingIcon"
+				listItemRefLabel="option"
+			/>
+		</svelte-fragment>
+	</BaseInputFieldSubComponents>
+</SubComponents>
