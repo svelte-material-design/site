@@ -1,7 +1,6 @@
-import type { ListItemConfigurations, ListConfigurations } from "./types";
+import type { ListConfigurations } from "./types";
 import { source } from "common-tags";
 import { getImportCode, removeEmptyLines } from "src/components/configurator";
-import { getIconCode } from "src/components/configurator/smui-components/icons";
 import { createListCode } from "src/components/configurator/smui-components/list";
 
 export function script(configurations: ListConfigurations) {
@@ -46,12 +45,7 @@ export function script(configurations: ListConfigurations) {
 }
 
 export function template(configurations: ListConfigurations) {
-	const code = createListCode(
-		{
-			tag: "List",
-		},
-		configurations
-	);
+	const code = createListCode(configurations);
 
 	return code;
 }
