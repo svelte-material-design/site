@@ -8,6 +8,7 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
+	import { Group } from ".";
 
 	export let multi: boolean = false;
 	export let prop: string = "selected";
@@ -53,17 +54,4 @@
 		</slot>
 	</Description>
 </Prop>
-<Prop>
-	<Name>group</Name>
-	<Signature keyword="SelectionGroupBinding" />
-	<Description
-		>This prop is useful when you want to redirect all related items to
-		{#if groupComponent}
-			a
-			<code>{`<${groupComponent} />`}</code>
-			or
-		{/if}
-		another
-		<code>{"<SelectionGroup />"}</code> component.</Description
-	>
-</Prop>
+<Group {groupComponent} />

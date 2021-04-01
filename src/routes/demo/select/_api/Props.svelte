@@ -2,34 +2,42 @@
 
 <script lang="ts">
 	import {
+		Props,
 		Prop,
 		Default,
 		Name,
 		Signature,
 		Description,
 	} from "src/components/components-api/props";
-	import { Variant } from "src/components/components-api/props/common";
-	import { BaseInputFieldProps } from "src/components/components-api/props/common/input";
+	import { Group } from "src/components/components-api/props/common/groups";
+	import {
+		BaseInputFieldProps,
+		InputFieldWithVariantProps,
+		InputFieldCommonProps,
+	} from "src/components/components-api/props/common/input";
 </script>
 
-<BaseInputFieldProps>
-	<Variant name="InputFieldVariant" allowedValues={["filled", "outlined"]} />
+<Props>
+	<BaseInputFieldProps />
+	<InputFieldWithVariantProps />
 	<Prop>
-		<Name>lineRipple</Name>
+		<Name>readonly</Name>
 		<Signature keyword="boolean">
-			<Default value={true} />
+			<Default value={false} />
 		</Signature>
 		<Description>
-			When <code>true</code>, the line ripple is showed.
+			Proxies the <code>readonly</code> standard HTML <code>input</code> attribute.
 		</Description>
 	</Prop>
 	<Prop>
-		<Name>type</Name>
-		<Signature keyword="type" name="InputFieldType">
-			<Default value={"text"} />
+		<Name>required</Name>
+		<Signature keyword="boolean">
+			<Default value={false} />
 		</Signature>
 		<Description>
-			When the input is invalid it's <code>true</code>.
+			Proxies the <code>required</code> standard HTML <code>input</code> attribute.
 		</Description>
 	</Prop>
-</BaseInputFieldProps>
+	<Group />
+	<InputFieldCommonProps />
+</Props>

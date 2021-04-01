@@ -20,7 +20,7 @@
 	>
 		<svelte-fragment slot="content">
 			<SubComponent indentation={2}>
-				<Tag href="selection-group">Options</Tag>
+				<Tag href="selection-group" mandatory>Options</Tag>
 				<Description>A list containing the select options.</Description>
 			</SubComponent>
 			<CommonListSubComponents

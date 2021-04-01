@@ -22,11 +22,7 @@
 			Assign a value to the component.
 			{#if native}
 				The value is passed to the inner native <code>
-					{typeof native === "string"
-						? { native }
-						: native
-						? "input"
-						: undefined}
+					{typeof native === "string" ? native : native ? "input" : undefined}
 				</code> element.
 			{/if}
 			{#if groupComponent}

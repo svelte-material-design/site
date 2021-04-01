@@ -5,12 +5,10 @@
 	import {
 		BaseForwardedEvents,
 		OnChange,
-		OnInput,
 	} from "src/components/components-api/events/common";
 </script>
 
 <Events>
-	<OnChange prop="value" name="OnInputFieldChange" native />
-	<OnInput prop="value" name="OnInputFieldInput" />
+	<OnChange prop="value" name="OnSelectChange" native />
 </Events>
 <BaseForwardedEvents />

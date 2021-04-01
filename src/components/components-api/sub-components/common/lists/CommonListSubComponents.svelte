@@ -25,10 +25,10 @@
 
 <SubComponent {indentation}>
 	<Tag href="item">{componentItemName}</Tag>
-	<Description
-		>A{listItemRefLabelStartWithVocal ? "n" : ""}
-		{listItemRefLabel}.</Description
-	>
+	<Description>
+		A{listItemRefLabelStartWithVocal ? "n" : ""}
+		{listItemRefLabel}.
+	</Description>
 </SubComponent>
 <SubComponent indentation={indentation + 1}>
 	<Tag href="content">{contentComponentName}</Tag>

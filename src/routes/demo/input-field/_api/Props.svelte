@@ -2,27 +2,25 @@
 
 <script lang="ts">
 	import {
+		Props,
 		Prop,
 		Default,
 		Name,
 		Signature,
 		Description,
 	} from "src/components/components-api/props";
-	import { Variant } from "src/components/components-api/props/common";
-	import { BaseInputFieldProps } from "src/components/components-api/props/common/input";
+	import {
+		BaseInputFieldProps,
+		InputFieldWithVariantProps,
+		WritableInputFieldProps,
+		InputFieldCommonProps,
+	} from "src/components/components-api/props/common/input";
 </script>
 
-<BaseInputFieldProps>
-	<Variant name="InputFieldVariant" allowedValues={["filled", "outlined"]} />
-	<Prop>
-		<Name>lineRipple</Name>
-		<Signature keyword="boolean">
-			<Default value={true} />
-		</Signature>
-		<Description>
-			When <code>true</code>, the line ripple is showed.
-		</Description>
-	</Prop>
+<Props>
+	<BaseInputFieldProps />
+	<InputFieldWithVariantProps />
+	<WritableInputFieldProps />
 	<Prop>
 		<Name>type</Name>
 		<Signature keyword="type" name="InputFieldType">
@@ -32,4 +30,5 @@
 			When the input is invalid it's <code>true</code>.
 		</Description>
 	</Prop>
-</BaseInputFieldProps>
+	<InputFieldCommonProps />
+</Props>

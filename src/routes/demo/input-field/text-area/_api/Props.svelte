@@ -1,7 +1,16 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { BaseInputFieldProps } from "src/components/components-api/props/common/input";
+	import { Props } from "src/components/components-api/props";
+	import {
+		BaseInputFieldProps,
+		WritableInputFieldProps,
+		InputFieldCommonProps,
+	} from "src/components/components-api/props/common/input";
 </script>
 
-<BaseInputFieldProps nativeInputElement="textarea" />
+<Props>
+	<BaseInputFieldProps />
+	<WritableInputFieldProps />
+	<InputFieldCommonProps nativeInputElement="textarea" />
+</Props>
