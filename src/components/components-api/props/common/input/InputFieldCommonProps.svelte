@@ -12,7 +12,7 @@
 	native={nativeInputElement}
 	instances={["HTMLDivElement"]}
 >
-	<div slot="valueSignature">
+	<slot name="valueSignature" slot="valueSignature">
 		<Signature keyword="type" name="Value" />
-	</div>
+	</slot>
 </CommonInputProps>

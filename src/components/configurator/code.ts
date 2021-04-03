@@ -109,6 +109,21 @@ export function getImportCode(imports: StringList, moduleName: string) {
 	`);
 }
 
+export function slot(props: SlotProps) {
+	const { content, slot } = props;
+	const tag = props.tag ?? "svelte:fragment";
+	return source`
+	<${tag}${slot ? ` slot="${slot}"` : ""}>
+		${content}
+	</${tag}>`;
+}
+
+export interface SlotProps {
+	tag?: string;
+	content: string;
+	slot?: string;
+}
+
 export interface TagCodeGenerationProps {
 	tag: string;
 	props?: StringList;

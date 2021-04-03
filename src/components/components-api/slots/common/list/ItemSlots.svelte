@@ -19,6 +19,13 @@
 		<Description>Item's content.</Description>
 		<SlotProps>
 			<SlotProp>
+				<SlotPropName>selected</SlotPropName>
+				<Signature keyword="boolean" />
+				<Description>
+					It's <code>true</code> when selected.
+				</Description>
+			</SlotProp>
+			<SlotProp>
 				<SlotPropName>leadingClassName</SlotPropName>
 				<Signature keyword="string" />
 				<Description>

@@ -12,10 +12,6 @@
 	} from "src/components/components-api/sub-components/common";
 
 	export let indentation: number = 0;
-	export let componentItemName: string = "Item";
-	export let contentComponentName: string = "Content";
-	export let leadingIconComponentName: string = "LeadingIcon";
-	export let trailingIconComponentName: string = "TrailingIcon";
 	export let listItemRefLabel = "list item";
 
 	const listItemRefLabelStartWithVocal = ["a", "e", "i", "o", "u"].includes(
@@ -24,14 +20,18 @@
 </script>
 
 <SubComponent {indentation}>
-	<Tag href="item">{componentItemName}</Tag>
+	<slot name="itemTag">
+		<Tag href="item">Item</Tag>
+	</slot>
 	<Description>
 		A{listItemRefLabelStartWithVocal ? "n" : ""}
 		{listItemRefLabel}.
 	</Description>
 </SubComponent>
 <SubComponent indentation={indentation + 1}>
-	<Tag href="content">{contentComponentName}</Tag>
+	<slot name="contentTag">
+		<Tag href="content">Content</Tag>
+	</slot>
 	<Description>The content for the {listItemRefLabel}.</Description>
 </SubComponent>
 <SubComponent indentation={indentation + 2}>
@@ -48,14 +48,12 @@
 		greater than 1. Each secondary text will fill a row.
 	</Description>
 </SubComponent>
-<LeadingIcon
-	indentation={indentation + 2}
-	componentName={leadingIconComponentName}
-/>
-<TrailingIcon
-	indentation={indentation + 2}
-	componentName={trailingIconComponentName}
-/>
+<LeadingIcon indentation={indentation + 2}>
+	<slot name="leadingIconTag" slot="tag" />
+</LeadingIcon>
+<TrailingIcon indentation={indentation + 2}>
+	<slot name="trailingIconTag" slot="tag" />
+</TrailingIcon>
 <slot name="item" />
 <SubComponent {indentation}>
 	<Tag href="separator">Separator</Tag>

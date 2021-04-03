@@ -8,10 +8,11 @@
 	} from "src/components/components-api/sub-components";
 
 	export let indentation: number = undefined;
-	export let componentName: string = "TrailingIcon";
 </script>
 
 <SubComponent {indentation}>
-	<Tag href="icon">{componentName}</Tag>
+	<slot name="tag">
+		<Tag href="trailing-icon">TrailingIcon</Tag>
+	</slot>
 	<Description>Can be used as a trailing icon.</Description>
 </SubComponent>

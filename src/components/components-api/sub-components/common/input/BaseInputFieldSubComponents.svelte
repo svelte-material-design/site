@@ -25,6 +25,7 @@
 	<Tag href={inputComponentHref} mandatory>{inputComponentName}</Tag>
 	<Description>
 		Wraps the native <code>{inputElement}</code> element.
+		<slot name="inputAdditionalDescription" />
 	</Description>
 </SubComponent>
 <slot name="content" />

@@ -18,7 +18,7 @@
 	export let leadingIconComponent: any;
 	export let trailingIconComponent: any;
 
-	export let listConfigurations: ListConfigurations;
+	export let listConfigurations: Partial<ListConfigurations>;
 	export let configurations: ListItemConfigurations;
 
 	let role = listRoleToItemRole(listConfigurations.role);

@@ -9,6 +9,7 @@
 		Signature,
 	} from "src/components/components-api/props";
 	import { Group } from ".";
+	import { Value } from "src/components/components-api/props/common";
 
 	export let multi: boolean = false;
 	export let prop: string = "selected";
@@ -16,42 +17,39 @@
 	export let configurable: boolean = false;
 </script>
 
-<Prop>
-	{#if configurable}
-		<Prop>
-			<Name>selectionType</Name>
-			<Signature
-				keyword="type"
-				name="ListSelectionType"
-				allowedValues={multi ? ["single", "multi"] : ["single"]}
-			/>
-			<Description>
-				Define the <code>{`<${groupComponent} />`}</code> selection behaviour.
-			</Description>
-		</Prop>
-		<Prop>
-			<Name>nullable</Name>
-			<Signature keyword="boolean">
-				<Default value={true} />
-			</Signature>
-			<Description>
-				When <code>false</code> the <code>{`<${groupComponent} />`}</code> will force
-				at least 1 item selected.
-			</Description>
-		</Prop>
-	{/if}
-	<Name readwrite>value</Name>
-	<slot name="valueSignature">
+{#if configurable}
+	<Prop>
+		<Name>selectionType</Name>
+		<Signature
+			keyword="type"
+			name="ListSelectionType"
+			allowedValues={multi ? ["single", "multi"] : ["single"]}
+		/>
+		<Description>
+			Define the <code>{`<${groupComponent} />`}</code> selection behaviour.
+		</Description>
+	</Prop>
+	<Prop>
+		<Name>nullable</Name>
+		<Signature keyword="boolean">
+			<Default value={true} />
+		</Signature>
+		<Description>
+			When <code>false</code> the <code>{`<${groupComponent} />`}</code> will force
+			at least 1 item selected.
+		</Description>
+	</Prop>
+{/if}
+<Value readwrite>
+	<slot name="valueSignature" slot="signature">
 		<Signature keyword={multi ? "string[]" : "string"}>
 			{#if multi}
 				<Default value={[]} />
 			{/if}
 		</Signature>
 	</slot>
-	<Description>
-		<slot name="valueDescription">
-			The value{#if multi}(s){/if} of the {prop} item{#if multi}s{/if}.
-		</slot>
-	</Description>
-</Prop>
+	<slot name="valueDescription">
+		The value{#if multi}(s){/if} of the {prop} item{#if multi}s{/if}.
+	</slot>
+</Value>
 <Group {groupComponent} />

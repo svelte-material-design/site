@@ -12,6 +12,7 @@
 	import {
 		BaseComponentProps,
 		Dom,
+		Value,
 	} from "src/components/components-api/props/common";
 </script>
 
@@ -36,15 +37,14 @@
 			to the <code>min</code> prop.</Description
 		>
 	</Prop>
-	<Prop>
-		<Name readwrite>value</Name>
-		<Signature keyword="number">
-			<Default><code>min</code>.</Default>
-		</Signature>
-		<Description
-			>The current value of the <code>{`<Thumb />`}</code>.</Description
-		>
-	</Prop>
+	<Value readwrite>
+		<svelte-fragment slot="signature">
+			<Signature keyword="number">
+				<Default><code>min</code>.</Default>
+			</Signature>
+		</svelte-fragment>
+		The current value of the <code>{`<Thumb />`}</code>.
+	</Value>
 	<BaseComponentProps>
 		<Dom instances={["HTMLInputElement"]} />
 	</BaseComponentProps>

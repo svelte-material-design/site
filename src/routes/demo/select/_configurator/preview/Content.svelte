@@ -1,7 +1,10 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Content, Icon } from "@svelte-material-design/core/select";
+	import {
+		Content,
+		LeadingIcon as SelectLeadingIcon,
+	} from "@svelte-material-design/core/select";
 	import { SelectConfigurations } from "../types";
 	import { ContentComponents } from ".";
 	import { LeadingIcon } from "src/components/configurator/smui-components/icons";
@@ -12,8 +15,11 @@
 {#if configurations.label && configurations.leadingIcon}
 	<Content>
 		<span slot="label">{configurations.label}</span>
-		<svelte-fragment slot="leadingIcon">
-			<LeadingIcon component={Icon} type={configurations.leadingIcon} />
+		<svelte-fragment slot="leading">
+			<LeadingIcon
+				component={SelectLeadingIcon}
+				type={configurations.leadingIcon}
+			/>
 		</svelte-fragment>
 		<ContentComponents bind:configurations />
 	</Content>
@@ -24,8 +30,11 @@
 	</Content>
 {:else if configurations.leadingIcon}
 	<Content>
-		<svelte-fragment slot="leadingIcon">
-			<LeadingIcon component={Icon} type={configurations.leadingIcon} />
+		<svelte-fragment slot="leading">
+			<LeadingIcon
+				component={SelectLeadingIcon}
+				type={configurations.leadingIcon}
+			/>
 		</svelte-fragment>
 		<ContentComponents bind:configurations />
 	</Content>

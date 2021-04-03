@@ -19,7 +19,7 @@
 
 <Disabled />
 {#if $$slots.valueSignature}
-	<Value {groupComponent} {native}>
+	<Value {groupComponent} {native} readwrite>
 		<slot slot="signature" name="valueSignature">
 			<Signature keyword="string" />
 		</slot>

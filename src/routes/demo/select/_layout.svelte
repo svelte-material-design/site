@@ -8,22 +8,13 @@
 
 	export let segment: string;
 
-	setLayoutPath(`${getLayoutPath()}/input-field`);
+	setLayoutPath(`${getLayoutPath()}/select`);
 </script>
 
-<ModuleLayout module="input-field" title="InputField">
+<ModuleLayout module="select" title="Select">
 	<slot />
 	<div slot="page">
-		<Page
-			{segment}
-			options={[
-				{ label: "Input field" },
-				{
-					label: "Text area",
-					folder: "text-area",
-				},
-			]}
-		>
+		<Page {segment}>
 			<div slot="main">
 				<Configurator />
 				<SubComponents />

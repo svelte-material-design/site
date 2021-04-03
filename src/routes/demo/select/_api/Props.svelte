@@ -39,5 +39,9 @@
 		</Description>
 	</Prop>
 	<Group />
-	<InputFieldCommonProps />
+	<InputFieldCommonProps>
+		<svelte-fragment slot="valueSignature">
+			<Signature keyword="string" />
+		</svelte-fragment>
+	</InputFieldCommonProps>
 </Props>

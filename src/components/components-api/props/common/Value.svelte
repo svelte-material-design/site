@@ -10,10 +10,11 @@
 
 	export let groupComponent: string = undefined;
 	export let native: boolean | string = false;
+	export let readwrite: boolean = false;
 </script>
 
 <Prop>
-	<Name readwrite>value</Name>
+	<Name {readwrite}>value</Name>
 	<slot name="signature">
 		<Signature keyword="string" />
 	</slot>

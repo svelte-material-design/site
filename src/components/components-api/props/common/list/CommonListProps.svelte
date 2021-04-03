@@ -8,6 +8,7 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/props";
+	import { BaseListProps } from ".";
 	import { CommonGroupsProps } from "../groups";
 
 	export let tag: string = "List";
@@ -62,24 +63,7 @@
 		showed. Cannot be higher than 3 or lower than 1.</Description
 	>
 </Prop>
-<Prop>
-	<Name>dense</Name>
-	<Signature keyword="boolean">
-		<Default value={false} />
-	</Signature>
-	<Description>If <code>true</code>, the items appear more compact.</Description
-	>
-</Prop>
-<Prop>
-	<Name>wrapFocus</Name>
-	<Signature keyword="boolean">
-		<Default value={true} />
-	</Signature>
-	<Description
-		>Sets the list to allow the up arrow on the first element to focus the last
-		element of the list and vice versa.</Description
-	>
-</Prop>
+<BaseListProps />
 <Prop>
 	<Name>typeahead</Name>
 	<Signature keyword="boolean">

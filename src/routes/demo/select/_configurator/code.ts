@@ -4,6 +4,7 @@ import {
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,
+	slot,
 } from "src/components/configurator";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 import {
@@ -71,13 +72,18 @@ function getContentCode(configurations: SelectConfigurations) {
 	const labelCode = label ? `<span slot="label">${label}</span>` : "";
 
 	const leadingIconCode = leadingIcon
-		? getIconCode(
-				{},
-				{
-					type: leadingIcon,
-					position: "leading",
-				}
-		  )
+		? slot({
+				content: getIconCode(
+					{
+						tag: "LeadingIcon",
+					},
+					{
+						type: leadingIcon,
+						position: "leading",
+					}
+				),
+				slot: "leading",
+		  })
 		: "";
 
 	const code = source`

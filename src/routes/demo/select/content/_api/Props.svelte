@@ -10,6 +10,6 @@
 
 <Props>
 	<BaseComponentProps>
-		<Dom instances={["HTMLLabelElement"]} />
+		<Dom instances={["HTMLDivElement"]} />
 	</BaseComponentProps>
 </Props>
