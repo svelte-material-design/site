@@ -26,6 +26,13 @@
 				</Description>
 			</SlotProp>
 			<SlotProp>
+				<SlotPropName>activated</SlotPropName>
+				<Signature keyword="boolean" />
+				<Description>
+					It's <code>true</code> when activated.
+				</Description>
+			</SlotProp>
+			<SlotProp>
 				<SlotPropName>leadingClassName</SlotPropName>
 				<Signature keyword="string" />
 				<Description>
