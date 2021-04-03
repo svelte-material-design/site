@@ -2,8 +2,10 @@
 
 <script lang="ts">
 	import { BaseItemProps, Activated } from ".";
+
+	export let elementType: string = undefined;
 </script>
 
-<BaseItemProps>
+<BaseItemProps {elementType}>
 	<Activated />
 </BaseItemProps>

@@ -4,4 +4,4 @@
 	import { BaseItemProps } from "src/components/components-api/props/common/list";
 </script>
 
-<BaseItemProps />
+<BaseItemProps elementType="HTMLLiElement" />

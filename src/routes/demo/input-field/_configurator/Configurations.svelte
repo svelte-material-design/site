@@ -42,18 +42,6 @@
 		on:change={updateInstance}
 	/>
 </Section>
-<Section>
-	<Select
-		bind:value={$configurations$.variant}
-		label="Variant"
-		nullable={false}
-		options={[
-			{ label: "Filled", value: "filled" },
-			{ label: "Outlined", value: "outlined" },
-		]}
-		on:change={updateInstance}
-	/>
-</Section>
 <SelectInputFieldConfigurations bind:configurations={$configurations$}>
 	<svelte-fragment slot="helperText">
 		<Checkbox

@@ -4,4 +4,4 @@
 	import { ItemProps } from "src/components/components-api/props/common/list";
 </script>
 
-<ItemProps />
+<ItemProps elementType="HTMLLiElement" />

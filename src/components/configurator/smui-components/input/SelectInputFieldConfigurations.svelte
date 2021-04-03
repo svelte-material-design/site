@@ -9,8 +9,14 @@
 	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
 	import { BaseInputFieldConfigurations } from "src/components/configurator/smui-components/input";
 	import type { SelectConfigurations } from "src/components/configurator/smui-components/input/types";
+	import { onMount, tick } from "svelte";
 
-	export let configurations: SelectConfigurations;
+	export let configurations: Partial<SelectConfigurations>;
+
+	onMount(async () => {
+		await tick();
+		updateInstance();
+	});
 
 	function updateInstance() {
 		configurations = { ...configurations };

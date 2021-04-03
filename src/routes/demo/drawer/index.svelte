@@ -1,13 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import DrawerConfigurator from "./_DrawerConfigurator.svelte";
+	import { Props, Events } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Drawers - SMUI</title>
-</svelte:head>
-
-<section>
-	<h2>Drawers</h2>
-
-	<DrawerConfigurator />
-</section>
+<ApiTitle>Drawer</ApiTitle>
+<Props />
+<Events />

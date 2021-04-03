@@ -5,7 +5,6 @@ import type {
 	BaseListItemConfigurations,
 	ListConfigurations,
 } from "src/components/configurator/smui-components/list/types";
-import type { MenuConfigurations } from "src/routes/demo/menu/_configurator/types";
 
 export interface BaseInputFieldConfigurations {
 	ripple: boolean;

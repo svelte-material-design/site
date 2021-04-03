@@ -215,7 +215,7 @@ export function createItemCode(
 	options?: ItemCodeOptions
 ) {
 	const code = generateSvelteTagCode({
-		tag: options.tag ?? "Item",
+		tag: options?.tag ?? "Item",
 		props: configurations
 			? getItemProps(listConfigurations, configurations)
 			: undefined,

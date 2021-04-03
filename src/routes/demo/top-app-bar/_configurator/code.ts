@@ -1,9 +1,6 @@
 import { source } from "common-tags";
-import {
-	generateSvelteTagCode,
-	getImportCode,
-	removeEmptyLines,
-} from "src/components/configurator";
+import { getImportCode, removeEmptyLines } from "src/components/configurator";
+import { createTopAppBarTagCode } from "src/components/configurator/smui-components/top-app-bar/code";
 import type { TopAppBarConfigurations } from "./types";
 
 export function script(props: TopAppBarConfigurations) {
@@ -32,21 +29,13 @@ export function commonTopAppBarImport() {
 	];
 }
 
-export function template(props: TopAppBarConfigurations) {
-	const { variant, prominent, dense, color } = props;
-
-	const code = generateSvelteTagCode({
-		tag: "TopAppBar",
-		props: [
-			[variant !== "standard", `variant=${variant}`],
-			[color !== "primary", `color=${color}`],
-			[prominent, `prominent`],
-			[dense, `dense`],
-		],
-		content: getContentCode(props),
+export function template(configurations: TopAppBarConfigurations) {
+	const code = createTopAppBarTagCode({
+		configurations,
+		content: getContentCode(configurations),
 	});
 
-	return removeEmptyLines(code);
+	return code;
 }
 
 function getContentCode(props: TopAppBarConfigurations) {
