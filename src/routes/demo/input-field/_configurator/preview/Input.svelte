@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { Input } from "@svelte-material-design/core/textfield";
-	import { InputFieldConfigurations } from "../types";
+	import type { InputFieldConfigurations } from "../types";
 
 	export let configurations: InputFieldConfigurations;
 </script>

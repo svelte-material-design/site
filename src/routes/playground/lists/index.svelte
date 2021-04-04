@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { List, Item, Content, Icon } from "@svelte-material-design/core/list";
+	import { List, Item, Content, LeadingIcon, TrailingIcon } from "@svelte-material-design/core/list";
 	import { getImgPlaceholderSrc } from "src/functions/imgPlacehoder";
 
 	let avatarImg = getImgPlaceholderSrc({
@@ -11,17 +11,17 @@
 
 <List>
 	<Item let:leadingClassName let:trailingClassName>
-		<Icon class={leadingClassName}>alarm</Icon>
+		<LeadingIcon class={leadingClassName}>alarm</LeadingIcon>
 		<Content>1</Content>
-		<Icon class={trailingClassName}>alarm</Icon>
+		<TrailingIcon class={trailingClassName}>alarm</TrailingIcon>
 	</Item>
 	<Item let:leadingClassName let:trailingClassName>
-		<Icon class={leadingClassName} type="svg"
-			><circle cx="12" cy="12" r="12" /></Icon
+		<LeadingIcon class={leadingClassName} type="svg"
+			><circle cx="12" cy="12" r="12" /></LeadingIcon
 		>
 		<Content>2</Content>
-		<Icon class={trailingClassName} type="svg"
-			><circle cx="12" cy="12" r="12" /></Icon
+		<TrailingIcon class={trailingClassName} type="svg"
+			><circle cx="12" cy="12" r="12" /></TrailingIcon
 		>
 	</Item>
 </List>

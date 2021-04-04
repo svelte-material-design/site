@@ -8,7 +8,7 @@
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { items$ } = multipleItemsHandler;
 
-	function handleChange() {
+	async function handleChange() {
 		multipleItemsHandler.updateSelectedInstance();
 	}
 </script>
@@ -30,7 +30,6 @@
 		<ListItem
 			bind:configurations={item}
 			listConfigurations={$configurations$}
-			on:change={handleChange}
 		/>
 		{#if index === 0 && $configurations$.separator}
 			<Separator

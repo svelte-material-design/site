@@ -1,8 +1,11 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { HelperText, CharacterCounter } from "@svelte-material-design/core/textfield";
-	import { InputFieldConfigurations } from "../types";
+	import {
+		HelperText,
+		CharacterCounter,
+	} from "@svelte-material-design/core/textfield";
+	import type { InputFieldConfigurations } from "../types";
 
 	export let configurations: InputFieldConfigurations;
 </script>

@@ -1,9 +1,14 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Prefix, Suffix, Icon } from "@svelte-material-design/core/textfield";
+	import {
+		Prefix,
+		Suffix,
+		LeadingIcon as InputFieldLeadingIcon,
+		TrailingIcon as InputFieldTrailingIcon,
+	} from "@svelte-material-design/core/textfield";
 	import { Input } from ".";
-	import { InputFieldConfigurations } from "../types";
+	import type { InputFieldConfigurations } from "../types";
 	import {
 		LeadingIcon,
 		TrailingIcon,
@@ -23,7 +28,7 @@
 	<LeadingIcon
 		class={leadingClassName}
 		type={configurations.leadingIcon}
-		component={Icon}
+		component={InputFieldLeadingIcon}
 	/>
 {/if}
 {#if configurations.prefix}
@@ -37,7 +42,7 @@
 	<TrailingIcon
 		class={trailingClassName}
 		type={configurations.trailingIcon}
-		component={Icon}
+		component={InputFieldTrailingIcon}
 		button={configurations.clearOnTrailingIconClick}
 		on:click={clear}
 	/>

@@ -12,7 +12,7 @@
 		OptionTrailingIcon,
 		Separator,
 	} from "@svelte-material-design/core/select";
-	import { SelectConfigurations } from "../types";
+	import type { SelectConfigurations } from "../types";
 	import { ListItem } from "src/components/configurator/smui-components/list";
 
 	export let configurations: SelectConfigurations;

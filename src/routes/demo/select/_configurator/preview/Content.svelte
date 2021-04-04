@@ -5,7 +5,7 @@
 		Content,
 		LeadingIcon as SelectLeadingIcon,
 	} from "@svelte-material-design/core/select";
-	import { SelectConfigurations } from "../types";
+	import type { SelectConfigurations } from "../types";
 	import { ContentComponents } from ".";
 	import { LeadingIcon } from "src/components/configurator/smui-components/icons";
 
