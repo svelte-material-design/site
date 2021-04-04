@@ -52,10 +52,12 @@ export function createMultipleItemsHandler<
 		items$.update((items) => {
 			const $selectedItem$ = get(selectedItem$);
 
-			const index = items.indexOf($selectedItem$);
-			items = items
-				.slice(0, index)
-				.concat(items.slice(index + 1, items.length));
+			// TODO: const index = items.indexOf($selectedItem$);
+			const index = findIndexById($selectedItem$.id);
+			items = [
+				...items.slice(0, index),
+				...items.slice(index + 1, items.length),
+			];
 
 			return [...items];
 		});
