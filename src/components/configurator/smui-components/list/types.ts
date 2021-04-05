@@ -47,7 +47,6 @@ export interface BaseListItemConfigurations extends Item {
 }
 
 export interface ListItemConfigurations extends BaseListItemConfigurations {
-	href?: string;
 	activated?: boolean;
 	showCloseBtn?: boolean;
 }

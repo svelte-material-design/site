@@ -9,6 +9,7 @@
 	import {
 		LeadingIcon,
 		TrailingIcon,
+		Content,
 	} from "src/components/components-api/sub-components/common";
 
 	export let indentation: number = 0;
@@ -28,12 +29,12 @@
 		{listItemRefLabel}.
 	</Description>
 </SubComponent>
-<SubComponent indentation={indentation + 1}>
-	<slot name="contentTag">
+<Content mandatory indentation={indentation + 1}>
+	<slot name="contentTag" slot="tag">
 		<Tag href="content">Content</Tag>
 	</slot>
-	<Description>The content for the {listItemRefLabel}.</Description>
-</SubComponent>
+	The content for the {listItemRefLabel}.
+</Content>
 <SubComponent indentation={indentation + 2}>
 	<Tag href="primary-text">PrimaryText</Tag>
 	<Description>

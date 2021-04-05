@@ -64,7 +64,6 @@ export interface SelectConfigurations
 			| "nullable"
 			| "wrapFocus"
 			| "dense"
-			| "itemsStyle"
 			| "itemsRows"
 			| "separator"
 			| "separatorInsetPadding"

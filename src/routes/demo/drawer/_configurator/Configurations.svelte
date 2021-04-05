@@ -7,8 +7,19 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
+	import {
+		MultipleItemsConfigurations,
+		MultipleItemControls,
+		MultipleItemSelector,
+	} from "src/components/configurator/common-options/multiple-items";
+	import {
+		CommonListItemConfigurations,
+		BaseListConfigurations,
+		ItemsStyle,
+	} from "src/components/configurator/smui-components/list";
 
-	const { configurations$ } = getConfiguratorContext();
+	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
+	const { selectedItem$ } = multipleItemsHandler;
 
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };
@@ -60,3 +71,24 @@
 		}}
 	/>
 </Section>
+<Section>
+	<ItemsStyle
+		bind:value={$configurations$.itemsStyle}
+		on:change={updateInstance}
+	/>
+	<BaseListConfigurations bind:configurations={$configurations$} />
+</Section>
+<MultipleItemsConfigurations {multipleItemsHandler}>
+	<MultipleItemSelector label="Edit item" {multipleItemsHandler} />
+	<Section>
+		<CommonListItemConfigurations
+			bind:configurations={$selectedItem$}
+			listConfigurations={$configurations$}
+			labelFn={() =>
+				`Nav item ${$configurations$.items.findIndex(
+					(item) => item.id === $selectedItem$.id
+				)}`}
+		/>
+	</Section>
+	<MultipleItemControls {multipleItemsHandler} />
+</MultipleItemsConfigurations>

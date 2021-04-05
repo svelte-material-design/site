@@ -6,7 +6,10 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import { LeadingIcon } from "src/components/components-api/sub-components/common";
+	import {
+		LeadingIcon,
+		Content,
+	} from "src/components/components-api/sub-components/common";
 
 	export let componentName: string = "InputField";
 	export let inputComponentName: string = "Input";
@@ -14,13 +17,10 @@
 	export let inputElement: string = "input";
 </script>
 
-<SubComponent>
-	<Tag href="content" mandatory>Content</Tag>
-	<Description>
-		The main content of the <code>InputField</code>, it is used to contain the
-		mandatory <code>Input</code>.
-	</Description>
-</SubComponent>
+<Content mandatory>
+	The main content of the <code>InputField</code>, it is used to contain the
+	mandatory <code>Input</code>.
+</Content>
 <SubComponent indentation={1}>
 	<Tag href={inputComponentHref} mandatory>{inputComponentName}</Tag>
 	<Description>

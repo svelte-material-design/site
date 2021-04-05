@@ -10,12 +10,20 @@
 		Header,
 		NavList,
 		NavItem,
+		NavItemContent,
+		PrimaryText,
+		SecondaryText,
+		NavItemLeadingIcon,
+		NavItemTrailingIcon,
+		NavListSeparator,
 	} from "@svelte-material-design/core/drawer";
 	import { TopAppBar } from "./preview";
-	import { Content as ListItemContent } from "@svelte-material-design/core/list";
+	import { ListItem } from "src/components/configurator/smui-components/list";
 	import type { DrawerConfigurations } from "../types";
 
-	export let configurations: DrawerConfigurations | any;
+	export let configurations: DrawerConfigurations;
+
+	console.log(configurations);
 </script>
 
 {#if configurations.layout === "below-top-app-bar"}
@@ -33,22 +41,30 @@
 			</Header>
 		{/if}
 		<Content>
-			<NavList>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>Gray Kittens</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>A Space Rocket</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>100 Pounds of Gravel</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>All of the Shrimp</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>A Planet with a Mall</ListItemContent>
-				</NavItem>
+			<NavList
+				itemsRows={configurations.itemsRows}
+				dense={configurations.dense}
+				itemsStyle={configurations.itemsStyle}
+			>
+				{#each configurations.items as item, index}
+					<ListItem
+						component={NavItem}
+						contentComponent={NavItemContent}
+						primaryTextComponent={PrimaryText}
+						secondaryTextComponent={SecondaryText}
+						leadingIconComponent={NavItemLeadingIcon}
+						trailingIconComponent={NavItemTrailingIcon}
+						bind:configurations={item}
+						listConfigurations={configurations}
+					/>
+					{#if index === 0 && configurations.separator}
+						<NavListSeparator
+							insetPadding={configurations.separatorInsetPadding}
+							insetLeading={configurations.separatorInsetLeading}
+							insetTrailing={configurations.separatorInsetTrailing}
+						/>
+					{/if}
+				{/each}
 			</NavList>
 		</Content>
 	</Drawer>

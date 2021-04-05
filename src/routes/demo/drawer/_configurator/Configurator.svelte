@@ -23,7 +23,7 @@
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview" style="width: 100%; height: 15em;">
-		<IFrame title="Drawer preview" props={$configurations$} />
+		<IFrame title="Drawer preview" bind:props={$configurations$} />
 	</div>
 	<svelte-fragment slot="optionsSidebar">
 		<Configurations />

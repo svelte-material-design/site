@@ -7,9 +7,23 @@ import {
 	slot,
 } from "src/components/configurator";
 import { createTopAppBarTagCode } from "src/components/configurator/smui-components/top-app-bar/code";
+import {
+	createListCode,
+	getListImportsMap,
+	getListProps,
+} from "src/components/configurator/smui-components/list";
 
 export function script(configurations: DrawerConfigurations) {
 	const { layout, title, subtitle } = configurations;
+
+	const map = getListImportsMap({
+		tag: "NavList",
+		itemTag: "NavItem",
+		contentTag: "NavItemContent",
+		leadingIconTag: "NavItemLeadingIcon",
+		trailingIconTag: "NavItemTrailingIcon",
+		configurations,
+	});
 
 	const imports = removeEmptyLines(source`
 		${getImportCode(
@@ -17,8 +31,14 @@ export function script(configurations: DrawerConfigurations) {
 				"Drawer",
 				"AppContent",
 				"Content",
-				"NavList",
-				"NavItem",
+				map.tag,
+				map.item,
+				map.content,
+				map.leadingIcon,
+				map.trailingIcon,
+				map.primaryText,
+				map.secondaryText,
+				map.separator,
 				[title, "Header"],
 				[title, "Title"],
 				[subtitle, "Subtitle"],
@@ -120,25 +140,24 @@ function getContentCode(configurations: DrawerConfigurations) {
 	const code = source`
 		<Content>
 			${getHeaderCode(configurations)}
-			<NavList>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>Gray Kittens</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>A Space Rocket</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>100 Pounds of Gravel</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>All of the Shrimp</ListItemContent>
-				</NavItem>
-				<NavItem href="javascript:void(0)">
-					<ListItemContent>A Planet with a Mall</ListItemContent>
-				</NavItem>
-			</NavList>
+			${createNavListCode(configurations)}
 		</Content>
 	`;
 
 	return removeEmptyLines(code);
+}
+
+export function createNavListCode(configurations: DrawerConfigurations) {
+	const code = createListCode(configurations, {
+		tag: "NavList",
+		props: getListProps(configurations),
+		itemsOptions: {
+			tag: "NavItem",
+			contentTag: "NavItemContent",
+			leadingIconTag: "NavItemLeadingIcon",
+			trailingIconTag: "NavItemTrailingIcon",
+		},
+	});
+
+	return code;
 }

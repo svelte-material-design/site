@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from "svelte";
+	import { createEventDispatcher } from "svelte";
 
-	let mounted: boolean = false;
+	let initialized: boolean = false;
 
 	const dispatch = createEventDispatcher<{
 		update: {
@@ -12,15 +12,14 @@
 	if (typeof window !== "undefined") {
 		window.postMessage("init", "*");
 		window.addEventListener("message", (event) => {
+			if (event.data.type === "propsInit") {
+				initialized = true;
+			}
 			if (event.data.type === "props") {
 				handleMessage(event.data.props);
 			}
 		});
 	}
-
-	onMount(() => {
-		mounted = true;
-	});
 
 	function handleMessage(props) {
 		dispatch("update", { props });
@@ -37,6 +36,6 @@
 	}
 </script>
 
-{#if mounted}
+{#if initialized}
 	<slot />
 {/if}

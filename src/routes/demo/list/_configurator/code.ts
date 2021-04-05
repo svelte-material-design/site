@@ -1,31 +1,19 @@
 import type { ListConfigurations } from "./types";
 import { source } from "common-tags";
 import { getImportCode, removeEmptyLines } from "src/components/configurator";
-import { createListCode } from "src/components/configurator/smui-components/list";
+import {
+	createListCode,
+	getListImportsMap,
+} from "src/components/configurator/smui-components/list";
 
 export function script(configurations: ListConfigurations) {
-	const { separator, role, itemsRows } = configurations;
+	const { role } = configurations;
 
-	const icon = configurations.items.some(
-		(item) => item.leadingIcon || item.trailingIcon
-	);
+	const map = getListImportsMap({
+		configurations,
+	});
 
-	const imports = removeEmptyLines(
-		getImportCode(
-			[
-				"List",
-				[separator, "Separator"],
-				"Content",
-				"Item",
-				[icon, "Icon"],
-				[itemsRows > 1, "PrimaryText"],
-				[itemsRows > 1, "SecondaryText"],
-				[role === "radiogroup", "Radio"],
-				[role === "group", "Checkbox"],
-			],
-			"list"
-		)
-	);
+	const imports = removeEmptyLines(getImportCode(Object.values(map), "list"));
 
 	const code = role
 		? source`

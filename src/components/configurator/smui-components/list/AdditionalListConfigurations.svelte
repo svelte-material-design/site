@@ -2,11 +2,9 @@
 
 <script lang="ts">
 	import { onMount } from "svelte";
-	import {
-		Checkbox,
-		Select,
-	} from "src/components/configurator/atoms/configurations";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import type { ListConfigurations } from "./types";
+	import { ItemsStyle } from ".";
 
 	export let configurations: Partial<ListConfigurations>;
 
@@ -26,20 +24,10 @@
 	}
 </script>
 
-<Select
+<ItemsStyle
 	bind:value={configurations.itemsStyle}
-	label="Items style"
-	nullable={false}
 	disabled={configurations.role === "group" ||
 		configurations.role === "radiogroup"}
-	options={[
-		{ label: "Textual", value: "textual" },
-		{ label: "Image", value: "image" },
-		{ label: "Icons", value: "icon" },
-		{ label: "Avatar", value: "avatar" },
-		{ label: "Thumbnail", value: "thumbnail" },
-		{ label: "Video", value: "video" },
-	]}
 	on:change={updateInstance}
 />
 <Checkbox

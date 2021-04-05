@@ -3,4 +3,5 @@ export { default as BaseListConfigurations } from "./BaseListConfigurations.svel
 export { default as AdditionalListConfigurations } from "./AdditionalListConfigurations.svelte";
 export { default as CommonListItemConfigurations } from "./CommonListItemConfigurations.svelte";
 export { default as CommonSelectableListConfigurations } from "./CommonSelectableListConfigurations.svelte";
+export { default as ItemsStyle } from "./ItemsStyle.svelte";
 export * from "./code";

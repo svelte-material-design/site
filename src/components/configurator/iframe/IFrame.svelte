@@ -1,6 +1,9 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { getLayoutPath } from "src/contexts";
 	import { onMount, tick, createEventDispatcher } from "svelte";
+	import { UseState } from "@raythurnevoid/svelte-hooks/ts";
 
 	export let src: string;
 	export let title: string;
@@ -12,10 +15,9 @@
 		};
 	}>();
 
+	let propsState: UseState;
 	let iframe: HTMLIFrameElement;
 	let iframeReady: boolean = false;
-
-	$: if (iframe && iframeReady) updateProps(props);
 
 	let currentPath: string = getLayoutPath();
 	onMount(async () => {
@@ -24,9 +26,13 @@
 		iframe.contentWindow.addEventListener("message", (event) => {
 			if (event.data === "init") {
 				iframeReady = true;
+				updateProps();
+				iframe.contentWindow.postMessage({ type: "propsInit" }, "*");
 			}
 
 			if (event.data.type === "update") {
+				props = { ...event.data.props };
+				propsState.setValue(props);
 				dispatch("update", {
 					props: event.data.props,
 				});
@@ -34,10 +40,17 @@
 		});
 	});
 
-	function updateProps(...deps) {
-		iframe.contentWindow.postMessage({ type: "props", props }, "*");
+	function updateProps() {
+		if (iframe && iframeReady)
+			iframe.contentWindow.postMessage({ type: "props", props }, "*");
 	}
 </script>
+
+<UseState bind:this={propsState} value={props} onUpdate={updateProps} />
+
+{#if currentPath}
+	<iframe bind:this={iframe} src="{currentPath}/{src || 'iframe'}" {title} />
+{/if}
 
 <style>
 	iframe {
@@ -46,9 +59,3 @@
 		height: 100%;
 	}
 </style>
-
-<svelte:options immutable={true} />
-
-{#if currentPath}
-	<iframe bind:this={iframe} src="{currentPath}/{src || 'iframe'}" {title} />
-{/if}

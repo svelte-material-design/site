@@ -17,6 +17,40 @@ import type {
 	ListItemRole,
 	ListRole,
 } from "./types";
+import { StringList } from "@raythurnevoid/strings-filter";
+
+export function getListImportsMap(props: GetListImportsMapProps) {
+	const { items, itemsRows, role, separator } = props.configurations;
+
+	const leadingIcon = items.some((item) => item.leadingIcon);
+	const trailingIcon = items.some((item) => item.trailingIcon);
+
+	const map = {
+		tag: props.tag ?? "List",
+		separator: [separator, "Separator"],
+		content: props.contentTag ?? "Content",
+		item: props.itemTag ?? "Item",
+		leadingIcon: [leadingIcon, props.leadingIconTag ?? "LeadingIcon"],
+		trailingIcon: [trailingIcon, props.trailingIconTag ?? "TrailingIcon"],
+		primaryText: [itemsRows > 1, "PrimaryText"],
+		secondaryText: [itemsRows > 1, "SecondaryText"],
+		radio: [role === "radiogroup", "Radio"],
+		checkbox: [role === "group", "Checkbox"],
+	};
+
+	return map as {
+		[k in keyof typeof map]: StringListToFilter[0];
+	};
+}
+
+interface GetListImportsMapProps {
+	tag?: string;
+	contentTag?: string;
+	itemTag?: string;
+	leadingIconTag?: string;
+	trailingIconTag?: string;
+	configurations: Partial<ListConfigurations>;
+}
 
 export function getListPropsMap(configurations: Partial<ListConfigurations>) {
 	const {
@@ -75,17 +109,8 @@ export function getItemProps(
 	listConfigurations: Partial<ListConfigurations>,
 	configurations: ListItemConfigurations
 ): StringListToFilter {
-	const {
-		disabled,
-		value,
-		ripple,
-		selected,
-		activated,
-		href,
-		leadingIcon,
-		trailingIcon,
-	} = configurations;
-	const { role, itemsStyle: type } = listConfigurations;
+	const { disabled, value, ripple, selected, activated, href } = configurations;
+	const { role } = listConfigurations;
 
 	return [
 		[role, `role="${listRoleToItemRole(role)}"`],

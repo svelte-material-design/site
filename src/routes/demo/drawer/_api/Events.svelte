@@ -1,14 +1,24 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Events } from "src/components/components-api/events";
 	import {
-		BaseForwardedEvents,
-		OnChange,
-	} from "src/components/components-api/events/common";
+		Events,
+		Event,
+		Name,
+		Description,
+		Signature,
+	} from "src/components/components-api/events";
 </script>
 
 <Events>
-	<OnChange prop="value" name="OnSelectChange" native />
+	<Event>
+		<Name>open</Name>
+		<Signature keyword="void" />
+		<Description>Emitted when the drawer is opened</Description>
+	</Event>
+	<Event>
+		<Name>close</Name>
+		<Signature keyword="void" />
+		<Description>Emitted when the drawer is closed</Description>
+	</Event>
 </Events>
-<BaseForwardedEvents />

@@ -5,26 +5,16 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import {
-		ActionButton,
-		ActionIcon,
-		GenericIcon,
-	} from "src/components/components-api/sub-components/common";
+	import { Content } from "src/components/components-api/sub-components/common";
 </script>
 
-<style>
-</style>
-
 <SubComponents>
-	<SubComponent>
-		<Tag href="content">Content</Tag>
-		<Description>A container for the card text content.</Description>
-	</SubComponent>
+	<Content>A container for the card text content.</Content>
 	<SubComponent>
 		<Tag href="title">Title</Tag>
 		<Description>
 			The content title. Underneath uses a
-			<code>{'<Typography />'}</code>
+			<code>{"<Typography />"}</code>
 			with variant
 			<code>headline6</code>
 		</Description>
@@ -33,7 +23,7 @@
 		<Tag href="subtitle">SubTitle</Tag>
 		<Description>
 			The content sub-title. Underneath uses a
-			<code>{'<Typography />'}</code>
+			<code>{"<Typography />"}</code>
 			with variant
 			<code>subtitle2</code>
 		</Description>
@@ -48,7 +38,7 @@
 		<Tag href="media-content">MediaContent</Tag>
 		<Description>
 			Wraps elements contained in the
-			<code>{'<Media />'}</code>
+			<code>{"<Media />"}</code>
 			box.
 		</Description>
 	</SubComponent>
@@ -67,13 +57,16 @@
 	</SubComponent>
 	<SubComponent>
 		<Tag href="action-buttons">ActionButtons</Tag>
-		<Description>A group of <code>{'<ActionButton />'}</code>.</Description>
+		<Description>A group of <code>{"<ActionButton />"}</code>.</Description>
 	</SubComponent>
 	<ActionButton />
 	<SubComponent>
 		<Tag href="action-icons">ActionIcons</Tag>
-		<Description>A group of <code>{'<ActionIcon />'}</code>.</Description>
+		<Description>A group of <code>{"<ActionIcon />"}</code>.</Description>
 	</SubComponent>
 	<ActionIcon />
 	<GenericIcon />
 </SubComponents>
+
+<style>
+</style>
