@@ -4,11 +4,12 @@ import {
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,
+	slot,
 } from "src/components/configurator";
 import { createTopAppBarTagCode } from "src/components/configurator/smui-components/top-app-bar/code";
 
 export function script(configurations: DrawerConfigurations) {
-	const {} = configurations;
+	const { layout, title, subtitle } = configurations;
 
 	const imports = removeEmptyLines(source`
 		${getImportCode(
@@ -16,14 +17,15 @@ export function script(configurations: DrawerConfigurations) {
 				"Drawer",
 				"AppContent",
 				"Content",
-				"Title",
-				"Subtitle",
-				"Header",
 				"NavList",
 				"NavItem",
+				[title, "Header"],
+				[title, "Title"],
+				[subtitle, "Subtitle"],
 			],
 			"drawer"
 		)}
+		${layout ? getImportCode(["TopAppBar", "Section", "Title"], "top-app-bar") : ""}
 	`);
 
 	const code = source`
@@ -66,11 +68,16 @@ function getDrawerCode(configurations: DrawerConfigurations) {
 function getAppContentCode(configurations: DrawerConfigurations) {
 	const { layout, variant } = configurations;
 
+	const topAppBarCode =
+		layout === "full-height"
+			? slot({ slot: "topAppBar", content: getTopAppBarCode(configurations) })
+			: "";
+
 	const code = generateSvelteTagCode({
 		tag: "AppContent",
 		props: [`bind:open`, [variant !== "permanent", `variant="${variant}"`]],
-		content: `
-			${layout === "full-height" ? getTopAppBarCode(configurations) : ""}
+		content: source`
+			${topAppBarCode}
 			App Content
 		`,
 	});
@@ -79,22 +86,16 @@ function getAppContentCode(configurations: DrawerConfigurations) {
 }
 
 function getTopAppBarCode(configurations: DrawerConfigurations) {
-	const { layout } = configurations;
+	const code = createTopAppBarTagCode({
+		configurations: {},
+		content: source`
+			<Section>
+				<TopAppBarTitle>Top App Bar</TopAppBarTitle>
+			</Section>
+		`,
+	});
 
-	if (layout === "below-top-app-bar") {
-		const code = createTopAppBarTagCode({
-			configurations: {},
-			content: `
-				<Section>
-					<TopAppBarTitle>Top App Bar</TopAppBarTitle>
-				</Section>
-			`,
-		});
-
-		return code;
-	} else {
-		return "";
-	}
+	return code;
 }
 
 function getHeaderCode(configurations: DrawerConfigurations) {
@@ -103,7 +104,7 @@ function getHeaderCode(configurations: DrawerConfigurations) {
 	if (title) {
 		const code = generateSvelteTagCode({
 			tag: "Header",
-			content: `
+			content: source`
 				<Title>${title}</Title>
 				${subtitle ? `<Subtitle>${subtitle}</Subtitle>` : ""}
 			`,
@@ -116,7 +117,7 @@ function getHeaderCode(configurations: DrawerConfigurations) {
 }
 
 function getContentCode(configurations: DrawerConfigurations) {
-	return source`
+	const code = source`
 		<Content>
 			${getHeaderCode(configurations)}
 			<NavList>
@@ -138,4 +139,6 @@ function getContentCode(configurations: DrawerConfigurations) {
 			</NavList>
 		</Content>
 	`;
+
+	return removeEmptyLines(code);
 }

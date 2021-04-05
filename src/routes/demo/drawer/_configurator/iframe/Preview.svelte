@@ -11,11 +11,7 @@
 		NavList,
 		NavItem,
 	} from "@svelte-material-design/core/drawer";
-	import {
-		TopAppBar,
-		Title as TopAppBarTitle,
-		Section,
-	} from "@svelte-material-design/core/top-app-bar";
+	import { TopAppBar } from "./preview";
 	import { Content as ListItemContent } from "@svelte-material-design/core/list";
 	import type { DrawerConfigurations } from "../types";
 
@@ -23,11 +19,7 @@
 </script>
 
 {#if configurations.layout === "below-top-app-bar"}
-	<TopAppBar class="top-app-bar" style="z-index: 7;">
-		<Section>
-			<TopAppBarTitle>Top App Bar</TopAppBarTitle>
-		</Section>
-	</TopAppBar>
+	<TopAppBar />
 {/if}
 
 {#key configurations.layout}
@@ -63,15 +55,11 @@
 {/key}
 
 <AppContent class={"app-content"}>
-	<div slot="topAppBar">
+	<svelte-fragment slot="topAppBar">
 		{#if configurations.layout === "full-height"}
-			<TopAppBar class="top-app-bar">
-				<Section>
-					<TopAppBarTitle>Top App Bar</TopAppBarTitle>
-				</Section>
-			</TopAppBar>
+			<TopAppBar />
 		{/if}
-	</div>
+	</svelte-fragment>
 	App Content
 </AppContent>
 

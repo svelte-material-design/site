@@ -40,6 +40,7 @@
 	/>
 	<Checkbox
 		label="Open drawer"
+		disabled={$configurations$.variant === "permanent"}
 		bind:checked={$configurations$.open}
 		on:change={updateInstance}
 	/>
@@ -52,8 +53,9 @@
 	/>
 	<Checkbox
 		label="Show subtitle"
+		disabled={!$configurations$.title}
 		on:change={(e) => {
-			$configurations$.subtitle = e.detail.checked ? "Title" : undefined;
+			$configurations$.subtitle = e.detail.checked ? "Subtitle" : undefined;
 			updateInstance();
 		}}
 	/>

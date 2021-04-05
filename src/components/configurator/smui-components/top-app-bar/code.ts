@@ -11,8 +11,8 @@ export function createTopAppBarTagCode(props: TopAppBarCodeProps) {
 	const code = generateSvelteTagCode({
 		tag: "TopAppBar",
 		props: [
-			[variant !== "standard", `variant=${variant}`],
-			[color !== "primary", `color=${color}`],
+			[variant && variant !== "standard", `variant="${variant}"`],
+			[color && color !== "primary", `color="${color}"`],
 			[prominent, `prominent`],
 			[dense, `dense`],
 		],
