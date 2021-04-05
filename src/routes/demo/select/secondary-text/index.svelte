@@ -1,7 +1,9 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { SecondaryTextProps } from "src/components/components-api/props/common/list";
+	import { Props } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<SecondaryTextProps />
+<ApiTitle>SecondaryText</ApiTitle>
+<Props />
