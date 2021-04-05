@@ -7,6 +7,7 @@
 	import type { CommonListConfigurations } from "./types";
 
 	export let configurations: Partial<CommonListConfigurations>;
+	export let maxItemsRows: number = 3;
 
 	onMount(() => {
 		handleSeparatorUpdate();
@@ -28,7 +29,7 @@
 <Slider
 	bind:value={configurations.itemsRows}
 	min={1}
-	max={3}
+	max={maxItemsRows}
 	step={1}
 	label="Items rows"
 	on:input={updateInstance}

@@ -46,7 +46,10 @@
 </Section>
 <Typography variant="body2">List configurations</Typography>
 <Section>
-	<BaseListConfigurations bind:configurations={$configurations$} />
+	<BaseListConfigurations
+		bind:configurations={$configurations$}
+		maxItemsRows={2}
+	/>
 </Section>
 <MultipleItemsConfigurations {multipleItemsHandler}>
 	<MultipleItemSelector label="Edit item" {multipleItemsHandler} />

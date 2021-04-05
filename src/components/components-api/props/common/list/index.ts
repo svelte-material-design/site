@@ -9,3 +9,5 @@ export { default as ItemProps } from "./ItemProps.svelte";
 export { default as BaseListProps } from "./BaseListProps.svelte";
 export { default as BaseItemProps } from "./BaseItemProps.svelte";
 export { default as Activated } from "./Activated.svelte";
+export { default as Orientation } from "./Orientation.svelte";
+export { default as ItemsStyle } from "./ItemsStyle.svelte";

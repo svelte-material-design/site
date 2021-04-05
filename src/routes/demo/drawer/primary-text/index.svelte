@@ -5,5 +5,5 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>Options</ApiTitle>
+<ApiTitle>PrimaryText</ApiTitle>
 <Props />

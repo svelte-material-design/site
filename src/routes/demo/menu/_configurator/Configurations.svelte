@@ -31,7 +31,10 @@
 		/>
 	</Section>
 	<Section>
-		<BaseListConfigurations bind:configurations={$configurations$} />
+		<BaseListConfigurations
+			bind:configurations={$configurations$}
+			maxItemsRows={2}
+		/>
 	</Section>
 	<Typography variant="body2">Menu surface configurations</Typography>
 	<Section>
