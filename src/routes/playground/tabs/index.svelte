@@ -6,8 +6,8 @@
 		Content,
 		Label,
 		Icon,
-	} from "@smui/core/tab-bar";
-	import { Button } from "@smui/core/button";
+	} from "@svelte-material-design/core/tab-bar";
+	import { Button } from "@svelte-material-design/core/button";
 
 	let active: string = undefined;
 

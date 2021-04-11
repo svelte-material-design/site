@@ -1,32 +1,50 @@
+import type { TabConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
+	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import { getIconCode } from "src/components/configurator/smui-components/icons";
+import { TabBarConfigurations } from "./components/configurations";
 import type {
-	IconType,
 	Position,
+	IconType,
 } from "src/components/configurator/smui-components/icons";
-import type { TabBarConfigurations, TabConfigurations } from "./types";
+import { getIconCode } from "src/components/configurator/smui-components/icons";
 
-export const script = `
-<script>
-	import {
-		TabBar,
-		Tab,
-		Label,
-		Content,
-		TabIndicator,
-		Icon } from "@smui/core/tab-bar";
-</script>
-`;
+export function script(configurations: TabConfigurations) {
+	const { role } = configurations;
 
-export function template(
-	props: TabBarConfigurations,
-	tabs: TabConfigurations[]
-) {
-	const { focusOnActivate, activateOnKeyboardNavigation, transition } = props;
+	const imports = removeEmptyLines(
+		getImportCode(
+			["TabBar", "Tab", "Label", "Content", "TabIndicator", "Icon"],
+			"tab-bar"
+		)
+	);
+
+	const code = role
+		? source`
+		<script>
+			${imports}
+
+			let value;
+		</script>
+	`
+		: source`
+		<script>
+			${imports}
+		</script>
+	`;
+
+	return code;
+}
+
+export function template(configurations: TabBarConfigurations) {
+	const {
+		focusOnActivate,
+		activateOnKeyboardNavigation,
+		transition,
+	} = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "TabBar",
@@ -40,14 +58,14 @@ export function template(
 			[transition !== "slide", `transition="${transition}"`],
 		],
 		content: source`
-			${tabs.map((tab) => getTabCode(tab)).join("\n")}
+			${configurations.items.map((tab) => getTabCode(tab)).join("\n")}
 		`,
 	});
 
 	return removeEmptyLines(code);
 }
 
-function getTabCode(props: TabConfigurations) {
+function getTabCode(configurations: TabConfigurations) {
 	const {
 		active,
 		key,
@@ -58,7 +76,7 @@ function getTabCode(props: TabConfigurations) {
 		trailingIcon,
 		leadingIcon,
 		label,
-	} = props;
+	} = configurations;
 
 	const code = generateSvelteTagCode({
 		tag: "Tab",

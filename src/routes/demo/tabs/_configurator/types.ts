@@ -1,0 +1,27 @@
+import type {
+	Item,
+	Group,
+} from "src/components/configurator/common-options/multiple-items";
+import type { TabIndicatorTransition } from "@svelte-material-design/core/tab-bar";
+import type { IconType } from "src/components/configurator/smui-components/icons";
+
+export type TabIndicatorPosition = "label" | "tab";
+
+export interface TabBarConfigurations extends Group<TabConfigurations> {
+	active: string;
+	focusOnActivate: boolean;
+	activateOnKeyboardNavigation: boolean;
+	transition: TabIndicatorTransition;
+}
+
+export interface TabConfigurations extends Item {
+	active: boolean;
+	tabIndicatorPosition: TabIndicatorPosition;
+	trailingIcon: IconType;
+	leadingIcon: IconType;
+	key: string;
+	ripple: boolean;
+	stacked: boolean;
+	useMinWidth: boolean;
+	label: string;
+}

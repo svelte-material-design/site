@@ -105,6 +105,7 @@ export function createClientConfig(input: SvelteTempalteConfigurationInput) {
 			}),
 			...baseClientConfig.plugins,
 		],
+		devtool: input.env.production ? false : "inline-source-map",
 	} as Configuration;
 }
 

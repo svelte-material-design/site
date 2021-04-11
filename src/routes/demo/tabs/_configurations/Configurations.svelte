@@ -10,7 +10,7 @@
 	import { TabConfigurations } from "../types";
 	import TabConfigurationsComponent from "./TabConfigurations.svelte";
 	import TabBarConfigurations from "./TabBarConfigurations.svelte";
-	import type { TabIndicatorTransition } from "@smui/core/tab-bar";
+	import type { TabIndicatorTransition } from "@svelte-material-design/core/tab-bar";
 
 	let active: string = undefined;
 
