@@ -1,4 +1,4 @@
-import { FabConfigurations } from "./types";
+import type { FabConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,

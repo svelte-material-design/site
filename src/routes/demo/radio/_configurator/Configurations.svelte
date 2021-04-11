@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import { RadioConfigurations } from "./configurations";
+	import { RadioConfigurations } from "./components/configurations";
 
 	const { configurations$ } = getConfiguratorContext();
 </script>

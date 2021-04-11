@@ -1,5 +1,5 @@
-import type { ListItemsStyle } from "@smui/core/list";
-import type { StringListToFilter } from "@smui/core/common/functions";
+import type { ListItemsStyle } from "@svelte-material-design/core/list";
+import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 import {
 	generateSvelteTagCode,

@@ -1,5 +1,5 @@
-import { StringListToFilter } from "@smui/core/common/functions";
-import { MenuSurfaceConfigurations } from "./types";
+import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
+import type { MenuSurfaceConfigurations } from "./types";
 
 export function getMenuSurfacePropsMap(
 	configurations: Partial<MenuSurfaceConfigurations>
@@ -26,7 +26,7 @@ export function getMenuSurfacePropsMap(
 		anchorMargin: [
 			anchorMargin,
 			`anchorMargin={${
-				anchorMargin && JSON.stringify(anchorMargin).replaceAll(`"`, "")
+				anchorMargin && JSON.stringify(anchorMargin).replace(/\"/g, "")
 			}}`,
 		],
 		anchor: [anchor, `anchor={{x: ${anchor?.x}, y: ${anchor?.y}}}`],

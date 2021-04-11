@@ -2,7 +2,7 @@ import {
 	generateSvelteTagCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import { TagCodeGenerationProps } from "../../code";
+import type { TagCodeGenerationProps } from "../../code";
 import type { TopAppBarConfigurations } from "./types";
 
 export function createTopAppBarTagCode(props: TopAppBarCodeProps) {

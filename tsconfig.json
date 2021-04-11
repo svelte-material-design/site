@@ -1,26 +1,12 @@
 {
+	"extends": "@raythurnevoid/svelte-sapper-template/tsconfig.json",
 	"compilerOptions": {
-		"target": "ES2019",
-		"module": "ES2015",
-		"lib": [
-			"ESNext",
-			"dom",
-			"WebWorker"
-		],
+		"baseUrl": ".",
 		"types": [
 			"svelte",
 			"node"
 		],
-		"checkJs": true,
-		"allowJs": true,
-		"strictNullChecks": false,
-		"allowSyntheticDefaultImports": true,
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"keyofStringsOnly": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"baseUrl": ".",
+		"importsNotUsedAsValues": "remove",
 		"paths": {
 			"@smui/core/*": [
 				"./node_modules/@svelte-material-ui-test/core/packages/*"
@@ -37,11 +23,13 @@
 		}
 	},
 	"include": [
-		"src"
+		"src",
+		"src/node_modules"
 	],
 	"exclude": [
-		"__sapper__",
-		"/node_modules/",
+		"node_modules/*",
+		"__sapper__/*",
+		"static/*",
 		"src/**/*.scss.d.ts"
 	]
 }

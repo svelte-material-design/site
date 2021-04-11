@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Radio } from "../../_configurator/preview";
+	import { Radio } from "../../_configurator/components/preview";
 	import { RadioGroup } from "@svelte-material-design/core/radio";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 

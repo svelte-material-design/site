@@ -8,7 +8,7 @@
 		SelectionGroup,
 	} from "@svelte-material-design/core/menu";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import { MenuItem } from "./preview";
+	import { MenuItem } from "./components/preview";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { items$ } = multipleItemsHandler;

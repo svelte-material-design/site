@@ -3,13 +3,8 @@
 <script lang="ts">
 	import {
 		InputField,
-		HelperText,
 		Input,
 		Content,
-		Prefix,
-		Suffix,
-		Icon,
-		Value,
 	} from "@svelte-material-design/core/textfield";
 	import { Typography } from "@svelte-material-design/core/typography";
 

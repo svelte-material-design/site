@@ -12,7 +12,7 @@ import type {
 	MenuValue,
 } from "@svelte-material-design/core/menu";
 
-export { BaseListConfigurations, BaseListItemConfigurations };
+export type { BaseListConfigurations, BaseListItemConfigurations };
 
 export interface MenuConfigurations
 	extends BaseListConfigurations,

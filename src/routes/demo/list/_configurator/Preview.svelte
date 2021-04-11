@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { List, Separator } from "@smui/core/list";
-	import { ListItem } from "./preview";
+	import { ListItem } from "./components/preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();

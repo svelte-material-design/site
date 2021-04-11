@@ -17,7 +17,7 @@
 	import { Select, Option } from "@smui/core/select";
 	import { Checkbox } from "@smui/core/checkbox";
 	import { getUnevenImageSize } from "./getUnevenImageSize";
-	import { ImageListVariant } from "@smui/core/image-list";
+	import type { ImageListVariant } from "@smui/core/image-list";
 	import { getImgPlaceholderSrc } from "src/functions/imgPlacehoder";
 
 	let variant: ImageListVariant;

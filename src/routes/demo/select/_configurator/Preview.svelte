@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { Select } from "@svelte-material-design/core/select";
-	import { HelperText, Content } from "./preview";
+	import { HelperText, Content } from "./components/preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 	import { onMount, tick } from "svelte";
 

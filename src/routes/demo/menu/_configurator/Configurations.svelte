@@ -15,7 +15,7 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
-	import { MenuConfigurations } from "./configurations";
+	import { MenuConfigurations } from "./components/configurations";
 
 	const { configurations$, multipleItemsHandler } = getConfiguratorContext();
 	const { selectedItem$ } = multipleItemsHandler;

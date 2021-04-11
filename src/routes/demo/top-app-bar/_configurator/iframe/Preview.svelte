@@ -45,7 +45,7 @@
 			<Icon>bookmark</Icon>
 		</ActionIcon>
 	</Toolbar>
-	<div slot="content" let:className>
+	<div slot="content" let:class={className}>
 		<div class={className} style="height: 200vh;">Content</div>
 	</div>
 </TopAppBar>

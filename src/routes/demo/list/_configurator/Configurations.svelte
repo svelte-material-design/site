@@ -9,7 +9,7 @@
 	import {
 		ListConfigurations as ListConfigurationsComponent,
 		ListItemConfigurations as ListItemConfigurationsComponent,
-	} from "./configurations";
+	} from "./components/configurations";
 	import {
 		CommonListItemConfigurations,
 		BaseListConfigurations,

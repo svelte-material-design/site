@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Select, Option } from "@smui/core/select";
-	import { SelectionType } from "@smui/core/common/hoc";
+	import type { SelectionType } from "@smui/core/common/hoc";
 
 	export let selectionType: SelectionType;
 </script>

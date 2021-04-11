@@ -1,11 +1,14 @@
-import { InputFieldConfigurations, TextAreaFieldConfigurations } from "./types";
+import type {
+	InputFieldConfigurations,
+	TextAreaFieldConfigurations,
+} from "./types";
 import type { StringList } from "@raythurnevoid/strings-filter";
 import { source } from "common-tags";
 import { generateSvelteTagCode, removeEmptyLines } from "../../code";
 import type { TagCodeGenerationProps } from "../../code";
 import { getListPropsMap } from "../list";
-import { SelectConfigurations } from "src/routes/demo/select/_configurator/types";
-import { StringListToFilter } from "@smui/core/common/functions";
+import type { SelectConfigurations } from "src/routes/demo/select/_configurator/types";
+import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
 import { getIconCode } from "../icons";
 import { createSelectOptionsCode } from "../menu/code";
 

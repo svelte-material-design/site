@@ -4,7 +4,7 @@ import {
 	createListCode,
 	getListPropsMap,
 } from "src/components/configurator/smui-components/list";
-import { StringListToFilter } from "@smui/core/common/functions";
+import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
 import type { SelectConfigurations } from "src/components/configurator/smui-components/input/types";
 
 export function getMenuPropsMap(configurations: Partial<MenuConfigurations>) {

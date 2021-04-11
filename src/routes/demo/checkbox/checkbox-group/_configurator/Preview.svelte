@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Checkbox } from "../../_configurator/preview";
+	import { Checkbox } from "../../_configurator/components/preview";
 	import { CheckboxGroup } from "@svelte-material-design/core/checkbox";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 

@@ -1,262 +1,177 @@
 export const menuItems = [
 	{
 		name: "Banner",
-		route: "/demo/banner",
+		route: "banner",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/banner",
-		],
 	},
 	{
 		name: "Buttons",
-		route: "/demo/button",
+		route: "button",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/button",
-		],
 	},
 	{
 		name: "Floating Action Button",
-		route: "/demo/fab",
+		route: "fab",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/fab",
-		],
 	},
 	{
 		name: "Icon Buttons",
-		route: "/demo/icon-button",
+		route: "icon-button",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button",
-		],
 	},
 	{
 		name: "Icon Buttons Toggle",
-		route: "/demo/icon-button-toggle",
+		route: "icon-button-toggle",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/icon-button",
-		],
 	},
 	{
 		name: "Cards",
-		route: "/demo/card",
+		route: "card",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/card",
-		],
 	},
 	{
 		name: "Chips",
-		route: "/demo/chips",
+		route: "chips",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/chips",
-		],
 	},
 	{
 		name: "Data Tables",
-		route: "/demo/data-table",
+		route: "data-table",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/data-table",
-		],
 	},
 	{
 		name: "Dialogs",
-		route: "/demo/dialog",
+		route: "dialog",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/dialog",
-		],
 	},
 	{
 		name: "Drawers",
-		route: "/demo/drawer",
+		route: "drawer",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/drawer",
-		],
 	},
 	{
 		name: "Elevation",
-		route: "/demo/elevation",
+		route: "elevation",
 		indent: 0,
 	},
 	{
 		name: "Image List",
-		route: "/demo/image-list",
+		route: "image-list",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/image-list",
-		],
 	},
 	{
 		name: "Inputs and Controls",
-		shortcut: "/demo/input-field",
+		shortcut: "input-field",
 		indent: 0,
 	},
 	{
 		name: "Checkboxes",
-		route: "/demo/checkbox",
+		route: "checkbox",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/checkbox",
-		],
 	},
 	{
 		name: "Form Fields",
-		route: "/demo/form-field",
+		route: "form-field",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/form-field",
-		],
 	},
 	{
 		name: "Radio Buttons",
-		route: "/demo/radio",
+		route: "radio",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/radio",
-		],
 	},
 	{
 		name: "Select Menus",
-		route: "/demo/select",
+		route: "select",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/select",
-		],
 	},
 	{
 		name: "Sliders",
-		route: "/demo/slider",
+		route: "slider",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/slider",
-		],
 	},
 	{
 		name: "Switches",
-		route: "/demo/switch",
+		route: "switch",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/switch",
-		],
 	},
 	{
 		name: "Text Field",
-		route: "/demo/input-field",
+		route: "input-field",
 		indent: 1,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/textfield",
-		],
 	},
 	{
 		name: "Linear Progress",
-		route: "/demo/linear-progress",
+		route: "linear-progress",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/linear-progress",
-		],
 	},
 	{
 		name: "Lists",
-		route: "/demo/list",
+		route: "list",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/list",
-		],
 	},
 	{
 		name: "Menu Surface",
-		route: "/demo/menu-surface",
+		route: "menu-surface",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu-surface",
-		],
 	},
 	{
 		name: "Menus",
-		route: "/demo/menu",
+		route: "menu",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/menu",
-		],
 	},
 	{
 		name: "Paper",
-		route: "/demo/paper",
+		route: "paper",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/paper",
-		],
 	},
 	{
 		name: "Ripples",
-		route: "/demo/ripple",
+		route: "ripple",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/ripple",
-		],
 	},
 	{
 		name: "Snackbars",
-		route: "/demo/snackbar",
+		route: "snackbar",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar",
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/snackbar/kitchen",
-		],
 	},
 	{
 		name: "Tabs",
-		route: "/demo/tabs",
+		route: "tabs",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab",
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-bar",
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-indicator",
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/tab-scroller",
-		],
 	},
 	{
 		name: "Tab",
-		shortcut: "/demo/tabs",
+		shortcut: "tabs",
 		indent: 1,
 	},
 	{
 		name: "Tab Bar",
-		shortcut: "/demo/tabs",
+		shortcut: "tabs",
 		indent: 1,
 	},
 	{
 		name: "Tab Indicator",
-		shortcut: "/demo/tabs",
+		shortcut: "tabs",
 		indent: 1,
 	},
 	{
 		name: "Tab Scroller",
-		shortcut: "/demo/tabs",
+		shortcut: "tabs",
 		indent: 1,
 	},
 	{
 		name: "Theme",
-		route: "/demo/theme",
+		route: "theme",
 		indent: 0,
 	},
 	{
 		name: "Top App Bar",
-		route: "/demo/top-app-bar",
+		route: "top-app-bar",
 		indent: 0,
-		repos: [
-			"https://github.com/hperrin/svelte-material-ui/tree/master/packages/top-app-bar",
-		],
 	},
 	{
 		name: "Typography",
-		route: "/demo/typography",
+		route: "typography",
 		indent: 0,
 	},
 ] as {

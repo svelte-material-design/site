@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { TabBar } from "@smui/core/tab-bar";
-	import { TabConfigurations } from "../types";
+	import type { TabConfigurations } from "../types";
 	import Tab from "./Tab.svelte";
 	import type { TabIndicatorTransition } from "@smui/core/tab-bar";
 

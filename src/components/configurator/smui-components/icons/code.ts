@@ -1,6 +1,6 @@
 import { generateSvelteTagCode, TagCodeGenerationProps } from "../../code";
-import { GraphicType } from "@smui/core/common/components";
-import { StringListToFilter } from "@smui/core/common/functions";
+import type { GraphicType } from "@smui/core/common/components";
+import type { StringListToFilter } from "@smui/core/common/functions";
 import type { IconType } from "./types";
 
 export type Position = "leading" | "trailing";

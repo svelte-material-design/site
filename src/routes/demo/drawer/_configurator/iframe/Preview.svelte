@@ -17,7 +17,7 @@
 		NavItemTrailingIcon,
 		NavListSeparator,
 	} from "@svelte-material-design/core/drawer";
-	import { TopAppBar } from "./preview";
+	import { TopAppBar } from "./components/preview";
 	import { ListItem } from "src/components/configurator/smui-components/list";
 	import type { DrawerConfigurations } from "../types";
 

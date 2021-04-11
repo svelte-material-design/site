@@ -65,7 +65,7 @@ function getContentCode(props: TopAppBarConfigurations) {
 
 export function contentCode() {
 	return source`
-	<div slot="content" let:className class={className}
+	<div slot="content" let:class={className} class={className}
 		style="height: 200vh;">Content</div>
 	`;
 }

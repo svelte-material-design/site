@@ -7,7 +7,7 @@ import type {
 	Group,
 } from "src/components/configurator/common-options/multiple-items";
 
-export { BaseListConfigurations, BaseListItemConfigurations };
+export type { BaseListConfigurations, BaseListItemConfigurations };
 
 export interface ListConfigurations
 	extends BaseListConfigurations,

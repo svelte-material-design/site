@@ -1,8 +1,10 @@
-.DS_Store
 /node_modules/
-/src/node_modules/@sapper/
-yarn-error.log
-/cypress/screenshots/
+/dist/
 /__sapper__/
-.npmrc
+/src/node_modules/@sapper/
+/cypress/screenshots/
+yarn-error.log
 secrets.env
+.npmrc
+.DS_Store
+/v2
