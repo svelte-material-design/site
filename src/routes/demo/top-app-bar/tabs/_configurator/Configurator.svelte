@@ -27,8 +27,8 @@
 		<Preview />
 	</div>
 	<div slot="values">
-		{#if $configurations$.active}
-			value: <Values value={$configurations$.active} />
+		{#if $configurations$.value}
+			value: <Values value={$configurations$.value} />
 		{/if}
 	</div>
 	<svelte-fragment slot="optionsSidebar">

@@ -5,6 +5,6 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>List</ApiTitle>
+<ApiTitle>TabBar</ApiTitle>
 <Props />
 <Events />

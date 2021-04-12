@@ -5,7 +5,7 @@
 		Checkbox,
 		Select,
 	} from "src/components/configurator/atoms/configurations";
-	import { TabIndicatorTransition } from "@smui/core/tab-bar";
+	import { TabIndicatorTransition } from "@svelte-material-design/core/tab-bar";
 
 	export let focusOnActivate: boolean = true;
 	export let activateOnKeyboardNavigation: boolean = true;

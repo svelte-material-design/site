@@ -8,16 +8,16 @@
 
 	export let segment: string;
 
-	setLayoutPath(`${getLayoutPath()}/list`);
+	setLayoutPath(`${getLayoutPath()}/tab-bar`);
 </script>
 
-<ModuleLayout module="list" title="List">
+<ModuleLayout module="tab-bar" title="TabBar">
 	<slot />
 	<div slot="page">
 		<Page
 			{segment}
 			options={[
-				{ label: "List" },
+				{ label: "TabBar" },
 				{
 					label: "List Group",
 					folder: "list-group",

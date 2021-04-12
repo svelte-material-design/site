@@ -7,7 +7,7 @@
 		Content,
 		TabIndicator,
 		Icon as TabIcon,
-	} from "@smui/core/tab-bar";
+	} from "@svelte-material-design/core/tab-bar";
 	import {
 		LeadingIcon,
 		TrailingIcon,

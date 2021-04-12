@@ -10,10 +10,10 @@
 	import { FormField } from "@svelte-material-design/core/form-field";
 	import { Configuration } from "src/components/configurator/atoms/configurations";
 
-	export let disabled: boolean;
-	export let value: string;
-	export let label: string;
-	export let nullable: boolean;
+	export let disabled: boolean = undefined;
+	export let value: string = undefined;
+	export let label: string = undefined;
+	export let nullable: boolean = undefined;
 	export let options: {
 		value: string;
 		label: string;

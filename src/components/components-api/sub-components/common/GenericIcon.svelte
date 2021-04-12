@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		SubComponent,
@@ -8,14 +10,15 @@
 	export let indentation: number;
 </script>
 
-<svelte:options immutable={true} />
-
 <SubComponent {indentation}>
 	<Tag href="icon">Icon</Tag>
 	<Description>
-		A generic icon that can be used for the
+		<slot>
+			Can be used for both leading and trailing icon.
+		</slot>
+		<!-- A generic icon that can be used for the
 		<code>{'<ActionIcon />'}</code>
 		or as both leading and trailing icon of the
-		<code>{'<ActionButton />'}</code>.
+		<code>{'<ActionButton />'}</code>. -->
 	</Description>
 </SubComponent>

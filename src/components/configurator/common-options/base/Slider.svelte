@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { FormField, Label } from "@smui/core/form-field";
-	import { typography } from "@smui/core/typography";
-	import { DiscreteSlider, SliderChangeEvent } from "@smui/core/slider";
+	import { FormField, Label } from "@svelte-material-design/core/form-field";
+	import { typography } from "@svelte-material-design/core/typography";
+	import {
+		DiscreteSlider,
+		SliderChangeEvent,
+	} from "@svelte-material-design/core/slider";
 	import { createEventDispatcher } from "svelte";
 
 	export let value: number;
@@ -34,6 +37,32 @@
 	}
 </script>
 
+<div class="slider-options">
+	<FormField vertical>
+		<Label class="label">
+			<div use:typography={"body2"}>
+				<span>{label}</span>
+				<span
+					>{value
+						? `${_valueText(value)}`
+						: showDefault
+						? "default"
+						: `${_valueText(value)}`}</span
+				>
+			</div>
+		</Label>
+		<DiscreteSlider
+			{value}
+			{min}
+			{max}
+			{step}
+			{disabled}
+			on:change={(e) => handleValue(e.detail)}
+			valueText={(v) => _valueText(round(v))}
+		/>
+	</FormField>
+</div>
+
 <style lang="scss">
 	.slider-options :global(.label) {
 		width: 100%;
@@ -46,22 +75,3 @@
 		}
 	}
 </style>
-
-<div class="slider-options">
-	<FormField vertical>
-		<Label class="label">
-			<div use:typography={'body2'}>
-				<span>{label}</span>
-				<span>{value ? `${_valueText(value)}` : showDefault ? 'default' : `${_valueText(value)}`}</span>
-			</div>
-		</Label>
-		<DiscreteSlider
-			{value}
-			{min}
-			{max}
-			{step}
-			{disabled}
-			on:change={(e) => handleValue(e.detail)}
-			valueText={(v) => _valueText(round(v))} />
-	</FormField>
-</div>

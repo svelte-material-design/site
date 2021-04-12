@@ -14,6 +14,16 @@
 	}
 </script>
 
+<Select
+	bind:value={configurations.transition}
+	label="Tab indicator transition"
+	nullable={false}
+	options={[
+		{ value: "slide", label: "Slide" },
+		{ value: "fade", label: "Fade" },
+	]}
+	on:change={updateInstance}
+/>
 <Checkbox
 	bind:checked={configurations.focusOnActivate}
 	label="Focus on activate"
@@ -24,13 +34,8 @@
 	label="Activate on keyboard navigation"
 	on:change={updateInstance}
 />
-<Select
-	bind:value={configurations.transition}
-	label="Tab indicator transition"
-	nullable={false}
-	options={[
-		{ value: "slide", label: "Slide" },
-		{ value: "fade", label: "Fade" },
-	]}
+<Checkbox
+	bind:checked={configurations.nullable}
+	label="Nullable"
 	on:change={updateInstance}
 />

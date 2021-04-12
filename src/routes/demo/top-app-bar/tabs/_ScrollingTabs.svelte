@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Tab, Label } from "@smui/core/tab";
-	import { TabBar } from "@smui/core/tab-bar";
+	import { Tab, Label } from "@svelte-material-design/core/tab";
+	import { TabBar } from "@svelte-material-design/core/tab-bar";
 </script>
 
 <div>

@@ -8,7 +8,7 @@
 		TrailingIcon,
 		PrimaryText,
 		SecondaryText,
-	} from "@smui/core/list";
+	} from "@svelte-material-design/core/list";
 	import type { ListItemConfigurations, ListConfigurations } from "../../types";
 	import { ListItem } from "src/components/configurator/smui-components/list";
 

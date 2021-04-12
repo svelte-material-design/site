@@ -8,10 +8,11 @@ import type { IconType } from "src/components/configurator/smui-components/icons
 export type TabIndicatorPosition = "label" | "tab";
 
 export interface TabBarConfigurations extends Group<TabConfigurations> {
-	active: string;
+	value: string;
 	focusOnActivate: boolean;
 	activateOnKeyboardNavigation: boolean;
 	transition: TabIndicatorTransition;
+	nullable: boolean;
 }
 
 export interface TabConfigurations extends Item {

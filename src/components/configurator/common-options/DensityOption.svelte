@@ -1,7 +1,9 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { FormField, Label } from "@smui/core/form-field";
-	import { DiscreteSlider } from "@smui/core/slider";
-	import { typography } from "@smui/core/typography";
+	import { FormField, Label } from "@svelte-material-design/core/form-field";
+	import { DiscreteSlider } from "@svelte-material-design/core/slider";
+	import { typography } from "@svelte-material-design/core/typography";
 
 	export let density: number;
 	export let max: number = 4;
@@ -10,13 +12,11 @@
 	$: density = densitySlider ? densitySlider * -1 : undefined;
 </script>
 
-<svelte:options immutable={true} />
-
 <FormField vertical>
 	<Label>
-		<span use:typography={'body2'}>
+		<span use:typography={"body2"}>
 			Density:
-			{densitySlider ? `-${densitySlider}` : 'default'}
+			{densitySlider ? `-${densitySlider}` : "default"}
 		</span>
 	</Label>
 	<DiscreteSlider bind:value={densitySlider} {max} step={1} on:change />

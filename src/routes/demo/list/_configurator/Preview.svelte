@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { List, Separator } from "@smui/core/list";
+	import { List, Separator } from "@svelte-material-design/core/list";
 	import { ListItem } from "./components/preview";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 

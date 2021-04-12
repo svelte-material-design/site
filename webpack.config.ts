@@ -27,7 +27,10 @@ function conf(env: BaseEnv) {
 	return {
 		client: createClientConfig(confInput),
 		server: createServerConfig(serverConfInput),
-		serviceworker: createServiceWorkerConfig({ env }),
+		serviceworker: {
+			...createServiceWorkerConfig({ env }),
+			devtool: env.production ? false : "inline-source-map",
+		},
 	};
 }
 

@@ -118,5 +118,6 @@ export function createServerConfig(input: SvelteTempalteConfigurationInput) {
 			...baseServerConfig.resolve,
 		},
 		module: configLoadersRulesOverride(input),
+		devtool: input.env.production ? false : "inline-source-map",
 	} as Configuration;
 }

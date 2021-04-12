@@ -8,7 +8,7 @@
 		Content,
 		SubHeader,
 		ListGroupSeparator,
-	} from "@smui/core/list";
+	} from "@svelte-material-design/core/list";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { configurations$ } = getConfiguratorContext();

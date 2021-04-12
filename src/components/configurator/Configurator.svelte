@@ -7,7 +7,7 @@
 
 	export let svelteScriptCode: string = undefined;
 	export let svelteCode: string;
-	export let scssCode: string;
+	export let scssCode: string = undefined;
 
 	let extraCodeHeight = 0; //em;
 	let codeElement: HTMLDivElement;

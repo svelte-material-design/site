@@ -1,20 +1,17 @@
-import type { TabConfigurations } from "./types";
+import type { TabConfigurations, TabBarConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import { TabBarConfigurations } from "./components/configurations";
 import type {
 	Position,
 	IconType,
 } from "src/components/configurator/smui-components/icons";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 
-export function script(configurations: TabConfigurations) {
-	const { role } = configurations;
-
+export function script(configurations: TabBarConfigurations) {
 	const imports = removeEmptyLines(
 		getImportCode(
 			["TabBar", "Tab", "Label", "Content", "TabIndicator", "Icon"],
@@ -22,19 +19,12 @@ export function script(configurations: TabConfigurations) {
 		)
 	);
 
-	const code = role
-		? source`
+	const code = source`
 		<script>
 			${imports}
 
 			let value;
-		</script>
-	`
-		: source`
-		<script>
-			${imports}
-		</script>
-	`;
+		</script>`;
 
 	return code;
 }

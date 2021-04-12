@@ -1,7 +1,11 @@
 <script lang="ts">
-	import { DiscreteSlider, Range, Thumb } from "@smui/core/slider";
-	import { typography } from "@smui/core/typography";
-	import { FormField, Label } from "@smui/core/form-field";
+	import {
+		DiscreteSlider,
+		Range,
+		Thumb,
+	} from "@svelte-material-design/core/slider";
+	import { typography } from "@svelte-material-design/core/typography";
+	import { FormField, Label } from "@svelte-material-design/core/form-field";
 
 	export let start: number;
 	export let end: number;
@@ -25,7 +29,6 @@
 				hideValueIndicator
 				on:input
 				on:change
-
 				><Range {min} {max} bind:value={start} {step} let:value>
 					<Thumb>{value}</Thumb>
 				</Range>

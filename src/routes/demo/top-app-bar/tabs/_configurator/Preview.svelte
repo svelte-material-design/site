@@ -14,10 +14,11 @@
 </script>
 
 <TabBar
-	bind:active={$configurations$.active}
+	bind:active={$configurations$.value}
 	focusOnActivate={$configurations$.focusOnActivate}
 	activateOnKeyboardNavigation={$configurations$.activateOnKeyboardNavigation}
 	transition={$configurations$.transition}
+	nullable={$configurations$.nullable}
 	on:change={handleChange}
 >
 	{#each $items$ as tab}

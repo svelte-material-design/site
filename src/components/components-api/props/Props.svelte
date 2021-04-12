@@ -2,7 +2,7 @@
 	import { Text } from "../common/particles/atoms";
 	import { Section } from "../common";
 
-	export let noNotes: boolean;
+	export let noNotes: boolean = false;
 	export let target: "root" | "main" = "root";
 </script>
 

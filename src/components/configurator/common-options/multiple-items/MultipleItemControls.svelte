@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Button } from "@smui/core/button";
+	import { Button } from "@svelte-material-design/core/button";
 	import { onMount, tick } from "svelte";
 	import { Section } from "../../molecules/configurations";
 	import type { MultipleItemsHandler } from "./MultipleItemsHandler";

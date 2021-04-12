@@ -2,7 +2,7 @@
 	import { Typography } from "@svelte-material-design/core/typography";
 	import { ConfigurationsGrid } from "../../atoms/configurations";
 
-	export let title;
+	export let title: string = undefined;
 </script>
 
 <div class="configurations-section">
