@@ -9,18 +9,19 @@
 	} from "@svelte-material-design/core/tab-bar";
 	import { Button } from "@svelte-material-design/core/button";
 
-	let active: string = undefined;
+	let value: string = undefined;
 
 	let tabs = ["Home", "Merchandise", "About Us"];
 </script>
 
 <div>
 	<TabBar
-		bind:active
+		bind:value
 		activateOnKeyboardNavigation={false}
-		focusOnActivate={true}>
+		focusOnActivate={true}
+	>
 		{#each tabs as tab}
-			<Tab key={tab} stacked useMinWidth active>
+			<Tab value={tab} stacked useMinWidth selected>
 				<Content>
 					<Label>{tab}</Label>
 					<Icon>directions_car</Icon>
@@ -32,11 +33,11 @@
 
 	<div>
 		{#each tabs as tab}
-			<Button on:click={() => (active = tab)}>
+			<Button on:click={() => (value = tab)}>
 				<Content>{tab}</Content>
 			</Button>
 		{/each}
 	</div>
 
-	<pre class="status">Selected: {active}</pre>
+	<pre class="status">Selected: {value}</pre>
 </div>

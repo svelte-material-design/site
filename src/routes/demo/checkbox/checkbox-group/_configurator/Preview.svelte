@@ -9,16 +9,6 @@
 	const { items$ } = multipleItemsHandler;
 
 	function handleChange() {
-		$items$ = $items$.map((item) => {
-			if ($configurations$.value.includes(item.value)) {
-				item.checked = true;
-			} else {
-				item.checked = false;
-			}
-
-			return { ...item };
-		});
-
 		multipleItemsHandler.updateSelectedInstance();
 	}
 </script>

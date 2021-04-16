@@ -17,11 +17,11 @@
 <section>
 	<Typography variant="headline2">Linear Progress</Typography>
 
-	<TabBar bind:active={currentTab}>
-		<Tab key="linear-progress">
+	<TabBar bind:value={currentTab}>
+		<Tab value="linear-progress">
 			<Label>Linear progress</Label>
 		</Tab>
-		<Tab key="indeterminate-linear-progress">
+		<Tab value="indeterminate-linear-progress">
 			<Label>Indeterminate linear progress</Label>
 		</Tab>
 	</TabBar>

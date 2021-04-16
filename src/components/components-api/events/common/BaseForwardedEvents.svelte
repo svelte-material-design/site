@@ -13,6 +13,8 @@
 		"mouseup",
 		"keydown",
 		"keyup",
+		"focus",
+		"blur",
 		"focusin",
 		"focusout",
 		...additionalEvents,

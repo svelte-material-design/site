@@ -14,10 +14,13 @@
 	export let multi: boolean = false;
 	export let prop: string = "selected";
 	export let groupComponent: string = undefined;
-	export let configurable: boolean = false;
+
+	export let showSelectionType: boolean = false;
+	export let showNullable: boolean = false;
+	export let showGroup: boolean = false;
 </script>
 
-{#if configurable}
+{#if showSelectionType}
 	<Prop>
 		<Name>selectionType</Name>
 		<Signature
@@ -29,6 +32,8 @@
 			Define the <code>{`<${groupComponent} />`}</code> selection behaviour.
 		</Description>
 	</Prop>
+{/if}
+{#if showNullable}
 	<Prop>
 		<Name>nullable</Name>
 		<Signature keyword="boolean">
@@ -52,4 +57,6 @@
 		The value{#if multi}(s){/if} of the {prop} item{#if multi}s{/if}.
 	</slot>
 </Value>
-<Group {groupComponent} />
+{#if showGroup}
+	<Group {groupComponent} />
+{/if}

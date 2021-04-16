@@ -6,5 +6,5 @@
 </script>
 
 <Props>
-	<CommonGroupsProps prop="checked" groupComponent="CheckboxGroup" />
+	<CommonGroupsProps prop="checked" groupComponent="CheckboxGroup" showGroup />
 </Props>

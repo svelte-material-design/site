@@ -5,7 +5,7 @@
 	import { CommonGroupsProps } from "src/components/components-api/props/common/groups";
 </script>
 
-<CommonGroupsProps>
+<CommonGroupsProps multi showNullable showSelectionType showGroup>
 	<svelte-fragment slot="valueSignature">
 		<Signature
 			keyword="type"

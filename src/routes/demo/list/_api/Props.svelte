@@ -5,12 +5,11 @@
 	import {
 		CommonListProps,
 		BaseListComponentProps,
-		CommonListGroupProps,
 	} from "src/components/components-api/props/common/list";
 </script>
 
 <Props>
 	<CommonListProps />
-	<CommonListGroupProps />
+	<!-- TODO: serve? <CommonListGroupProps /> -->
 	<BaseListComponentProps />
 </Props>

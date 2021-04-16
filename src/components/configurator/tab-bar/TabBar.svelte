@@ -11,24 +11,16 @@
 	import type { Option } from "./types";
 
 	export let tabs: Option[];
-	export let active: string = tabs?.[0].key;
+	export let value: string = tabs?.[0].value;
 </script>
 
-<TabBar bind:active>
+<TabBar bind:value>
 	{#each tabs as tab}
-		<a href={tab.href}>
-			<Tab key={tab.key}>
-				<Content>
-					<Label>{tab.label}</Label>
-				</Content>
-				<TabIndicator />
-			</Tab>
-		</a>
+		<Tab href={tab.href} value={tab.value}>
+			<Content>
+				<Label>{tab.label}</Label>
+			</Content>
+			<TabIndicator />
+		</Tab>
 	{/each}
 </TabBar>
-
-<style>
-	a {
-		display: contents;
-	}
-</style>

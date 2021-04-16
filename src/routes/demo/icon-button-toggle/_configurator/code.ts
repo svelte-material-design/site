@@ -28,7 +28,7 @@ export function template(props: IconButtonToggleConfigurations) {
 	const code = generateSvelteTagCode({
 		tag: "IconButtonToggle",
 		props: [
-			"bind:active",
+			"bind:value",
 			[!ripple, `ripple={false}`],
 			[color !== "inherit", `color="${color}"`],
 			[disabled, `disabled`],

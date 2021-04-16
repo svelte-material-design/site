@@ -17,7 +17,13 @@
 	export let orientationName: string = "ListOrientation";
 </script>
 
-<CommonGroupsProps configurable groupComponent={tag} multi>
+<CommonGroupsProps
+	showSelectionType
+	showNullable
+	groupComponent={tag}
+	multi
+	showGroup
+>
 	<svelte-fragment slot="valueSignature">
 		<Signature
 			keyword="type"

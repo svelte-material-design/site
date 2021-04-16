@@ -6,7 +6,7 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
-	import { CheckboxConfigurations } from "../../_configurator/configurations";
+	import { CheckboxConfigurations } from "../../_configurator/components/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { multipleItemsHandler } = getConfiguratorContext();

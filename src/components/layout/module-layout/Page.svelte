@@ -11,11 +11,11 @@
 
 	const currentPath = getLayoutPath();
 
-	let active = segment ?? options?.[0].folder;
+	let value = segment ?? options?.[0].folder;
 
 	let tabs: Option[] = options?.map((option) => {
 		return {
-			key: "/" + (option.folder ? option.folder : ""),
+			value: "/" + (option.folder ? option.folder : ""),
 			label: option.label,
 			href: currentPath + (option.folder ? `/${option.folder}` : ""),
 		};
@@ -23,7 +23,7 @@
 </script>
 
 {#if options}
-	<TabBar bind:active {tabs} />
+	<TabBar bind:value {tabs} />
 {/if}
 {#if segment && options && options.some(({ folder }) => folder === segment)}
 	<slot />

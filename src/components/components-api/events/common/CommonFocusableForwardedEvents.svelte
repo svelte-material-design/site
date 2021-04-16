@@ -4,4 +4,4 @@
 	import { BaseForwardedEvents } from "src/components/components-api/events/common";
 </script>
 
-<BaseForwardedEvents additionalEvents={["focus", "blur"]} />
+<BaseForwardedEvents />

@@ -17,11 +17,11 @@
 <section>
 	<Typography variant="headline2">Switch</Typography>
 
-	<TabBar bind:active={currentTab}>
-		<Tab key="switch">
+	<TabBar bind:value={currentTab}>
+		<Tab value="switch">
 			<Label>Switch</Label>
 		</Tab>
-		<Tab key="group-switch">
+		<Tab value="group-switch">
 			<Label>Switch group</Label>
 		</Tab>
 	</TabBar>

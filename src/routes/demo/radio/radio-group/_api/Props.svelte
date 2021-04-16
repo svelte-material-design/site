@@ -6,7 +6,7 @@
 </script>
 
 <Props>
-	<CommonGroupsProps prop="checked" groupComponent="RadioGroup">
+	<CommonGroupsProps prop="checked" groupComponent="RadioGroup" showGroup>
 		<svelte-fragment slot="valueSignature">
 			<Signature keyword="string" />
 		</svelte-fragment>
