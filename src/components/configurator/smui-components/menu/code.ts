@@ -4,7 +4,7 @@ import {
 	createListCode,
 	getListPropsMap,
 } from "src/components/configurator/smui-components/list";
-import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
+import type { StringList } from "@raythurnevoid/strings-filter";
 import type { SelectConfigurations } from "src/components/configurator/smui-components/input/types";
 
 export function getMenuPropsMap(configurations: Partial<MenuConfigurations>) {
@@ -32,13 +32,13 @@ export function getMenuPropsMap(configurations: Partial<MenuConfigurations>) {
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
 export function getSelectOptionsProps(
 	configurations: SelectConfigurations
-): StringListToFilter {
+): StringList {
 	const map = getListPropsMap(configurations);
 
 	return [map.dense, map.itemsRows];

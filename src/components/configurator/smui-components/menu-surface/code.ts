@@ -1,4 +1,4 @@
-import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
+import type { StringList } from "@raythurnevoid/strings-filter";
 import type { MenuSurfaceConfigurations } from "./types";
 
 export function getMenuSurfacePropsMap(
@@ -34,12 +34,12 @@ export function getMenuSurfacePropsMap(
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 export function getMenuSurfaceCodeProps(
 	configurations: MenuSurfaceConfigurations
-): StringListToFilter {
+): StringList {
 	const map = getMenuSurfacePropsMap(configurations);
 
 	return [
@@ -55,7 +55,7 @@ export function getMenuSurfaceCodeProps(
 
 export function getMenuSurfaceParentProps(
 	configurations: MenuSurfaceConfigurations
-): StringListToFilter {
+): StringList {
 	const { anchor } = configurations;
 
 	return [[anchor, `style="position: relative;"`]];

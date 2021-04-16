@@ -9,7 +9,7 @@
 		SMUIChipRemoveEventDetail,
 	} from "@smui/core/chips";
 	import Chip from "./_Chip.svelte";
-	import { StringListToFilter } from "@smui/core/common/functions";
+	import { StringList } from "@raythurnevoid/strings-filter";
 	import { FormField } from "@smui/core/form-field";
 	import { Select, Option } from "@smui/core/select";
 	import {
@@ -88,7 +88,7 @@
 	function props(
 		variantValue: typeof variant,
 		entryAnimationValue: typeof entryAnimation
-	): StringListToFilter {
+	): StringList {
 		return [
 			[variantValue, "bind:value"],
 			[variantValue, `variant="${variantValue}"`],

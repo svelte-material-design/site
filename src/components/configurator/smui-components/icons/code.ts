@@ -1,6 +1,6 @@
 import { generateSvelteTagCode, TagCodeGenerationProps } from "../../code";
 import type { GraphicType } from "@svelte-material-design/core/common/components";
-import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
+import type { StringList } from "@raythurnevoid/strings-filter";
 import type { IconType } from "./types";
 
 export type Position = "leading" | "trailing";
@@ -74,5 +74,5 @@ export function getGraphicType(iconType: IconType): GraphicType {
 interface IconConfigurations {
 	type: IconType;
 	position?: Position;
-	additionalProps?: StringListToFilter;
+	additionalProps?: StringList;
 }

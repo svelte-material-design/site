@@ -8,7 +8,6 @@ import { generateSvelteTagCode, removeEmptyLines } from "../../code";
 import type { TagCodeGenerationProps } from "../../code";
 import { getListPropsMap } from "../list";
 import type { SelectConfigurations } from "./types";
-import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
 import { getIconCode } from "../icons";
 import { createSelectOptionsCode } from "../menu/code";
 
@@ -178,7 +177,7 @@ export function getInputFieldInputPropsMap(
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
@@ -198,7 +197,7 @@ export function getInputFieldPropsMap(
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
@@ -217,7 +216,7 @@ export function getTextAreaInputPropsMap(
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
@@ -234,7 +233,7 @@ export function getTextAreaPropsMap(
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
@@ -258,7 +257,7 @@ export function getSelectPropsMap(
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 

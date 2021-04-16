@@ -1,5 +1,4 @@
 import type { ListItemsStyle } from "@svelte-material-design/core/list";
-import type { StringListToFilter } from "@svelte-material-design/core/common/functions";
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 import {
 	generateSvelteTagCode,
@@ -39,7 +38,7 @@ export function getListImportsMap(props: GetListImportsMapProps) {
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
@@ -82,13 +81,13 @@ export function getListPropsMap(configurations: Partial<ListConfigurations>) {
 	};
 
 	return map as {
-		[k in keyof typeof map]: StringListToFilter[0];
+		[k in keyof typeof map]: StringList[0];
 	};
 }
 
 export function getListProps(
 	configurations: Partial<ListConfigurations>
-): StringListToFilter {
+): StringList {
 	const map = getListPropsMap(configurations);
 
 	return [
@@ -108,7 +107,7 @@ export function getListProps(
 export function getItemProps(
 	listConfigurations: Partial<ListConfigurations>,
 	configurations: ListItemConfigurations
-): StringListToFilter {
+): StringList {
 	const { disabled, value, ripple, selected, activated, href } = configurations;
 	const { role } = listConfigurations;
 
