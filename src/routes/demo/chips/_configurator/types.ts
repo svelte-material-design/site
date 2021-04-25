@@ -27,4 +27,5 @@ export interface ChipConfigurations extends Item {
 	trailingIcon: IconType;
 	accessibleTouch: boolean;
 	trailingIconAction: boolean;
+	action: boolean;
 }

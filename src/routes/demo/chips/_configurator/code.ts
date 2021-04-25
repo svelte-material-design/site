@@ -1,5 +1,5 @@
 import type { ChipConfigurations, ChipSetConfigurations } from "./types";
-import { codeBlock, source } from "common-tags";
+import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
 	getImportCode,
@@ -12,9 +12,24 @@ import type {
 import { getIconCode } from "src/components/configurator/smui-components/icons";
 
 export function script(configurations: ChipSetConfigurations) {
+	const hasAction = configurations.items.some((item) => item.action);
+	const hasLeadingIcon = configurations.items.some((item) => item.leadingIcon);
+	const hasTrailingIcon = configurations.items.some(
+		(item) => item.trailingIcon
+	);
+
 	const imports = removeEmptyLines(
 		getImportCode(
-			["TabBar", "Tab", "Label", "Content", "TabIndicator", "Icon"],
+			[
+				"ChipSet",
+				"Chip",
+				"Content",
+				"Action",
+				"Text",
+				[hasAction, "Action"],
+				[hasLeadingIcon, "LeadingIcon"],
+				[hasTrailingIcon, "TrailingIcon"],
+			],
 			"tab-bar"
 		)
 	);

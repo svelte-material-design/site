@@ -27,7 +27,7 @@
 		</Description>
 	</SubComponent>
 	<SubComponent indentation={3}>
-		<Tag href="text" mandatory>Text</Tag>
+		<Tag href="text">Text</Tag>
 		<Description>The chip text.</Description>
 	</SubComponent>
 	<SubComponent indentation={1}>
