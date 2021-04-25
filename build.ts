@@ -69,7 +69,7 @@ function scssModulesLoaderRuleOverride(input: ScssModulesLoaderRuleInput) {
 function configLoadersRulesOverride(input: SvelteTempalteConfigurationInput) {
 	const { env } = input;
 
-	const svelteLoaderRules = svelteLoaderRule({ env, ssr: input.env.server });
+	const svelteLoaderRules = svelteLoaderRule({ env, ssr: true });
 
 	return {
 		rules: [
@@ -105,7 +105,6 @@ export function createClientConfig(input: SvelteTempalteConfigurationInput) {
 			}),
 			...baseClientConfig.plugins,
 		],
-		devtool: input.env.production ? false : "inline-source-map",
 	} as Configuration;
 }
 
@@ -118,6 +117,5 @@ export function createServerConfig(input: SvelteTempalteConfigurationInput) {
 			...baseServerConfig.resolve,
 		},
 		module: configLoadersRulesOverride(input),
-		devtool: input.env.production ? false : "inline-source-map",
 	} as Configuration;
 }

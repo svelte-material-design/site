@@ -60,7 +60,6 @@
 				trailingIcon: undefined,
 				ripple: true,
 				selected: false,
-				removeOnTrailingIconClick: true,
 				useCheckmark: true,
 				value: `Chip ${
 					chips.length > 0
@@ -69,11 +68,6 @@
 				}`,
 			},
 		];
-	}
-
-	function handleChipRemove(event: SMUIChipRemoveEventDetail) {
-		const index = chips.findIndex((chip) => chip.value === event.value);
-		chips = chips.slice(0, index).concat(chips.slice(index + 1, chips.length));
 	}
 
 	function initialData() {
@@ -111,145 +105,13 @@
 		chips = [...chips];
 	}
 
-	function handleChipSelect(chip: ChipConf, selected: boolean) {
-		chip.selected = selected;
-		chips = [...chips];
-	}
-
 	interface ChipConf {
 		value: string;
 		ripple: boolean;
 		trailingIcon: IconType;
 		leadingIcon: IconType;
 		selected: boolean;
-		removeOnTrailingIconClick: boolean;
 		useCheckmark: boolean;
 		instance?: Chip;
 	}
 </script>
-
-<Configurator {svelteCode} {scssCode}>
-	<div slot="preview">
-		<ChipSet {variant} {entryAnimation} bind:value>
-			{#each chips as chip, index (chip.value)}
-				<Chip
-					{...chip}
-					bind:this={chip.instance}
-					on:remove={(event) => handleChipRemove(event.detail)}
-					on:selected={(event) => handleChipSelect(chip, event.detail.selected)}
-				/>
-			{/each}
-		</ChipSet>
-	</div>
-	<div slot="values">
-		{#if variant}
-			value:
-			{Array.isArray(value) ? `[${value.join(", ")}]` : `"${value}"`}
-		{/if}
-	</div>
-	<div slot="optionsSidebar" class="options-sidebar">
-		<div style="grid-column: span 2;">ChipSet</div>
-		<div>
-			<FormField>
-				<Select bind:value={variant}>
-					<span slot="label">Variant</span>
-					<div slot="options">
-						<Option />
-						<Option value="choice">Choice</Option>
-						<Option value="filter">Filter</Option>
-					</div>
-				</Select>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox bind:checked={entryAnimation} />
-				<span slot="label">Entry animation</span>
-			</FormField>
-		</div>
-		<div style="grid-column: span 2; margin-top: 1em">
-			<FormField>
-				<Select bind:value={selectedChipValue} nullable={false}>
-					<span slot="label">Configure Chip</span>
-					<div slot="options">
-						{#each chips as chip, index (chip.value)}
-							<Option value={chip.value}>{chip.value}</Option>
-						{/each}
-					</div>
-				</Select>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					checked={selectedChip && selectedChip.ripple}
-					on:change={(event) =>
-						setSelectedChipValue("ripple", event.detail.checked)}
-				/>
-				<span slot="label">Ripple</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					checked={selectedChip && selectedChip.useCheckmark}
-					on:change={(event) =>
-						setSelectedChipValue("useCheckmark", event.detail.checked)}
-				/>
-				<span slot="label">Use Checkmark</span>
-			</FormField>
-		</div>
-		<div>
-			<IconTypeOption
-				allowEmpty
-				value={selectedChip ? selectedChip.leadingIcon : null}
-				on:change={(event) =>
-					setSelectedChipValue("leadingIcon", event.detail.value)}
-				label="Leading icon"
-			/>
-		</div>
-		<div>
-			<IconTypeOption
-				allowEmpty
-				value={selectedChip ? selectedChip.trailingIcon : null}
-				on:change={(event) =>
-					setSelectedChipValue("trailingIcon", event.detail.value)}
-				label="Trailing icon"
-			/>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					checked={selectedChip ? selectedChip.selected : null}
-					on:change={(event) =>
-						setSelectedChipValue("selected", event.detail.checked)}
-				/>
-				<span slot="label">Selected</span>
-			</FormField>
-		</div>
-		<div>
-			<FormField>
-				<Checkbox
-					checked={selectedChip ? selectedChip.removeOnTrailingIconClick : null}
-					on:change={(event) =>
-						setSelectedChipValue(
-							"removeOnTrailingIconClick",
-							event.detail.checked
-						)}
-				/>
-				<span slot="label">Remove on trailing icon click</span>
-			</FormField>
-		</div>
-		<div style="grid-column: span 2;">
-			<div style="display: flex; justify-content: flex-end;">
-				<Button on:click={initialData}>
-					<Label>Reset</Label>
-				</Button>
-				<Button on:click={addChip}>
-					<Label>Add chip</Label>
-					<Icon>add</Icon>
-				</Button>
-			</div>
-		</div>
-	</div>
-</Configurator>

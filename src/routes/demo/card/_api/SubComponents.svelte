@@ -5,7 +5,12 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import { Content } from "src/components/components-api/sub-components/common";
+	import {
+		ActionButton,
+		ActionIcon,
+		Content,
+		GenericIcon,
+	} from "src/components/components-api/sub-components/common";
 </script>
 
 <SubComponents>

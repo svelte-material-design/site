@@ -1,14 +1,9 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Typography } from "@smui/core/typography";
-	import ChipConfigurator from "./ChipConfigurator.svelte";
+	import { Props } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Chips - SMUI</title>
-</svelte:head>
-
-<section>
-	<Typography variant="headline2">Chips</Typography>
-
-	<ChipConfigurator />
-</section>
+<ApiTitle>Chips</ApiTitle>
+<Props />

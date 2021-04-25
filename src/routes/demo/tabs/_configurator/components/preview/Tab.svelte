@@ -17,7 +17,7 @@
 
 	export let configurations: TabConfigurations;
 
-	async function handleSelected() {
+	async function handleChange() {
 		await tick();
 		configurations = { ...configurations };
 	}
@@ -29,7 +29,7 @@
 	ripple={configurations.ripple}
 	stacked={configurations.stacked}
 	useMinWidth={configurations.useMinWidth}
-	on:change={handleSelected}
+	on:change={handleChange}
 	on:change
 >
 	<Content>

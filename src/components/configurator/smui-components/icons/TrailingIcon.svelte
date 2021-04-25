@@ -10,13 +10,13 @@
 </script>
 
 <Icon
-	{...$$restProps}
 	{type}
 	{component}
 	src={type === "img" ? "/icons/emojis/grinning-face.png" : undefined}
 	alt={type === "img" ? "Grinning face" : undefined}
 	iconContent={button ? "clear" : "alarm"}
 	{button}
+	{...$$restProps}
 	on:click
 >
 	<polygon points="0,24 12,0 24,24" />

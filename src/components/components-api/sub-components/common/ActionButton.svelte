@@ -4,7 +4,6 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import { GenericIcon } from "src/components/components-api/sub-components/common";
 
 	export let indentation: number = 0;
 </script>

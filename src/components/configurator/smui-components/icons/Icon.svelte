@@ -12,9 +12,9 @@
 {#if type === "material-icon"}
 	<svelte:component
 		this={component}
-		{...$$restProps}
 		role={button ? "button" : undefined}
 		tabindex={button ? 0 : undefined}
+		{...$$restProps}
 		on:click
 	>
 		{#if iconContent}{iconContent}{:else}refresh{/if}
@@ -22,11 +22,11 @@
 {:else if type === "svg"}
 	<svelte:component
 		this={component}
-		{...$$restProps}
 		type="svg"
 		viewBox="0 0 24 24"
 		role={button ? "button" : undefined}
 		tabindex={button ? 0 : undefined}
+		{...$$restProps}
 		on:click
 	>
 		{#if $$slots.default}
@@ -38,12 +38,12 @@
 {:else if type === "img"}
 	<svelte:component
 		this={component}
-		{...$$restProps}
 		type="img"
 		src={$$restProps.src || "/icons/emojis/upside-down-face.png"}
 		alt={$$restProps.alt || "Upside down face"}
 		role={button ? "button" : undefined}
 		tabindex={button ? 0 : undefined}
+		{...$$restProps}
 		on:click
 	/>
 {/if}
