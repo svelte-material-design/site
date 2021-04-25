@@ -7,6 +7,6 @@
 </script>
 
 <Events>
-	<OnChange prop="selected" name="OnTabChange" />
+	<OnChange prop="selected" name="OnChipChange" />
 </Events>
 <BaseForwardedEvents />

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Props } from "src/components/components-api/props";
 	import {
@@ -10,6 +12,6 @@
 <Props>
 	<CommonIconButtonProps />
 	<BaseComponentProps>
-		<Dom instances={['HTMLButtonElement']} />
+		<Dom instances={["HTMLButtonElement"]} />
 	</BaseComponentProps>
 </Props>

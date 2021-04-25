@@ -16,6 +16,6 @@
 		<Tag href="content" {mandatory}>Content</Tag>
 	</slot>
 	<Description>
-		<slot>The main content of component.</slot>
+		<slot>The main content of the component.</slot>
 	</Description>
 </SubComponent>

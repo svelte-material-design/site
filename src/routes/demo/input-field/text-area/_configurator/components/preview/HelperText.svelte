@@ -5,7 +5,7 @@
 		HelperText,
 		CharacterCounter,
 	} from "@svelte-material-design/core/textfield";
-	import { TextAreaFieldConfigurations } from "../../types";
+	import type { TextAreaFieldConfigurations } from "../../types";
 
 	export let configurations: TextAreaFieldConfigurations;
 </script>

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Signature } from "src/components/components-api/events";
 	import {
@@ -14,7 +16,8 @@
 	<Signature
 		keyword="type"
 		name="IconButtonColor"
-		allowedValues={['inherit', 'primary', 'secondary']}>
-		<Default value={'inherit'} />
+		allowedValues={["inherit", "primary", "secondary"]}
+	>
+		<Default value={"inherit"} />
 	</Signature>
 </Color>

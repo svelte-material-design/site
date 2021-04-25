@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { Input } from ".";
-	import { TextAreaFieldConfigurations } from "../../types";
+	import type { TextAreaFieldConfigurations } from "../../types";
 	import { CharacterCounter } from "@svelte-material-design/core/textfield";
 
 	export let configurations: TextAreaFieldConfigurations;

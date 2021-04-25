@@ -49,6 +49,7 @@
 <style>
 	.app-content {
 		overflow: auto;
-    height: 100vh;
+		height: 100vh;
+		box-sizing: border-box;
 	}
-	</style>
+</style>

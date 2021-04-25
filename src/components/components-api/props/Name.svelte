@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { ReadonlyChip, ReadwriteChip } from "../common/particles/chips";
 	import { Cell } from "../common/table";

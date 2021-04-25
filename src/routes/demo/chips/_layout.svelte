@@ -11,7 +11,7 @@
 	setLayoutPath(`${getLayoutPath()}/chips`);
 </script>
 
-<ModuleLayout module="chips" title="chips">
+<ModuleLayout module="chip-set" title="Chip Set">
 	<slot />
 	<div slot="page">
 		<Page {segment}>

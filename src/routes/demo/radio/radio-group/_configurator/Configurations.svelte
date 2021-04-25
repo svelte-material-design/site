@@ -6,7 +6,7 @@
 		MultipleItemControls,
 		MultipleItemSelector,
 	} from "src/components/configurator/common-options/multiple-items";
-	import { RadioConfigurations } from "../../_configurator/Configurations";
+	import { RadioConfigurations } from "../../_configurator/components/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { multipleItemsHandler } = getConfiguratorContext();

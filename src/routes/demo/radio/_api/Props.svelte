@@ -7,10 +7,7 @@
 		Ripple,
 		AccessibleTouch,
 	} from "src/components/components-api/props/common";
-	import {
-		Selected,
-		Value,
-	} from "src/components/components-api/props/common/groups";
+	import { Selected } from "src/components/components-api/props/common/groups";
 	import { InnerInputElementNotes } from "src/components/components-api/props/common/notes";
 	import { CommonInputProps } from "src/components/components-api/props/common/input";
 </script>

@@ -7,25 +7,36 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import { GenericIcon } from "src/components/components-api/sub-components/common";
+	import {
+		LeadingIcon,
+		TrailingIcon,
+		Content,
+	} from "src/components/components-api/sub-components/common";
 </script>
 
 <SubComponents>
 	<SubComponent>
-		<Tag href="tab">Tab</Tag>
-		<Description>A Tab item.</Description>
+		<Tag href="chip" mandatory>Chip</Tag>
+		<Description>A chip item.</Description>
 	</SubComponent>
-	<SubComponent indentation={1}>
-		<Tag href="content">Content</Tag>
-		<Description>The tab main content.</Description>
-	</SubComponent>
+	<Content mandatory indentation={1} />
 	<SubComponent indentation={2}>
-		<Tag href="label">Label</Tag>
-		<Description>The tab label.</Description>
+		<Tag href="action">Action</Tag>
+		<Description>
+			The chip primary action, it allows user tab navigation.
+		</Description>
 	</SubComponent>
-	<GenericIcon indentation={2} />
+	<SubComponent indentation={3}>
+		<Tag href="text" mandatory>Text</Tag>
+		<Description>The chip text.</Description>
+	</SubComponent>
 	<SubComponent indentation={1}>
-		<Tag href="tab-indicator">TabIndicator</Tag>
-		<Description>The tab indicator.</Description>
+		<Tag href="checkmark">Checkmark</Tag>
+		<Description>
+			Indicates the checkmark in a filter chip. It is shown when the chip is
+			selected.
+		</Description>
 	</SubComponent>
+	<LeadingIcon indentation={1} />
+	<TrailingIcon indentation={1} />
 </SubComponents>

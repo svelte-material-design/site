@@ -1,9 +1,15 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { getCellClass } from "./TableContext";
 
 	const className = getCellClass();
 	let dom: HTMLDivElement;
 </script>
+
+<div bind:this={dom} class="cell {className}">
+	<slot />
+</div>
 
 <style lang="scss">
 	@use "@material/data-table";
@@ -16,7 +22,3 @@
 		justify-content: center;
 	}
 </style>
-
-<div bind:this={dom} class="cell {className}">
-	<slot />
-</div>
