@@ -5,6 +5,6 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>ChipSet</ApiTitle>
+<ApiTitle>Chip</ApiTitle>
 <Props />
 <Events />
