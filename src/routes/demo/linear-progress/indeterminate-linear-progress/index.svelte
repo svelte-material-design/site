@@ -5,5 +5,5 @@
 	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<ApiTitle>LinearProgress</ApiTitle>
+<ApiTitle>IndeterminateLinearProgress</ApiTitle>
 <Props />

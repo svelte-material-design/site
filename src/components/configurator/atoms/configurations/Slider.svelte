@@ -17,6 +17,7 @@
 	export let step: number;
 	export let label: string;
 	export let disabled: boolean;
+	export let customLabel: (value: number) => string = undefined;
 
 	const dispatch = createEventDispatcher<{
 		change: {
@@ -38,6 +39,14 @@
 			value: value[0],
 		});
 	}
+
+	function getLabel(value: number) {
+		if (customLabel) {
+			return customLabel(value);
+		} else {
+			return value;
+		}
+	}
 </script>
 
 <div class="labelled-range-slider">
@@ -46,18 +55,20 @@
 			<div use:typography={"body1"}><span>{label}</span></div>
 		</Label>
 		<div class="slider-wrapper">
-			<span>{value}</span>
+			<span>{getLabel(value)}</span>
 			<DiscreteSlider
 				class="labelled-range-slider__slider"
 				gap={1}
 				hideValueIndicator
 				{disabled}
+				{step}
 				on:input={(event) => handleInput(event.detail.value)}
 				on:change={(event) => handleChange(event.detail.value)}
-				><Range {min} {max} bind:value {step} let:value>
-					<Thumb>{value}</Thumb>
-				</Range></DiscreteSlider
 			>
+				<Range {min} {max} bind:value let:value>
+					<Thumb>{getLabel(value)}</Thumb>
+				</Range>
+			</DiscreteSlider>
 		</div>
 	</FormField>
 </div>

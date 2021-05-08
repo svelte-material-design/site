@@ -7,9 +7,10 @@
 		Select,
 	} from "src/components/configurator/atoms/configurations";
 	import { Section } from "src/components/configurator/molecules/configurations";
-	import type { CardConfigurations } from "./types";
+	import { getConfiguratorContext } from "./ConfiguratorContext";
 
-	export let configurations: CardConfigurations;
+	const { configurations$ } = getConfiguratorContext();
+
 	let showTitle: boolean;
 	let showSubtitle: boolean;
 	let showText: boolean = true;
@@ -37,42 +38,45 @@
 			!showBodyTitle &&
 			!showBodySubtitle &&
 			!showBodyText &&
-			!configurations.media &&
+			!$configurations$.media &&
 			!showMediaContent;
 
-		if (isClickableBodyDisabled) configurations.clickableBody = false;
-		if (!configurations.clickableBody)
-			configurations.primaryActionRipple = true;
+		if (isClickableBodyDisabled) {
+			$configurations$.clickableBody = false;
+		}
+		if (!$configurations$.clickableBody) {
+			$configurations$.primaryActionRipple = true;
+		}
 
 		if (
 			(!showBodyTitle && !showBodySubtitle && !showBodyText) ||
-			!configurations.media
+			!$configurations$.media
 		) {
 			isHorizontalLayoutDisabled = true;
-			configurations.horizontalLayout = false;
+			$configurations$.horizontalLayout = false;
 		} else {
 			isHorizontalLayoutDisabled = false;
 		}
 
-		configurations.title = showTitle ? "Title" : undefined;
-		configurations.subtitle = showSubtitle ? "Subtitle" : undefined;
-		configurations.bodyTitle = showBodyTitle ? "Body Title" : undefined;
-		configurations.bodySubtitle = showBodySubtitle
+		$configurations$.title = showTitle ? "Title" : undefined;
+		$configurations$.subtitle = showSubtitle ? "Subtitle" : undefined;
+		$configurations$.bodyTitle = showBodyTitle ? "Body Title" : undefined;
+		$configurations$.bodySubtitle = showBodySubtitle
 			? "Body Subtitle"
 			: undefined;
-		configurations.bodyText = showBodyText ? "Body Text" : undefined;
-		configurations.mediaContent = showMediaContent
+		$configurations$.bodyText = showBodyText ? "Body Text" : undefined;
+		$configurations$.mediaContent = showMediaContent
 			? "Media Content"
 			: undefined;
-		configurations.text = showText ? "Text" : undefined;
+		$configurations$.text = showText ? "Text" : undefined;
 
-		configurations = { ...configurations };
+		$configurations$ = { ...$configurations$ };
 	}
 </script>
 
 <Section>
 	<Checkbox
-		bind:checked={configurations.outlined}
+		bind:checked={$configurations$.outlined}
 		label="Outlined"
 		on:change={handleChange}
 	/>
@@ -90,7 +94,7 @@
 <Typography>Body</Typography>
 <Section>
 	<Select
-		bind:value={configurations.media}
+		bind:value={$configurations$.media}
 		options={[
 			{ value: "", label: "" },
 			{ value: "16x9", label: "16x9" },
@@ -101,7 +105,7 @@
 	/>
 	<Checkbox
 		bind:checked={showMediaContent}
-		disabled={!configurations.media}
+		disabled={!$configurations$.media}
 		label="Media content"
 		on:change={handleChange}
 	/>
@@ -117,19 +121,19 @@
 	/>
 	<Checkbox bind:checked={showBodyText} label="Text" on:change={handleChange} />
 	<Checkbox
-		bind:checked={configurations.clickableBody}
+		bind:checked={$configurations$.clickableBody}
 		disabled={isClickableBodyDisabled}
 		label="Clickable"
 		on:change={handleChange}
 	/>
 	<Checkbox
-		bind:checked={configurations.primaryActionRipple}
-		disabled={!configurations.clickableBody}
+		bind:checked={$configurations$.primaryActionRipple}
+		disabled={!$configurations$.clickableBody}
 		label="Clickable"
 		on:change={handleChange}
 	/>
 	<Checkbox
-		bind:checked={configurations.horizontalLayout}
+		bind:checked={$configurations$.horizontalLayout}
 		disabled={isHorizontalLayoutDisabled}
 		label="Horizontal layout"
 		on:change={handleChange}
@@ -138,7 +142,7 @@
 <Typography>Actions</Typography>
 <Section>
 	<Select
-		bind:value={configurations.actionsLayout}
+		bind:value={$configurations$.actionsLayout}
 		options={actionsLayoutOptions}
 		label="Actions layout"
 		on:change={handleChange}
