@@ -12,11 +12,12 @@
 		HeadRow,
 		Label,
 		SortButton,
-		SortEventDetail,
 		Checkbox,
 		PageSize,
 		Pagination,
+		Table,
 	} from "@svelte-material-design/core/data-table";
+	import type { SortEventDetail } from "@svelte-material-design/core/data-table";
 	import type { DataTableConfigurations } from "./types";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
@@ -118,94 +119,92 @@
 	bind:value={$configurations$.value}
 	on:sort={(event) => sort(event.detail)}
 >
-	<Head>
-		<HeadRow>
-			{#if $configurations$.allowSelection}
-				<HeadCell checkbox>
-					<Checkbox
-						style={!$configurations$.showSelectAll ? "display: none;" : ""}
-					/>
+	<Table>
+		<Head>
+			<HeadRow>
+				{#if $configurations$.allowSelection}
+					<HeadCell checkbox>
+						<Checkbox
+							style={!$configurations$.showSelectAll ? "display: none;" : ""}
+						/>
+					</HeadCell>
+				{/if}
+				<HeadCell columnId="name" numeric={$configurations$.nameColNumeric}>
+					{#if $configurations$.nameColNumeric}
+						{#if $configurations$.allowSorting}
+							<SortButton />
+						{/if}
+						<Label>Name</Label>
+					{:else}
+						<Label>Name</Label>
+						{#if $configurations$.allowSorting}
+							<SortButton />
+						{/if}
+					{/if}
 				</HeadCell>
+				<HeadCell
+					columnId="description"
+					numeric={$configurations$.descColNumeric}
+				>
+					{#if $configurations$.descColNumeric}
+						{#if $configurations$.allowSorting}
+							<SortButton />
+						{/if}
+						<Label>Description</Label>
+					{:else}
+						<Label>Description</Label>
+						{#if $configurations$.allowSorting}
+							<SortButton />
+						{/if}
+					{/if}
+				</HeadCell>
+				<HeadCell columnId="price" numeric={$configurations$.priceColNumeric}>
+					{#if $configurations$.priceColNumeric}
+						{#if $configurations$.allowSorting}
+							<SortButton />
+						{/if}
+						<Label>Price</Label>
+					{:else}
+						<Label>Price</Label>
+						{#if $configurations$.allowSorting}
+							<SortButton />
+						{/if}
+					{/if}
+				</HeadCell>
+			</HeadRow>
+		</Head>
+		<Body>
+			{#if pageIndex != null && pageSize != null}
+				{#each rows.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize) as row (row.name)}
+					<Row value={row.name}>
+						{#if $configurations$.allowSelection}
+							<Cell checkbox>
+								<Checkbox />
+							</Cell>
+						{/if}
+						<Cell numeric={$configurations$.nameColNumeric}>{row.name}</Cell>
+						<Cell numeric={$configurations$.descColNumeric}
+							>{row.description}</Cell
+						>
+						<Cell numeric={$configurations$.priceColNumeric}>{row.price}</Cell>
+					</Row>
+				{/each}
 			{/if}
-			<HeadCell columnId="name" numeric={$configurations$.nameColNumeric}>
-				{#if $configurations$.nameColNumeric}
-					{#if $configurations$.allowSorting}
-						<SortButton />
-					{/if}
-					<Label>Name</Label>
-				{:else}
-					<Label>Name</Label>
-					{#if $configurations$.allowSorting}
-						<SortButton />
-					{/if}
-				{/if}
-			</HeadCell>
-			<HeadCell
-				columnId="description"
-				numeric={$configurations$.descColNumeric}
-			>
-				{#if $configurations$.descColNumeric}
-					{#if $configurations$.allowSorting}
-						<SortButton />
-					{/if}
-					<Label>Description</Label>
-				{:else}
-					<Label>Description</Label>
-					{#if $configurations$.allowSorting}
-						<SortButton />
-					{/if}
-				{/if}
-			</HeadCell>
-			<HeadCell columnId="price" numeric={$configurations$.priceColNumeric}>
-				{#if $configurations$.priceColNumeric}
-					{#if $configurations$.allowSorting}
-						<SortButton />
-					{/if}
-					<Label>Price</Label>
-				{:else}
-					<Label>Price</Label>
-					{#if $configurations$.allowSorting}
-						<SortButton />
-					{/if}
-				{/if}
-			</HeadCell>
-		</HeadRow>
-	</Head>
-	<Body>
-		{#if pageIndex != null && pageSize != null}
-			{#each rows.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize) as row (row.name)}
-				<Row value={row.name}>
-					{#if $configurations$.allowSelection}
-						<Cell checkbox>
-							<Checkbox />
-						</Cell>
-					{/if}
-					<Cell numeric={$configurations$.nameColNumeric}>{row.name}</Cell>
-					<Cell numeric={$configurations$.descColNumeric}
-						>{row.description}</Cell
-					>
-					<Cell numeric={$configurations$.priceColNumeric}>{row.price}</Cell>
-				</Row>
-			{/each}
-		{/if}
-	</Body>
-	<div slot="loader">
-		{#if $configurations$.showLinearProgress}
-			<LinearProgress ariaLabel="Loading data..." />
-		{/if}
-	</div>
-	<div slot="pagination">
-		{#if $configurations$.showPagination}
-			<Pagination length={rows.length} bind:pageIndex bind:pageSize>
-				<div slot="pageSize">
-					<PageSize pageSizeOptions={[4, 8, 12]}>Rows per page</PageSize>
-				</div>
-				<div slot="counter" let:first let:end let:length>
-					{first}‑{end}
-					of
-					{length}
-				</div>
-			</Pagination>
-		{/if}
-	</div>
+		</Body>
+	</Table>
+	{#if $configurations$.showLinearProgress}
+		<LinearProgress ariaLabel="Loading data..." />
+	{/if}
+	{#if $configurations$.showPagination}
+		<Pagination length={rows.length} bind:pageIndex bind:pageSize>
+			<div slot="pageSize">
+				<PageSize pageSizeOptions={[4, 8, 12]}>Rows per page</PageSize>
+			</div>
+			<div slot="counter" let:first let:end let:length>
+				{first}‑{end}
+				of
+				{length}
+			</div>
+		</Pagination>
+	{/if}
 </DataTable>

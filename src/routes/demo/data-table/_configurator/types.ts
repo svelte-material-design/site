@@ -2,9 +2,10 @@ import {
 	Group,
 	Item,
 } from "src/components/configurator/common-options/multiple-items";
+import type { DataTableValue } from "@svelte-material-design/core/data-table";
 
 export interface DataTableConfigurations extends Group<DataTableRow> {
-	value: string | string[];
+	value: DataTableValue;
 	allowSelection: boolean;
 	showSelectAll: boolean;
 	allowSorting: boolean;
