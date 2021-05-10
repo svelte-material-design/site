@@ -14,38 +14,30 @@
 
 <Events>
 	<CommonGroupsEvents
-		childrenTag="Tab"
-		changeName="OnChipSetChange"
-		optionsName="OnChipSetChildrenChange"
+		childrenTag="Row"
+		changeName="OnDataTableSetChange"
+		optionsName="OnDataTableChildrenChange"
 	/>
 	<Event>
-		<Name>interaction</Name>
-		<Signature keyword="interface" name="OnChipSetInteraction" />
+		<Name>selectAll</Name>
+		<Signature keyword="interface" name="OnDataTableAction" />
 		<Description>
-			Indicates the chip was interacted with (via click/tap or Enter key).
+			Fired when the user select all items through the header checkbox.
 		</Description>
 	</Event>
 	<Event>
-		<Name>selection</Name>
-		<Signature keyword="interface" name="OnChipSetInteraction" />
+		<Name>unselectAll</Name>
+		<Signature keyword="interface" name="OnDataTableAction" />
 		<Description>
-			Indicates the chip's selection state has changed (for choice/filter
-			chips).
+			Fired when the user unselect all items through the header checkbox.
 		</Description>
 	</Event>
 	<Event>
-		<Name>trailingIconInteraction</Name>
-		<Signature keyword="interface" name="OnChipSetInteraction" />
+		<Name>sort</Name>
+		<Signature keyword="interface" name="OnDataTableSort" />
 		<Description>
-			Indicates the chip's trailing icon was interacted with (via click/tap or
-			Enter key).
-		</Description>
-	</Event>
-	<Event>
-		<Name>navigation</Name>
-		<Signature keyword="interface" name="OnChipSetInteraction" />
-		<Description>
-			Indicates a navigation event has occurred on a chip.
+			Fired when the user change the table sort through the
+			<code>SortButton</code>.
 		</Description>
 	</Event>
 </Events>

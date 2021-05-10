@@ -7,36 +7,57 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import {
-		LeadingIcon,
-		TrailingIcon,
-		Content,
-	} from "src/components/components-api/sub-components/common";
 </script>
 
 <SubComponents>
 	<SubComponent>
-		<Tag href="chip" mandatory>Chip</Tag>
-		<Description>A chip item.</Description>
-	</SubComponent>
-	<Content mandatory indentation={1} />
-	<SubComponent indentation={2}>
-		<Tag href="action">Action</Tag>
-		<Description>
-			The chip primary action, it allows user tab navigation.
-		</Description>
-	</SubComponent>
-	<SubComponent indentation={3}>
-		<Tag href="text">Text</Tag>
-		<Description>The chip text.</Description>
+		<Tag href="table" mandatory>Table</Tag>
+		<Description>The table component.</Description>
 	</SubComponent>
 	<SubComponent indentation={1}>
-		<Tag href="checkmark">Checkmark</Tag>
+		<Tag href="head" mandatory>Head</Tag>
+		<Description>The table's head.</Description>
+	</SubComponent>
+	<SubComponent indentation={2}>
+		<Tag href="head-row" mandatory>HeadRow</Tag>
+		<Description>The table's head row.</Description>
+	</SubComponent>
+	<SubComponent indentation={3}>
+		<Tag href="head-cell" mandatory>HeadCell</Tag>
+		<Description>The table's head cell.</Description>
+	</SubComponent>
+	<SubComponent indentation={4}>
+		<Tag href="label">Label</Tag>
+		<Description>The header cell's label.</Description>
+	</SubComponent>
+	<SubComponent indentation={4}>
+		<Tag href="sort-button">SortButton</Tag>
+		<Description>The header cell's sort button.</Description>
+	</SubComponent>
+	<SubComponent indentation={1}>
+		<Tag href="body" mandatory>Body</Tag>
+		<Description>The table's body.</Description>
+	</SubComponent>
+	<SubComponent indentation={2}>
+		<Tag href="row" mandatory>Row</Tag>
+		<Description>The table's body row.</Description>
+	</SubComponent>
+	<SubComponent indentation={3}>
+		<Tag href="cell" mandatory>Cell</Tag>
+		<Description>The table's body cell.</Description>
+	</SubComponent>
+	<SubComponent indentation={1}>
+		<Tag href="linear-progress" mandatory>LinearProgress</Tag>
+		<Description>Linear progress to show when loading data.</Description>
+	</SubComponent>
+	<SubComponent indentation={1}>
+		<Tag href="pagination" mandatory>Pagination</Tag>
+		<Description>The pagination component.</Description>
+	</SubComponent>
+	<SubComponent indentation={2}>
+		<Tag href="page-size" mandatory>PageSize</Tag>
 		<Description>
-			Indicates the checkmark in a filter chip. It is shown when the chip is
-			selected.
+			Allows the user to select the number of items to display per page.
 		</Description>
 	</SubComponent>
-	<LeadingIcon indentation={1} />
-	<TrailingIcon indentation={1} />
 </SubComponents>

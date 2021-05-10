@@ -23,11 +23,11 @@
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
-	<div slot="preview" style="width: 50%">
+	<div slot="preview" style="width: 60%">
 		<Preview />
 	</div>
 	<div slot="values">
-		{#if $configurations$.allowSelection}
+		{#if $configurations$.selectionType}
 			value:
 			<Values value={$configurations$.value} />
 		{/if}

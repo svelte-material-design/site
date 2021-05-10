@@ -1,127 +1,188 @@
-import type { ChipConfigurations, ChipSetConfigurations } from "./types";
+import type { DataTableConfigurations } from "./types";
 import { source } from "common-tags";
 import {
 	generateSvelteTagCode,
 	getImportCode,
 	removeEmptyLines,
 } from "src/components/configurator";
-import type {
-	Position,
-	IconType,
-} from "src/components/configurator/smui-components/icons";
-import { getIconCode } from "src/components/configurator/smui-components/icons";
 
-export function script(configurations: ChipSetConfigurations) {
-	const hasAction = configurations.items.some((item) => item.action);
-	const hasLeadingIcon = configurations.items.some((item) => item.leadingIcon);
-	const hasTrailingIcon = configurations.items.some(
-		(item) => item.trailingIcon
-	);
+export function script(configurations: DataTableConfigurations) {
+	const {
+		selectionType,
+		showPagination,
+		allowSorting,
+		showLinearProgress,
+	} = configurations;
 
 	const imports = removeEmptyLines(
 		getImportCode(
 			[
-				"ChipSet",
-				"Chip",
-				"Content",
-				"Action",
-				"Text",
-				[hasAction, "Action"],
-				[hasLeadingIcon, "LeadingIcon"],
-				[hasTrailingIcon, "TrailingIcon"],
+				"DataTable",
+				"Head",
+				"Body",
+				"Row",
+				"Cell",
+				"HeadCell",
+				"HeadRow",
+				"Label",
+				"Table",
+				[showPagination, "PageSize"],
+				[showPagination, "Pagination"],
+				[selectionType, "Checkbox"],
+				[allowSorting, "SortButton"],
+				[showLinearProgress, "LinearProgress"],
 			],
-			"tab-bar"
+			"data-table"
 		)
 	);
+
+	const paginationCode = showLinearProgress
+		? "\n" +
+		  source`
+		let pageIndex: number = 0;
+		let pageSize: number = 4;
+	` +
+		  "\n"
+		: "";
 
 	const code = source`
 		<script>
 			${imports}
-
+			${paginationCode}
 			let value;
 		</script>`;
 
 	return code;
 }
 
-export function template(configurations: ChipConfigurations) {
-	const {
-		focusOnActivate,
-		activateOnKeyboardNavigation,
-		transition,
-		nullable,
-	} = configurations;
+export function template(configurations: DataTableConfigurations) {
+	const { selectionType, nullable } = configurations;
 
 	const code = generateSvelteTagCode({
-		tag: "TabBar",
+		tag: "DataTable",
 		props: [
-			"bind:value",
-			[!focusOnActivate, `focusOnActivate={${focusOnActivate}}`],
-			[
-				!activateOnKeyboardNavigation,
-				`activateOnKeyboardNavigation={${activateOnKeyboardNavigation}}`,
-			],
-			[transition !== "slide", `transition="${transition}"`],
+			[selectionType, "bind:value"],
 			[nullable, `nullable`],
 		],
 		content: source`
-			${configurations.items.map((tab) => getChipCode(tab)).join("\n")}
+			<Table>
+				${getHeadCode(configurations)}
+				${getBodyCode(configurations)}
+				${getLinearProgressCode(configurations)}
+				${getPaginationCode(configurations)}
+			</Table>
 		`,
 	});
 
 	return removeEmptyLines(code);
 }
 
-function getChipCode(configurations: ChipConfigurations) {
+function getHeadCode(configurations: DataTableConfigurations) {
 	const {
-		selected,
-		value,
-		ripple,
-		accessibleTouch,
-		trailingIcon,
-		leadingIcon,
-		label,
-		action,
+		selectionType,
+		allowSorting,
+		showSelectAll,
+		priceColAlignEnd,
 	} = configurations;
 
-	let textCode = `<Text>${label}</Text>`;
-
-	let contentCode = action
+	const selectionColumn = selectionType
 		? source`
-		<Action>
-			${textCode}
-		</Action>
+		<HeadCell checkbox>
+			<Checkbox${showSelectAll ? ` style="display: none;"` : ""} />
+		</HeadCell>
 	`
-		: textCode;
+		: "";
 
-	const code = generateSvelteTagCode({
-		tag: "Action",
-		props: [
-			[selected, "selected"],
-			`value="${value}"`,
-			[!ripple, `ripple={${ripple}}`],
-			[accessibleTouch, "accessibleTouch"],
-		],
-		content: source`
-			${getTabIconCode(trailingIcon, "leading")}
-			${contentCode}
-			${getTabIconCode(leadingIcon, "trailing")}
-		`,
-	});
+	const priceCellContent = priceColAlignEnd
+		? source`
+		${allowSorting ? "<SortButton />" : ""}
+		<Label>Price</Label>
+	`
+		: `
+		<Label>Price</Label>
+		${allowSorting ? "<SortButton />" : ""}
+	`;
 
-	return code;
+	return source`
+		<Head>
+			<HeadRow>
+				${selectionColumn}
+				<HeadCell data-column-id="name">
+					<Label>Name</Label>
+					${allowSorting ? "<SortButton />" : ""}
+				</HeadCell>
+				<HeadCell data-column-id="description">
+					<Label>Description</Label>
+					${allowSorting ? "<SortButton />" : ""}
+				</HeadCell>
+				<HeadCell data-column-id="price"${priceColAlignEnd ? " alignEnd" : ""}>
+					${priceCellContent}
+				</HeadCell>
+			</HeadRow>
+		</Head>
+	`;
 }
 
-function getTabIconCode(type: IconType, position: Position) {
-	if (type) {
-		return getIconCode(
-			{},
-			{
-				type,
-				position,
-			}
-		);
-	}
+function getBodyCode(configurations: DataTableConfigurations) {
+	const { selectionType, priceColAlignEnd, items } = configurations;
 
-	return "";
+	const selectionColumn = selectionType
+		? source`
+		<Cell checkbox>
+			<Checkbox />
+		</HeadCell>
+	`
+		: "";
+
+	return source`
+		<Body>
+			${items
+				.map((item) => {
+					return source`
+					<Row value="${item.value}">
+						${selectionColumn}
+						<Cell>
+							<Label>${item.name}</Label>
+						</Cell>
+						<Cell>
+							<Label>${item.description}</Label>
+						</Cell>
+						<Cell${priceColAlignEnd ? " alignEnd" : ""}>
+							<Label>${item.price}</Label>
+						</Cell>
+					</Row>
+				`;
+				})
+				.join("\n")}
+		</Body>
+	`;
+}
+
+function getPaginationCode(configurations: DataTableConfigurations) {
+	const { showPagination, items } = configurations;
+
+	return showPagination
+		? source`
+		<Pagination length={${items.length}} bind:pageIndex bind:pageSize>
+			<div slot="pageSize">
+				<PageSize pageSizeOptions={[4, 8, 12]}>Rows per page</PageSize>
+			</div>
+			<div slot="counter" let:first let:end let:length>
+				{first}‑{end}
+				of
+				{length}
+			</div>
+		</Pagination>
+	`
+		: "";
+}
+
+function getLinearProgressCode(configurations: DataTableConfigurations) {
+	const { showLinearProgress } = configurations;
+
+	return showLinearProgress
+		? source`
+		<LinearProgress />
+	`
+		: "";
 }

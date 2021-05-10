@@ -4,11 +4,14 @@ import type { Item } from "src/components/configurator/common-options/multiple-i
 export function createMultipleItemsHandler<
 	Configurations extends { items: Item[] },
 	Items extends Configurations["items"]
->({
-	configurations$,
-	itemFactory,
-}: MultipleItemsHandlerInput<Configurations, Items>) {
-	const initialItems = createInitialItems();
+>(
+	{
+		configurations$,
+		itemFactory,
+	}: MultipleItemsHandlerInput<Configurations, Items>,
+	initialLength = 3
+) {
+	const initialItems = createInitialItems(initialLength);
 	const items$ = writable<Configurations["items"]>(initialItems);
 	const selectedItem$ = writable<Configurations["items"][0]>(get(items$)[0]);
 	const derivedConfigurations$ = derived(
@@ -67,15 +70,15 @@ export function createMultipleItemsHandler<
 
 	function reset() {
 		items$.update(() => {
-			const items = createInitialItems();
+			const items = createInitialItems(initialLength);
 			return items;
 		});
 
 		selectedItem$.set(get(items$)[0]);
 	}
 
-	function createInitialItems() {
-		const items = ([] = Array(3)
+	function createInitialItems(length: number) {
+		const items = ([] = Array(length)
 			.fill("")
 			.map((_, index) => {
 				return itemFactory(index);

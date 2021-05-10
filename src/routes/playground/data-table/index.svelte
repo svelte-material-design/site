@@ -16,7 +16,7 @@
 		Pagination,
 		Table,
 	} from "@svelte-material-design/core/data-table";
-	import type { SortEventDetail } from "@svelte-material-design/core/data-table";
+	import type { OnDataTableSort } from "@svelte-material-design/core/data-table";
 
 	let valueSet: Set<RowData["name"]> = new Set();
 	let value: string[] = Array.from(valueSet);
@@ -78,7 +78,7 @@
 		rows = [...allRows];
 	}
 
-	function sort(sortData: SortEventDetail) {
+	function sort(sortData: OnDataTableSort) {
 		rows = rows.sort((a, b) => {
 			if (a[sortData.columnId] > b[sortData.columnId]) return 1;
 			else if (a[sortData.columnId] < b[sortData.columnId]) return -1;
@@ -90,6 +90,22 @@
 		} else if (sortData.sortValue === "descending") {
 			rows = [...rows.reverse()];
 		}
+	}
+
+	function handleUnselectAll() {
+		allRows.forEach((row) => {
+			valueSet.delete(row.name);
+		});
+
+		value = Array.from(valueSet);
+	}
+
+	function handleSelectAll() {
+		allRows.forEach((row) => {
+			valueSet.add(row.name);
+		});
+
+		value = Array.from(valueSet);
 	}
 
 	function handleRowChange(row: RowData, selected: boolean) {
@@ -110,22 +126,26 @@
 	}
 </script>
 
-<DataTable {value} on:sort={(event) => sort(event.detail)}>
+<DataTable
+	on:sort={(event) => sort(event.detail)}
+	on:selectAll={handleSelectAll}
+	on:unselectAll={handleUnselectAll}
+>
 	<Table aria-label="Items list">
 		<Head>
 			<HeadRow>
 				<HeadCell checkbox>
 					<Checkbox />
 				</HeadCell>
-				<HeadCell columnId="name">
+				<HeadCell data-column-id="name">
 					<Label>Name</Label>
 					<SortButton />
 				</HeadCell>
-				<HeadCell columnId="description">
+				<HeadCell data-column-id="description">
 					<Label>Description</Label>
 					<SortButton />
 				</HeadCell>
-				<HeadCell columnId="price" numeric>
+				<HeadCell data-column-id="price" alignEnd>
 					<SortButton />
 					<Label>Price</Label>
 				</HeadCell>
@@ -135,6 +155,7 @@
 			{#if pageIndex != null}
 				{#each rows.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize) as row (row.name)}
 					<Row
+						selected={valueSet.has(row.name)}
 						value={row.name}
 						on:change={(event) => handleRowChange(row, event.detail.selected)}
 					>
@@ -143,7 +164,7 @@
 						</Cell>
 						<Cell>{row.name}</Cell>
 						<Cell>{row.description}</Cell>
-						<Cell numeric>{row.price}</Cell>
+						<Cell alignEnd>{row.price}</Cell>
 					</Row>
 				{/each}
 			{/if}

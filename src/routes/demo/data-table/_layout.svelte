@@ -8,10 +8,10 @@
 
 	export let segment: string;
 
-	setLayoutPath(`${getLayoutPath()}/chips`);
+	setLayoutPath(`${getLayoutPath()}/data-table`);
 </script>
 
-<ModuleLayout module="chip-set" title="Chip Set">
+<ModuleLayout module="data-table" title="Data Table">
 	<slot />
 	<div slot="page">
 		<Page {segment}>

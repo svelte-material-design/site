@@ -1,14 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import {
-		Props,
-		Signature,
-		Prop,
-		Name,
-		Default,
-		Description,
-	} from "src/components/components-api/props";
+	import { Props, Signature } from "src/components/components-api/props";
 	import {
 		BaseComponentProps,
 		Dom,
@@ -17,27 +10,7 @@
 </script>
 
 <Props>
-	<Prop>
-		<Name>variant</Name>
-		<Signature keyword="type" name="ChipSetVariant" />
-		<Description>
-			Sets the <code>{`<ChipSet />`}</code> selection type and behaviour:
-			<ul>
-				<li><code>choice</code> will one items selected at a time.</li>
-				<li><code>filter</code> will allow multiple chips being selected.</li>
-			</ul>
-		</Description>
-	</Prop>
-	<Prop>
-		<Name>entryAnimation</Name>
-		<Signature keyword="boolean">
-			<Default value={true} />
-		</Signature>
-		<Description>
-			When <code>true</code> the added chip is animated.
-		</Description>
-	</Prop>
-	<CommonGroupsProps multi showGroup showNullable groupComponent="ChipSet">
+	<CommonGroupsProps multi showGroup showNullable groupComponent="DataTable">
 		<svelte-fragment slot="valueSignature">
 			<Signature keyword="type" name="ChipSetValue" />
 		</svelte-fragment>

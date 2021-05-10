@@ -3,17 +3,21 @@ import {
 	Item,
 } from "src/components/configurator/common-options/multiple-items";
 import type { DataTableValue } from "@svelte-material-design/core/data-table";
+import type { SelectionType } from "@raythurnevoid/svelte-group-components/ts/selectable";
 
 export interface DataTableConfigurations extends Group<DataTableRow> {
 	value: DataTableValue;
-	allowSelection: boolean;
+	selectionType: SelectionType;
+	nullable: boolean;
 	showSelectAll: boolean;
 	allowSorting: boolean;
 	showLinearProgress: boolean;
 	showPagination: boolean;
-	nameColNumeric: boolean;
-	descColNumeric: boolean;
-	priceColNumeric: boolean;
+	priceColAlignEnd: boolean;
 }
 
-export interface DataTableRow extends Item {}
+export interface DataTableRow extends Item {
+	name: string;
+	description: string;
+	price: number;
+}

@@ -3,56 +3,63 @@
 <script lang="ts">
 	import { Section } from "src/components/configurator/molecules/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import { Checkbox } from "src/components/configurator/atoms/configurations";
+	import {
+		Checkbox,
+		Select,
+	} from "src/components/configurator/atoms/configurations";
 
 	const { configurations$ } = getConfiguratorContext();
 
-	async function updateInstance() {
+	async function handleChange() {
+		if (!$configurations$.selectionType && $configurations$.showSelectAll) {
+			$configurations$.showSelectAll = false;
+		}
+
 		$configurations$ = { ...$configurations$ };
 	}
 </script>
 
 <Section>
-	<Checkbox
-		bind:checked={$configurations$.allowSelection}
-		label="Allow selection"
-		disabled={$configurations$.showPagination}
-		on:change={updateInstance}
+	<Select
+		bind:value={$configurations$.selectionType}
+		options={[
+			{ value: "", label: "" },
+			{ value: "multi", label: "Multi" },
+			{ value: "single", label: "Single" },
+		]}
+		label="Selection type"
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.showSelectAll}
 		label="Show select all"
-		disabled={!$configurations$.allowSelection}
-		on:change={updateInstance}
+		disabled={!$configurations$.selectionType}
+		on:change={handleChange}
+	/>
+	<Checkbox
+		bind:checked={$configurations$.nullable}
+		label="Nullable"
+		disabled={!$configurations$.selectionType}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.allowSorting}
 		label="Allow sortimg"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.showLinearProgress}
 		label="Show linear progress"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.showPagination}
 		label="Show pagination"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
-		bind:checked={$configurations$.nameColNumeric}
-		label="Name column is numeric"
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		bind:checked={$configurations$.descColNumeric}
-		label="Description column is numeric"
-		on:change={updateInstance}
-	/>
-	<Checkbox
-		bind:checked={$configurations$.priceColNumeric}
-		label="Price column is numeric"
-		on:change={updateInstance}
+		bind:checked={$configurations$.priceColAlignEnd}
+		label="Price column align end"
+		on:change={handleChange}
 	/>
 </Section>
