@@ -26,6 +26,7 @@ export function script(configurations: DataTableConfigurations) {
 				"HeadRow",
 				"Label",
 				"Table",
+				"TableContainer",
 				[showPagination, "PageSize"],
 				[showPagination, "Pagination"],
 				[selectionType, "Checkbox"],
@@ -65,12 +66,14 @@ export function template(configurations: DataTableConfigurations) {
 			[nullable, `nullable`],
 		],
 		content: source`
-			<Table>
-				${getHeadCode(configurations)}
-				${getBodyCode(configurations)}
-				${getLinearProgressCode(configurations)}
-				${getPaginationCode(configurations)}
-			</Table>
+			<TableContainer>
+				<Table>
+					${getHeadCode(configurations)}
+					${getBodyCode(configurations)}
+				</Table>
+			</TableContainer>
+			${getLinearProgressCode(configurations)}
+			${getPaginationCode(configurations)}
 		`,
 	});
 

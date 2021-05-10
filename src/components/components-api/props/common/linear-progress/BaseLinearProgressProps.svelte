@@ -12,15 +12,10 @@
 		BaseComponentProps,
 		Dom,
 	} from "src/components/components-api/props/common";
+	import { Closed } from "src/components/components-api/events/common/progress";
 </script>
 
-<Prop>
-	<Name readwrite>closed</Name>
-	<Signature keyword="boolean">
-		<Default value={false} />
-	</Signature>
-	<Description>Sets the component state.</Description>
-</Prop>
+<Closed />
 <Prop>
 	<Name readwrite>reversed</Name>
 	<Signature keyword="boolean">
