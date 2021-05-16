@@ -2,13 +2,14 @@
 
 <script lang="ts">
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
-	import { BaseInputFieldConfigurations } from "./types";
+	import type { BaseInputFieldConfigurations } from "./types";
 
 	export let configurations: BaseInputFieldConfigurations;
 
 	function updateInstance() {
 		configurations = { ...configurations };
 	}
+
 </script>
 
 <Checkbox

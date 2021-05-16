@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Prop,
@@ -10,6 +12,7 @@
 	export let name: string;
 	export let allowedValues: string[];
 	export let defaultValue: any = undefined;
+
 </script>
 
 <Prop>

@@ -8,14 +8,14 @@
 		Signature,
 		Default,
 	} from "src/components/components-api/props";
-	import { Open } from "src/components/components-api/props/common/menu";
-	import { Variant } from "src/components/components-api/props/common";
+	import { Variant, Open } from "src/components/components-api/props/common";
 
 	export let tag: string;
 	export let anchorName: string = "MenuSurfaceAnchor";
 	export let anchorMarginName: string = "MenuSurfaceAnchorMargin";
 	export let variantName: string = "MenuSurfaceVariant";
 	export let anchorCornerName: string = "MenuSurfaceAnchorCorner";
+
 </script>
 
 <Open {tag} />

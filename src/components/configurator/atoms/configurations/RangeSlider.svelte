@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		DiscreteSlider,
@@ -14,6 +16,7 @@
 	export let step: number;
 
 	export let label: string;
+
 </script>
 
 <div class="labelled-range-slider">
@@ -71,4 +74,5 @@
 			}
 		}
 	}
+
 </style>

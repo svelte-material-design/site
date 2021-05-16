@@ -3,10 +3,7 @@
 	"version": "2.0.0-alpha.0",
 	"description": "",
 	"scripts": {
-		"link:svmdsm": "npm link ../svelte-material-design-space-modules",
-		"link:svmd": "npm link ../svelte-material-ui-core",
-		"link:sp": "npm link ../svelte-prism",
-		"link": "npm-run-all link:svmd link:svmdsm link:sp",
+		"link": "npm link ../svelte-material-ui-core ../svelte-material-design-space-modules ../svelte-prism",
 		"postinstall": "npm run link",
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
 		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",

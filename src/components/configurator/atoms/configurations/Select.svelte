@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Select,
@@ -18,6 +20,7 @@
 		value: string;
 		label: string;
 	}[] = [];
+
 </script>
 
 <Configuration>
@@ -46,4 +49,5 @@
 	.select-option :global(.select) {
 		width: 100%;
 	}
+
 </style>

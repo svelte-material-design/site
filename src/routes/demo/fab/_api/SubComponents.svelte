@@ -1,27 +1,20 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
+	import { SubComponents } from "src/components/components-api/sub-components";
 	import {
-		SubComponents,
-		SubComponent,
-		Tag,
-		Description,
-	} from "src/components/components-api/sub-components";
+		GenericIcon,
+		Label,
+	} from "src/components/components-api/sub-components/common";
+
 </script>
 
-<style>
-</style>
-
 <SubComponents>
-	<SubComponent>
-		<Tag href="icon">Icon</Tag>
-		<Description>The icon fo the FAB.</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="label">Label</Tag>
-		<Description>
-			The text of the FAB. To be used only when the
-			<code>variant</code>
-			is set to
-			<code>"expanded"</code>.
-		</Description>
-	</SubComponent>
+	<GenericIcon>The icon of the FAB.</GenericIcon>
+	<Label mandatory>
+		The text of the FAB. To be used only when the
+		<code>variant</code>
+		is set to
+		<code>"expanded"</code>.
+	</Label>
 </SubComponents>

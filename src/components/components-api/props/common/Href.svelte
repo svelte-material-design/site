@@ -1,5 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Prop, Name, Description, Signature } from "..";
+
 </script>
 
 <Prop>

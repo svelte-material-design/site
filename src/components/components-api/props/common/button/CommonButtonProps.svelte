@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Default, Signature } from "src/components/components-api/props";
 	import {
@@ -9,6 +11,7 @@
 		AccessibleTouch,
 		Variant,
 	} from "src/components/components-api/props/common";
+
 </script>
 
 <Variant

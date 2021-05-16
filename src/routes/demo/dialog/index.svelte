@@ -1,14 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import DialogConfigurator from "./_DialogConfigurator.svelte";
-	import { Typography } from "@smui/core/typography";
+	import { Props, Events } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
 </script>
 
-<svelte:head>
-	<title>Dialogs - SMUI</title>
-</svelte:head>
-
-<section>
-	<Typography variant="headline2">Dialogs</Typography>
-
-	<DialogConfigurator />
-</section>
+<ApiTitle>Button</ApiTitle>
+<Props />
+<Events />

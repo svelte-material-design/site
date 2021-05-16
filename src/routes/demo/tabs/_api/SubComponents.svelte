@@ -8,6 +8,8 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 	import { GenericIcon } from "src/components/components-api/sub-components/common";
+	import { Label } from "src/components/components-api/sub-components/common";
+
 </script>
 
 <SubComponents>
@@ -19,10 +21,7 @@
 		<Tag href="content">Content</Tag>
 		<Description>The tab main content.</Description>
 	</SubComponent>
-	<SubComponent indentation={2}>
-		<Tag href="label">Label</Tag>
-		<Description>The tab label.</Description>
-	</SubComponent>
+	<Label mandatory indentation={2} component="Tab" />
 	<GenericIcon indentation={2} />
 	<SubComponent indentation={1}>
 		<Tag href="tab-indicator">TabIndicator</Tag>

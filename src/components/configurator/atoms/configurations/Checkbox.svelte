@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Checkbox } from "@svelte-material-design/core/checkbox";
 	import { FormField, Label } from "@svelte-material-design/core/form-field";
@@ -6,6 +8,7 @@
 	export let checked: boolean = false;
 	export let disabled: boolean = undefined;
 	export let label: string = "";
+
 </script>
 
 <Configuration>

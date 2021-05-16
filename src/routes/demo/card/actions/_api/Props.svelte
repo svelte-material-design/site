@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Prop,
@@ -11,6 +13,7 @@
 		BaseComponentProps,
 		Dom,
 	} from "src/components/components-api/props/common";
+
 </script>
 
 <Props>
@@ -26,6 +29,6 @@
 		</Description>
 	</Prop>
 	<BaseComponentProps>
-		<Dom instances={['HTMLDivElement']} />
+		<Dom instances={["HTMLDivElement"]} />
 	</BaseComponentProps>
 </Props>

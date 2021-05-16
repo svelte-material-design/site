@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { Checkbox } from "src/components/configurator/atoms/configurations";
-	import { BaseInputFieldConfigurations } from "./types";
+	import type { BaseInputFieldConfigurations } from "./types";
 	import { LABEL_TEXT } from "./constants";
 	import { Section } from "../../molecules/configurations";
 	import { onMount, tick } from "svelte";
@@ -17,6 +17,7 @@
 	function updateInstance() {
 		configurations = { ...configurations };
 	}
+
 </script>
 
 <Section>

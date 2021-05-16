@@ -1,15 +1,11 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import {
-		SubComponents,
-		SubComponent,
-		Tag,
-		Description,
-	} from "src/components/components-api/sub-components";
+	import { SubComponents } from "src/components/components-api/sub-components";
+	import { GenericIcon } from "src/components/components-api/sub-components/common";
+
 </script>
 
 <SubComponents>
-	<SubComponent>
-		<Tag mandatory href="icon">Icon</Tag>
-		<Description>The icon to show.</Description>
-	</SubComponent>
+	<GenericIcon>The icon to show.</GenericIcon>
 </SubComponents>

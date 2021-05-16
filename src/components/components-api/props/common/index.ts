@@ -11,3 +11,4 @@ export { default as AccessibleTouch } from "./AccessibleTouch.svelte";
 export { default as ReadOnly } from "./ReadOnly.svelte";
 export { default as Variant } from "./Variant.svelte";
 export { default as Value } from "./Value.svelte";
+export { default as Open } from "./Open.svelte";

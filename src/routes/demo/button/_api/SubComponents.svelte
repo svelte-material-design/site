@@ -1,22 +1,15 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
+	import { SubComponents } from "src/components/components-api/sub-components";
 	import {
-		SubComponents,
-		SubComponent,
-		Tag,
-		Description,
-	} from "src/components/components-api/sub-components";
+		GenericIcon,
+		Label,
+	} from "src/components/components-api/sub-components/common";
+
 </script>
 
-<style>
-</style>
-
 <SubComponents>
-	<SubComponent>
-		<Tag mandatory href="label">Label</Tag>
-		<Description>The text of the button.</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="icon">Icon</Tag>
-		<Description>It can be used as both leading and trailing icon.</Description>
-	</SubComponent>
+	<Label mandatory component="Button" />
+	<GenericIcon />
 </SubComponents>

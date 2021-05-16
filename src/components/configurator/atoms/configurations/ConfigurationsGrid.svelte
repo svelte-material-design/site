@@ -1,3 +1,9 @@
+<svelte:options immutable={true} />
+
+<div class="configurations-grid">
+	<slot />
+</div>
+
 <style>
 	.configurations-grid {
 		display: grid;
@@ -6,8 +12,5 @@
 		white-space: nowrap;
 		width: 100%;
 	}
-</style>
 
-<div class="configurations-grid">
-	<slot />
-</div>
+</style>
