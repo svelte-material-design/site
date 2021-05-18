@@ -1,13 +1,11 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import ImageListConfigurator from "./_ImageListConfigurator.svelte";
+	import { Props, Events } from "./_api";
+	import { ApiTitle } from "src/components/components-api/common";
+
 </script>
 
-<svelte:head>
-	<title>Image Lists - SMUI</title>
-</svelte:head>
-
-<section>
-	<h2>Image Lists</h2>
-
-	<ImageListConfigurator />
-</section>
+<ApiTitle>ImageList</ApiTitle>
+<Props />
+<Events />

@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Prop,
@@ -15,10 +17,15 @@
 	import { Dom } from "src/components/components-api/props/common";
 	import { BaseButtonProps } from "src/components/components-api/props/common/button";
 	import { Variant } from "src/components/components-api/props/common";
+
 </script>
 
 <Props>
-	<Variant name="FabVariant" allowedValues={["regular", "expanded", "mini"]} />
+	<Variant
+		name="FabVariant"
+		allowedValues={["regular", "expanded", "mini"]}
+		defaultValue="regular"
+	/>
 	<Color>
 		<Signature
 			keyword="type"

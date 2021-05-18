@@ -1,11 +1,17 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { ReadonlyChip, ReadwriteChip } from "../common/particles/chips";
+	import {
+		ReadonlyChip,
+		ReadwriteChip,
+		MandatoryChip,
+	} from "../common/particles/chips";
 	import { Cell } from "../common/table";
 
 	export let readonly: boolean = false;
 	export let readwrite: boolean = false;
+	export let mandatory: boolean = false;
+
 </script>
 
 <Cell>
@@ -18,6 +24,9 @@
 		{/if}
 		{#if readonly}
 			<ReadonlyChip />
+		{/if}
+		{#if mandatory}
+			<MandatoryChip />
 		{/if}
 	</code>
 </Cell>

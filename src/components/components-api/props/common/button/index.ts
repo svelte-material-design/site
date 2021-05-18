@@ -5,4 +5,3 @@ export { default as CommonActionIconProps } from "./CommonActionIconProps.svelte
 export { default as CommonButtonProps } from "./CommonButtonProps.svelte";
 export { default as CommonActionButtonProps } from "./CommonActionButtonProps.svelte";
 export { default as BaseActionButtonProps } from "./BaseActionButtonProps.svelte";
-export { default as CommonButtonLabelProps } from "./CommonButtonLabelProps.svelte";

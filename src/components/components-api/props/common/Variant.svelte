@@ -22,5 +22,7 @@
 			<Default value={defaultValue} />
 		{/if}
 	</Signature>
-	<Description>The variant to use.</Description>
+	<Description>
+		<slot>The variant to use.</slot>
+	</Description>
 </Prop>

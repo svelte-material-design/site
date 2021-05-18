@@ -17,6 +17,7 @@
 <Variant
 	name="ButtonVariant"
 	allowedValues={["text", "raised", "unelevated", "outlined"]}
+	defaultValue="text"
 />
 <Color>
 	<Signature

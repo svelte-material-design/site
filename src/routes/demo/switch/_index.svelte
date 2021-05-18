@@ -1,0 +1,34 @@
+<script lang="ts">
+	import { Typography } from "@smui/core/typography";
+	import { Tab, Label } from "@smui/core/tab";
+	import { TabBar } from "@smui/core/tab-bar";
+	import SwitchConfigurator from "./_SwitchConfigurator.svelte";
+	import SwitchGroupConfigurator from "./_SwitchGroupConfigurator.svelte";
+
+	let currentTab: "switch" | "group-switch" = "switch";
+</script>
+
+<svelte:options immutable={true} />
+
+<svelte:head>
+	<title>Switch - SMUI</title>
+</svelte:head>
+
+<section>
+	<Typography variant="headline2">Switch</Typography>
+
+	<TabBar bind:value={currentTab}>
+		<Tab value="switch">
+			<Label>Switch</Label>
+		</Tab>
+		<Tab value="group-switch">
+			<Label>Switch group</Label>
+		</Tab>
+	</TabBar>
+
+	{#if currentTab === 'switch'}
+		<SwitchConfigurator />
+	{:else if currentTab === 'group-switch'}
+		<SwitchGroupConfigurator />
+	{/if}
+</section>

@@ -1,12 +1,10 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import {
-		Checkbox,
-		Select,
-	} from "src/components/configurator/atoms/configurations";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
 	import { onMount } from "svelte";
 	import { AdditionalListConfigurations } from ".";
+	import { SelectionTypeConfiguration } from "../../common-options";
 	import type { ListConfigurations } from "./types";
 
 	export let configurations: ListConfigurations;
@@ -20,27 +18,14 @@
 	function updateInstance() {
 		configurations = { ...configurations };
 	}
+
 </script>
 
-<Select
+<SelectionTypeConfiguration
 	bind:value={configurations.selectionType}
-	label="Selection type"
 	disabled={selectionTypeDisabled}
-	options={[
-		...(!configurations.role ? [{ label: "", value: "" }] : []),
-		{
-			label: "Single",
-			value: "single",
-		},
-		...(!onlySingleSelection
-			? [
-					{
-						label: "Multi",
-						value: "multi",
-					},
-			  ]
-			: []),
-	]}
+	clearable={!configurations.role}
+	{onlySingleSelection}
 	on:change={updateInstance}
 />
 <AdditionalListConfigurations bind:configurations />

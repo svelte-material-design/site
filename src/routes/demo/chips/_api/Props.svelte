@@ -12,22 +12,20 @@
 	import {
 		BaseComponentProps,
 		Dom,
+		Variant,
 	} from "src/components/components-api/props/common";
 	import { CommonGroupsProps } from "src/components/components-api/props/common/groups";
+
 </script>
 
 <Props>
-	<Prop>
-		<Name>variant</Name>
-		<Signature keyword="type" name="ChipSetVariant" />
-		<Description>
-			Sets the <code>{`<ChipSet />`}</code> selection type and behaviour:
-			<ul>
-				<li><code>choice</code> will one items selected at a time.</li>
-				<li><code>filter</code> will allow multiple chips being selected.</li>
-			</ul>
-		</Description>
-	</Prop>
+	<Variant name="ChipSetVariant" defaultValue="standard">
+		Sets the <code>{`<ChipSet />`}</code> selection type and behaviour:
+		<ul>
+			<li><code>choice</code> will one items selected at a time.</li>
+			<li><code>filter</code> will allow multiple chips being selected.</li>
+		</ul>
+	</Variant>
 	<Prop>
 		<Name>entryAnimation</Name>
 		<Signature keyword="boolean">

@@ -12,21 +12,17 @@
 	import {
 		BaseComponentProps,
 		Dom,
+		Variant,
 	} from "src/components/components-api/props/common";
+
 </script>
 
 <Props>
-	<Prop>
-		<Name>variant</Name>
-		<Signature
-			keyword="type"
-			name="DrawerVariant"
-			instances={["permanent", "dismissible", "modal"]}
-		>
-			<Default value="permanent" />
-		</Signature>
-		<Description>The variant to use.</Description>
-	</Prop>
+	<Variant
+		name="DrawerVariant"
+		allowedValues={["permanent", "dismissible", "modal"]}
+		defaultValue="permanent"
+	/>
 	<Prop>
 		<Name>open</Name>
 		<Signature keyword="boolean">

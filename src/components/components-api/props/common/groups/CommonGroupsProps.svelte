@@ -16,8 +16,11 @@
 	export let groupComponent: string = undefined;
 
 	export let showSelectionType: boolean = false;
+	export let selectionTypeName: string = "ListSelectionType";
+
 	export let showNullable: boolean = false;
 	export let showGroup: boolean = false;
+
 </script>
 
 {#if showSelectionType}
@@ -25,7 +28,7 @@
 		<Name>selectionType</Name>
 		<Signature
 			keyword="type"
-			name="ListSelectionType"
+			name={selectionTypeName}
 			allowedValues={multi ? ["single", "multi"] : ["single"]}
 		/>
 		<Description>

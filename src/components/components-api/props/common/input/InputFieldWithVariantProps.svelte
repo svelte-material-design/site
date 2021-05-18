@@ -9,9 +9,14 @@
 		Description,
 	} from "src/components/components-api/props";
 	import { Variant } from "src/components/components-api/props/common";
+
 </script>
 
-<Variant name="InputFieldVariant" allowedValues={["filled", "outlined"]} />
+<Variant
+	name="InputFieldVariant"
+	allowedValues={["filled", "outlined"]}
+	defaultValue="filled"
+/>
 <Prop>
 	<Name>lineRipple</Name>
 	<Signature keyword="boolean">

@@ -3,10 +3,8 @@
 <script lang="ts">
 	import { Section } from "src/components/configurator/molecules/configurations";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import {
-		Checkbox,
-		Select,
-	} from "src/components/configurator/atoms/configurations";
+	import { Checkbox } from "src/components/configurator/atoms/configurations";
+	import { SelectionTypeConfiguration } from "src/components/configurator/common-options";
 
 	const { configurations$ } = getConfiguratorContext();
 
@@ -17,17 +15,12 @@
 
 		$configurations$ = { ...$configurations$ };
 	}
+
 </script>
 
 <Section>
-	<Select
+	<SelectionTypeConfiguration
 		bind:value={$configurations$.selectionType}
-		options={[
-			{ value: "", label: "" },
-			{ value: "multi", label: "Multi" },
-			{ value: "single", label: "Single" },
-		]}
-		label="Selection type"
 		on:change={handleChange}
 	/>
 	<Checkbox
