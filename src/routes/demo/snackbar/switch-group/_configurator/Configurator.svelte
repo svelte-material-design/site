@@ -1,0 +1,36 @@
+<svelte:options immutable={true} />
+
+<script lang="ts">
+	import { Configurator } from "src/components/configurator";
+	import { Values } from "src/components/configurator/atoms";
+	import { template, script } from "./code";
+	import Configurations from "./Configurations.svelte";
+	import Preview from "./Preview.svelte";
+	import {
+		createConfiguratorStore,
+		setConfiguratorContext,
+	} from "./ConfiguratorContext";
+
+	const context$ = createConfiguratorStore();
+	setConfiguratorContext(context$);
+
+	const { configurations$ } = context$;
+
+	let svelteScriptCode: string;
+	let svelteCode: string;
+
+	$: svelteScriptCode = script($configurations$);
+	$: svelteCode = template($configurations$);
+</script>
+
+<Configurator {svelteScriptCode} {svelteCode}>
+	<div slot="preview">
+		<Preview />
+	</div>
+	<div slot="values">
+		value: <Values value={$configurations$.value} />
+	</div>
+	<div slot="optionsSidebar">
+		<Configurations />
+	</div>
+</Configurator>

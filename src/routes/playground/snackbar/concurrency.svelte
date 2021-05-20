@@ -1,8 +1,21 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Snackbar, Content, Actions, Action } from "@smui/core/snackbar";
-	import { Button } from "@smui/core/button";
+	import {
+		Content,
+		Actions,
+		Action,
+		Dismiss,
+	} from "@svelte-material-design/core/snackbar";
+	import {
+		Snackbar,
+		SnackbarConcurrency,
+	} from "@svelte-material-design/core/snackbar/concurrency";
+	import { Button } from "@svelte-material-design/core/button";
+
 	let open: boolean = false;
 	let open2: boolean = false;
+	let events: string[] = [];
 
 	function showSnackbar() {
 		open = true;
@@ -11,22 +24,39 @@
 	function showSnackbar2() {
 		open2 = true;
 	}
+
 </script>
 
-<Button on:click={showSnackbar}>Open snackbar</Button>
+<SnackbarConcurrency
+	on:open={(event) => (events = [...events, `open:${event.detail.value}`])}
+	on:close={(event) =>
+		(events = [
+			...events,
+			`close:${event.detail.value} - ${event.detail.reason}`,
+		])}
+>
+	<Button on:click={showSnackbar}>Open snackbar</Button>
 
-<Snackbar bind:open stacked>
-	<Content>Test</Content>
-	<Actions>
-		<Action>Retry</Action>
-	</Actions>
-</Snackbar>
+	<Snackbar bind:open stacked value="1">
+		<Content>Test</Content>
+		<Actions>
+			<Action>Retry</Action>
+		</Actions>
+	</Snackbar>
 
-<Button on:click={showSnackbar2}>Open snackbar 2</Button>
+	<Button on:click={showSnackbar2}>Open snackbar 2</Button>
 
-<Snackbar bind:open={open2} stacked>
-	<Content>Test</Content>
-	<Actions>
-		<Action>Retry</Action>
-	</Actions>
-</Snackbar>
+	<Snackbar bind:open={open2} value="2">
+		<Content>Test 2</Content>
+		<Actions>
+			<Action>Retry</Action>
+			<Dismiss />
+		</Actions>
+	</Snackbar>
+</SnackbarConcurrency>
+
+<ul>
+	{#each events as event}
+		<li>{event}</li>
+	{/each}
+</ul>

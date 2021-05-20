@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Snackbar,
@@ -7,17 +9,16 @@
 		IconAction,
 		Icon,
 		Dismiss,
-	} from "@smui/core/snackbar";
-	import { Button } from "@smui/core/button";
+	} from "@svelte-material-design/core/snackbar";
+	import { Button } from "@svelte-material-design/core/button";
 
 	let open: boolean = true;
 
 	function showSnackbar() {
 		open = true;
 	}
-</script>
 
-<svelte:options immutable={true} />
+</script>
 
 <Button on:click={showSnackbar}>Open snackbar</Button>
 
@@ -25,8 +26,9 @@
 	bind:open
 	timeoutMs={-1}
 	fillColor="red"
-	labelInkColor={'black'}
-	shapeRadius="25px">
+	labelInkColor={"black"}
+	shapeRadius="25px"
+>
 	<Content>Test</Content>
 	<Actions>
 		<Action>Retry</Action>
