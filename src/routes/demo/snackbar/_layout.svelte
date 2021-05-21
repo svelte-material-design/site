@@ -7,23 +7,14 @@
 
 	export let segment: string;
 
-	setLayoutPath(`${getLayoutPath()}/switch`);
+	setLayoutPath(`${getLayoutPath()}/snackbar`);
 
 </script>
 
-<ModuleLayout module="switch" title="Switch">
+<ModuleLayout module="snackbar" title="Snackbar">
 	<slot />
 	<div slot="page">
-		<Page
-			{segment}
-			options={[
-				{ label: "Switch" },
-				{
-					label: "Switch Group",
-					folder: "switch-group",
-				},
-			]}
-		>
+		<Page {segment}>
 			<div slot="main">
 				<Configurator />
 				<slot />

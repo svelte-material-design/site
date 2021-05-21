@@ -12,7 +12,7 @@
 		IconOff,
 		ActionButton,
 		Label,
-	} from "@smui/core/card";
+	} from "@svelte-material-design/core/card";
 	import type { CardConfigurations } from "../types";
 
 	export let configurations: CardConfigurations;

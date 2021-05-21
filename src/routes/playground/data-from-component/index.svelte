@@ -1,7 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Select, Option } from "@smui/core/select";
+	import { Select, Option } from "@svelte-material-design/core/select";
 
 	let value: string = undefined;
+
 </script>
 
 <Select nullable={false} bind:value>

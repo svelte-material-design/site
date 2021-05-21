@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		SubComponents,
@@ -8,9 +10,12 @@
 	import {
 		ActionButton,
 		ActionIcon,
+		ActionIconToggle,
+		Actions,
 		Content,
 		GenericIcon,
 	} from "src/components/components-api/sub-components/common";
+
 </script>
 
 <SubComponents>
@@ -53,13 +58,7 @@
 			The clickable area that define a primary action for the card.
 		</Description>
 	</SubComponent>
-	<SubComponent>
-		<Tag href="actions">Actions</Tag>
-		<Description>
-			The area containing the actions. Mandatory if any action component is
-			used.
-		</Description>
-	</SubComponent>
+	<Actions />
 	<SubComponent>
 		<Tag href="action-buttons">ActionButtons</Tag>
 		<Description>A group of <code>{"<ActionButton />"}</code>.</Description>
@@ -70,6 +69,7 @@
 		<Description>A group of <code>{"<ActionIcon />"}</code>.</Description>
 	</SubComponent>
 	<ActionIcon />
+	<ActionIconToggle />
 	<GenericIcon />
 </SubComponents>
 

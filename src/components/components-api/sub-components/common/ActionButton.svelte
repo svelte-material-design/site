@@ -9,6 +9,7 @@
 	import { Label } from ".";
 
 	export let indentation: number = 0;
+	export let component: string;
 
 </script>
 
@@ -17,7 +18,7 @@
 	<Description>
 		Like a
 		<code>{"<Button />"}</code>
-		but used as action for the card.
+		but used as action for the {`<${component} />`}.
 	</Description>
 </SubComponent>
 <Label mandatory indentation={indentation + 1} component="ActionButton" />

@@ -2,10 +2,10 @@
 
 <script lang="ts">
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import { SwitchConfigurations } from "./components/configurations";
+	import { SnackbarConfigurations } from "./components/configurations";
 
 	const { configurations$ } = getConfiguratorContext();
 
 </script>
 
-<SwitchConfigurations bind:configurations={$configurations$} />
+<SnackbarConfigurations bind:configurations={$configurations$} />

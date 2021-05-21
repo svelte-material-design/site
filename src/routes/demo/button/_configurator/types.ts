@@ -1,5 +1,8 @@
 import type { IconType } from "src/components/configurator/smui-components/icons";
-import type { ButtonVariant, ButtonColor } from "@smui/core/button";
+import type {
+	ButtonVariant,
+	ButtonColor,
+} from "@svelte-material-design/core/button";
 
 export interface ButtonConfigurations {
 	disabled: boolean;

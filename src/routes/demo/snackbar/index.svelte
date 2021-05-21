@@ -6,7 +6,7 @@
 
 </script>
 
-<ApiTitle>Switch</ApiTitle>
+<ApiTitle>Snackbar</ApiTitle>
 <SubComponents />
 <Props />
 <Events />

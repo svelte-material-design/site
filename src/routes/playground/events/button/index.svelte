@@ -1,6 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Button, Icon, Label } from "@smui/core/button";
-	import { List, Item } from "@smui/core/list";
+	import { Button, Icon, Label } from "@svelte-material-design/core/button";
+	import { List, Item } from "@svelte-material-design/core/list";
 
 	let logs: Log[] = [];
 
@@ -15,20 +17,20 @@
 		name: string;
 		event: any;
 	}
-</script>
 
-<svelte:options immutable={true} />
+</script>
 
 <div>
 	<Button
 		variant="raised"
-		on:click={(e) => handleEvent('click', e)}
-		on:mousedown={(e) => handleEvent('mousedown', e)}
-		on:mouseup={(e) => handleEvent('mouseup', e)}
-		on:keydown={(e) => handleEvent('keydown', e)}
-		on:keyup={(e) => handleEvent('keyup', e)}
-		on:focus={(e) => handleEvent('focus', e)}
-		on:blur={(e) => handleEvent('blur', e)}>
+		on:click={(e) => handleEvent("click", e)}
+		on:mousedown={(e) => handleEvent("mousedown", e)}
+		on:mouseup={(e) => handleEvent("mouseup", e)}
+		on:keydown={(e) => handleEvent("keydown", e)}
+		on:keyup={(e) => handleEvent("keyup", e)}
+		on:focus={(e) => handleEvent("focus", e)}
+		on:blur={(e) => handleEvent("blur", e)}
+	>
 		<Label>Test</Label>
 	</Button>
 	<List>

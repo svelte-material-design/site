@@ -1,11 +1,12 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Fab, Icon, Label } from "@smui/core/fab";
+	import { Fab, Icon, Label } from "@svelte-material-design/core/fab";
 	import { LeadingIcon } from "src/components/configurator/smui-components/icons";
 	import type { FabConfigurations } from "./types";
 
 	export let configurations: FabConfigurations;
+
 </script>
 
 <Fab

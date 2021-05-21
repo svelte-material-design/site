@@ -4,7 +4,7 @@
 	import {
 		Content,
 		Actions,
-		Action,
+		ActionButton,
 		Dismiss,
 	} from "@svelte-material-design/core/snackbar";
 	import {
@@ -40,7 +40,7 @@
 	<Snackbar bind:open stacked value="1">
 		<Content>Test</Content>
 		<Actions>
-			<Action>Retry</Action>
+			<ActionButton>Retry</ActionButton>
 		</Actions>
 	</Snackbar>
 
@@ -49,7 +49,7 @@
 	<Snackbar bind:open={open2} value="2">
 		<Content>Test 2</Content>
 		<Actions>
-			<Action>Retry</Action>
+			<ActionButton>Retry</ActionButton>
 			<Dismiss />
 		</Actions>
 	</Snackbar>

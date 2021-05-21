@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Configurator, IFrame } from "src/components/configurator";
 	import Configurations from "./Configurations.svelte";
@@ -6,7 +8,7 @@
 	import type {
 		TopAppBarVariant,
 		TopAppBarColor,
-	} from "@smui/core/top-app-bar";
+	} from "@svelte-material-design/core/top-app-bar";
 
 	let variant: TopAppBarVariant = "standard";
 	let color: TopAppBarColor = "primary";
@@ -26,6 +28,7 @@
 
 	$: svelteCode = template(cardConfigurations);
 	$: svelteScriptCode = script(cardConfigurations);
+
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>

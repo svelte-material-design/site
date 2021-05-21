@@ -9,6 +9,7 @@
 	export let segment: string;
 
 	setLayoutPath(`${getLayoutPath()}/select`);
+
 </script>
 
 <ModuleLayout module="select" title="Select">

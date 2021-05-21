@@ -1,9 +1,12 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		BaseComponentProps,
 		Dom,
 	} from "src/components/components-api/props/common";
 	import { IconType } from ".";
+
 </script>
 
 <IconType />

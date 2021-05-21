@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Banner,
@@ -7,7 +9,7 @@
 		Label,
 		Graphic,
 		Icon,
-	} from "@smui/core/banner";
+	} from "@svelte-material-design/core/banner";
 	import { Configurator } from "src/components/configurator";
 </script>
 

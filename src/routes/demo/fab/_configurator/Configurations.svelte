@@ -1,9 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import type { FabVariant, FabColor } from "@smui/core/fab";
 	import { IconTypeOption } from "src/components/configurator/smui-components/icons";
-	import type { IconType } from "src/components/configurator/smui-components/icons";
 	import {
 		Checkbox,
 		Select,
@@ -16,6 +14,7 @@
 	function handleChange() {
 		configurations = { ...configurations };
 	}
+
 </script>
 
 <Section>

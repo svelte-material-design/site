@@ -1,9 +1,11 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Select } from "src/components/configurator/atoms/configurations";
 	import type {
 		TopAppBarVariant,
 		TopAppBarColor,
-	} from "@smui/core/top-app-bar";
+	} from "@svelte-material-design/core/top-app-bar";
 	import { CommonTopAppBarConfigurations } from "./common";
 	import { Section } from "src/components/configurator/molecules/configurations";
 
@@ -11,6 +13,7 @@
 	export let color: TopAppBarColor = "primary";
 	export let prominent: boolean = false;
 	export let dense: boolean = false;
+
 </script>
 
 <Section>

@@ -18,6 +18,7 @@
 	export let label: string;
 	export let disabled: boolean;
 	export let customLabel: (value: number) => string = undefined;
+	export let labelWidth: string = "2ch";
 
 	const dispatch = createEventDispatcher<{
 		change: {
@@ -47,6 +48,7 @@
 			return value;
 		}
 	}
+
 </script>
 
 <div class="labelled-range-slider">
@@ -55,7 +57,7 @@
 			<div use:typography={"body1"}><span>{label}</span></div>
 		</Label>
 		<div class="slider-wrapper">
-			<span>{getLabel(value)}</span>
+			<span style="--width: {labelWidth}">{getLabel(value)}</span>
 			<DiscreteSlider
 				class="labelled-range-slider__slider"
 				gap={1}
@@ -99,8 +101,10 @@
 			}
 
 			> span {
-				width: 2ch;
+				width: var(--width, 2ch);
+				text-align: end;
 			}
 		}
 	}
+
 </style>

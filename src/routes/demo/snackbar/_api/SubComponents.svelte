@@ -2,10 +2,29 @@
 
 <script lang="ts">
 	import { SubComponents } from "src/components/components-api/sub-components";
-	import { Input } from "src/components/components-api/sub-components/common/input";
+	import {
+		SubComponent,
+		Tag,
+		Description,
+	} from "src/components/components-api/sub-components";
+	import {
+		Content,
+		Actions,
+		ActionButton,
+		ActionIcon,
+		GenericIcon,
+	} from "src/components/components-api/sub-components/common";
 
 </script>
 
 <SubComponents>
-	<Input mandatory />
+	<Content mandatory />
+	<Actions indentation={1} />
+	<ActionButton indentation={2} />
+	<ActionIcon indentation={2} />
+	<GenericIcon indentation={3} />
+	<SubComponent indentation={2}>
+		<Tag href="dismiss">Dismiss</Tag>
+		<Description>The dismiss ("X") icon.</Description>
+	</SubComponent>
 </SubComponents>

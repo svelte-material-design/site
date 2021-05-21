@@ -5,7 +5,7 @@
 		Snackbar,
 		Content,
 		Actions,
-		Action,
+		ActionButton,
 		IconAction,
 		Icon,
 		Dismiss,
@@ -31,7 +31,7 @@
 >
 	<Content>Test</Content>
 	<Actions>
-		<Action>Retry</Action>
+		<ActionButton>Retry</ActionButton>
 		<IconAction>
 			<Icon>add</Icon>
 		</IconAction>

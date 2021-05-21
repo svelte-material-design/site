@@ -1,13 +1,16 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		Select,
 		Checkbox,
 	} from "src/components/configurator/atoms/configurations";
-	import type { TopAppBarColor } from "@smui/core/top-app-bar";
+	import type { TopAppBarColor } from "@svelte-material-design/core/top-app-bar";
 
 	export let color: TopAppBarColor = "primary";
 	export let prominent: boolean = false;
 	export let dense: boolean = false;
+
 </script>
 
 <Select

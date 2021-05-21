@@ -1,31 +1,14 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import "./elevation.scss";
 	import classes from "./elevation.module.scss";
-	import { Checkbox } from "@smui/core/checkbox";
-	import { FormField } from "@smui/core/form-field";
+	import { Checkbox } from "@svelte-material-design/core/checkbox";
+	import { FormField } from "@svelte-material-design/core/form-field";
 
 	let liftMeUp = false;
+
 </script>
-
-<style>
-	.flexy-dad {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	.flexy-boy {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 120px;
-		height: 120px;
-		margin: 0 36px 36px 0;
-	}
-
-	.rounded {
-		border-radius: 4px;
-	}
-</style>
 
 <svelte:head>
 	<title>Elevation - SMUI</title>
@@ -59,19 +42,47 @@
 		<div class="flexy-dad">
 			<div
 				class="mdc-elevation-transition rounded flexy-boy"
-				class:mdc-elevation--z4={liftMeUp}>
+				class:mdc-elevation--z4={liftMeUp}
+			>
 				Standard
 			</div>
 			<div
 				class="{classes.myPrimary}
-          {liftMeUp ? classes.elevated : ''} mdc-elevation-transition rounded flexy-boy">
+          {liftMeUp
+					? classes.elevated
+					: ''} mdc-elevation-transition rounded flexy-boy"
+			>
 				Primary
 			</div>
 			<div
 				class="{classes.mySecondary}
-          {liftMeUp ? classes.elevated : ''} mdc-elevation-transition rounded flexy-boy">
+          {liftMeUp
+					? classes.elevated
+					: ''} mdc-elevation-transition rounded flexy-boy"
+			>
 				Secondary
 			</div>
 		</div>
 	</div>
 </section>
+
+<style>
+	.flexy-dad {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.flexy-boy {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 120px;
+		height: 120px;
+		margin: 0 36px 36px 0;
+	}
+
+	.rounded {
+		border-radius: 4px;
+	}
+
+</style>

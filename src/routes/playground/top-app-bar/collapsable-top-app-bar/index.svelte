@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		CollapsableTopAppBar,
@@ -5,7 +7,7 @@
 		NavigationIcon,
 		NavigationButton,
 		Icon,
-	} from "@smui/core/top-app-bar";
+	} from "@svelte-material-design/core/top-app-bar";
 
 	let log: string[] = [];
 	let collapsed: boolean;
@@ -18,31 +20,16 @@
 	function handleNav() {
 		log = [...log, `Nav`];
 	}
+
 </script>
-
-<style>
-	.content {
-		position: relative;
-		height: 200vh;
-	}
-
-	.log {
-		position: absolute;
-		top: 0px;
-	}
-
-	.state {
-		position: fixed;
-		bottom: 1em;
-	}
-</style>
 
 <CollapsableTopAppBar
 	{alwaysCollapsed}
 	dense
 	on:change={(e) => handleChange(e.detail.collapsed)}
 	on:nav={(e) => handleNav()}
-	bind:collapsed>
+	bind:collapsed
+>
 	<Section>
 		<NavigationIcon>
 			<Icon>menu</Icon>
@@ -63,3 +50,21 @@
 	</div>
 </CollapsableTopAppBar>
 <div class="state">Collapsed: {collapsed}</div>
+
+<style>
+	.content {
+		position: relative;
+		height: 200vh;
+	}
+
+	.log {
+		position: absolute;
+		top: 0px;
+	}
+
+	.state {
+		position: fixed;
+		bottom: 1em;
+	}
+
+</style>

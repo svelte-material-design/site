@@ -8,9 +8,9 @@
 		Image,
 		Supporting,
 		Label,
-	} from "@smui/core/image-list";
+	} from "@svelte-material-design/core/image-list";
 	import { getConfiguratorContext } from "./ConfiguratorContext";
-	import { getImageSrc, getUnevenImageSize } from "./code";
+	import { getImageSrc } from "./code";
 	import { classList } from "@raythurnevoid/strings-filter";
 
 	const { configurations$ } = getConfiguratorContext();

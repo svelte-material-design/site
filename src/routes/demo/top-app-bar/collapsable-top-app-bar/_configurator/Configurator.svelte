@@ -5,7 +5,7 @@
 	import Configurations from "./Configurations.svelte";
 	import type { CollapsableTopAppBarConfigurations } from "./types";
 	import { script, template } from "./code";
-	import type { TopAppBarColor } from "@smui/core/top-app-bar";
+	import type { TopAppBarColor } from "@svelte-material-design/core/top-app-bar";
 
 	let collapsed: boolean;
 

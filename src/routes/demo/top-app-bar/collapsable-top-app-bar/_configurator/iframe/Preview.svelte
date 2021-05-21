@@ -14,7 +14,7 @@
 		ActionIconToggle,
 		Label,
 		Toolbar,
-	} from "@smui/core/top-app-bar";
+	} from "@svelte-material-design/core/top-app-bar";
 	import type { CollapsableTopAppBarConfigurations } from "../types";
 
 	export let configurations: CollapsableTopAppBarConfigurations;
