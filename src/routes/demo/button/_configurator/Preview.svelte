@@ -1,7 +1,12 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Button, Label, Icon } from "@svelte-material-design/core/button";
+	import {
+		Button,
+		Label,
+		LeadingIcon as ButtonLeadingIcon,
+		TrailingIcon as ButtonTrailingIcon,
+	} from "@svelte-material-design/core/button";
 	import {
 		LeadingIcon,
 		TrailingIcon,
@@ -11,6 +16,7 @@
 	import { getConfiguratorContext } from "./ConfiguratorContext";
 
 	const { configurations$ } = getConfiguratorContext();
+
 </script>
 
 <Button
@@ -24,13 +30,20 @@
 	color={$configurations$.color}
 	accessibleTouch={$configurations$.accessibleTouch}
 >
-	<LeadingIcon
-		component={Icon}
-		type={$configurations$.leadingIcon}
-		style={$configurations$.iconOnly ? "margin: 0;" : undefined}
-	/>
+	<svelte:fragment slot="leading">
+		<LeadingIcon
+			component={ButtonLeadingIcon}
+			type={$configurations$.leadingIcon}
+			style={$configurations$.iconOnly ? "margin: 0;" : undefined}
+		/>
+	</svelte:fragment>
 	{#if !$configurations$.iconOnly}
 		<Label>Button</Label>
 	{/if}
-	<TrailingIcon component={Icon} type={$configurations$.trailingIcon} />
+	<svelte:fragment slot="trailing">
+		<TrailingIcon
+			component={ButtonTrailingIcon}
+			type={$configurations$.trailingIcon}
+		/>
+	</svelte:fragment>
 </Button>

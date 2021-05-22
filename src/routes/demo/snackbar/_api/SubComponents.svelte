@@ -10,10 +10,10 @@
 	import {
 		Content,
 		Actions,
-		ActionButton,
 		ActionIcon,
 		GenericIcon,
 	} from "src/components/components-api/sub-components/common";
+	import { ActionButton } from "src/components/components-api/sub-components/common/button";
 
 </script>
 

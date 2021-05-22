@@ -6,19 +6,21 @@
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
-	import { Label } from ".";
+	import { ButtonSubComponents } from ".";
 
 	export let indentation: number = 0;
 	export let component: string;
+	export let name: string = "ActionButton";
+	export let href: string = "action-button";
 
 </script>
 
 <SubComponent {indentation}>
-	<Tag href="action-button">ActionButton</Tag>
+	<Tag {href}>ActionButton</Tag>
 	<Description>
 		Like a
 		<code>{"<Button />"}</code>
 		but used as action for the {`<${component} />`}.
 	</Description>
 </SubComponent>
-<Label mandatory indentation={indentation + 1} component="ActionButton" />
+<ButtonSubComponents indentation={indentation + 1} component={name} />

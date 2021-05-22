@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import {
 		SubComponents,
@@ -6,10 +8,11 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 	import {
-		ActionButton,
 		ActionIcon,
 		GenericIcon,
 	} from "src/components/components-api/sub-components/common";
+	import { ActionButton } from "src/components/components-api/sub-components/common/button";
+
 </script>
 
 <SubComponents>

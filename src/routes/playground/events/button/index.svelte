@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Button, Icon, Label } from "@svelte-material-design/core/button";
+	import { Button, Label } from "@svelte-material-design/core/button";
 	import { List, Item } from "@svelte-material-design/core/list";
 
 	let logs: Log[] = [];

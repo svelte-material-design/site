@@ -14,7 +14,12 @@ export function script(props: ButtonConfigurations) {
 	const code = source`
 		<script>
 			${getImportCode(
-				["Button", [!iconOnly, "Label"], [leadingIcon || trailingIcon, "Icon"]],
+				[
+					"Button",
+					[!iconOnly, "Label"],
+					[leadingIcon, "LeadingIcon"],
+					[trailingIcon, "TrailingIcon"],
+				],
 				"button"
 			)}
 		</script>
@@ -66,23 +71,35 @@ export function getCustomStyleClass(selectedCustomStyle: CustomStyle) {
 function getLeadingIconCode(props: ButtonConfigurations): string {
 	const { iconOnly, leadingIcon } = props;
 
-	return getIconCode(
-		{},
-		{
-			type: leadingIcon,
-			position: "leading",
-			additionalProps: [[iconOnly, `style="margin: 0;"`]],
-		}
-	);
+	let code: string;
+	if (leadingIcon) {
+		const iconCode = getIconCode(
+			{},
+			{
+				type: leadingIcon,
+				position: "leading",
+				additionalProps: [[iconOnly, `style="margin: 0;"`]],
+			}
+		);
+
+		code = source`
+			<svelte:fragment slot="leading">
+				${iconCode}
+			</svelte:fragment>
+		`;
+	}
+
+	return code;
 }
 
 function getTrailingIconCode(props: ButtonConfigurations): string {
 	const { iconOnly, trailingIcon } = props;
 
+	let code: string;
 	if (iconOnly) {
-		return "";
-	} else {
-		return getIconCode(
+		code = "";
+	} else if (trailingIcon) {
+		const iconCode = getIconCode(
 			{},
 			{
 				type: trailingIcon,
@@ -90,7 +107,15 @@ function getTrailingIconCode(props: ButtonConfigurations): string {
 				additionalProps: [[iconOnly, `style="margin: 0;"`]],
 			}
 		);
+
+		code = source`
+			<svelte:fragment slot="trailing">
+				${iconCode}
+			</svelte:fragment>
+		`;
 	}
+
+	return code;
 }
 
 export function scss(props: ButtonConfigurations) {

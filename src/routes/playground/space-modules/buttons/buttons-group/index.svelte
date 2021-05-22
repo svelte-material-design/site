@@ -1,6 +1,6 @@
 <script lang="ts">
 	import "./index.scss";
-	import { Button, Label } from "@smui/core/button";
+	import { Button, Label } from "@svelte-material-design/core/button";
 	import { Group } from "@svelte-material-design/space-modules/buttons/buttons-group";
 </script>
 

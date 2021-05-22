@@ -2,14 +2,10 @@
 
 <script lang="ts">
 	import { SubComponents } from "src/components/components-api/sub-components";
-	import {
-		GenericIcon,
-		Label,
-	} from "src/components/components-api/sub-components/common";
+	import { ButtonSubComponents } from "src/components/components-api/sub-components/common/button";
 
 </script>
 
 <SubComponents>
-	<Label mandatory component="Button" />
-	<GenericIcon />
+	<ButtonSubComponents component="Button" />
 </SubComponents>

@@ -8,13 +8,13 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 	import {
-		ActionButton,
 		ActionIcon,
 		ActionIconToggle,
 		Actions,
 		Content,
 		GenericIcon,
 	} from "src/components/components-api/sub-components/common";
+	import { ActionButton } from "src/components/components-api/sub-components/common/button";
 
 </script>
 
