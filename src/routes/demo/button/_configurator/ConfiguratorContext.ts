@@ -3,7 +3,9 @@ import { writable } from "svelte/store";
 import type { ButtonConfigurations } from "./types";
 
 export function createConfiguratorStore() {
-	const initialConfigurations = {} as ButtonConfigurations;
+	const initialConfigurations = {
+		ripple: true,
+	} as ButtonConfigurations;
 
 	const configurations$ = writable(initialConfigurations);
 
