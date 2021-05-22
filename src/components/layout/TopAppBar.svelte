@@ -13,6 +13,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let showMenuBtn: boolean = false;
+
 </script>
 
 <TopAppBar class={"demo-app-bar"} let:contentClass>
@@ -27,10 +28,11 @@
 	<slot slot="content" class={contentClass} />
 </TopAppBar>
 
-<style lang="scss">
+<style lang="scss" global>
 	@use "@material/elevation";
 
-	:global(.demo-app-bar) {
+	.demo-app-bar {
 		@include elevation.elevation(4);
 	}
+
 </style>

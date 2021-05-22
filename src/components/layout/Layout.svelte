@@ -26,30 +26,21 @@
 			dismissible = false;
 		}
 	}
+
 </script>
 
 <div>
 	<Drawer {dismissible} bind:open />
 
-	<AppContent class={"app-content"}>
-		<svelte:fragment slot="topAppBar">
-			<TopAppBar
-				showMenuBtn={dismissible}
-				on:navButtonClick={() => (open = true)}
-				let:class={contentClass}
-			>
-				<section class="app-content {contentClass}">
-					<slot />
-				</section>
-			</TopAppBar>
-		</svelte:fragment>
+	<AppContent>
+		<TopAppBar
+			showMenuBtn={dismissible}
+			on:navButtonClick={() => (open = true)}
+			let:class={contentClass}
+		>
+			<main class={contentClass}>
+				<slot />
+			</main>
+		</TopAppBar>
 	</AppContent>
 </div>
-
-<style>
-	.app-content {
-		overflow: auto;
-		height: 100vh;
-		box-sizing: border-box;
-	}
-</style>

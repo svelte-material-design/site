@@ -8,11 +8,12 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 	import { CommonListSubComponents } from "src/components/components-api/sub-components/common/lists";
+
 </script>
 
 <SubComponents>
 	<CommonListSubComponents>
-		<svelte-fragment slot="item">
+		<svelte:fragment slot="item">
 			<SubComponent indentation={2}>
 				<Tag href="checkbox">Checkbox</Tag>
 				<Description>
@@ -27,6 +28,6 @@
 					used when <code>role</code> is <code>"radiogroup"</code>.
 				</Description>
 			</SubComponent>
-		</svelte-fragment>
+		</svelte:fragment>
 	</CommonListSubComponents>
 </SubComponents>

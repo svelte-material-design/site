@@ -20,6 +20,8 @@ import type { Configuration } from "webpack";
 import { DefinePlugin } from "webpack";
 import type { RuleSetUseItem } from "webpack";
 import { resolve } from "path";
+import { preprocessConfig } from "./svelte.config";
+import sveltePreprocess from "svelte-preprocess";
 
 const sassIncludePaths = [
 	resolve("./src/styles/smui"),
@@ -71,15 +73,20 @@ function configLoadersRulesOverride(input: SvelteTempalteConfigurationInput) {
 
 	const svelteLoaderRules = svelteLoaderRule({ env, ssr: true });
 
+	(svelteLoaderRules[0] as any).use.forEach((item) => {
+		if (item.loader === "svelte-loader") {
+			item.options.preprocess = sveltePreprocess({
+				...preprocessConfig,
+			});
+		}
+	});
+
 	return {
 		rules: [
 			{
 				...tsLoaderRule({ env }),
 			},
-			{
-				...svelteLoaderRules[0],
-			},
-			svelteLoaderRules[1],
+			...svelteLoaderRules,
 			scssLoaderRuleOverride({ env, extract: input.extractCss }),
 			scssModulesLoaderRuleOverride({ env, extract: input.extractCss }),
 			fileLoaderRule(),

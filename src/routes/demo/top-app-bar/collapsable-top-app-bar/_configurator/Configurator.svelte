@@ -31,6 +31,7 @@
 	function handleUpdate(props: CollapsableTopAppBarConfigurations) {
 		collapsed = props.collapsed;
 	}
+
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
@@ -42,7 +43,7 @@
 		/>
 	</div>
 	<div slot="values">Collapsed: {collapsed}</div>
-	<svelte-fragment slot="optionsSidebar">
+	<svelte:fragment slot="optionsSidebar">
 		<Configurations bind:prominent bind:dense bind:color bind:alwaysCollapsed />
-	</svelte-fragment>
+	</svelte:fragment>
 </Configurator>

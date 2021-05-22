@@ -15,6 +15,7 @@
 	export let valueName: string = "ListValue";
 	export let itemsStyleName: string = "ListItemsStyle";
 	export let orientationName: string = "ListOrientation";
+
 </script>
 
 <CommonGroupsProps
@@ -24,7 +25,7 @@
 	multi
 	showGroup
 >
-	<svelte-fragment slot="valueSignature">
+	<svelte:fragment slot="valueSignature">
 		<Signature
 			keyword="type"
 			name={valueName}
@@ -35,7 +36,7 @@
 				<code>[]</code>.
 			</Default>
 		</Signature>
-	</svelte-fragment>
+	</svelte:fragment>
 </CommonGroupsProps>
 <ItemsStyle name={itemsStyleName} />
 <Orientation name={orientationName} />

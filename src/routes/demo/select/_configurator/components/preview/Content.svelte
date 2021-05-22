@@ -10,17 +10,18 @@
 	import { LeadingIcon } from "src/components/configurator/smui-components/icons";
 
 	export let configurations: SelectConfigurations;
+
 </script>
 
 {#if configurations.label && configurations.leadingIcon}
 	<Content>
 		<span slot="label">{configurations.label}</span>
-		<svelte-fragment slot="leading">
+		<svelte:fragment slot="leading">
 			<LeadingIcon
 				component={SelectLeadingIcon}
 				type={configurations.leadingIcon}
 			/>
-		</svelte-fragment>
+		</svelte:fragment>
 		<ContentComponents bind:configurations />
 	</Content>
 {:else if configurations.label}
@@ -30,12 +31,12 @@
 	</Content>
 {:else if configurations.leadingIcon}
 	<Content>
-		<svelte-fragment slot="leading">
+		<svelte:fragment slot="leading">
 			<LeadingIcon
 				component={SelectLeadingIcon}
 				type={configurations.leadingIcon}
 			/>
-		</svelte-fragment>
+		</svelte:fragment>
 		<ContentComponents bind:configurations />
 	</Content>
 {:else}

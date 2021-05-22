@@ -6,10 +6,22 @@
 
 	export let open: boolean = false;
 	export let dismissible: boolean = true;
+
 </script>
 
-<Drawer variant={dismissible ? "modal" : "permanent"} bind:open>
+<Drawer
+	class="svmd-site-drawer"
+	variant={dismissible ? "modal" : "permanent"}
+	bind:open
+>
 	<Content>
 		<ComponentsMenu />
 	</Content>
 </Drawer>
+
+<style lang="scss" global>
+	.svmd-site-drawer.svmd-site-drawer {
+		position: fixed;
+	}
+
+</style>

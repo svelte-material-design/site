@@ -15,6 +15,7 @@
 		InputFieldWithVariantProps,
 		InputFieldCommonProps,
 	} from "src/components/components-api/props/common/input";
+
 </script>
 
 <Props>
@@ -40,8 +41,8 @@
 	</Prop>
 	<Group />
 	<InputFieldCommonProps>
-		<svelte-fragment slot="valueSignature">
+		<svelte:fragment slot="valueSignature">
 			<Signature keyword="string" />
-		</svelte-fragment>
+		</svelte:fragment>
 	</InputFieldCommonProps>
 </Props>

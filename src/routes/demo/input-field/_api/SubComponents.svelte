@@ -9,6 +9,7 @@
 	} from "src/components/components-api/sub-components";
 	import { BaseInputFieldSubComponents } from "src/components/components-api/sub-components/common/input";
 	import { TrailingIcon } from "src/components/components-api/sub-components/common";
+
 </script>
 
 <SubComponents>
@@ -18,7 +19,7 @@
 		inputComponentHref="input"
 		inputElement="input"
 	>
-		<svelte-fragment slot="content">
+		<svelte:fragment slot="content">
 			<SubComponent indentation={1}>
 				<Tag href="prefix">Prefix</Tag>
 				<Description>
@@ -34,7 +35,7 @@
 				</Description>
 			</SubComponent>
 			<TrailingIcon indentation={1} />
-		</svelte-fragment>
+		</svelte:fragment>
 	</BaseInputFieldSubComponents>
 	<SubComponent>
 		<Tag href="character-counter">CharacterCounter</Tag>

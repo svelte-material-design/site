@@ -9,6 +9,7 @@
 	} from "src/components/components-api/sub-components";
 	import { BaseInputFieldSubComponents } from "src/components/components-api/sub-components/common/input";
 	import { CommonListSubComponents } from "src/components/components-api/sub-components/common/lists";
+
 </script>
 
 <SubComponents>
@@ -18,10 +19,10 @@
 		inputComponentHref="input"
 		inputElement="input"
 	>
-		<svelte-fragment slot="inputAdditionalDescription">
+		<svelte:fragment slot="inputAdditionalDescription">
 			The <code>type</code> attribute is forced to <code>hidden</code>.
-		</svelte-fragment>
-		<svelte-fragment slot="content">
+		</svelte:fragment>
+		<svelte:fragment slot="content">
 			<SubComponent indentation={2}>
 				<Tag href="options" mandatory>Options</Tag>
 				<Description>A list containing the select options.</Description>
@@ -40,6 +41,6 @@
 					<Tag href="option-trailing-icon">OptionTrailingIcon</Tag>
 				</slot>
 			</CommonListSubComponents>
-		</svelte-fragment>
+		</svelte:fragment>
 	</BaseInputFieldSubComponents>
 </SubComponents>

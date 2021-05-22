@@ -35,7 +35,7 @@
 	<div slot="preview" style="width: 100%; height: 15em;">
 		<IFrame title="Top App Bar preview" props={cardConfigurations} />
 	</div>
-	<svelte-fragment slot="optionsSidebar">
+	<svelte:fragment slot="optionsSidebar">
 		<Configurations bind:variant bind:prominent bind:dense bind:color />
-	</svelte-fragment>
+	</svelte:fragment>
 </Configurator>

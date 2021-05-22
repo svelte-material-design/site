@@ -19,13 +19,14 @@
 
 	$: svelteCode = template($configurations$);
 	$: svelteScriptCode = script($configurations$);
+
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview" style="width: 100%;">
 		<Preview />
 	</div>
-	<svelte-fragment slot="optionsSidebar">
+	<svelte:fragment slot="optionsSidebar">
 		<Configurations />
-	</svelte-fragment>
+	</svelte:fragment>
 </Configurator>

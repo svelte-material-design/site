@@ -17,7 +17,7 @@
 			background-color: #1e1e1e;
 			padding: 0px;
 
-			@include list.item-primary-text-ink-color(#d4d4d4);
+			@include list.deprecated-item-primary-text-ink-color(#d4d4d4);
 
 			:global(.mdc-list-item) {
 				&:not(:global(.mdc-list-item--selected)) {

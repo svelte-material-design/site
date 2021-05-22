@@ -36,7 +36,7 @@
 			closeReason: <Values value={$configurations$.closeReason} />
 		</div>
 	</div>
-	<svelte-fragment slot="optionsSidebar">
+	<svelte:fragment slot="optionsSidebar">
 		<Configurations />
-	</svelte-fragment>
+	</svelte:fragment>
 </Configurator>

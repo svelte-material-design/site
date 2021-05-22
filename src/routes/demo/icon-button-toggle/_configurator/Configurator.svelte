@@ -13,6 +13,7 @@
 
 	$: svelteScriptCode = script();
 	$: svelteCode = template(configurations);
+
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
@@ -20,7 +21,7 @@
 		<Preview bind:configurations />
 	</div>
 	<div slot="values">active: {configurations.active}</div>
-	<svelte-fragment slot="optionsSidebar" class="options-sidebar">
+	<svelte:fragment slot="optionsSidebar">
 		<Configurations bind:configurations />
-	</svelte-fragment>
+	</svelte:fragment>
 </Configurator>

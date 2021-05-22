@@ -20,6 +20,7 @@
 
 	$: svelteScriptCode = script($configurations$);
 	$: svelteCode = template($configurations$);
+
 </script>
 
 <Configurator {svelteScriptCode} {svelteCode}>
@@ -32,7 +33,7 @@
 			<Values value={$configurations$.value} />
 		{/if}
 	</div>
-	<svelte-fragment slot="optionsSidebar">
+	<svelte:fragment slot="optionsSidebar">
 		<Configurations />
-	</svelte-fragment>
+	</svelte:fragment>
 </Configurator>

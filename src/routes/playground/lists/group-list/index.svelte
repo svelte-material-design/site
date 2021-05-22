@@ -7,13 +7,14 @@
 	} from "@svelte-material-design/core/list";
 
 	let value: string[] = [];
+
 </script>
 
 <List bind:value role="group">
 	<Item value="1">
-		<svelte-fragment slot="leading">
+		<svelte:fragment slot="leading">
 			<Checkbox />
-		</svelte-fragment>
+		</svelte:fragment>
 		<Content>1</Content>
 	</Item>
 	<Item value="2">

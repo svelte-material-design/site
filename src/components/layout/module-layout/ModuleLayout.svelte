@@ -8,6 +8,7 @@
 	export let title: string;
 
 	const { page } = stores();
+
 </script>
 
 <svelte:head>
@@ -17,8 +18,15 @@
 {#if $page.path.endsWith("iframe")}
 	<slot />
 {:else}
-	<section>
+	<div>
 		<Title {module}>{title}</Title>
 		<slot name="page" />
-	</section>
+	</div>
 {/if}
+
+<style>
+	div {
+		padding: 1em;
+	}
+
+</style>

@@ -24,6 +24,7 @@
 	export let configurations: DrawerConfigurations;
 
 	console.log(configurations);
+
 </script>
 
 {#if configurations.layout === "below-top-app-bar"}
@@ -70,12 +71,12 @@
 	</Drawer>
 {/key}
 
-<AppContent class={"app-content"}>
-	<svelte-fragment slot="topAppBar">
+<AppContent>
+	<svelte:fragment slot="topAppBar">
 		{#if configurations.layout === "full-height"}
 			<TopAppBar />
 		{/if}
-	</svelte-fragment>
+	</svelte:fragment>
 	App Content
 </AppContent>
 
@@ -86,4 +87,5 @@
 		width: auto !important;
 		position: static !important;
 	}
+
 </style>

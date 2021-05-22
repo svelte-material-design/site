@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Icon, Label } from "@smui/core/button/themeable";
+	import { Button, Icon, Label } from "@smui/core/button";
 
 	let containerFillColor = "secondary";
 	let disabledContainerFillColor = "lightgreen";

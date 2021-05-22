@@ -14,6 +14,7 @@
 		Dom,
 		Value,
 	} from "src/components/components-api/props/common";
+
 </script>
 
 <Props>
@@ -38,11 +39,11 @@
 		>
 	</Prop>
 	<Value readwrite>
-		<svelte-fragment slot="signature">
+		<svelte:fragment slot="signature">
 			<Signature keyword="number">
 				<Default><code>min</code>.</Default>
 			</Signature>
-		</svelte-fragment>
+		</svelte:fragment>
 		The current value of the <code>{`<Thumb />`}</code>.
 	</Value>
 	<BaseComponentProps>

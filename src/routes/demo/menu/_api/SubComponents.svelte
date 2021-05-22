@@ -8,6 +8,7 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 	import { CommonListSubComponents } from "src/components/components-api/sub-components/common/lists";
+
 </script>
 
 <SubComponents>
@@ -19,7 +20,7 @@
 		</Description>
 	</SubComponent>
 	<CommonListSubComponents>
-		<svelte-fragment slot="item">
+		<svelte:fragment slot="item">
 			<SubComponent indentation={2}>
 				<Tag href="selection-group-icon">SelectionGroupIcon</Tag>
 				<Description>
@@ -27,6 +28,6 @@
 					is selected.
 				</Description>
 			</SubComponent>
-		</svelte-fragment>
+		</svelte:fragment>
 	</CommonListSubComponents>
 </SubComponents>

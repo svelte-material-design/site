@@ -25,11 +25,12 @@
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };
 	}
+
 </script>
 
 <Section>
 	<SelectInputFieldConfigurations bind:configurations={$configurations$}>
-		<svelte-fragment slot="additional">
+		<svelte:fragment slot="additional">
 			<Checkbox
 				label="Show empty option"
 				bind:checked={$configurations$.showEmptyOption}
@@ -41,7 +42,7 @@
 				on:change={updateInstance}
 			/>
 			<BaseInputConfigurations bind:configurations={$configurations$} />
-		</svelte-fragment>
+		</svelte:fragment>
 	</SelectInputFieldConfigurations>
 </Section>
 <Typography variant="body2">List configurations</Typography>

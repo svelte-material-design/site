@@ -17,6 +17,7 @@
 		SelectionGroup as MenuGroup,
 		Icon as MenuItemIcon,
 	} from "@svelte-material-design/core/menu";
+
 </script>
 
 <Group variant="raised">
@@ -27,7 +28,7 @@
 		<Icon class="material-icons" style="margin: 0;">arrow_drop_down</Icon>
 	</MenuButton>
 
-	<Menu anchorCorner={'top-start'}>
+	<Menu anchorCorner={"top-start"}>
 		<List>
 			<Item>
 				<Content>Thing 1</Content>
@@ -41,9 +42,9 @@
 			</Item>
 			<MenuGroup>
 				<Item>
-					<svelte-fragment slot="leading">
+					<svelte:fragment slot="leading">
 						<MenuItemIcon>check</MenuItemIcon>
-					</svelte-fragment>
+					</svelte:fragment>
 					<Content>Thing 4</Content>
 				</Item>
 			</MenuGroup>

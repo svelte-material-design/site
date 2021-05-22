@@ -18,6 +18,7 @@
 	function updateInstance() {
 		$configurations$ = { ...$configurations$ };
 	}
+
 </script>
 
 <Section>
@@ -43,7 +44,7 @@
 	/>
 </Section>
 <SelectInputFieldConfigurations bind:configurations={$configurations$}>
-	<svelte-fragment slot="helperText">
+	<svelte:fragment slot="helperText">
 		<Checkbox
 			label="Validation message"
 			disabled={!$configurations$.helperText}
@@ -61,8 +62,8 @@
 			bind:checked={$configurations$.characterCounter}
 			on:change={updateInstance}
 		/>
-	</svelte-fragment>
-	<svelte-fragment slot="additional">
+	</svelte:fragment>
+	<svelte:fragment slot="additional">
 		<Checkbox
 			label="Max length"
 			checked={!!$configurations$.maxlength}
@@ -83,8 +84,8 @@
 			}}
 		/>
 		<BaseInputConfigurations bind:configurations={$configurations$} />
-	</svelte-fragment>
-	<svelte-fragment slot="icons">
+	</svelte:fragment>
+	<svelte:fragment slot="icons">
 		<IconTypeOption
 			allowEmpty={true}
 			bind:value={$configurations$.trailingIcon}
@@ -96,7 +97,7 @@
 			bind:checked={$configurations$.clearOnTrailingIconClick}
 			on:change={updateInstance}
 		/>
-	</svelte-fragment>
+	</svelte:fragment>
 </SelectInputFieldConfigurations>
 <Section>
 	<Checkbox

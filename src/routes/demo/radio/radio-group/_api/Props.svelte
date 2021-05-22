@@ -3,12 +3,13 @@
 <script lang="ts">
 	import { Props, Signature } from "src/components/components-api/props";
 	import { CommonGroupsProps } from "src/components/components-api/props/common/groups";
+
 </script>
 
 <Props>
 	<CommonGroupsProps prop="checked" groupComponent="RadioGroup" showGroup>
-		<svelte-fragment slot="valueSignature">
+		<svelte:fragment slot="valueSignature">
 			<Signature keyword="string" />
-		</svelte-fragment>
+		</svelte:fragment>
 	</CommonGroupsProps>
 </Props>

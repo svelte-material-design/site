@@ -16,8 +16,8 @@
 		showNullable
 		groupComponent="SwitchGroup"
 	>
-		<svelte-fragment slot="valueSignature">
+		<svelte:fragment slot="valueSignature">
 			<Signature keyword="type" name="SwitchGroupValue" />
-		</svelte-fragment>
+		</svelte:fragment>
 	</CommonGroupsProps>
 </Props>

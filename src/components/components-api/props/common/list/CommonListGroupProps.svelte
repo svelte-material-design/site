@@ -3,14 +3,15 @@
 <script lang="ts">
 	import { Signature } from "src/components/components-api/props";
 	import { CommonGroupsProps } from "src/components/components-api/props/common/groups";
+
 </script>
 
 <CommonGroupsProps multi showNullable showSelectionType showGroup>
-	<svelte-fragment slot="valueSignature">
+	<svelte:fragment slot="valueSignature">
 		<Signature
 			keyword="type"
 			name="ListValue"
 			instances={["string", "string[]"]}
 		/>
-	</svelte-fragment>
+	</svelte:fragment>
 </CommonGroupsProps>
