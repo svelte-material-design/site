@@ -1,3 +1,5 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Cell } from "../common/table";
 	import { Tag } from "../common";
@@ -15,17 +17,8 @@
 	function getLink() {
 		return href ? `${getLayoutPath()}/${href}` : undefined;
 	}
+
 </script>
-
-<style>
-	a {
-		text-decoration: none;
-	}
-
-	a[href]:hover {
-		text-decoration: underline;
-	}
-</style>
 
 <Cell>
 	<div>
@@ -39,3 +32,14 @@
 		{/if}
 	</div>
 </Cell>
+
+<style>
+	a {
+		text-decoration: none;
+	}
+
+	a[href]:hover {
+		text-decoration: underline;
+	}
+
+</style>

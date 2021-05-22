@@ -1,12 +1,18 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Props, Events, Slots } from "./_api";
-	import { ApiTitle } from "src/components/components-api/common";
+	import { appendLayoutPath } from "src/contexts";
+	import { Configurator } from "./_configurator";
+	import { Page } from "src/components/layout/module-layout";
+
+	export let segment: string;
+
+	appendLayoutPath("button");
 
 </script>
 
-<ApiTitle>Button</ApiTitle>
-<Props />
-<Events />
-<Slots />
+<Page {segment}>
+	<div slot="main">
+		<Configurator />
+	</div>
+</Page>

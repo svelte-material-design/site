@@ -8,6 +8,7 @@
 	} from "src/components/components-api/sub-components";
 
 	export let indentation: number = undefined;
+
 </script>
 
 <SubComponent {indentation}>

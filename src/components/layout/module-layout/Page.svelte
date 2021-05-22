@@ -20,12 +20,18 @@
 			href: currentPath + (option.folder ? `/${option.folder}` : ""),
 		};
 	});
+
+	const isFullPage =
+		segment &&
+		((options && options.some(({ folder }) => folder === segment)) ||
+			segment === "api");
+
 </script>
 
 {#if options}
 	<TabBar bind:value {tabs} />
 {/if}
-{#if segment && options && options.some(({ folder }) => folder === segment)}
+{#if isFullPage}
 	<slot />
 {:else}
 	<slot name="main" />
