@@ -4,7 +4,7 @@
 	import { Cell } from "../common/table";
 	import { Tag } from "../common";
 	import { MandatoryChip } from "../common/particles/chips";
-	import { getLayoutPath } from "src/contexts";
+	import { getLink } from "src/components/layout/module-layout/context";
 	import { stores } from "@sapper/app";
 
 	export let mandatory: boolean = false;
@@ -12,17 +12,15 @@
 
 	const { page } = stores();
 
-	$: tagLink = $page.path !== getLink() ? getLink() : undefined;
-
-	function getLink() {
-		return href ? `${getLayoutPath()}/${href}` : undefined;
-	}
-
 </script>
 
 <Cell>
 	<div>
-		<a href={tagLink}>
+		<a
+			href={getLink(href, {
+				type: "api",
+			})}
+		>
 			<Tag>
 				<slot />
 			</Tag>

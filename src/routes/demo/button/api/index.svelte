@@ -6,7 +6,6 @@
 
 </script>
 
-api
 <ApiTitle>Button</ApiTitle>
 <Props />
 <Events />

@@ -1,10 +1,11 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { setLayoutPath, getLayoutPath } from "src/contexts";
+	import { appendLayoutPath } from "src/components/layout/module-layout/context";
 	import { Configurator } from "./_configurator";
 
-	setLayoutPath(`${getLayoutPath()}/list-group`);
+	appendLayoutPath(`list-group`);
+
 </script>
 
 <Configurator />

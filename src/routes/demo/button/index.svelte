@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { appendLayoutPath } from "src/contexts";
+	import { appendLayoutPath } from "src/components/layout/module-layout/context";
 	import { Configurator } from "./_configurator";
 	import { Page } from "src/components/layout/module-layout";
 
@@ -12,7 +12,5 @@
 </script>
 
 <Page {segment}>
-	<div slot="main">
-		<Configurator />
-	</div>
+	<Configurator />
 </Page>

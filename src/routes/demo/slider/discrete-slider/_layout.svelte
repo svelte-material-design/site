@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { setLayoutPath, getLayoutPath } from "src/contexts";
+	import { appendLayoutPath } from "src/components/layout/module-layout/context";
 	import { SubComponents } from "./_api";
 	import Configurator from "./_configurator/Configurator.svelte";
 
-	setLayoutPath(`${getLayoutPath()}/discrete-slider`);
+	appendLayoutPath(`discrete-slider`);
+
 </script>
 
 <Configurator />

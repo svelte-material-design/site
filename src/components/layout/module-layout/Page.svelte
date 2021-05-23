@@ -1,14 +1,13 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { getLayoutPath } from "src/contexts";
+	import { getModulesList, getLayoutPath, getPageType } from "./context";
 	import { TabBar } from "src/components/configurator/tab-bar";
 	import type { Option } from "src/components/configurator/tab-bar";
-	import type { ModuleOption } from "./types";
 
 	export let segment: string = undefined;
-	export let options: ModuleOption[] = undefined;
 
+	const options = getModulesList();
 	const currentPath = getLayoutPath();
 
 	let value = segment ?? options?.[0].folder;
@@ -21,17 +20,14 @@
 		};
 	});
 
-	const isFullPage =
-		segment &&
-		((options && options.some(({ folder }) => folder === segment)) ||
-			segment === "api");
+	const pageType = getPageType();
 
 </script>
 
 {#if options}
 	<TabBar bind:value {tabs} />
 {/if}
-{#if isFullPage}
+{#if pageType === "module" || pageType === "api"}
 	<slot />
 {:else}
 	<slot name="main" />

@@ -1,13 +1,13 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { setLayoutPath, getLayoutPath } from "src/contexts";
+	import { appendLayoutPath } from "src/components/layout/module-layout/context";
 	import { Configurator } from "./_configurator";
 	import { ModuleLayout, Page } from "src/components/layout/module-layout";
 
 	export let segment: string;
 
-	setLayoutPath(`${getLayoutPath()}/switch`);
+	appendLayoutPath(`switch`);
 
 </script>
 

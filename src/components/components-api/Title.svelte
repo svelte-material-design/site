@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { Typography } from "@svelte-material-design/core/typography";
 	import { Button, Label } from "@svelte-material-design/core/button";
-	import { getLink } from "src/contexts";
+	import { getLink } from "src/components/layout/module-layout/context";
 	import { stores } from "@sapper/app";
 
 	export let module: string;

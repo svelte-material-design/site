@@ -6,7 +6,7 @@
 		NavItem,
 		NavItemContent,
 	} from "@svelte-material-design/core/drawer";
-	import { getLayoutPath } from "src/contexts";
+	import { getLayoutPath } from "src/components/layout/module-layout/context";
 	import { menuItems } from "./menuItems";
 
 	const currentPath = getLayoutPath();
@@ -18,6 +18,7 @@
 	function getIndent(menuitem: typeof menuItems[0]) {
 		return 8 + menuitem.indent * 8 + "px";
 	}
+
 </script>
 
 <div class="components-menu">
@@ -40,4 +41,5 @@
 			padding-left: var(--components-menu-item-indent);
 		}
 	}
+
 </style>

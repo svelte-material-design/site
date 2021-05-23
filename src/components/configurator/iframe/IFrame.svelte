@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { getLayoutPath } from "src/contexts";
+	import { getLayoutPath } from "src/components/layout/module-layout/context";
 	import { onMount, tick, createEventDispatcher } from "svelte";
 	import { UseState } from "@raythurnevoid/svelte-hooks/ts";
 
@@ -44,6 +44,7 @@
 		if (iframe && iframeReady)
 			iframe.contentWindow.postMessage({ type: "props", props }, "*");
 	}
+
 </script>
 
 <UseState bind:this={propsState} value={props} onUpdate={updateProps} />
@@ -58,4 +59,5 @@
 		border: none;
 		height: 100%;
 	}
+
 </style>
