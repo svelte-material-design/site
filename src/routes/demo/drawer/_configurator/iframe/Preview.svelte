@@ -23,8 +23,6 @@
 
 	export let configurations: DrawerConfigurations;
 
-	console.log(configurations);
-
 </script>
 
 {#if configurations.layout === "below-top-app-bar"}

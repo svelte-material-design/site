@@ -5,11 +5,12 @@
 	import { stores } from "@sapper/app";
 	import { appendLayoutPath, setModulesList, setPageType } from "./context";
 	import type { ModuleOption } from "./types";
+	import { SubModulesTabs } from ".";
 
 	export let module: string;
 	export let title: string;
-	export let segment: string;
 	export let path: string;
+	export let segment: string;
 	export let options: ModuleOption[] = undefined;
 
 	const { page } = stores();
@@ -46,6 +47,9 @@
 {:else}
 	<div>
 		<Title {module}>{title}</Title>
+		{#if options}
+			<SubModulesTabs {options} {segment} />
+		{/if}
 		<!-- <slot name="page" /> -->
 		<slot />
 	</div>

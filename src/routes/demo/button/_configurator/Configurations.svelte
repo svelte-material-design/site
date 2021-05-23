@@ -17,9 +17,10 @@
 		}
 	}
 
-	function updateInstance() {
+	function handleChange() {
 		$configurations$ = { ...$configurations$ };
 	}
+
 </script>
 
 <Section>
@@ -33,7 +34,7 @@
 			{ value: "outlined", label: "Outlined" },
 		]}
 		nullable={false}
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Select
 		bind:value={$configurations$.color}
@@ -43,20 +44,20 @@
 			{ value: "secondary", label: "Secondary" },
 		]}
 		nullable={false}
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<IconTypeOption
 		bind:value={$configurations$.leadingIcon}
 		allowEmpty={!$configurations$.iconOnly}
 		label="Leading icon"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<IconTypeOption
 		bind:value={$configurations$.trailingIcon}
 		allowEmpty
 		label="Trailing icon"
 		disabled={$configurations$.iconOnly}
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Select
 		bind:value={$configurations$.customStyle}
@@ -66,28 +67,28 @@
 			{ value: "mdc-mixins", label: "MDC Mixins" },
 			{ value: "custom-css", label: "Custom CSS" },
 		]}
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.disabled}
 		label="Disabled"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.ripple}
 		label="Ripple"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.link}
 		label="Link"
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.iconOnly}
 		label="Icon only"
 		on:change={handleIconOnlyChange}
-		on:change={updateInstance}
+		on:change={handleChange}
 	/>
 	<Checkbox
 		bind:checked={$configurations$.accessibleTouch}
