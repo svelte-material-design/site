@@ -35,4 +35,5 @@ function conf(env: BaseEnv) {
 
 export default conf({
 	production: process.env.NODE_ENV === "development" ? false : true,
+	fancyProgress: true,
 });

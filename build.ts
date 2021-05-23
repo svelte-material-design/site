@@ -83,9 +83,7 @@ function configLoadersRulesOverride(input: SvelteTempalteConfigurationInput) {
 
 	return {
 		rules: [
-			{
-				...tsLoaderRule({ env }),
-			},
+			tsLoaderRule({ env }),
 			...svelteLoaderRules,
 			scssLoaderRuleOverride({ env, extract: input.extractCss }),
 			scssModulesLoaderRuleOverride({ env, extract: input.extractCss }),
