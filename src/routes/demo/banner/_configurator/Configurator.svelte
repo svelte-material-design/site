@@ -2,6 +2,7 @@
 
 <script lang="ts">
 	import { Configurator, IFrame } from "src/components/configurator";
+	import { Values } from "src/components/configurator/atoms";
 	import { Configurations } from ".";
 	import { script, template } from "./code";
 	import {
@@ -25,6 +26,9 @@
 <Configurator {svelteScriptCode} {svelteCode}>
 	<div slot="preview" style="width: 100%; height: 15em;">
 		<IFrame title="Banner preview" bind:props={$configurations$} />
+	</div>
+	<div slot="values">
+		open: <Values value={$configurations$.open} />
 	</div>
 	<svelte:fragment slot="optionsSidebar">
 		<Configurations />

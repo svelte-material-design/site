@@ -8,48 +8,27 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 	import {
-		ActionIcon,
 		GenericIcon,
+		Content,
+		Actions,
 	} from "src/components/components-api/sub-components/common";
 	import { ActionButton } from "src/components/components-api/sub-components/common/button";
 
 </script>
 
 <SubComponents>
-	<SubComponent>
-		<Tag href="section">Section</Tag>
-		<Description>A section of the Top App Bar.</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="title">Title</Tag>
-		<Description>The Top App Bar title, only 1 must be used.</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="toolbar">Toolbar</Tag>
-		<Description>A section of the Top App Bar containing actions.</Description>
-	</SubComponent>
-	<SubComponent>
-		<Tag href="navigation-icon">NavigationIcon</Tag>
+	<Content mandatory />
+	<SubComponent indentation={1}>
+		<Tag href="graphic">Graphic</Tag>
 		<Description>
-			An
-			<code>{"<IconButton />"}</code>
-			meant to open a navigation menu (eg: a
-			<code>{"<Drawer />"}</code>). Only 1 must be used.
+			Wraps the banner's <code>{`<Icon />`}</code>.
 		</Description>
 	</SubComponent>
-	<SubComponent>
-		<Tag href="navigation-button">NavigationButton</Tag>
-		<Description>
-			A
-			<code>{"<Button />"}</code>
-			meant to open a navigation menu (eg: a
-			<code>{"<Drawer />"}</code>).
-
-			<slot name="navigationButtonNote" />
-			Only 1 must be used.
-		</Description>
+	<GenericIcon indentation={2} />
+	<SubComponent indentation={1}>
+		<Tag href="text" mandatory>Text</Tag>
+		<Description>The banner's text.</Description>
 	</SubComponent>
-	<ActionButton />
-	<ActionIcon />
-	<GenericIcon />
+	<Actions />
+	<ActionButton indentation={1} />
 </SubComponents>
