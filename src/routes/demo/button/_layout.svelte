@@ -2,11 +2,8 @@
 
 <script lang="ts">
 	import { ModuleLayout } from "src/components/layout/module-layout";
-	import { appendLayoutPath } from "src/components/layout/module-layout/context";
 
 	export let segment: string;
-
-	appendLayoutPath("button");
 
 </script>
 

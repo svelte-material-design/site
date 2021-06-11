@@ -20,8 +20,8 @@
 <SubComponents>
 	<Content mandatory />
 	<Actions indentation={1} />
-	<ActionButton indentation={2} />
-	<ActionIcon indentation={2} />
+	<ActionButton component="Snackbar" indentation={2} />
+	<ActionIcon component="Snackbar" indentation={2} />
 	<GenericIcon indentation={3} />
 	<SubComponent indentation={2}>
 		<Tag href="dismiss">Dismiss</Tag>

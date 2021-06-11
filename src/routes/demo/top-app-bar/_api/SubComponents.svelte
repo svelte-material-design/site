@@ -49,7 +49,7 @@
 			Only 1 must be used.
 		</Description>
 	</SubComponent>
-	<ActionButton />
-	<ActionIcon />
+	<ActionButton component="TopAppBar" />
+	<ActionIcon component="TopAppBar" />
 	<GenericIcon />
 </SubComponents>
