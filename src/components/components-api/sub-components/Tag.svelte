@@ -4,22 +4,39 @@
 	import { Cell } from "../common/table";
 	import { Tag } from "../common";
 	import { MandatoryChip } from "../common/particles/chips";
-	import { getLink } from "src/components/layout/module-layout/context";
+	import {
+		getLink$,
+		getLink,
+	} from "src/components/layout/module-layout/context";
 	import { stores } from "@sapper/app";
+	import { onMount, beforeUpdate } from "svelte";
 
 	export let mandatory: boolean = false;
 	let exported_href: string = undefined;
 	export { exported_href as href };
 
-	const href = getLink(exported_href, {
-		type: "api",
+	// let href$ = getLink$(exported_href, {
+	// 	type: "api",
+	// });
+
+	const { page } = stores();
+	let hrefx: string;
+
+	$: {
+		$page;
+	}
+
+	beforeUpdate(() => {
+		hrefx = getLink(exported_href, {
+			type: "api",
+		});
 	});
 
 </script>
 
 <Cell>
 	<div>
-		<a {href}>
+		<a href={hrefx}>
 			<Tag>
 				<slot />
 			</Tag>

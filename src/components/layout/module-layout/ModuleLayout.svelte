@@ -3,7 +3,7 @@
 <script lang="ts">
 	import { Title } from "src/components/components-api";
 	import { stores } from "@sapper/app";
-	import { appendLayoutPath, setModulesList, setPageType } from "./context";
+	import { setLayoutPath, setModulesList, setPageType } from "./context";
 	import type { ModuleOption } from "./types";
 	import { SubModulesTabs } from ".";
 
@@ -26,7 +26,7 @@
 		return segment === "api";
 	}
 
-	appendLayoutPath(path);
+	setLayoutPath(path);
 
 	$: if (isModulePage(segment)) {
 		setPageType("module");

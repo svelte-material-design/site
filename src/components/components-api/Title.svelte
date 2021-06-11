@@ -3,7 +3,10 @@
 <script lang="ts">
 	import { Typography } from "@svelte-material-design/core/typography";
 	import { Button, Label } from "@svelte-material-design/core/button";
-	import { getLink } from "src/components/layout/module-layout/context";
+	import {
+		getConfiguratorLink,
+		getDocsLink,
+	} from "src/components/layout/module-layout/context";
 	import { stores } from "@sapper/app";
 
 	export let module: string;
@@ -21,7 +24,7 @@
 			><code>@svelte-material-design/core/{module}</code></small
 		>
 	</Typography>
-	<Button href={isApiPage ? getLink("") : getLink("api")}>
+	<Button href={isApiPage ? getConfiguratorLink() : getDocsLink()}>
 		<Label>Show {isApiPage ? "configurator" : "docs"}</Label>
 	</Button>
 </div>
