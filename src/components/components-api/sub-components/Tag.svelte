@@ -8,19 +8,18 @@
 	import { stores } from "@sapper/app";
 
 	export let mandatory: boolean = false;
-	export let href: string = undefined;
+	let exported_href: string = undefined;
+	export { exported_href as href };
 
-	const { page } = stores();
+	const href = getLink(exported_href, {
+		type: "api",
+	});
 
 </script>
 
 <Cell>
 	<div>
-		<a
-			href={getLink(href, {
-				type: "api",
-			})}
-		>
+		<a {href}>
 			<Tag>
 				<slot />
 			</Tag>

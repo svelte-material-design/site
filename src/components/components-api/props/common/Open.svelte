@@ -9,19 +9,20 @@
 	} from "src/components/components-api/props";
 
 	export let tag: string = undefined;
+	export let readwrite: boolean = false;
 
 </script>
 
 <Prop>
-	<Name>open</Name>
+	<Name {readwrite}>open</Name>
 	<Signature keyword="boolean" />
-	<Description
-		>When <code>true</code> the
+	<Description>
+		When <code>true</code> the
 		{#if tag}
 			<code>{`<${tag} />`}</code>
 		{:else}
 			component
 		{/if}
-		is open.</Description
-	>
+		is open.
+	</Description>
 </Prop>

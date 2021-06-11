@@ -5,7 +5,7 @@
 		Banner,
 		Text,
 		Actions,
-		Action,
+		ActionButton,
 		Label,
 		Graphic,
 		Icon,
@@ -23,7 +23,7 @@
 
 <Banner
 	bind:open={$configurations$.open}
-	stacked={$configurations$.stacked}
+	stackedOnMobile={$configurations$.stackedOnMobile}
 	fixed={$configurations$.fixed}
 	centered={$configurations$.centered}
 	on:closed={updateInstance}
@@ -38,11 +38,11 @@
 		</Text>
 	</Content>
 	<Actions>
-		<Action type="secondary">
+		<ActionButton type="secondary">
 			<Label>Secondary</Label>
-		</Action>
-		<Action type="primary">
+		</ActionButton>
+		<ActionButton type="primary">
 			<Label>Primary</Label>
-		</Action>
+		</ActionButton>
 	</Actions>
 </Banner>

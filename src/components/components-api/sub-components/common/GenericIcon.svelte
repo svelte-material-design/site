@@ -7,7 +7,7 @@
 		Description,
 	} from "src/components/components-api/sub-components";
 
-	export let indentation: number;
+	export let indentation: number = 0;
 
 </script>
 

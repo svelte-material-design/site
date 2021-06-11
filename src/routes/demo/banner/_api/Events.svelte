@@ -1,8 +1,21 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Events } from "src/components/components-api/events";
-	import { CommonTopAppBarEvents } from "./common";
+	import {
+		BaseForwardedEvents,
+		OnOpened,
+		OnClosed,
+		OnOpening,
+		OnClosing,
+	} from "src/components/components-api/events/common";
+
 </script>
 
 <Events>
-	<CommonTopAppBarEvents />
+	<OnOpened component="Banner" />
+	<OnClosed component="Banner" />
+	<OnOpening component="Banner" />
+	<OnClosing component="Banner" />
 </Events>
+<BaseForwardedEvents />

@@ -30,5 +30,5 @@
 		<Description>The banner's text.</Description>
 	</SubComponent>
 	<Actions />
-	<ActionButton indentation={1} />
+	<ActionButton component="Banner" indentation={1} />
 </SubComponents>
