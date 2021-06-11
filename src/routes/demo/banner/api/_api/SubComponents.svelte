@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -16,19 +16,23 @@
 
 </script>
 
-<SubComponents>
-	<Content mandatory />
-	<SubComponent indentation={1}>
+<ExportedTags>
+	<SubComponent>
+		<Tag href="">Banner</Tag>
+		<Description />
+	</SubComponent>
+	<Content mandatory indentation={1} />
+	<SubComponent indentation={2}>
 		<Tag href="graphic">Graphic</Tag>
 		<Description>
 			Wraps the banner's <code>{`<Icon />`}</code>.
 		</Description>
 	</SubComponent>
-	<GenericIcon indentation={2} />
-	<SubComponent indentation={1}>
+	<GenericIcon indentation={3} />
+	<SubComponent indentation={2}>
 		<Tag href="text" mandatory>Text</Tag>
 		<Description>The banner's text.</Description>
 	</SubComponent>
-	<Actions />
-	<ActionButton component="Banner" indentation={1} />
-</SubComponents>
+	<Actions indentation={1} />
+	<ActionButton component="Banner" indentation={2} />
+</ExportedTags>

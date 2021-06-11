@@ -4,12 +4,9 @@
 	import { Cell } from "../common/table";
 	import { Tag } from "../common";
 	import { MandatoryChip } from "../common/particles/chips";
-	import {
-		getLink$,
-		getLink,
-	} from "src/components/layout/module-layout/context";
+	import { getLink } from "src/components/layout/module-layout/context";
 	import { stores } from "@sapper/app";
-	import { onMount, beforeUpdate } from "svelte";
+	import { beforeUpdate } from "svelte";
 
 	export let mandatory: boolean = false;
 	let exported_href: string = undefined;
