@@ -1,13 +1,14 @@
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
+
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag mandatory href="range">Range</Tag>
 		<Description
@@ -23,4 +24,4 @@
 			>A thumb for the slider. <slot name="thumbDescription" /></Description
 		>
 	</SubComponent>
-</SubComponents>
+</ExportedTags>

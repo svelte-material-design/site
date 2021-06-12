@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -11,7 +11,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag href="item">Item</Tag>
 		<Description>Image list's item.</Description>
@@ -35,4 +35,4 @@
 		</Description>
 	</SubComponent>
 	<Label indentation={3} component="Image" />
-</SubComponents>
+</ExportedTags>

@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -12,9 +12,10 @@
 		TrailingIcon,
 		Content,
 	} from "src/components/components-api/sub-components/common";
+
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag href="chip" mandatory>Chip</Tag>
 		<Description>A chip item.</Description>
@@ -39,4 +40,4 @@
 	</SubComponent>
 	<LeadingIcon indentation={1} />
 	<TrailingIcon indentation={1} />
-</SubComponents>
+</ExportedTags>

@@ -1,12 +1,16 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
 	import { Name } from "./particles";
 	import { Comma } from "../common/particles";
-	import { Typography } from "@svelte-material-design/core/typography";
+	import { ForwardedEventsHeading } from "../headings";
 
 	export let events: string[];
+
 </script>
 
-<Typography variant="headline6">Forwarded HTML events</Typography>
+<ForwardedEventsHeading />
+
 <Comma values={events} let:value>
 	<Name>{value}</Name>
 </Comma>

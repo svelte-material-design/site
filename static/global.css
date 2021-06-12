@@ -15,7 +15,6 @@ code {
 	font-family: menlo, inconsolata, monospace;
 	font-size: calc(1em - 2px);
 	color: #555;
-	padding: 0.2em 0.4em;
 	border-radius: 2px;
 }
 

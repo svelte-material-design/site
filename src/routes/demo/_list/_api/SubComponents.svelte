@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -11,7 +11,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<CommonListSubComponents>
 		<svelte:fragment slot="item">
 			<SubComponent indentation={2}>
@@ -30,4 +30,4 @@
 			</SubComponent>
 		</svelte:fragment>
 	</CommonListSubComponents>
-</SubComponents>
+</ExportedTags>

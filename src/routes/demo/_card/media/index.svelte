@@ -2,9 +2,9 @@
 
 <script lang="ts">
 	import { Props } from "./_api";
-	import { ApiTitle } from "src/components/components-api/common";
+	import { ComponentTagHeading } from "src/components/components-api/headings";
 
 </script>
 
-<ApiTitle>Media</ApiTitle>
+<ComponentTagHeading>Media</ComponentTagHeading>
 <Props />

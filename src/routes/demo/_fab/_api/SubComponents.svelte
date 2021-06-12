@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { SubComponents } from "src/components/components-api/sub-components";
+	import { ExportedTags } from "src/components/components-api/sub-components";
 	import {
 		GenericIcon,
 		Label,
@@ -9,7 +9,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<GenericIcon>The icon of the FAB.</GenericIcon>
 	<Label mandatory>
 		The text of the FAB. To be used only when the
@@ -17,4 +17,4 @@
 		is set to
 		<code>"expanded"</code>.
 	</Label>
-</SubComponents>
+</ExportedTags>

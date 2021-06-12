@@ -5,14 +5,14 @@
 		SubComponent,
 		Tag,
 		Description,
-		SubComponents,
+		ExportedTags,
 	} from "src/components/components-api/sub-components";
 	import { BaseInputFieldSubComponents } from "src/components/components-api/sub-components/common/input";
 	import { CommonListSubComponents } from "src/components/components-api/sub-components/common/lists";
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<BaseInputFieldSubComponents
 		componentName="Select"
 		inputComponentName="Input"
@@ -43,4 +43,4 @@
 			</CommonListSubComponents>
 		</svelte:fragment>
 	</BaseInputFieldSubComponents>
-</SubComponents>
+</ExportedTags>

@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -14,7 +14,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag href="title">Title</Tag>
 		<Description>Brief summary of the dialog's purpose.</Description>
@@ -37,4 +37,4 @@
 	</SubComponent>
 	<Label mandatory indentation={2} component="Action" />
 	<GenericIcon indentation={2} />
-</SubComponents>
+</ExportedTags>

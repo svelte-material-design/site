@@ -1,13 +1,12 @@
+<svelte:options immutable={true} />
+
 <code>
-	<span>{"<"}</span><!--
-	--><span><slot /></span><!--
-	--><span>&nbsp;</span
-	><!--
-	--><span>{"/>"}</span>
+	{"<"}<slot />{" />"}
 </code>
 
 <style>
 	code {
 		color: #44ac97;
 	}
+
 </style>

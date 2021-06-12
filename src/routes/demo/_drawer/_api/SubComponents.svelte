@@ -5,14 +5,15 @@
 		SubComponent,
 		Tag,
 		Description,
-		SubComponents,
+		ExportedTags,
 	} from "src/components/components-api/sub-components";
 	import { Content } from "src/components/components-api/sub-components/common";
 	import { BaseInputFieldSubComponents } from "src/components/components-api/sub-components/common/input";
 	import { CommonListSubComponents } from "src/components/components-api/sub-components/common/lists";
+
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<Content mandatory />
 	<SubComponent indentation={1}>
 		<Tag href="nav-list">NavList</Tag>
@@ -36,4 +37,4 @@
 		<Tag mandatory href="app-content">AppContent</Tag>
 		<Description>The wrapper for the app content.</Description>
 	</SubComponent>
-</SubComponents>
+</ExportedTags>

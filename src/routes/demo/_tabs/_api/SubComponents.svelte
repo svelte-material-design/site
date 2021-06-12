@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -12,7 +12,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag href="tab">Tab</Tag>
 		<Description>A Tab item.</Description>
@@ -27,4 +27,4 @@
 		<Tag href="tab-indicator">TabIndicator</Tag>
 		<Description>The tab indicator.</Description>
 	</SubComponent>
-</SubComponents>
+</ExportedTags>

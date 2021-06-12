@@ -1,7 +1,7 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Title } from "src/components/components-api";
+	import { Title } from "src/components/layout/module-layout";
 	import { stores } from "@sapper/app";
 	import { setLayoutPath, setModulesList, setPageType } from "./context";
 	import type { ModuleOption } from "./types";
@@ -58,6 +58,7 @@
 <style>
 	div {
 		padding: 1em;
+		padding-block-end: 3em;
 	}
 
 </style>

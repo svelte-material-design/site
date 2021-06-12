@@ -2,11 +2,11 @@
 
 <script lang="ts">
 	import { Props, Events, SubComponents } from "./_api";
-	import { ApiTitle } from "src/components/components-api/common";
+	import { ComponentTagHeading } from "src/components/components-api/headings";
 
 </script>
 
-<ApiTitle>Switch</ApiTitle>
+<ComponentTagHeading>Switch</ComponentTagHeading>
 <SubComponents />
 <Props />
 <Events />

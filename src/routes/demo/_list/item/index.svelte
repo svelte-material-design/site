@@ -2,10 +2,11 @@
 
 <script lang="ts">
 	import { Props, Events, Slots } from "./_api";
-	import { ApiTitle } from "src/components/components-api/common";
+	import { ComponentTagHeading } from "src/components/components-api/headings";
+
 </script>
 
-<ApiTitle>Item</ApiTitle>
+<ComponentTagHeading>Item</ComponentTagHeading>
 <Props />
 <Events />
 <Slots />

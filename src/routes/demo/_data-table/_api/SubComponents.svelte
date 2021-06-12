@@ -2,14 +2,15 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
 	} from "src/components/components-api/sub-components";
+
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag href="table-container" mandatory>TableContainer</Tag>
 		<Description>The table component.</Description>
@@ -64,4 +65,4 @@
 			Allows the user to select the number of items to display per page.
 		</Description>
 	</SubComponent>
-</SubComponents>
+</ExportedTags>

@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -18,7 +18,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<Content>A container for the card text content.</Content>
 	<SubComponent>
 		<Tag href="title">Title</Tag>
@@ -71,7 +71,7 @@
 	<ActionIcon />
 	<ActionIconToggle />
 	<GenericIcon />
-</SubComponents>
+</ExportedTags>
 
 <style>
 </style>

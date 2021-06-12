@@ -2,9 +2,10 @@
 
 <script lang="ts">
 	import { Props, Events } from "./_api";
-	import { ApiTitle } from "src/components/components-api/common";
+	import { ComponentTagHeading } from "src/components/components-api/headings";
+
 </script>
 
-<ApiTitle>Tab Bar</ApiTitle>
+<ComponentTagHeading>Tab Bar</ComponentTagHeading>
 <Props />
 <Events />

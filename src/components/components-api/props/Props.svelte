@@ -1,13 +1,18 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
+	import { PropsHeading } from "../headings";
 	import { Text } from "../common/particles/atoms";
 	import { Section } from "../common";
 
 	export let noNotes: boolean = false;
 	export let target: "root" | "main" = "root";
+
 </script>
 
 <div class="props">
-	<Section title="Props">
+	<PropsHeading />
+	<Section>
 		<slot slot="table" name="table">
 			<slot />
 		</slot>
@@ -34,4 +39,5 @@
 	.note {
 		margin-bottom: 1em;
 	}
+
 </style>

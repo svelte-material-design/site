@@ -5,14 +5,14 @@
 		SubComponent,
 		Tag,
 		Description,
-		SubComponents,
+		ExportedTags,
 	} from "src/components/components-api/sub-components";
 	import { BaseInputFieldSubComponents } from "src/components/components-api/sub-components/common/input";
 	import { TrailingIcon } from "src/components/components-api/sub-components/common";
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<BaseInputFieldSubComponents
 		componentName="InputField"
 		inputComponentName="Input"
@@ -45,4 +45,4 @@
 			used.
 		</Description>
 	</SubComponent>
-</SubComponents>
+</ExportedTags>

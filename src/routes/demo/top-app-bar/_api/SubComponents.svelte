@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import {
-		SubComponents,
+		ExportedTags,
 		SubComponent,
 		Tag,
 		Description,
@@ -15,7 +15,7 @@
 
 </script>
 
-<SubComponents>
+<ExportedTags>
 	<SubComponent>
 		<Tag href="section">Section</Tag>
 		<Description>A section of the Top App Bar.</Description>
@@ -52,4 +52,4 @@
 	<ActionButton component="TopAppBar" />
 	<ActionIcon component="TopAppBar" />
 	<GenericIcon />
-</SubComponents>
+</ExportedTags>
