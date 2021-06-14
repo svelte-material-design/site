@@ -3,7 +3,7 @@ import type {
 	Item,
 	Group,
 } from "src/components/configurator/common-options/multiple-items";
-import type { SelectionType } from "@svelte-material-ui-test/core/node_modules/@raythurnevoid/svelte-group-components/ts/selectable";
+import type { SelectionType } from "@raythurnevoid/svelte-group-components/ts/selectable";
 
 export interface SwitchConfigurationsItem extends SwitchConfigurations, Item {}
 export interface SwitchGroupConfigurations

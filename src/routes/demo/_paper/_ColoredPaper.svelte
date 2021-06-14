@@ -1,5 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Paper, Title, Content } from "@smui/core/paper";
+	import { Paper, Title, Content } from "@svelte-material-design/core/paper";
+
 </script>
 
 <div>

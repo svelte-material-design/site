@@ -1,11 +1,12 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Select, Option } from "@smui/core/select";
-	import type { SelectionType } from "@smui/core/common/hoc";
+	import { Select, Option } from "@svelte-material-design/core/select";
+	import type { SelectionType } from "@svelte-material-design/core/common/hoc";
 
 	export let selectionType: SelectionType;
-</script>
 
-<svelte:options immutable={true} />
+</script>
 
 <div>
 	<Select bind:value={selectionType}>
@@ -13,7 +14,7 @@
 		<div slot="options">
 			<Option />
 			<Option value="single">Single</Option>
-			<Option value="multi">Multi</Option>
 		</div>
+		<Option value="multi">Multi</Option>
 	</Select>
 </div>

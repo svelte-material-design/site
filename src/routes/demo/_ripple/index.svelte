@@ -1,7 +1,10 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Ripple } from "@smui/core/ripple";
+	import { Ripple } from "@svelte-material-design/core/ripple";
 
 	let rippleTarget: HTMLSpanElement;
+
 </script>
 
 <svelte:head>
@@ -52,4 +55,5 @@
 		border-radius: 50%;
 		font-size: 20px;
 	}
+
 </style>

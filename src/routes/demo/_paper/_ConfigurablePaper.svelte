@@ -1,11 +1,14 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Paper, Title, Content } from "@smui/core/paper";
-	import { DiscreteSlider } from "@smui/core/slider";
-	import { Radio, RadioGroup } from "@smui/core/radio";
-	import { FormField } from "@smui/core/form-field";
+	import { Paper, Title, Content } from "@svelte-material-design/core/paper";
+	import { DiscreteSlider } from "@svelte-material-design/core/slider";
+	import { Radio, RadioGroup } from "@svelte-material-design/core/radio";
+	import { FormField } from "@svelte-material-design/core/form-field";
 
 	let elevation = 1;
 	let color = "default";
+
 </script>
 
 <div>
@@ -28,7 +31,9 @@
 							<DiscreteSlider bind:value={elevation} min={0} max={24} />
 							<span
 								slot="label"
-								style="padding-right: 12px; width: max-content; display: block;">Elevation</span>
+								style="padding-right: 12px; width: max-content; display: block;"
+								>Elevation</span
+							>
 						</FormField>
 					</div>
 

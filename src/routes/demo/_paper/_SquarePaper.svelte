@@ -1,5 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Paper, Title, Content } from "@smui/core/paper";
+	import { Paper, Title, Content } from "@svelte-material-design/core/paper";
+
 </script>
 
 <div>
@@ -12,8 +15,7 @@
 			<Content>
 				By adding the
 				<code>square</code>
-				property, the paper gains sharper corners and can be used to intimidate
-				foes.
+				property, the paper gains sharper corners and can be used to intimidate foes.
 			</Content>
 		</Paper>
 	</div>

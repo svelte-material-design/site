@@ -1,5 +1,8 @@
+<svelte:options immutable={true} />
+
 <script lang="ts">
-	import { Typography } from "@smui/core/typography";
+	import { Typography } from "@svelte-material-design/core/typography";
+
 </script>
 
 <svelte:head>
