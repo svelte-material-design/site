@@ -10,10 +10,9 @@
 		],
 		"importsNotUsedAsValues": "remove",
 		"paths": {
-			"@smui/core/*": [
-				"./node_modules/@svelte-material-ui-test/core/packages/*"
-			],
 			"@svelte-material-design/core/*": [
+				"./node_modules/@svelte-material-ui-test/core/cjs/*",
+				"./node_modules/@svelte-material-ui-test/core/ts/*",
 				"./node_modules/@svelte-material-ui-test/core/packages/*"
 			],
 			"@svelte-material-design/space-modules/*": [

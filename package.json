@@ -3,7 +3,7 @@
 	"version": "2.0.0-alpha.0",
 	"description": "",
 	"scripts": {
-		"link": "npm link ../svelte-material-ui-core ../svelte-material-design-space-modules ../svelte-prism",
+		"link": "npm link @svelte-material-ui-test/core ../svelte-prism",
 		"postinstall": "npm run link",
 		"env": "cross-env TS_NODE_PROJECT=\"tsconfig.tsnode.json\"",
 		"ts-node": "npm run env -- node -r ts-node/register -r tsconfig-paths/register --",
@@ -41,6 +41,7 @@
 		"> 2% and last 2 version and supports es6-module-dynamic-import"
 	],
 	"dependencies": {
+		"@svelte-material-ui-test/core": "^2.0.0-alpha.6",
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
 		"sirv": "^1.0.11"
