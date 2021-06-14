@@ -6,7 +6,8 @@
 		Description,
 		Signature,
 	} from "src/components/components-api/events";
-	import { CommonTopAppBarEvents } from "../../_api/common";
+	import { CommonTopAppBarEvents } from "../../api/_api/common";
+
 </script>
 
 <Events>

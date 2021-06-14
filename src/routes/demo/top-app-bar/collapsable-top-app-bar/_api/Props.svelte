@@ -10,7 +10,8 @@
 		BaseComponentProps,
 		Dom,
 	} from "src/components/components-api/props/common";
-	import { CommonTopAppBarProps } from "../../_api/common";
+	import { CommonTopAppBarProps } from "../../api/_api/common";
+
 </script>
 
 <Props>
@@ -41,6 +42,6 @@
 	</Prop>
 	<CommonTopAppBarProps />
 	<BaseComponentProps>
-		<Dom instances={['HTMLDivElement']} />
+		<Dom instances={["HTMLDivElement"]} />
 	</BaseComponentProps>
 </Props>

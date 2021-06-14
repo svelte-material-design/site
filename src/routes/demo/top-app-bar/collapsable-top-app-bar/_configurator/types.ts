@@ -1,4 +1,4 @@
-import type { TopAppBarColor } from "@smui/core/top-app-bar";
+import type { TopAppBarColor } from "@svelte-material-design/core/top-app-bar";
 
 export interface CollapsableTopAppBarConfigurations {
 	color: TopAppBarColor;

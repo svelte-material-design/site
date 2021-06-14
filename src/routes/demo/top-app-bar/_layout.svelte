@@ -1,18 +1,16 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { appendLayoutPath } from "src/components/layout/module-layout/context";
-	import { SubComponents } from "./_api";
+	import { setLayoutPath } from "src/components/layout/module-layout/context";
+	import { SubComponents } from "./api/_api";
 	import { Configurator } from "./_configurator";
 	import { ModuleLayout, Page } from "src/components/layout/module-layout";
 
 	export let segment: string;
 
-	appendLayoutPath(`top-app-bar`);
-
 </script>
 
-<ModuleLayout module="top-app-bar" title="Top App Bar">
+<ModuleLayout module="top-app-bar" path="top-app-bar" title="Top App Bar">
 	<slot />
 	<div slot="page">
 		<Page

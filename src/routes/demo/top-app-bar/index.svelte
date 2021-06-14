@@ -1,12 +1,11 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	import { Props, Events, Slots } from "./_api";
-	import { ComponentTagHeading } from "src/components/components-api/headings";
+	import { Configurator } from "./_configurator";
+	import { Page } from "src/components/layout/module-layout";
 
 </script>
 
-<ComponentTagHeading>TopAppBar</ComponentTagHeading>
-<Props />
-<Events />
-<Slots />
+<Page>
+	<Configurator />
+</Page>

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Api from "../../label/index.svelte";
+	import Api from "../../api/label/index.svelte";
+
 </script>
 
 <Api />

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SubComponents } from "../../_api";
+	import { SubComponents } from "../../api/_api";
 
 </script>
 

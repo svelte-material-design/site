@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Api from "../../action-icon-toggle/index.svelte";
+	import Api from "../../api/action-icon-toggle/index.svelte";
 </script>
 
 <Api />
