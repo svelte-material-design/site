@@ -11,9 +11,8 @@
 		"importsNotUsedAsValues": "remove",
 		"paths": {
 			"@svelte-material-design/core/*": [
-				"./node_modules/@svelte-material-ui-test/core/cjs/*",
-				"./node_modules/@svelte-material-ui-test/core/ts/*",
-				"./node_modules/@svelte-material-ui-test/core/packages/*"
+				"./node_modules/@svelte-material-ui-test/core/packages/*",
+				"./node_modules/@svelte-material-ui-test/core/ts/*"
 			],
 			"@svelte-material-design/space-modules/*": [
 				"./node_modules/@svelte-material-design/space-modules/packages/*"

@@ -2,10 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "new"
 		}
 	],
 	"settings": {
-		"typescript.tsdk": "node_modules\\typescript\\lib",
 		"workbench.colorCustomizations": {
 			"activityBar.activeBackground": "#e64c4c",
 			"activityBar.activeBorder": "#849e8e",
@@ -22,13 +24,30 @@
 			"titleBar.inactiveBackground": "#55556399",
 			"titleBar.inactiveForeground": "#e7e7e799"
 		},
+		"prettier.useTabs": true,
+		"prettier.singleQuote": false,
+		"editor.tabSize": 2,
+		"editor.detectIndentation": false,
 		"editor.formatOnSave": true,
-		"prettier.useTabs": true
+		"editor.insertSpaces": false,
+		"files.eol": "\n",
+		"typescript.tsdk": "node_modules\\typescript\\lib",
+		"typescript.preferences.importModuleSpecifier": "relative",
+		"typescript.preferences.importModuleSpecifierEnding": "js",
+		"typescript.enablePromptUseWorkspaceTsdk": true
 	},
 	"extensions": {
 		"recommendations": [
 			"esbenp.prettier-vscode",
-			"svelte.svelte-vscode"
+			"svelte.svelte-vscode",
+			"aaron-bond.better-comments",
+			"wmaurer.change-case",
+			"mikestead.dotenv",
+			"usernamehw.errorlens",
+			"christian-kohler.path-intellisense",
+			"searKing.preview-vscode",
+			"pflannery.vscode-versionlens",
+			"vscode-icons-team.vscode-icons",
 		]
 	},
 	"tasks": {
